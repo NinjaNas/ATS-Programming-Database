@@ -1,13 +1,18 @@
 // Dependencies
 require('dotenv').config();
 const express = require('express');
+var bodyParser = require('body-parser');
 const mysql = require('mysql2');
+const fs = require('fs');
+
 
 // Create instance of express
 const app = express();
 // Use the environment variable PORT or 3000
 const port = process.env.PORT || 3000;
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); 
 // Sets a connection to PlanetScale using a connection string in the .env file
 const connection = mysql.createConnection(process.env.DATABASE_URL);
 // Connect to database and error checking
@@ -38,6 +43,29 @@ app.get('/', (req, res) => {
     });
   });
   
+  app.get('/insert', (req, res)=>{
+    fs.readFile('./insert.html', 'utf8', (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      // console.log(data);
+      res.send(data);
+    });
+  });
+
+  app.post('/insert', (req, res) => {
+  
+    connection.execute('INSERT INTO users (first_name, last_name, email) VALUES (?, ?, ?);', [req.body.first_name, req.body.last_name, req.body.email], (err, rows, fields) => {
+      // Error checking for bad query
+      if (err) throw err; // or return res.sendStatus(500)?
+      
+      // Send HTTPS
+      res.redirect('/');
+    });
+    
+
+  });
   /**
    * Event listener
    * 
