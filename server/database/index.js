@@ -55,11 +55,7 @@ app.get('/', (req, res) => {
   });
 
   app.post('/insert', (req, res) => {
-    // let query = "INSERT INTO users (first_name, last_name, email) VALUES (%FIRST_NAME%, %LAST_NAME%, %EMAIL%);"
-    // query = query.replace("%FIRST_NAME%", req.body.first_name);
-    // query = query.replace("%LAST_NAME%", req.body.last_name);
-    // query = query.replace("%EMAIL%", req.body.email);
-    // console.log(req)
+  
     connection.execute('INSERT INTO users (first_name, last_name, email) VALUES (?, ?, ?);', [req.body.first_name, req.body.last_name, req.body.email], (err, rows, fields) => {
       // Error checking for bad query
       if (err) throw err; // or return res.sendStatus(500)?
