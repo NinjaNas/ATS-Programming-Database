@@ -3,12 +3,17 @@ require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const fs = require('fs');
+const cors = require('cors');
 
 // Create instance of express
 const app = express();
 // Use the environment variable PORT or 3000
 const port = process.env.PORT || 3000;
 
+// Cross-origin resource sharing, in order for your server to be accessible by other origins (domains)
+// Enables the express server to respond to preflight requests
+// Axios will need this to run correctly in the frontend
+app.use(cors());
 // BodyParser is deprecated and express is a built-in parser
 // Tells the the system that JSON is to be used
 app.use(express.json());
@@ -85,8 +90,6 @@ app.post('/insert', (req, res) => {
     // Send HTTPS, redirect to root
     res.redirect('/');
   });
-  
-
 });
   /**
    * Event listener
