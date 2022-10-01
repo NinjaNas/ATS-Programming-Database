@@ -65,7 +65,7 @@ app.get('/insert', (req, res)=>{
       console.error(err);
       return;
     }
-    // Send data to be used in POST request
+    // Send form 
     // console.log(data);
     res.send(data);
   });
