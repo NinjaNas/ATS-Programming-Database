@@ -21,11 +21,11 @@ app.use(express.urlencoded({ extended: true }));
 // Routing
 app.use('/', router);
 
-  /**
-   * Event listener
-   * 
-   *  Binds and listens to the connections on the specified host and port
-   */
+/**
+ * Event listener
+ * 
+ *  Binds and listens to the connections on the specified host and port
+ */
 app.listen(port, () => {
   // Listens and prints out if port is running
   console.log(`Example app listening at http://localhost:${port}`);

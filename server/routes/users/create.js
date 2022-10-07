@@ -2,7 +2,6 @@
 require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
-const cors = require('cors');
 const router = express.Router();
 const mysql = require('mysql2');
 
@@ -13,17 +12,6 @@ connection.connect((err) => {
   if (err) throw err;
 });
 console.log('Connected to PlanetScale at /users/create.js!');
-
-// Cross-origin resource sharing, in order for your server to be accessible by other origins (domains)
-// Enables the express server to respond to preflight requests
-// Axios will need this to run correctly in the frontend
-router.use(cors());
-
-// BodyParser is deprecated and express is a built-in parser
-// Tells the the system that JSON is to be used
-router.use(express.json());
-// True for deep parsing (can do nested objects) and false for shallow parsing
-router.use(express.urlencoded({ extended: true })); 
 
 /**
  * GET request handler for returning users table
@@ -56,17 +44,12 @@ router.post('/', (req, res) => {
      * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server
      * The VALUES(?) is standard way to insert variables into a SQL statement using an array
      */
-    connection.execute('INSERT INTO users (first_name, last_name, email) VALUES (?, ?, ?);', [req.body.first_name, req.body.last_name, req.body.email], (err, rows, fields) => {
-        console.error(req.body.first_name);
-        console.error(req.body.last_name);
-        console.error(req.body.email);
-        console.error(rows);
-        console.error(fields);
+    connection.execute('INSERT INTO users (first_name, last_name, email, type) VALUES (?, ?, ?, ?);', [req.body.first_name, req.body.last_name, req.body.email, req.body.type], (err, rows, fields) => {
       // Error checking for bad query
-      if (err) {console.error(err)}; // or return res.sendStatus(500)?
+      if (err) throw err;
       
       // Send HTTPS, redirect to root
-      res.redirect('/');
+      res.redirect('/users');
     });
   });
   

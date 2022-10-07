@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
     */
     connection.query('SELECT * FROM users', (err, rows, fields) => {
       // Error checking for bad query
-      if (err) throw err; // or return res.sendStatus(500)?
+      if (err) throw err;
       
       // Send HTTPS
       res.send(rows);

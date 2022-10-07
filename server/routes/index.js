@@ -19,7 +19,7 @@ router.use(express.static(path.join(__dirname, '../build')));
  */
  router.get('/', (req, res) => {
     // Error checking for bad request
-    if (err) throw err; // or return res.sendStatus(500)?
+    if (err) throw err;
     
     // Sends React's index.html file
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
