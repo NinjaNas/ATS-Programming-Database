@@ -4,6 +4,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const fs = require('fs');
 const cors = require('cors');
+const path = require('path');
 
 // Create instance of express
 const app = express();
@@ -28,6 +29,24 @@ connection.connect((err) => {
 });
 console.log('Connected to PlanetScale!');
 
+// Store static files from 'build', _dirname returns the path of the folder
+app.use(express.static(path.join(__dirname, 'build')));
+
+/**
+ * GET request handler for returning React frontend
+ * 
+ * '/' - route path will match requests to the root route
+ * req - Receives GET request
+ * res - Send back HTTPS result
+ */
+ app.get('/', (req, res) => {
+    // Error checking for bad request
+    if (err) throw err; // or return res.sendStatus(500)?
+    
+    // Send HTTPS
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 /**
  * GET request handler for returning users table
  * 
@@ -35,7 +54,7 @@ console.log('Connected to PlanetScale!');
  * req - Receives GET request
  * res - Send back HTTPS result
  */
-app.get('/', (req, res) => {
+app.get('/api/data', (req, res) => {
     /** 
      * .query(), parameter substitution is handled on the client, including objects
      * 'SELECT * FROM users' is valid sql to select everything from the table 'users'
@@ -52,7 +71,7 @@ app.get('/', (req, res) => {
   });
   
 /**
- * GET request handler for reading data from 
+ * GET request handler for returning users table
  * 
  * '/insert' - route path will match requests to the /insert route
  * req - Receives GET request
