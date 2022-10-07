@@ -1,8 +1,8 @@
 // Dependencies
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const router = require('./routes')
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const router = require("./routes");
 
 // Create instance of express
 const app = express();
@@ -17,13 +17,13 @@ app.use(cors());
 // Tells the the system that JSON is to be used
 app.use(express.json());
 // True for deep parsing (can do nested objects) and false for shallow parsing
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true }));
 // Routing
-app.use('/', router);
+app.use("/", router);
 
 /**
  * Event listener
- * 
+ *
  *  Binds and listens to the connections on the specified host and port
  */
 app.listen(port, () => {
