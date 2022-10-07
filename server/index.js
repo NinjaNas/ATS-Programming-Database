@@ -54,7 +54,7 @@ app.use(express.static(path.join(__dirname, 'build')));
  * req - Receives GET request
  * res - Send back HTTPS result
  */
-app.get('/api/data', (req, res) => {
+app.get('/users', (req, res) => {
     /** 
      * .query(), parameter substitution is handled on the client, including objects
      * 'SELECT * FROM users' is valid sql to select everything from the table 'users'
