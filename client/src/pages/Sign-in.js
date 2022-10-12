@@ -5,11 +5,13 @@ import Axios from "axios";
 
 function SignIn() {
   //Keeps track of changes to name input box
-  const [fname, setFname] = useState("");
+  const [first_name, setFirstName] = useState("");
   //Keeps track of changes to  last name input box
-  const [lname, setLname] = useState("");
+  const [last_name, setLastName] = useState("");
   //Keeps track of changes to email input box
   const [email, setEmail] = useState("");
+  //Keeps track of changes to type input box
+  const [type, setType] = useState("");
 
   /*
     Meant to be the function that sends "credentials" input on the boxes
@@ -17,10 +19,11 @@ function SignIn() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const signIn = () => {
-    Axios.get("http://localhost:3000/insert", {
-      fname: fname,
-      lname: lname,
+    Axios.post("http://localhost:3000/users/create", {
+      first_name: first_name,
+      last_name: last_name,
       email: email,
+      type: type,
     }).then(() => {
       console.log("success");
     });
@@ -34,7 +37,7 @@ function SignIn() {
         <input
           type="text"
           onChange={(event) => {
-            setFname(event.target.value);
+            setFirstName(event.target.value);
           }}
         />
         {/*Last name input box*/}
@@ -42,7 +45,7 @@ function SignIn() {
         <input
           type="text"
           onChange={(event) => {
-            setLname(event.target.value);
+            setLastName(event.target.value);
           }}
         />
         {/*Email input box*/}
@@ -51,6 +54,14 @@ function SignIn() {
           type="text"
           onChange={(event) => {
             setEmail(event.target.value);
+          }}
+        />
+        {/*Type input box*/}
+        <label>Type:</label>
+        <input
+          type="text"
+          onChange={(event) => {
+            setType(event.target.value);
           }}
         />
         {/*Sign-in button that will fire the call to endpoint in the backend*/}

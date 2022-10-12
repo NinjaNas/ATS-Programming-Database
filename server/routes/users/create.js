@@ -1,30 +1,11 @@
 // Dependencies
 const express = require("express");
-const fs = require("fs");
 const router = express.Router();
 const pool = require("../pool");
 
 pool.getConnection(function (err, connection) {
   // Bad connection
   if (err) throw err;
-  /**
-   * GET request handler for returning users table
-   *
-   * '/create' - route path will match requests to the /users/create route
-   * req - Receives GET request
-   * res - Send back HTTPS result
-   */
-  router.get("/", (req, res) => {
-    fs.readFile("insert.html", "utf8", (err, form) => {
-      // Error checking for bad file read
-      if (err) {
-        console.error(err);
-        return;
-      }
-      // Send form
-      res.send(form);
-    });
-  });
 
   /**
    * POST request handler for inserting new user in 'users' table
@@ -45,7 +26,9 @@ pool.getConnection(function (err, connection) {
         // Error checking for bad query
         if (err) throw err;
 
-        // Send HTTPS, redirect to root
+        console.log("Values inserted!")
+
+        // Send HTTPS, redirect to root, React page does not get redirected
         res.redirect("/users");
 
         // Release connection

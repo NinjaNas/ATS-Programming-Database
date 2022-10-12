@@ -4,23 +4,27 @@ import Axios from "axios";
 
 function SignUp() {
   //Keeps track of changes to name input box
-  const [fname, setFname] = useState("");
+  const [first_name, setFirstName] = useState("");
   //Keeps track of changes to  last name input box
-  const [lname, setLname] = useState("");
+  const [last_name, setLastName] = useState("");
+  //Keeps track of changes to email input box
   const [email, setEmail] = useState("");
+  //Keeps track of changes to type input box
+  const [type, setType] = useState("");
 
   /*
     Meant to be the function that sends "credentials" input on the boxes
-    to the backend to be added to users database. Currently is just making a get request to /insert
-    but I envisioned been whatever creation endpoint we are thinking of
+    to the backend for authenctication. Currently is just making a get request to /insert
+    but I envisioned been whatever authentication endpoint we are thinking of
     */
-  const addStudent = () => {
-    Axios.post("http://localhost:3000/insert", {
-      fname: fname,
-      lname: lname,
+  const signIn = () => {
+    Axios.post("http://localhost:3000/users/create", {
+      first_name: first_name,
+      last_name: last_name,
       email: email,
+      type: type,
     }).then(() => {
-      console.log("succes");
+      console.log("success");
     });
   };
 
@@ -32,7 +36,7 @@ function SignUp() {
         <input
           type="text"
           onChange={(event) => {
-            setFname(event.target.value);
+            setFirstName(event.target.value);
           }}
         />
         {/*Last name input box*/}
@@ -40,7 +44,7 @@ function SignUp() {
         <input
           type="text"
           onChange={(event) => {
-            setLname(event.target.value);
+            setLastName(event.target.value);
           }}
         />
         {/*Email input box*/}
@@ -49,6 +53,14 @@ function SignUp() {
           type="text"
           onChange={(event) => {
             setEmail(event.target.value);
+          }}
+        />
+        {/*Type input box*/}
+        <label>Type:</label>
+        <input
+          type="text"
+          onChange={(event) => {
+            setType(event.target.value);
           }}
         />
         {/*Sign-up button that will fire the call to endpoint in the backend*/}
