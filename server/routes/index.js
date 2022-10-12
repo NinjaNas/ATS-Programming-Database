@@ -7,6 +7,7 @@ const router = express.Router();
 // Routing
 router.use("/users", users);
 
+// Allows for the use of the same localhost port for React and Express
 // Store static files from '../build', _dirname returns the path of the folder
 router.use(express.static(path.join(__dirname, "../build")));
 
