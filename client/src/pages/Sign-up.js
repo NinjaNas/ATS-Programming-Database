@@ -17,7 +17,7 @@ function SignUp() {
     to the backend for authenctication. Currently is just making a get request to /insert
     but I envisioned been whatever authentication endpoint we are thinking of
     */
-  const signIn = () => {
+  const signUp = () => {
     Axios.post("http://localhost:3000/users/create", {
       first_name: first_name,
       last_name: last_name,
@@ -64,7 +64,7 @@ function SignUp() {
           }}
         />
         {/*Sign-up button that will fire the call to endpoint in the backend*/}
-        <button onClick={addStudent}>Add Student</button>
+        <button onClick={SignUp}>Add Student</button>
       </div>
     </div>
   );
