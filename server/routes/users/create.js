@@ -3,6 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const router = express.Router();
 const pool = require("../pool");
+const url = require("url");
 
 pool.getConnection(function (err, connection) {
   // Bad connection
@@ -21,6 +22,7 @@ pool.getConnection(function (err, connection) {
         console.error(err);
         return;
       }
+
       // Send form
       res.send(form);
     });
@@ -39,14 +41,34 @@ pool.getConnection(function (err, connection) {
      * The VALUES(?) is standard way to insert variables into a SQL statement using an array
      */
     connection.execute(
-      "INSERT INTO users (first_name, last_name, email, type) VALUES (?, ?, ?, ?);",
-      [req.body.first_name, req.body.last_name, req.body.email, req.body.type],
+      "INSERT INTO users (first_name, last_name, email, type, password_hash) VALUES (?, ?, ?, ?, ?);",
+      [req.body.first_name, req.body.last_name, req.body.email, req.body.type, req.body.password_hash],
       (err, rows, fields) => {
         // Error checking for bad query
-        if (err) throw err;
+        if (err) {
+          // Checks for the "already used" error, which can only happen via used email, and logs it
+          if (err.errno == 1062) console.log("Account already established with that email.");
+          else throw err;
+        }
 
+        //Looks for student type
+        if (req.body.type == "student") {
+
+          //Pulls ID of current user
+          connection.query(
+            "SELECT id FROM users WHERE email='" + req.body.email + "'", 
+            (err, userId, fields) => {
+            if (err) throw err;
+            res.redirect(url.format({
+              pathname:"./student",
+              query: {
+                "id": Number(userId[0].id)
+              }
+            }));
+          });
+        }
         // Send HTTPS, redirect to root
-        res.redirect("/users");
+        else res.redirect("/users");    
 
         // Release connection
         connection.release();

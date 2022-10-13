@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body>
+    SESSION CREATOR:
+    <form method="post">
+      <label for="intake_date">Start date:</label><br />
+      <input type="date" id="intake_date" name="intake_date" /><br />
+      <label for="school_admin">School Administrator</label><br />
+      <input type="text" id="school_admin" name="school_admin" /><br />
+      <label for="social_worker">Social Worker</label><br />
+      <input type="text" id="social_worker" name="social_worker" /><br />
+      <label for="school_counselor">School Counselor</label><br />
+      <input type="text" id="school_counselor" name="school_counselor" /><br />
+      <label for="pickup">Student Pickup:</label><br />
+      <select name="pickup" id="pickup">
+        <option value="0">Pickup</option>
+        <option value="1">Walk</option>
+        <option value="2">Self-drive</option>
+        <option value="3">Public Transport</option>
+        <option value="4">School Transport</option>
+      </select><br /><br /><br />
+      DEMOGRAPHICS:<br />
+      <label for="date_of_birth">Date of birth:</label><br />
+      <input type="date" id="date_of_birth" name="date_of_birth" /><br />
+      <label for="gender">Gender:</label><br />
+      <select name="gender" id="gender">
+        <option value="0">Male</option>
+        <option value="1">Female</option>
+        <option value="2">Other</option>
+      </select><br />
+      <label for="ethnicity">Ethnicity</label><br />
+      <input type="text" id="ethnicity" name="ethnicity" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

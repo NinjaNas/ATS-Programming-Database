@@ -1,11 +1,13 @@
 // Dependencies
 const express = require("express");
 const create = require("./create");
+const student = require("./student");
 const router = express.Router();
 const pool = require("../pool");
 
 // Routing
 router.use("/create", create);
+router.use("/student", student);
 
 pool.getConnection(function (err, connection) {
   // Bad connection
