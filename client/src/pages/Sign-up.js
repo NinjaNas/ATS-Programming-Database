@@ -64,7 +64,7 @@ function SignUp() {
           }}
         />
         {/*Sign-up button that will fire the call to endpoint in the backend*/}
-        <button onClick={SignUp}>Add Student</button>
+        <button onClick={signUp}>Add Student</button>
       </div>
     </div>
   );
