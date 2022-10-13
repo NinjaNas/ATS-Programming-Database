@@ -9,7 +9,7 @@ router.use("/users", users);
 
 // Allows for the use of the same localhost port for React and Express
 // Store static files from '../build', _dirname returns the path of the folder
-router.use(express.static(path.join(__dirname, "../build")));
+router.use(express.static(path.join(__dirname, "../../client/build")));
 
 /**
  * GET request handler for returning React frontend
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
   if (err) throw err;
 
   // Sends React's index.html file
-  res.sendFile(path.join(__dirname, "../build", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "..", "client", "build", "index.html"));
 });
 
 module.exports = router;
