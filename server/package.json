@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
+    "start": "cd ../client && npm run build && cd ../server && nodemon index",
+    "nodestart": "cd ../client && npm run build && cd ../server && node index",
+    "node": "node index",
     "dev": "nodemon index"
   },
   "author": "",

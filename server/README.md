@@ -1,8 +1,13 @@
 # Database access
 
-Run: `node index.js` or `npm start`
+Build and run w/ nodemon:`npm start`
 
-Run w/ nodemon: `npm run dev`
+Build and run w/o nodemon: `npm run nodestart`
+
+No build and run w/ nodemon: `npm run dev`
+(Allows to update express code without restarting server)
+
+No build and run w/o nodemon: `npm run node`
 (Allows to update express code without restarting server)
 
 In browser:
