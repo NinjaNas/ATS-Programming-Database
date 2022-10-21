@@ -11,6 +11,22 @@ function SignUp() {
   const [email, setEmail] = useState("");
   //Keeps track of changes to type input box
   const [type, setType] = useState("");
+  //Keeps track of changes to password input box
+  const [password, setPassword] = useState("");
+
+  //Keeps track of if the type is student
+  const [text, setText]  = useState("");
+
+  const [date, setDate] = useState("");
+  const [school_admin, setAdm] = useState("");
+  const [social_worker, setWork] = useState("");
+  const [school_counselor, setCoun] = useState("");
+  const [pickup, setPickup] = useState("");
+
+  //Adds new boxes to screen if type is student
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
 
   /*
     Meant to be the function that sends "credentials" input on the boxes
@@ -18,14 +34,63 @@ function SignUp() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const signUp = () => {
-    Axios.post("http://localhost:3000/users/create", {
+    //If the type is student and text is invalid, creates session row.
+    if (type == "student" && text == "") {
+      setText(<>
+        <br></br>
+        <label>Start Date:</label>
+        <input
+            type="date"
+            onChange={(event) => {
+              setDate(event.target.value);
+            } } 
+          />
+        <label>School Administrator:</label>
+        <input
+            type="text"
+            onChange={(event) => {
+              setAdm(event.target.value);
+            } } 
+        />
+        <label>Social Worker:</label>
+        <input
+            type="text"
+            onChange={(event) => {
+              setWork(event.target.value);
+            } } 
+          />
+        <label>School Counselor:</label>
+        <input
+            type="text"
+            onChange={(event) => {
+              setCoun(event.target.value);
+            } } 
+          />
+        <label>Pickup:</label>
+        <input
+            type="text"
+            onChange={(event) => {
+              setPickup(event.target.value);
+            } } 
+          />
+            </>);
+    }
+    else {
+      Axios.post("http://localhost:3000/users/create", {
       first_name: first_name,
       last_name: last_name,
       email: email,
       type: type,
+      password_hash: password,
+      intake_date: date,
+      school_admin: school_admin,
+      social_worker: social_worker,
+      school_counselor: school_counselor,
+      pickup: pickup
     }).then(() => {
       console.log("success");
     });
+    }
   };
 
   return (
@@ -58,13 +123,22 @@ function SignUp() {
         {/*Type input box*/}
         <label>Type:</label>
         <input
-          type="text"
+          type="dropbox"
           onChange={(event) => {
             setType(event.target.value);
           }}
         />
+        {/*Password input box*/}
+        <label>Password:</label>
+        <input
+          type="password"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
         {/*Sign-up button that will fire the call to endpoint in the backend*/}
-        <button onClick={SignUp}>Add Student</button>
+        {text}
+        <button onClick={signUp}>Add User</button>
       </div>
     </div>
   );
