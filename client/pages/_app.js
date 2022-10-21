@@ -8,11 +8,11 @@ import Head from "next/head";
 const App = ({ Component, pageProps }) => (
   // Can only return one element, must empty html tag
   <>
-    <!--
+    {/* Next.js forces title tag to be in _app.js */}
     <Head>
       <title>My new cool app</title>
     </Head>
-    // Render all the components and their properties
+    {/* Render all the components and their properties */}
     <Component {...pageProps} />
   </>
 );
