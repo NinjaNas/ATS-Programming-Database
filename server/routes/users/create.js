@@ -24,9 +24,11 @@ pool.getConnection(function (err, connection) {
       [req.body.first_name, req.body.last_name, req.body.email, req.body.type],
       (err, rows, fields) => {
         // Error checking for bad query
-        if (err) throw err;
-
-        console.log("Values inserted!");
+        if (err) {
+          if (err.errno == 1096)
+            console.log("Account already established with that email.");
+          else throw err;
+        } else console.log("Values inserted!");
 
         // Send HTTPS, redirect to root, React page does not get redirected
         res.redirect("/api/users");
