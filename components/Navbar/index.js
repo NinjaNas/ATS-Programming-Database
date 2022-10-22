@@ -12,10 +12,10 @@ class Navbar extends Component {
       <nav>
         <div>
           <Link href="/">
-            <a title="Our API">Home</a>
+            <a title="Boomerang">Home</a>
           </Link>
-          <Link href="/about">
-            <a title="About New JS">About Next JS</a>
+          <Link href="/sign-up">
+            <a title="Sign Up">Sign Up</a>
           </Link>
         </div>
       </nav>
