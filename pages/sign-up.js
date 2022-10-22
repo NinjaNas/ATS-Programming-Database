@@ -4,9 +4,9 @@ import Axios from "axios";
 
 function SignUp() {
   //Keeps track of changes to name input box
-  const [first_name, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState("");
   //Keeps track of changes to  last name input box
-  const [last_name, setLastName] = useState("");
+  const [lastName, setLastName] = useState("");
   //Keeps track of changes to email input box
   const [email, setEmail] = useState("");
   //Keeps track of changes to type input box
@@ -18,9 +18,9 @@ function SignUp() {
   const [text, setText] = useState("");
 
   const [date, setDate] = useState("");
-  const [school_admin, setAdm] = useState("");
-  const [social_worker, setWork] = useState("");
-  const [school_counselor, setCoun] = useState("");
+  const [schoolAdmin, setAdmin] = useState("");
+  const [socialWorker, setSocialWorker] = useState("");
+  const [schoolCounselor, setSchoolCounselor] = useState("");
   const [pickup, setPickup] = useState("");
 
   //Adds new boxes to screen if type is student
@@ -50,21 +50,21 @@ function SignUp() {
           <input
             type="text"
             onChange={(event) => {
-              setAdm(event.target.value);
+              setAdmin(event.target.value);
             }}
           />
           <label>Social Worker:</label>
           <input
             type="text"
             onChange={(event) => {
-              setWork(event.target.value);
+              setSocialWorker(event.target.value);
             }}
           />
           <label>School Counselor:</label>
           <input
             type="text"
             onChange={(event) => {
-              setCoun(event.target.value);
+              setSchoolCounselor(event.target.value);
             }}
           />
           <label>Pickup:</label>
@@ -78,15 +78,15 @@ function SignUp() {
       );
     } else {
       Axios.post("http://localhost:3000/api/users/create", {
-        first_name: first_name,
-        last_name: last_name,
+        first_name: firstName,
+        last_name: lastName,
         email: email,
         type: type,
         password_hash: password,
         intake_date: date,
-        school_admin: school_admin,
-        social_worker: social_worker,
-        school_counselor: school_counselor,
+        school_admin: schoolAdmin,
+        social_worker: socialWorker,
+        school_counselor: schoolCounselor,
         pickup: pickup,
       }).then(() => {
         console.log("success");
