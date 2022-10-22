@@ -2,6 +2,8 @@
 // Globals.css can only be used in _app.js, any other stylesheet needs file name [Name].module.css to work
 import "../styles/globals.css";
 
+import Navbar from "../components/Navbar";
+
 import Head from "next/head";
 
 // Arrow function, return is implied
@@ -12,6 +14,7 @@ const App = ({ Component, pageProps }) => (
     <Head>
       <title>ATS</title>
     </Head>
+    <Navbar />
     {/* Render all the components and their properties */}
     <Component {...pageProps} />
   </>
