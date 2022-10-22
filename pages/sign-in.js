@@ -14,7 +14,7 @@ function SignIn() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const signIn = () => {
-    Axios.post("http://localhost:3000/users/create", {
+    Axios.post("http://localhost:3000/api/users/create", {
       email: email,
       password_hash: password,
     }).then(() => {

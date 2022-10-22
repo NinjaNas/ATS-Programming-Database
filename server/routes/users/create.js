@@ -25,40 +25,52 @@ pool.getConnection(function (err, connection) {
       (err, rows, fields) => {
         // Error checking for bad query
         if (err) {
-          if (err.errno == 1096) console.log("Account already established with that email.");
+          if (err.errno == 1096)
+            console.log("Account already established with that email.");
           else throw err;
         } else console.log("Values inserted!");
+
+        // Send HTTPS, redirect to root, React page does not get redirected
+        res.redirect("/api/users");
 
         // Release connection
         connection.release();
       }
     );
-    
     //New session creator if student type given.
     if (req.body.type == "student") {
-
       //Pulls ID of current user
       connection.query(
-        "SELECT id FROM users WHERE email=?", [req.body.email], 
+        "SELECT id FROM users WHERE email=?",
+        [req.body.email],
         (err, userId, fields) => {
-        if (err) throw err;
+          if (err) throw err;
 
-        //Creates new session with ID
-        connection.execute(
-          "INSERT INTO session (user_id, intake_date, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?, ?);",
-          [userId[0].id, req.body.intake_date,req.body.school_admin, req.body.social_worker, req.body.school_counselor, req.body.pickup],
-          (err, items, fields) => {
-            // Error checking for bad query
-            if (err) throw err;
+          //Creates new session with ID
+          connection.execute(
+            "INSERT INTO session (user_id, intake_date, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?, ?);",
+            [
+              userId[0].id,
+              req.body.intake_date,
+              req.body.school_admin,
+              req.body.social_worker,
+              req.body.school_counselor,
+              req.body.pickup,
+            ],
+            (err, items, fields) => {
+              // Error checking for bad query
+              if (err) throw err;
 
-             // Release connection
-             connection.release();
-             
-             console.log("More success!");
+              // Release connection
+              connection.release();
+
+              console.log("More success!");
+            }
+          );
         }
       );
-      });
     }
   });
 });
+
 module.exports = router;

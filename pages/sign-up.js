@@ -15,7 +15,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
 
   //Keeps track of if the type is student
-  const [text, setText]  = useState("");
+  const [text, setText] = useState("");
 
   const [date, setDate] = useState("");
   const [school_admin, setAdm] = useState("");
@@ -36,60 +36,61 @@ function SignUp() {
   const signUp = () => {
     //If the type is student and text is invalid, creates session row.
     if (type == "student" && text == "") {
-      setText(<>
-        <br></br>
-        <label>Start Date:</label>
-        <input
+      setText(
+        <>
+          <br></br>
+          <label>Start Date:</label>
+          <input
             type="date"
             onChange={(event) => {
               setDate(event.target.value);
-            } } 
+            }}
           />
-        <label>School Administrator:</label>
-        <input
+          <label>School Administrator:</label>
+          <input
             type="text"
             onChange={(event) => {
               setAdm(event.target.value);
-            } } 
-        />
-        <label>Social Worker:</label>
-        <input
+            }}
+          />
+          <label>Social Worker:</label>
+          <input
             type="text"
             onChange={(event) => {
               setWork(event.target.value);
-            } } 
+            }}
           />
-        <label>School Counselor:</label>
-        <input
+          <label>School Counselor:</label>
+          <input
             type="text"
             onChange={(event) => {
               setCoun(event.target.value);
-            } } 
+            }}
           />
-        <label>Pickup:</label>
-        <input
+          <label>Pickup:</label>
+          <input
             type="text"
             onChange={(event) => {
               setPickup(event.target.value);
-            } } 
+            }}
           />
-            </>);
-    }
-    else {
-      Axios.post("http://localhost:3000/users/create", {
-      first_name: first_name,
-      last_name: last_name,
-      email: email,
-      type: type,
-      password_hash: password,
-      intake_date: date,
-      school_admin: school_admin,
-      social_worker: social_worker,
-      school_counselor: school_counselor,
-      pickup: pickup
-    }).then(() => {
-      console.log("success");
-    });
+        </>
+      );
+    } else {
+      Axios.post("http://localhost:3000/api/users/create", {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        type: type,
+        password_hash: password,
+        intake_date: date,
+        school_admin: school_admin,
+        social_worker: social_worker,
+        school_counselor: school_counselor,
+        pickup: pickup,
+      }).then(() => {
+        console.log("success");
+      });
     }
   };
 
