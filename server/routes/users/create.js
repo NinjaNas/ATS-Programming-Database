@@ -26,10 +26,10 @@ pool.getConnection(function (err, connection) {
         // Error checking for bad query
         if (err) throw err;
 
-        console.log("Values inserted!")
+        console.log("Values inserted!");
 
         // Send HTTPS, redirect to root, React page does not get redirected
-        res.redirect("/users");
+        res.redirect("/api/users");
 
         // Release connection
         connection.release();

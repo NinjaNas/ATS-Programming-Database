@@ -1,7 +1,7 @@
 // Dependencies
 const express = require("express");
-const create = require("./create");
 const router = express.Router();
+const create = require("./create");
 const pool = require("../pool");
 
 // Routing
