@@ -30,9 +30,6 @@ pool.getConnection(function (err, connection) {
           else throw err;
         } else console.log("Values inserted!");
 
-        // Send HTTPS, redirect to root, React page does not get redirected
-        res.redirect("/api/users");
-
         // Release connection
         connection.release();
       }
