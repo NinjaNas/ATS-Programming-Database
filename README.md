@@ -30,3 +30,15 @@ pages - Contains the client pages, does the routing on its own
 server - Express backend
 
 styles - CSS stylesheets (Only one global.css, use {name}.module.css for certain modules)
+
+Pages:
+
+`/`
+
+`/admin`
+
+`/student`
+
+`/sign-in`
+
+`/sign-up`
