@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const create = require("./create");
-const pool = require("../pool");
+const pool = require("../../utils/pool");
 
 // Routing
 router.use("/create", create);

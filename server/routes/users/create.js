@@ -1,72 +1,89 @@
 // Dependencies
 const express = require("express");
 const router = express.Router();
-const pool = require("../pool");
+const { hash } = require("../../utils/bcrypt");
+const pool = require("../../utils/pool");
 
 pool.getConnection(function (err, connection) {
   // Bad connection
   if (err) throw err;
 
-  /**
-   * POST request handler for inserting new user in 'users' table
-   *
-   * '/create' - route path will match requests to the /users/create route
-   * req - Receives GET request
-   * res - Send back HTTPS result
-   */
-  router.post("/", (req, res) => {
-    /**
-     * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server
-     * The VALUES(?) is standard way to insert variables into a SQL statement using an array
-     */
-    connection.execute(
-      "INSERT INTO users (first_name, last_name, email, type) VALUES (?, ?, ?, ?);",
-      [req.body.first_name, req.body.last_name, req.body.email, req.body.type],
+  // async function to make sure the session execute goes after
+  router.post("/", async (req, res) => {
+    // Destructuring
+    const {
+      first_name,
+      last_name,
+      email,
+      type,
+      intake_date,
+      school_admin,
+      social_worker,
+      school_counselor,
+      pickup,
+    } = req.body;
+
+    await connection.execute(
+      "SELECT * FROM users WHERE email=?",
+      [email],
       (err, rows, fields) => {
-        // Error checking for bad query
-        if (err) {
-          if (err.errno == 1096)
-            console.log("Account already established with that email.");
-          else throw err;
-        } else console.log("Values inserted!");
+        if (err) throw err;
+
+        // falsey, if 0 then there is no user with the same email
+        if (rows.length) {
+          res.status(400).send({ msg: "Email already exists!" });
+        } else {
+          // Use hash function from utils/bcrypt.js
+          const password_hash = hash(req.body.password_hash);
+          console.log(password_hash);
+          /**
+           * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server
+           * The VALUES(?) is standard way to insert variables into a SQL statement using an array
+           */
+          connection.execute(
+            "INSERT INTO users (first_name, last_name, email, type, password_hash) VALUES (?, ?, ?, ?, ?);",
+            [first_name, last_name, email, type, password_hash],
+            (err, rows, fields) => {
+              // Error checking for bad query
+              if (err) throw err;
+              console.log("Values inserted!");
+
+              // Release connection
+              connection.release();
+            }
+          );
+        }
 
         // Release connection
         connection.release();
       }
     );
+
     //New session creator if student type given.
-    if (req.body.type == "student") {
-      //Pulls ID of current user
-      connection.query(
-        "SELECT id FROM users WHERE email=?",
-        [req.body.email],
-        (err, userId, fields) => {
+    if (type == "student") {
+      //Creates new session with ID
+      await connection.execute(
+        "INSERT INTO session (intake_date, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?);",
+        [
+          // rows[0].id,
+          intake_date,
+          school_admin,
+          social_worker,
+          school_counselor,
+          pickup,
+        ],
+        (err, rows, fields) => {
+          // Error checking for bad query
           if (err) throw err;
 
-          //Creates new session with ID
-          connection.execute(
-            "INSERT INTO session (user_id, intake_date, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?, ?);",
-            [
-              userId[0].id,
-              req.body.intake_date,
-              req.body.school_admin,
-              req.body.social_worker,
-              req.body.school_counselor,
-              req.body.pickup,
-            ],
-            (err, items, fields) => {
-              // Error checking for bad query
-              if (err) throw err;
+          console.log("More success!");
 
-              // Release connection
-              connection.release();
-
-              console.log("More success!");
-            }
-          );
+          // Release connection
+          connection.release();
         }
       );
     }
+    res.sendStatus(201);
   });
 });
 
