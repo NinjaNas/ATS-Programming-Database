@@ -23,7 +23,7 @@ pool.getConnection(function (err, connection) {
     } = req.body;
 
     connection.execute(
-      "SELECT * FROM users WHERE email=?",
+      "SELECT * FROM users WHERE email=?;",
       [email],
       (err, rows, fields) => {
         if (err) throw err;
@@ -57,7 +57,7 @@ pool.getConnection(function (err, connection) {
         if (type == "student") {
           //Pulls ID of current user
           connection.query(
-            "SELECT id FROM users WHERE email=?",
+            "SELECT id FROM users WHERE email=?;",
             [email],
             (err, user_id, fields) => {
               if (err) throw err;
