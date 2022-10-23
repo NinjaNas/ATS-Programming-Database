@@ -10,7 +10,7 @@ pool.getConnection(function (err, connection) {
 
   // async function to make sure the session execute goes after
   router.post("/", async (req, res) => {
-    // Destructuring
+    // Object destructuring
     const {
       first_name,
       last_name,
@@ -65,6 +65,7 @@ pool.getConnection(function (err, connection) {
       await connection.execute(
         "INSERT INTO session (intake_date, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?);",
         [
+          // Figure out if this is needed, foreign keys?
           // rows[0].id,
           intake_date,
           school_admin,
