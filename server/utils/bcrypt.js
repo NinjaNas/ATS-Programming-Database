@@ -14,4 +14,9 @@ function hash(password) {
   return bcrypt.hashSync(password, salt);
 }
 
-module.exports = { hash };
+function compareHash(raw, hash) {
+  // Takes raw password and compares it to hash
+  return bcrypt.compareSync(raw, hash);
+}
+
+module.exports = { hash, compareHash };

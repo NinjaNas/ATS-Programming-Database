@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const next = require("next");
 const cors = require("cors");
+const session = require("express-session");
 const routes = require("./routes");
 
 // Use the environment variable PORT or 3000
@@ -29,6 +30,14 @@ app
     server.use(express.json());
     // True for deep parsing (can do nested objects) and false for shallow parsing
     server.use(express.urlencoded({ extended: true }));
+
+    server.use(
+      session({
+        secret: "DSFJISJIFSIJDJFID",
+        resave: false,
+        saveUninitialized: false,
+      })
+    );
 
     // Routing
     server.use("/api", routes);

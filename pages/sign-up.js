@@ -82,7 +82,7 @@ function SignUp() {
         last_name: lastName,
         email: email,
         type: type,
-        password_hash: password,
+        password: password,
         intake_date: date,
         school_admin: schoolAdmin,
         social_worker: socialWorker,

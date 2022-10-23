@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     res.status(400).send({ msg: "Email already exists!" });
   } else {
     // Use hash function from utils/bcrypt.js
-    const password_hash = hash(req.body.password_hash);
+    const password_hash = hash(req.body.password);
     /**
      * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server
      * The VALUES(?) is standard way to insert variables into a SQL statement using an array
