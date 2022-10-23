@@ -28,8 +28,8 @@ router.post("/login", async (req, res) => {
 
   if (isValid) {
     console.log("Authenticated Successfully!");
-    // Attach the user object to the session
-    console.log((req.session.user = rows[0]));
+    // Attach the user object to the session, since the user is now attached to the session a cookie is attached to the session automatically
+    req.session.user = rows[0];
     res.sendStatus(200);
   } else {
     console.log("Failed to Authenticate!");
