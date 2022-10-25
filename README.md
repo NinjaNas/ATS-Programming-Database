@@ -44,7 +44,7 @@ Server Folders:
 
   - \pool - Create pool connections to the database
 
-  - \authorize - Middleware to create authorization for certain files
+  - \authorize - Middleware to create authorization for certain files or use it as middleware for certain HTTPS requests
 
     Pages:
 
