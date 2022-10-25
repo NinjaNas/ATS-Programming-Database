@@ -14,8 +14,9 @@ Create Users:
 `localhost:3000/api/users/create`
 Page should redirect back to `/api/users`
 
-Authorize user is logged in:
+Authorize user:
 `localhost:3000/api/auth`
+Send json with email: and password: for verification to this endpoint
 
 Client Folders:
 
@@ -37,7 +38,15 @@ Server Folders:
 
 - utils - Contains auth strategies, helper functions, and code that is reused
 
-Pages:
+  - \bcrypt - Hash library, helper functions
+
+  - \local - passport-local auth strategy
+
+  - \pool - Create pool connections to the database
+
+  - \authorize - Middleware to create authorization for certain files
+
+    Pages:
 
 - `/`
 

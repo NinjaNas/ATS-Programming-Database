@@ -4,6 +4,8 @@ const router = express.Router();
 const { hash } = require("../../utils/bcrypt");
 const { getConnection } = require("../../utils/pool");
 
+router.use(authorize());
+
 /**
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper

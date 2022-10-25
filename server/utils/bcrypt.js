@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-function hash(password) {
+const hash = (password) => {
   /* 
     Salting is a technique to protect passwords stored in databases 
     by adding a string of 32 or more characters and then hashing them. 
@@ -12,11 +12,11 @@ function hash(password) {
   const salt = bcrypt.genSaltSync();
   // Hash the password+salt
   return bcrypt.hashSync(password, salt);
-}
+};
 
-function compareHash(raw, hash) {
+const compareHash = (raw, hash) => {
   // Takes raw password and compares it to hash
   return bcrypt.compareSync(raw, hash);
-}
+};
 
 module.exports = { hash, compareHash };
