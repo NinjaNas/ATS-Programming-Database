@@ -2,10 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const users = require("./users");
-const auth = require("./auth");
+const login = require("./login");
 
 // Routing
 router.use("/users", users);
-router.use("/auth", auth);
+router.use("/login", login);
 
 module.exports = router;

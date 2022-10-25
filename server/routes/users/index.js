@@ -28,9 +28,9 @@ router.get("/", async (req, res) => {
    */
   await connection
     .query("SELECT * FROM users;")
-    .then((rows, fields) => {
-      // Send HTTPS
-      res.send(rows);
+    .then((table) => {
+      // Send HTTPS, promises return the table access rows at 0 and fields at 1
+      res.send(table[0]);
       // Release connection
       connection.release();
     })

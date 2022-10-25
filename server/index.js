@@ -5,6 +5,8 @@ const next = require("next");
 const passport = require("passport");
 const cors = require("cors");
 const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+const mysql = require("mysql2/promise");
 const routes = require("./routes");
 require("./utils/local");
 
@@ -14,7 +16,11 @@ const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-
+// Setup session stores incase server crashes, the current logins will be saved
+const sessionStore = new MySQLStore(
+  {},
+  mysql.createPool(process.env.DATABASE_URL)
+);
 app
   // Prepare to go into next.js
   .prepare()
@@ -38,8 +44,15 @@ app
         secret: "DSFJISJIFSIJDJFID",
         resave: false,
         saveUninitialized: false,
+        store: sessionStore,
       })
     );
+
+    // Print out sessionStore
+    // server.use((req, res, next) => {
+    //   console.log(sessionStore);
+    //   next();
+    // });
 
     // Start Passport
     server.use(passport.initialize());

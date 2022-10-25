@@ -17,6 +17,9 @@ class Navbar extends Component {
           <Link href="/sign-up">
             <a title="Sign Up">Sign Up</a>
           </Link>
+          <Link href="/login">
+            <a title="Login">Login</a>
+          </Link>
         </div>
       </nav>
     );

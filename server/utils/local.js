@@ -23,7 +23,8 @@ passport.deserializeUser(async (id, done) => {
   // Using the id, find the user object in the database
   await connection
     .query("SELECT id FROM users WHERE id=?;", [id])
-    .then((user, fields) => {
+    // user contains rows and fields
+    .then((user) => {
       if (!user) throw new Error("User not found");
       done(null, user);
       connection.release();
