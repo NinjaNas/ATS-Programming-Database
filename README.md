@@ -14,6 +14,9 @@ Create Users:
 `localhost:3000/api/users/create`
 Page should redirect back to `/api/users`
 
+Authorize user is logged in:
+`localhost:3000/api/auth`
+
 Client Folders:
 
 - components - Contains React components
@@ -32,7 +35,7 @@ Server Folders:
 
 - routes - Contains the routing for the api
 
-- utils - Contains helper functions and code that is reused
+- utils - Contains auth strategies, helper functions, and code that is reused
 
 Pages:
 

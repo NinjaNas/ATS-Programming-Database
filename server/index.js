@@ -2,9 +2,11 @@
 require("dotenv").config();
 const express = require("express");
 const next = require("next");
+const passport = require("passport");
 const cors = require("cors");
 const session = require("express-session");
 const routes = require("./routes");
+require("./utils/local");
 
 // Use the environment variable PORT or 3000
 const port = process.env.PORT || 3000;
@@ -38,6 +40,10 @@ app
         saveUninitialized: false,
       })
     );
+
+    // Start Passport
+    server.use(passport.initialize());
+    server.use(passport.session());
 
     // Routing
     server.use("/api", routes);
