@@ -2,6 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
+// I believe that this function calls after every deserialize as well as for each request
 const authorize = () => {
   return router.use((req, res, next) => {
     console.log(`${req.method}:${req.baseUrl}`);
