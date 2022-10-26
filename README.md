@@ -59,3 +59,18 @@ Server Folders:
 - `/sign-up`
 
 - `/users/test`
+
+Testing Auth:
+
+- Install dependencies `yarn install`
+- Start server `yarn run dev`
+- Go to `/api/users`, see that you are unauthorized
+- Use navbar to go to `/sign-up`
+- Create a random account, knowing the email and password, see that the values are inserted
+- Use navbar to go to `/login`
+- Login with no email or no password, see that it does not work
+- Login with invalid email or password, see that it does not work
+- Login with the correct email and password
+- Go to `/api/users`, see that you are authorized
+- Restart the server
+- Go back to `/api/users`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
