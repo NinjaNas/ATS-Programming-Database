@@ -5,9 +5,6 @@ const create = require("./create");
 const pool = require("../../utils/pool");
 const { authorize } = require("../../utils/authorize");
 
-// Protects the entire directory
-router.use(authorize());
-
 // Routing
 router.use("/create", create);
 
@@ -18,7 +15,7 @@ router.use("/create", create);
  * req - Receives GET request
  * res - Send back HTTPS result
  */
-router.get("/", async (req, res) => {
+router.get("/", authorize(), async (req, res) => {
   /**
    * .query(), parameter substitution is handled on the client, including objects
    * 'SELECT * FROM users' is valid sql to select everything from the table 'users'
