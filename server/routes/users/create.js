@@ -2,19 +2,13 @@
 const express = require("express");
 const router = express.Router();
 const { hash } = require("../../utils/bcrypt");
-const { getConnection } = require("../../utils/pool");
-const { authorize } = require("../../utils/authorize");
-
-router.use(authorize());
+const pool = require("../../utils/pool");
 
 /**
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper
  */
 router.post("/", async (req, res) => {
-  // Await connection
-  let connection = await getConnection();
-
   // Object destructuring
   const {
     first_name,
@@ -32,15 +26,12 @@ router.post("/", async (req, res) => {
    * https://stackoverflow.com/questions/60476055/javascript-promises-unhandledpromiserejectionwarning
    * try/catch also works but let is out of scope
    */
-  let [rows, fields] = await connection
+  let [rows, fields] = await pool
     .query("SELECT * FROM users WHERE email=?;", [email])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
     });
-
-  // Release connection after destructuring, cannot use .then
-  await connection.release();
 
   // falsey, if 0 then there is no user with the same email
   if (rows.length) {
@@ -53,14 +44,13 @@ router.post("/", async (req, res) => {
      * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server
      * The VALUES(?) is standard way to insert variables into a SQL statement using an array
      */
-    await connection
+    await pool
       .execute(
         "INSERT INTO users (first_name, last_name, email, type, password_hash) VALUES (?, ?, ?, ?, ?);",
         [first_name, last_name, email, type, password_hash]
       )
       .then(() => {
         console.log("Values inserted!");
-        connection.release();
       })
       .catch((err) => {
         console.log(err);
@@ -70,16 +60,14 @@ router.post("/", async (req, res) => {
   //New session creator if student type given.
   if (type == "student") {
     //Pulls ID of current user
-    let [user_id, fields] = await connection
+    let [user_id, fields] = await pool
       .query("SELECT id FROM users WHERE email=?;", [email])
       .catch((err) => {
         console.log(err);
       });
 
-    await connection.release();
-
     //Creates new session with ID
-    await connection
+    await pool
       .execute(
         "INSERT INTO session (user_id, intake_date, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?, ?);",
         [

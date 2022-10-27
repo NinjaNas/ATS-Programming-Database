@@ -2,9 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const create = require("./create");
-const { getConnection } = require("../../utils/pool");
+const pool = require("../../utils/pool");
 const { authorize } = require("../../utils/authorize");
 
+// Protects the entire directory
 router.use(authorize());
 
 // Routing
@@ -18,21 +19,17 @@ router.use("/create", create);
  * res - Send back HTTPS result
  */
 router.get("/", async (req, res) => {
-  // Await connection
-  let connection = await getConnection();
   /**
    * .query(), parameter substitution is handled on the client, including objects
    * 'SELECT * FROM users' is valid sql to select everything from the table 'users'
    *  rows is an array containing each row as an object
    *  fields is an array containing each field as an object
    */
-  await connection
+  await pool
     .query("SELECT * FROM users;")
     .then((table) => {
       // Send HTTPS, promises return the table access rows at 0 and fields at 1
       res.send(table[0]);
-      // Release connection
-      connection.release();
     })
     .catch((err) => {
       console.log(err);

@@ -6,7 +6,7 @@ const passport = require("passport");
 const cors = require("cors");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
-const mysql = require("mysql2/promise");
+const pool = require("./utils/pool");
 const routes = require("./routes");
 require("./utils/local");
 
@@ -17,10 +17,8 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 // Setup session stores incase server crashes, the current logins will be saved
-const sessionStore = new MySQLStore(
-  {},
-  mysql.createPool(process.env.DATABASE_URL)
-);
+const sessionStore = new MySQLStore({}, pool);
+
 app
   // Prepare to go into next.js
   .prepare()
@@ -39,12 +37,15 @@ app
     // True for deep parsing (can do nested objects) and false for shallow parsing
     server.use(express.urlencoded({ extended: true }));
 
+    // Recommended express-session cookies
     server.use(
       session({
-        secret: "DSFJISJIFSIJDJFID",
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         store: sessionStore,
+        // Requires a HTTPS website to work
+        // cookie: { secure: true },
       })
     );
 
@@ -79,5 +80,7 @@ app
   })
   .catch((err) => {
     console.error(err.stack);
+    // End pool connection before exit
+    pool.end();
     process.exit(1);
   });

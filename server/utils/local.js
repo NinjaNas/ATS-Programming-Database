@@ -1,7 +1,7 @@
 // Implement passport-local strategy
 const passport = require("passport");
 const { Strategy } = require("passport-local");
-const { getConnection } = require("../utils/pool");
+const pool = require("../utils/pool");
 const { compareHash } = require("../utils/bcrypt");
 
 // user is the user object sent from passport.use() below
@@ -14,20 +14,16 @@ passport.serializeUser((user, done) => {
 
 // Uses the id from passport.serializeUser() to deserialize
 passport.deserializeUser(async (id, done) => {
-  // Await connection
-  let connection = await getConnection();
-
   console.log("Deserializing User...");
   console.log(id);
 
   // Using the id, find the user object in the database
-  await connection
+  await pool
     .query("SELECT id FROM users WHERE id=?;", [id])
     // user contains rows and fields
     .then((user) => {
       if (!user) throw new Error("User not found");
       done(null, user);
-      connection.release();
     })
     .catch((err) => {
       done(err, null);
@@ -43,9 +39,6 @@ passport.use(
 
     async (email, password, done) => {
       try {
-        // Await connection
-        let connection = await getConnection();
-
         console.log(email);
         console.log(password);
 
@@ -53,14 +46,12 @@ passport.use(
         if (!email || !password) throw new Error("Bad Request");
 
         // Grab user object
-        let [rows, fields] = await connection
+        let [rows, fields] = await pool
           .query("SELECT * FROM users WHERE email=?;", [email])
           .catch((err) => {
             // Do not throw error inside of promise
             console.log(err);
           });
-
-        await connection.release();
 
         // If no email matches, auth fails
         if (!rows.length) throw new Error("User not found");

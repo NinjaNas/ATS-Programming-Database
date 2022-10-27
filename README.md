@@ -66,11 +66,13 @@ Testing Auth:
 - Start server `yarn run dev`
 - Go to `/api/users`, see that you are unauthorized
 - Use navbar to go to `/sign-up`
-- Create a random account, knowing the email and password, see that the values are inserted
+- Create a random account, see that it gives a 401 error
 - Use navbar to go to `/login`
 - Login with no email or no password, see that it does not work
 - Login with invalid email or password, see that it does not work
-- Login with the correct email and password
+- Login with email: `testing` and `test`
 - Go to `/api/users`, see that you are authorized
 - Restart the server
 - Go back to `/api/users`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
+- Use navbar to go to `/sign-up`
+- Create a random account, see that it gives `Values inserted!` in console
