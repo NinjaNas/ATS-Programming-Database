@@ -1,0 +1,16 @@
+.mainPage{
+    font-size: 20px;
+    background-color: #f6984c;
+    border: 0;
+    height: 50px;
+    text-align:center;
+    color: white;
+
+}
+
+.boomerangImg{
+    width: 30%;
+    height: auto;
+    aspect-ratio: 5;
+    background-color: white;
+}

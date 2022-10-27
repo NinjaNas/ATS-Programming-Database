@@ -1,5 +1,6 @@
 a {
-  padding: 10px;
+  flex: auto;
+  padding: 40px;
   text-decoration: none;
-  color: blue;
+  color: white;
 }

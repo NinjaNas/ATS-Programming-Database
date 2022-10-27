@@ -14,7 +14,7 @@ const App = ({ Component, pageProps }) => (
     <Head>
       <title>ATS</title>
     </Head>
-    <Navbar />
+    
     {/* Render all the components and their properties */}
     <Component {...pageProps} />
   </>
