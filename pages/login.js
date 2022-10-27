@@ -1,12 +1,12 @@
 //Landing Page for Boomerang Staff
 import React from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Axios from "axios";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const emailRef = useRef();
   //Keeps track of changes to password input box
-  const [password, setPassword] = useState("");
+  const passwordRef = useRef();
 
   /*
     Meant to be the function that sends "credentials" input on the boxes
@@ -15,8 +15,8 @@ function Login() {
     */
   const login = () => {
     Axios.post("http://localhost:3000/api/login", {
-      email: email,
-      password: password,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
     }).then(() => {
       console.log("success");
     });
@@ -27,20 +27,10 @@ function Login() {
       <div className="information">
         {/*Email input box*/}
         <label>Email:</label>
-        <input
-          type="email"
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-        />
+        <input type="email" ref={emailRef} />
         {/*Type input box*/}
         <label>Password:</label>
-        <input
-          type="password"
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-        />
+        <input type="password" ref={passwordRef} />
         {/*Sign-in button that will fire the call to endpoint in the backend*/}
         <button onClick={login}>Login</button>
       </div>
