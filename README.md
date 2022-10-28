@@ -56,7 +56,7 @@ Server Folders:
 
 - `/sign-in`
 
-- `/sign-up`
+- `/login`
 
 - `/users/test`
 
@@ -84,4 +84,4 @@ Testing Auth:
 - Create a random account, see that it gives `Values inserted!` in console
 - Use navbar to go to logout
 - Check Arctype to see session removed in `sessions` table
-- The cookie should be removed in the browser (broken right now)
+- The cookie should be removed in the browser
