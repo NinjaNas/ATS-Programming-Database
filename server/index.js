@@ -16,8 +16,8 @@ const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-// Setup session stores incase server crashes, the current logins will be saved (30 min)
-const sessionStore = new MySQLStore({ expiration: 1800000 }, pool);
+// Setup session stores incase server crashes, the current logins will be saved (default is 1 day)
+const sessionStore = new MySQLStore({}, pool);
 
 app
   // Prepare to go into next.js
@@ -37,24 +37,19 @@ app
     // True for deep parsing (can do nested objects) and false for shallow parsing
     server.use(express.urlencoded({ extended: true }));
 
-    // Recommended express-session cookies
+    // Recommended express-session cookies, maxAge default is till end of session
     server.use(
       session({
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         store: sessionStore,
-        cookie: { maxAge: 1800000 },
-        // Requires a HTTPS website to work
+        // sameSite default is lax, required to be explictly set
+        cookie: { sameSite: "lax" },
+        // Requires a HTTPS website to work, rethink sameSite also
         // cookie: { secure: true },
       })
     );
-
-    // Print out sessionStore
-    // server.use((req, res, next) => {
-    //   console.log(sessionStore);
-    //   next();
-    // });
 
     // Start Passport
     server.use(passport.initialize());

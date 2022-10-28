@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Link from "next/link";
 import Axios from "axios";
 
+// This is a React class component instead of a React functional component
 class Navbar extends Component {
   constructor(props) {
     super(props);
