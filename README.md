@@ -18,6 +18,9 @@ Authorize user:
 `localhost:3000/api/login`
 Send json with email: and password: for verification to this endpoint
 
+Logout user and remove session:
+`localhost:3000/api/logout`
+
 Client Folders:
 
 - components - Contains React components
@@ -38,13 +41,13 @@ Server Folders:
 
 - utils - Contains auth strategies, helper functions, and code that is reused
 
-  - \bcrypt - Hash library, helper functions
+  - `\bcrypt` - Hash library, helper functions
 
-  - \local - passport-local auth strategy
+  - `\local` - passport-local auth strategy
 
-  - \pool - Create pool connections to the database
+  - `\pool` - Create pool connections to the database
 
-  - \authorize - Middleware to create authorization for certain files or use it as middleware for certain HTTPS requests
+  - `\authorize` - Middleware to create authorization for certain files or use it as middleware for certain HTTPS requests
 
     Pages:
 
