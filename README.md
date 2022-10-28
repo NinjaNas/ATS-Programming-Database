@@ -49,7 +49,7 @@ Server Folders:
 
   - `\authorize` - Middleware to create authorization for certain files or use it as middleware for certain HTTPS requests
 
-    Pages:
+Pages:
 
 - `/`
 
