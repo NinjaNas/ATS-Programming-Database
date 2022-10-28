@@ -9,7 +9,7 @@ const { authorize } = require("../../utils/authorize");
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper
  */
-router.post("/", authorize(), async (req, res) => {
+router.post("/", authorize("admin"), async (req, res) => {
   // Object destructuring
   const {
     first_name,

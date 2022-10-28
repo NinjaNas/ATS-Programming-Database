@@ -15,7 +15,7 @@ Create Users:
 Page should redirect back to `/api/users`
 
 Authorize user:
-`localhost:3000/api/auth`
+`localhost:3000/api/login`
 Send json with email: and password: for verification to this endpoint
 
 Client Folders:
@@ -70,7 +70,9 @@ Testing Auth:
 - Use navbar to go to `/login`
 - Login with no email or no password, see that it does not work
 - Login with invalid email or password, see that it does not work
-- Login with email: `testing` and `test`
+- Login with email: `counselor` and `test` (has type counselor)
+- Go to `/api/users`, see that you are unauthorized
+- Login with email: `admin` and `test` (has type admin)
 - Go to `/api/users`, see that you are authorized
 - Restart the server
 - Go back to `/api/users`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
