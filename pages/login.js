@@ -17,9 +17,13 @@ function Login() {
     Axios.post("http://localhost:3000/api/login", {
       email: emailRef.current.value,
       password: passwordRef.current.value,
-    }).then(() => {
-      console.log("success");
-    });
+    })
+      .then(() => {
+        console.log("success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

@@ -88,9 +88,13 @@ function SignUp() {
         social_worker: socialWorker,
         school_counselor: schoolCounselor,
         pickup: pickup,
-      }).then(() => {
-        console.log("success");
-      });
+      })
+        .then(() => {
+          console.log("success");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 

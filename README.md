@@ -72,6 +72,8 @@ Testing Auth:
 - Login with invalid email or password, see that it does not work
 - Login with email: `student` and `test` (has type student)
 - Go to `/api/users`, see that you are unauthorized
+- Check Arctype to see session logged in `sessions` table
+- Check that the cookie in the browser is created
 - Login with email: `counselor` and `test` (has type counselor)
 - Go to `/api/users`, see that you are authorized
 - Login with email: `admin` and `test` (has type admin)
@@ -80,3 +82,6 @@ Testing Auth:
 - Go back to `/api/users`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
 - Use navbar to go to `/sign-up`
 - Create a random account, see that it gives `Values inserted!` in console
+- Use navbar to go to logout
+- Check Arctype to see session removed in `sessions` table
+- The cookie should be removed in the browser (broken right now)

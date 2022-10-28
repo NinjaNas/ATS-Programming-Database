@@ -16,8 +16,8 @@ const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-// Setup session stores incase server crashes, the current logins will be saved
-const sessionStore = new MySQLStore({}, pool);
+// Setup session stores incase server crashes, the current logins will be saved (30 min)
+const sessionStore = new MySQLStore({ expiration: 1800000 }, pool);
 
 app
   // Prepare to go into next.js
@@ -44,6 +44,7 @@ app
         resave: false,
         saveUninitialized: false,
         store: sessionStore,
+        cookie: { maxAge: 1800000 },
         // Requires a HTTPS website to work
         // cookie: { secure: true },
       })
