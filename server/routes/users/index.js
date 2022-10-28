@@ -15,7 +15,7 @@ router.use("/create", create);
  * req - Receives GET request
  * res - Send back HTTPS result
  */
-router.get("/", authorize("admin"), async (req, res) => {
+router.get("/", authorize(["admin", "counselor"]), async (req, res) => {
   /**
    * .query(), parameter substitution is handled on the client, including objects
    * 'SELECT * FROM users' is valid sql to select everything from the table 'users'

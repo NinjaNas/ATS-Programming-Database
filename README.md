@@ -70,8 +70,10 @@ Testing Auth:
 - Use navbar to go to `/login`
 - Login with no email or no password, see that it does not work
 - Login with invalid email or password, see that it does not work
-- Login with email: `counselor` and `test` (has type counselor)
+- Login with email: `student` and `test` (has type student)
 - Go to `/api/users`, see that you are unauthorized
+- Login with email: `counselor` and `test` (has type counselor)
+- Go to `/api/users`, see that you are authorized
 - Login with email: `admin` and `test` (has type admin)
 - Go to `/api/users`, see that you are authorized
 - Restart the server
