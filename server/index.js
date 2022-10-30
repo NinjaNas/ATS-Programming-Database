@@ -2,8 +2,13 @@
 require("dotenv").config();
 const express = require("express");
 const next = require("next");
+const passport = require("passport");
 const cors = require("cors");
+const session = require("express-session");
+const MySQLStore = require("express-mysql-session")(session);
+const pool = require("./utils/pool");
 const routes = require("./routes");
+require("./utils/local");
 
 // Use the environment variable PORT or 3000
 const port = process.env.PORT || 3000;
@@ -11,6 +16,8 @@ const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
+// Setup session stores incase server crashes, the current logins will be saved (default is 1 day)
+const sessionStore = new MySQLStore({}, pool);
 
 app
   // Prepare to go into next.js
@@ -29,6 +36,24 @@ app
     server.use(express.json());
     // True for deep parsing (can do nested objects) and false for shallow parsing
     server.use(express.urlencoded({ extended: true }));
+
+    // Recommended express-session cookies, maxAge default is till end of session
+    server.use(
+      session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        store: sessionStore,
+        // sameSite default is lax, required to be explictly set
+        cookie: { sameSite: "lax" },
+        // Requires a HTTPS website to work, rethink sameSite also
+        // cookie: { secure: true },
+      })
+    );
+
+    // Start Passport
+    server.use(passport.initialize());
+    server.use(passport.session());
 
     // Routing
     server.use("/api", routes);
@@ -51,5 +76,7 @@ app
   })
   .catch((err) => {
     console.error(err.stack);
+    // End pool connection before exit
+    pool.end();
     process.exit(1);
   });
