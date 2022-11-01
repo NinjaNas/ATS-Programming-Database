@@ -47,6 +47,7 @@ function SignUp() {
 							setDate(event.target.value);
 						}}
 					/>
+					<br></br>
 					<label>School Administrator:</label>
 					<input
 						type='text'
@@ -54,6 +55,7 @@ function SignUp() {
 							setAdmin(event.target.value);
 						}}
 					/>
+					<br></br>
 					<label>Social Worker:</label>
 					<input
 						type='text'
@@ -61,6 +63,7 @@ function SignUp() {
 							setSocialWorker(event.target.value);
 						}}
 					/>
+					<br></br>
 					<label>School Counselor:</label>
 					<input
 						type='text'
@@ -68,6 +71,7 @@ function SignUp() {
 							setSchoolCounselor(event.target.value);
 						}}
 					/>
+					<br></br>
 					<label>Pickup:</label>
 					<input
 						type='text'

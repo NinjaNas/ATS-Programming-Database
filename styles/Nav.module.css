@@ -1,3 +1,16 @@
-.h1 {
-  color: red;
+.navBar {
+	background-color: #e6b566;
+	color: #eee;
+	height: 8vh;
+	font-size: 3vh;
+}
+
+.menu {
+	position: relative;
+	left: 55%;
+	bottom: 40%;
+}
+.boomerangImg {
+	position: absolute;
+	left: 0px;
 }
