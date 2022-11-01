@@ -23,7 +23,7 @@ router.get("/", authorize(["admin", "counselor"]), async (req, res) => {
    *  fields is an array containing each field as an object
    */
   await pool
-    .query("SELECT * FROM users;")
+    .query("SELECT * FROM session;")
     .then((table) => {
       // Send HTTPS, promises return the table access rows at 0 and fields at 1
       res.send(table[0]);

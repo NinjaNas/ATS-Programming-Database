@@ -77,7 +77,7 @@ function SignUp() {
         </>
       );
     } else {
-      Axios.post("http://localhost:3000/api/users/create", {
+      Axios.post("http://localhost:3000/api/user/create", {
         first_name: firstName,
         last_name: lastName,
         email: email,
@@ -148,5 +148,5 @@ function SignUp() {
     </div>
   );
 }
-
+// TO-DO: REDIRECT TO SESSION CREATOR PAGE ON FRONT-END
 export default SignUp;
