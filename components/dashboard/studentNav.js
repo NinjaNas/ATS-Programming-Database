@@ -3,7 +3,7 @@ import navbarStyles from "../../styles/Nav.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-function Navbar() {
+function studentNav() {
 	return (
 		<nav className={navbarStyles.navBar}>
 			<Image
@@ -13,23 +13,23 @@ function Navbar() {
 				height={65}
 			/>
 			<span className={navbarStyles.menu}>
-				<Link href='/app/dashboard/admin'>
+				<Link href='/app/dashboard/student'>
 					<a title='participants'>Home</a>
 				</Link>
-				<Link href='/app/user'>
-					<a title='participants'>Students</a>
+				<Link href='/app/dashboard/student/tasklist'>
+					<a title='participants'>My Tasks</a>
 				</Link>
-				<Link href='/app/data'>
-					<a title='Data'>Data</a>
+				<Link href='/app/dashboard/student/calendar'>
+					<a title='Data'>My Calendar</a>
 				</Link>
 				{/*
-				<Link href='/app/referral'>
-					<a title='Referral'>Referral</a>
-				</Link>
+                <Link href='/app/dashboard/student/questionnare'>
+                    <a title='Referral'>Questionnare</a>
+                </Link>
                 */}
 			</span>
 		</nav>
 	);
 }
 
-export default Navbar;
+export default studentNav;
