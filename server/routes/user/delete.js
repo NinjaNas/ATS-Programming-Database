@@ -1,7 +1,6 @@
 // Dependencies
 const express = require("express");
 const router = express.Router();
-const { hash } = require("../../utils/bcrypt");
 const pool = require("../../utils/pool");
 const { authorize } = require("../../utils/authorize");
 

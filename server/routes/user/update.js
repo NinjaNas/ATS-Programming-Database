@@ -16,18 +16,20 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
     last_name,
     email,
     type,
+    user_id
   } = req.body;
 
     // Use hash function from utils/bcrypt.js
     const password_hash = hash(req.body.password);
     /**
-     * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server
-     * The VALUES(?) is standard way to update variables in an SQL statement using an array
-     */
+     * Checks for a user_id and updates all items.
+     * Should write a way to update singles, maybe by pulling those values from the table,
+     * overriding the ones we need to change, and updating the table with those.
+    */
     await pool
       .execute(
-        "UPDATE user SET (first_name, last_name, email, type, password_hash) WHERE id=? VALUES(?, ?, ?, ?, ?);", [user_id],
-        [first_name, last_name, email, type, password_hash]
+        "UPDATE user SET (first_name, last_name, email, type, password_hash) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?);",
+        [first_name, last_name, email, type, password_hash, user_id]
       )
       .then(() => {
         console.log("User values updated for user id " + user_id);
