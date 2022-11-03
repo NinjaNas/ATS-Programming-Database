@@ -1,9 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import Task from "./task.js";
+import DashboardStyles from "../../styles/Dashboard.module.css";
 
 function tasklist(
-	{/* task */}
+	{
+		/* task */
+	}
 ) {
 	const [tasks, setTasks] = useState([
 		{
@@ -30,11 +33,11 @@ function tasklist(
 	]);
 
 	return (
-		<div>
-			<h2>My Tasks</h2>
+		<div className={DashboardStyles.tasklist}>
+			<h2 className={DashboardStyles.title}>My Tasks</h2>
 			<div>
 				<div>
-					<h3>Academic</h3>
+					<h3 className={DashboardStyles.subtitle}>Academic</h3>
 					{tasks.map((task) => (
 						<Task
 							id={task.id}
@@ -44,10 +47,6 @@ function tasklist(
 							status={task.status}
 						/>
 					))}
-				</div>
-				<div>
-					<h3>Boomerang</h3>
-					{/*Boomerang Tasks*/}
 				</div>
 			</div>
 		</div>

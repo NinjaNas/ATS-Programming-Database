@@ -14,13 +14,25 @@ function Navbar() {
 			/>
 			<span className={navbarStyles.menu}>
 				<Link href='/app/dashboard/admin'>
-					<a title='participants'>Home</a>
+					<a
+						className={navbarStyles.menuItem}
+						title='participants'>
+						Home
+					</a>
 				</Link>
 				<Link href='/app/user'>
-					<a title='participants'>Students</a>
+					<a
+						className={navbarStyles.menuItem}
+						title='participants'>
+						Students
+					</a>
 				</Link>
 				<Link href='/app/data'>
-					<a title='Data'>Data</a>
+					<a
+						className={navbarStyles.menuItem}
+						title='Data'>
+						Data
+					</a>
 				</Link>
 				{/*
 				<Link href='/app/referral'>

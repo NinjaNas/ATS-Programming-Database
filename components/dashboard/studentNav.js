@@ -14,13 +14,25 @@ function studentNav() {
 			/>
 			<span className={navbarStyles.menu}>
 				<Link href='/app/dashboard/student'>
-					<a title='participants'>Home</a>
+					<a
+						className={navbarStyles.menuItem}
+						title='participants'>
+						Home
+					</a>
 				</Link>
 				<Link href='/app/dashboard/student/tasklist'>
-					<a title='participants'>My Tasks</a>
+					<a
+						className={navbarStyles.menuItem}
+						title='participants'>
+						My Tasks
+					</a>
 				</Link>
 				<Link href='/app/dashboard/student/calendar'>
-					<a title='Data'>My Calendar</a>
+					<a
+						className={navbarStyles.menuItem}
+						title='Data'>
+						My Calendar
+					</a>
 				</Link>
 				{/*
                 <Link href='/app/dashboard/student/questionnare'>
