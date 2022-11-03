@@ -15,9 +15,30 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
     first_name,
     last_name,
     email,
-    type,
+    status,
+    notes,
     user_id
   } = req.body;
+
+  let [rows, fields] = await pool
+    .query("SELECT * FROM user WHERE email=?;", [email])
+    .catch((err) => {
+      // Do not throw error inside of promise
+      console.log(err);
+    });
+
+    //Overrides arguments with what's currently in the database if empty
+    if (first_name == "") {
+      first_name = rows[0].first_name;
+    } if (last_name == "") {
+      last_name = rows[0].last_name;
+    } if (email == "") {
+      email = rows[0].email;
+    } if (status = "") {
+      status = rows[0].status;
+    } if (notes = "") {
+      notes = rows[0].notes;
+    }
 
     // Use hash function from utils/bcrypt.js
     const password_hash = hash(req.body.password);
@@ -28,8 +49,8 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
     */
     await pool
       .execute(
-        "UPDATE user SET (first_name, last_name, email, type, password_hash) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?);",
-        [first_name, last_name, email, type, password_hash, user_id]
+        "UPDATE user SET (first_name, last_name, email, status, notes, password_hash) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?, ?);",
+        [first_name, last_name, email, status, notes, password_hash, user_id]
       )
       .then(() => {
         console.log("User values updated for user id " + user_id);

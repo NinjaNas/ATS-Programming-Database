@@ -10,13 +10,18 @@ const { authorize } = require("../../utils/authorize");
  */
 router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
     // Get user ID from req body
-    const {
-        user_id,
-        type } = req.body;
+    const user_id = req.body;
+    //const type = "student";
+
+    let [type, fields] = await pool
+    .query("SELECT type FROM user WHERE id=?;", [user_id])
+    .catch((err) => {
+      // Do not throw error inside of promise
+      console.log(err);
+    });
 
     // Subfiles entries only exist for student types, so they only need to be deleted if it's a student.
     if (type == "student") {
-
         // Grabs session_id associated with user id to pass to session.
         let [session_id, fields] = await pool
         .query("SELECT id FROM session WHERE user_id=?;", [user_id])
@@ -24,34 +29,31 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
             // Do not throw error inside of promise
             console.log(err);
         });
-
+       //const session_id = 10;
         // Should call ../session/delete which should handle questionnaire, task, day, and session
-        router.post("../session/delete", async (req,res) => {
-            //Pass session_id to session/delete
+        router.post("../session/delete", (req, res) => {
+            res.send(session_id);
         })
-
+        
         //Delete associated user_id from demographics
-        await pool.execute("DELETE FROM demographics WHERE id=?", [user_id])
+         await pool.execute("DELETE FROM demographics WHERE id=?", [user_id])
         .then(() => {
             console.log(user_id + " student id deleted from demographics table.");
             })
             .catch((err) => {
             console.log(err);
             });
-    
-            // Successful HTTPS
-            res.sendStatus(201);
     }
     
     // Delete user entry from table with cooresponding id.
     await pool.execute("DELETE FROM user WHERE id=?", [user_id])
     .then(() => {
-        console.log(user_id + " deleted from users table.");
+        console.log(user_id + " deleted from user table.");
         })
         .catch((err) => {
         console.log(err);
         });
-    
+        
         // Successful HTTPS
         res.sendStatus(201);
 });

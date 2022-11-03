@@ -4,8 +4,8 @@ const router = express.Router();
 const create = require("./create");
 const update = require("./update");
 const del = require("./delete");
-const pool = require("../../utils/pool");
-const { authorize } = require("../../utils/authorize");
+const pool = require("../../../utils/pool");
+const { authorize } = require("../../../utils/authorize");
 
 // Routing
 router.use("/create", create);

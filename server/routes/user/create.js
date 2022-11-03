@@ -9,7 +9,7 @@ const { authorize } = require("../../utils/authorize");
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper
  */
-router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
+router.post("/", async (req, res) => {
   // Object destructuring
   const {
     first_name,
@@ -35,7 +35,7 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
    * try/catch also works but let is out of scope
    */
   let [rows, fields] = await pool
-    .query("SELECT * FROM users WHERE email=?;", [email])
+    .query("SELECT * FROM user WHERE email=?;", [email])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);

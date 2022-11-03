@@ -1,8 +1,8 @@
 // Dependencies
 const express = require("express");
 const router = express.Router();
-const pool = require("../../utils/pool");
-const { authorize } = require("../../utils/authorize");
+const pool = require("../../../utils/pool");
+const { authorize } = require("../../../utils/authorize");
 
 /**
  * async function, using mysql2/promise wrapper
