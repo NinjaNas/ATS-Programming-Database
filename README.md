@@ -92,3 +92,10 @@ Testing Auth:
 
 
 Redirect Testing:
+  - Start server `yarn run dev`
+  - Go to `/app/login`
+  - Login with email: `student` and `test` (has type student)
+  - This should take you to the student dashboard
+  - Go to `/app/login`
+  - Login with email: `admin` and `test` (has type admin)
+  - This should take you to the admin dashboard
