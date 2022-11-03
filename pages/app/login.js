@@ -38,7 +38,7 @@ function Login() {
 					width={50}
 					height={50}
 				/>
-				<h2 className={LoginStyles.title}>Welome to Boomerang</h2>
+				<h2 className={LoginStyles.title}>Welcome to Boomerang</h2>
 				<Form action="/api/login" method="post"
 				fields={[{
 						tag: "input",
