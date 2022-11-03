@@ -11,7 +11,6 @@ function Admin() {
 		<div className={pageStyles.mainPage}>
 			<Navbar></Navbar>
 			<Students />
-			<Students />
 			<Footer></Footer>
 		</div>
 	);
