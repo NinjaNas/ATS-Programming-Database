@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Task from "./task.js";
+import tasksStyles from "../../styles/Tasks.module.css"
 
 function tasklist(
 	{/* task */}
@@ -30,25 +31,27 @@ function tasklist(
 	]);
 
 	return (
-		<div>
+		<div className={tasksStyles.tasks}>
 			<h2>My Tasks</h2>
 			<div>
 				<div>
 					<h3>Academic</h3>
-					{tasks.map((task) => (
-						<Task
-							id={task.id}
-							task_name={task.task_name}
-							due_date={task.due_date}
-							task_description={task.task_description}
-							status={task.status}
-						/>
-					))}
+					<div>
+						{tasks.map((task) => (
+							<Task
+								id={task.id}
+								task_name={task.task_name}
+								due_date={task.due_date}
+								task_description={task.task_description}
+								status={task.status}
+							/>
+						))}
+					</div>
 				</div>
-				<div>
-					<h3>Boomerang</h3>
+				{/* <div> */}
+					{/* <h3>Boomerang</h3> */}
 					{/*Boomerang Tasks*/}
-				</div>
+				{/* </div> */}
 			</div>
 		</div>
 	);

@@ -1,0 +1,20 @@
+.task {
+    border: black solid 1px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.task:hover {
+    background-color: lightgrey;
+}
+
+.task-item {
+    display: inline-block;
+    padding: 5px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 48% 28% 18%;
+    grid-gap: 3%;
+  }
