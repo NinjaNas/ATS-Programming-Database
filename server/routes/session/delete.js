@@ -14,8 +14,7 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
 
     // Delete session entry with cooresponding id
     pool.execute(
-    "DELETE FROM session WHERE id=?", [session_id],
-    )
+    "DELETE FROM session WHERE id=?", [session_id])
     .then(() => {
     console.log(session_id + " deleted from session table.");
     })
