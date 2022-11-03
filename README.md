@@ -88,3 +88,7 @@ Testing Auth:
 - Use navbar to go to logout
 - Check Arctype to see session removed in `sessions` table
 - The cookie should be removed in the browser
+
+
+
+Redirect Testing:
