@@ -6,12 +6,12 @@ import Link from "next/link";
 function studentNav() {
 	return (
 		<nav className={navbarStyles.navBar}>
-			<Image
-				className={navbarStyles.boomerangImg}
-				src={"/smallLogo.png"}
-				width={65}
-				height={65}
-			/>
+			
+				<img
+					className={navbarStyles.boomerangImg}
+					src={"/smallLogo.png"}
+				/>
+			
 			<span className={navbarStyles.menu}>
 				<Link href='/app/dashboard/student'>
 					<a
