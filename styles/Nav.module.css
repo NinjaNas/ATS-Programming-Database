@@ -1,3 +1,27 @@
-.h1 {
-  color: red;
+.navBar {
+	background-color: #e6b566;
+	height: 8vh;
+	font-size: 3vh;
+}
+
+.menu {
+	position: relative;
+	left: 55%;
+	bottom: 40%;
+}
+
+.menuItem {
+	flex: auto;
+	padding: 40px;
+	text-decoration: none;
+	color: #eee;
+}
+
+.menuItem:hover{
+	color: #595959;
+}
+
+.boomerangImg {
+	position: absolute;
+	left: 0px;
 }
