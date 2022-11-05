@@ -8,13 +8,13 @@ const { authorize } = require("../../utils/authorize");
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper
  */
-router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
+router.post("/", async (req, res) => {
     console.log("NICE JOB BRO YOU DID IT");
     // Get session ID from req body
-    const session_id = req.body;
+    const {session_id} = req.body;
 
     // Should call ../session/delete which should handle questionnaire, task, day, and session
-    router.post("/task/delete", async(req, res) => {
+    /*router.post("/task/delete", async(req, res) => {
         res.send(session_id);
     })
     router.post("/day/delete", async(req, res) => {
@@ -29,7 +29,7 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
     })
     .catch((err) => {
     console.log(err);
-    });
+    });*/
 
     // Successful HTTPS
     res.sendStatus(201);

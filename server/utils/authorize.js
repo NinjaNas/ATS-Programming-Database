@@ -21,7 +21,7 @@ const authorize = (types) => {
       // req.user = [rows[id], fields[]]
       let id = req.user[0][0].id;
       await pool
-        .query("SELECT type FROM user WHERE id=?;", [id])
+        .query("SELECT type FROM users WHERE id=?;", [id])
         .then((table) => {
           // Send HTTPS, promises return the table access rows at 0 and fields at 1
           // table = [rows[type], fields[]]

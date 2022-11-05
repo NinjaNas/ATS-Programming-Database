@@ -9,7 +9,7 @@ const { authorize } = require("../../utils/authorize");
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper
  */
-router.post("/", async (req, res) => {
+router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
   // Object destructuring
   const {
     first_name,
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
    * try/catch also works but let is out of scope
    */
   let [rows, fields] = await pool
-    .query("SELECT * FROM user WHERE email=?;", [email])
+    .query("SELECT * FROM users WHERE email=?;", [email])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
@@ -54,7 +54,7 @@ router.post("/", async (req, res) => {
      */
     await pool
       .execute(
-        "INSERT INTO user (first_name, last_name, email, type, password_hash) VALUES (?, ?, ?, ?, ?);",
+        "INSERT INTO users (first_name, last_name, email, type, password_hash) VALUES (?, ?, ?, ?, ?);",
         [first_name, last_name, email, type, password_hash]
       )
       .then(() => {
@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
   if (type == "student") {
     //Pulls ID of current user
     let [user_id, fields] = await pool
-      .query("SELECT id FROM user WHERE email=?;", [email])
+      .query("SELECT id FROM users WHERE email=?;", [email])
       .catch((err) => {
         console.log(err);
       });
