@@ -22,7 +22,7 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
   } = req.body;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM users WHERE email=?;", [email])
+    .query("SELECT * FROM session WHERE session_id=?;", [session_id])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);

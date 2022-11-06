@@ -42,6 +42,9 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
 
     // Use hash function from utils/bcrypt.js
     const password_hash = hash(req.body.password);
+    if (req.body.password = "") {
+      password_hash = rows[0].password_hash;
+    }
     /**
      * Checks for a user_id and updates all items.
      * Should write a way to update singles, maybe by pulling those values from the table,

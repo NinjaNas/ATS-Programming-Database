@@ -6,7 +6,7 @@ const pool = require("../../utils/pool");
 const { authorize } = require("../../utils/authorize");
 
 // Routing
-//router.use("/update", update);
+router.use("/update", update);
 
 /**
  * GET request handler for returning session table

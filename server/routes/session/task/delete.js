@@ -10,11 +10,11 @@ const { authorize } = require("../../../utils/authorize");
  */
 router.post("/", authorize(["admin", "counselor", "student"]), async (req, res) => {
     // Get user ID from req body
-    const task_id = req.body;
+    const {task_id} = req.body;
 
     // Delete task entry with cooresponding id
     pool.execute(
-    "DELETE FROM session WHERE id=?", [task_id],
+    "DELETE FROM task WHERE id=?", [task_id],
     )
     .then(() => {
     console.log(task_id + " deleted from task table.");

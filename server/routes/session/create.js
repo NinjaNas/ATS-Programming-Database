@@ -25,12 +25,6 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
    * https://stackoverflow.com/questions/60476055/javascript-promises-unhandledpromiserejectionwarning
    * try/catch also works but let is out of scope
    */
-  let [rows, fields] = await pool
-    .query("SELECT * FROM session WHERE email=?;", [email])
-    .catch((err) => {
-      // Do not throw error inside of promise
-      console.log(err);
-    });
 
   /**
    * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server

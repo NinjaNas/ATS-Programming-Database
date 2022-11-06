@@ -21,6 +21,30 @@ router.post("/", authorize(["admin", "counselor", "student", "parent"]), async (
     task_id
   } = req.body;
 
+  let [rows, fields] = await pool
+    .query("SELECT * FROM task WHERE id=?;", [task_id])
+    .catch((err) => {
+      // Do not throw error inside of promise
+      console.log(err);
+    });
+
+    //Overrides arguments with what's currently in the database if empty
+    if (task_type == "") {
+      task_type = rows[0].task_type;
+    } if (task_name == "") {
+      task_name = rows[0].task_name;
+    } if (start_date == "") {
+      start_date = rows[0].start_date;
+    } if (due_date = "") {
+      due_date = rows[0].due_date;
+    } if (task_description = "") {
+      task_description = rows[0].task_description;
+    } if (status = "") {
+      status = rows[0].status;
+    } if (end_date = "") {
+      end_date = rows[0].end_date;
+    }
+
     /**
      * Checks for a task_id and updates all items.
      * Should write a way to update singles, maybe by pulling those values from the table,

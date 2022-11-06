@@ -6,7 +6,7 @@ const update = require("./update");
 const del = require("./delete");
 const day = require("./day");
 const task = require("./task");
-//const questionnaire = require("./questionnaire");
+const questionnaire = require("./questionnaire");
 const pool = require("../../utils/pool");
 const { authorize } = require("../../utils/authorize");
 
@@ -16,7 +16,7 @@ router.use("/update", update);
 router.use("/delete", del);
 router.use("/day", day);
 router.use("/task", task);
-//router.use("/questionnaire", questionnaire);
+router.use("/questionnaire", questionnaire);
 
 /**
  * GET request handler for returning session table

@@ -22,7 +22,7 @@ router.use("/delete", del);
 router.get("/", authorize(["admin", "counselor", "student", "parent"]), async (req, res) => {
   /**
    * .query(), parameter substitution is handled on the client, including objects
-   * 'SELECT * FROM session' is valid sql to select everything from the table 'task'
+   * 'SELECT * FROM task' is valid sql to select everything from the table 'task'
    *  rows is an array containing each row as an object
    *  fields is an array containing each field as an object
    */
