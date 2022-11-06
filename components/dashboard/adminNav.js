@@ -6,11 +6,9 @@ import Link from "next/link";
 function Navbar() {
 	return (
 		<nav className={navbarStyles.navBar}>
-			<Image
+			<img
 				className={navbarStyles.boomerangImg}
 				src={"/smallLogo.png"}
-				width={65}
-				height={65}
 			/>
 			<span className={navbarStyles.menu}>
 				<Link href='/app/dashboard/admin'>

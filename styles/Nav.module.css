@@ -2,26 +2,35 @@
 	background-color: #e6b566;
 	height: 8vh;
 	font-size: 3vh;
+	font-family: sans-serif;
 }
 
 .menu {
 	position: relative;
-	left: 55%;
-	bottom: 40%;
+	object-fit: contain;
+	float:right;
+	top: 25%;
+
 }
 
 .menuItem {
+	position: relative;
 	flex: auto;
 	padding: 40px;
 	text-decoration: none;
 	color: #eee;
 }
 
-.menuItem:hover{
-	color: #595959;
+.menuItem:hover {
+	color: #a3ddcb;
 }
 
+
+
 .boomerangImg {
-	position: absolute;
-	left: 0px;
+	margin-top: 0px;
+	object-fit: contain;
+	height:100%;
+	float:left;
+	
 }
