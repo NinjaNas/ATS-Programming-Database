@@ -1,7 +1,7 @@
 // Dependencies
 const express = require("express");
 const router = express.Router();
-//const update = require("./update");
+const update = require("./update");
 const pool = require("../../utils/pool");
 const { authorize } = require("../../utils/authorize");
 
