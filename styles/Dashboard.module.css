@@ -1,0 +1,92 @@
+.mainPage {
+	font-size: 20px;
+	background-color: whitesmoke;
+	height: 100vh;
+	color: black;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0;
+	border: 0;
+}
+
+.currentStud {
+	background-color: #dbdcda;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: 80%;
+	padding: 20px;
+	width: 60%;
+	margin-top: 1.5%;
+	margin-bottom: 1.5%;
+	margin-left: 20px;
+}
+
+.studentDash {
+	background-color: #dbdcda;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: 80%;
+	padding: 20px;
+	width: 100wh;
+	margin-top: 1.5%;
+	margin-bottom: 1.5%;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.tasklist {
+	background-color: #a3ddcb;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: 80%;
+	padding: 20px;
+	width: 35%;
+	margin-top: 1.5%;
+	margin-bottom: 1.5%;
+	margin-left: 0px;
+	margin-right: 20px;
+	overflow-y:scroll;
+}
+.title {
+	color: #595959;
+	font-family: sans-serif;
+	font-size: 30px;
+	font-weight: 600;
+	margin-top: 1.5%;
+}
+
+.subtitle {
+	color: #595959;
+	font-family: sans-serif;
+	font-size: 24px;
+	font-weight: 600;
+	margin-top: 10px;
+}
+
+.text {
+	color: #595959;
+	font-family: sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: 10px;
+}
+
+.taskName {
+	color: #595959;
+	font-family: sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 2px;
+	display: inline-flex;
+}
+
+.taskRest {
+	color: #595959;
+	font-family: sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	margin-top: 2px;
+	text-align: left;
+	margin-left: 25%;
+	display: inline-flex;
+}

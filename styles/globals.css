@@ -1,5 +1,11 @@
-a {
-  padding: 10px;
+/*a {
+  flex: auto;
+  padding: 40px;
   text-decoration: none;
-  color: blue;
+  color: #eee
+}
+*/
+
+body{
+  margin: 0;
 }
