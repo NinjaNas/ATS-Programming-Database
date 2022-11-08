@@ -1,4 +1,3 @@
-const { RSC_MODULE_TYPES } = require("next/dist/shared/lib/constants");
 const { hash } = require("../utils/bcrypt");
 const pool = require("../utils/pool");
 
@@ -34,6 +33,7 @@ async function createController(req, res) {
       console.log(err);
     });
 
+  console.log(rows);
   // falsey, if 0 then there is no user with the same email
   if (rows.length) {
     // Error out if email exists
