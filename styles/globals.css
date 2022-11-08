@@ -1,11 +1,7 @@
-/*a {
-  flex: auto;
-  padding: 40px;
-  text-decoration: none;
-  color: #eee
+a {
+	text-decoration: none;
 }
-*/
 
-body{
-  margin: 0;
+body {
+	margin: 0;
 }
