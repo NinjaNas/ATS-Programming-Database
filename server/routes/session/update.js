@@ -10,7 +10,7 @@ const { authorize } = require("../../utils/authorize");
  */
 router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
   // Object destructuring
-  const {
+  let {
     intake_date,
     grade, 
     school_id,

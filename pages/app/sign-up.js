@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Axios from "axios";
-import signUpStyles from "../styles/Login.module.css";
+import signUpStyles from "../../styles/Login.module.css";
 
 function SignUp() {
   //Keeps track of changes to name input box
