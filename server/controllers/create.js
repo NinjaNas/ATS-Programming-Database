@@ -33,7 +33,6 @@ async function createController(req, res) {
       console.log(err);
     });
 
-  console.log(rows);
   // falsey, if 0 then there is no user with the same email
   if (rows.length) {
     // Error out if email exists
@@ -56,6 +55,8 @@ async function createController(req, res) {
       .catch((err) => {
         console.log(err);
       });
+    // Successful HTTPS
+    res.sendStatus(201);
   }
 
   //New session creator if student type given.
