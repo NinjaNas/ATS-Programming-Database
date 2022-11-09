@@ -16,11 +16,18 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
     last_name,
     email,
     type,
-    intake_date,
-    school_admin,
-    social_worker,
-    school_counselor,
-    pickup,
+    date_of_birth,
+    gender,
+    gender_specify,
+    race_bl,
+    race_ai,
+    race_as,
+    race_nhpi,
+    race_wh,
+    race_other,
+    race_other_specify,
+    ethnicity,
+    free_lunch
   } = req.body;
 
   /**
@@ -67,17 +74,24 @@ router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
         console.log(err);
       });
 
-    //Creates new session with ID
+    //Creates new demographics with ID
     await pool
       .execute(
-        "INSERT INTO session (user_id, intake_date, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?, ?);",
+        "INSERT INTO demographics (user_id, date_of_birth, gender, gender_specify, race_bl, race_ai, race_as, race_nhpi, race_wh, race_other, race_other_specify, ethnicity, free_lunch) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
         [
           user_id[0].id,
-          intake_date,
-          school_admin,
-          social_worker,
-          school_counselor,
-          pickup,
+          date_of_birth,
+          gender,
+          gender_specify,
+          race_bl,
+          race_ai,
+          race_as,
+          race_nhpi,
+          race_wh,
+          race_other,
+          race_other_specify,
+          ethnicity,
+          free_lunch
         ]
       )
       // .then() can be used because promise not destructured
