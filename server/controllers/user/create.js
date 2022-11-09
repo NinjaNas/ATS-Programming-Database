@@ -1,5 +1,5 @@
-const { hash } = require("../utils/bcrypt");
-const pool = require("../utils/pool");
+const { hash } = require("../../utils/bcrypt");
+const pool = require("../../utils/pool");
 
 async function createController(req, res) {
   // Object destructuring
@@ -91,7 +91,6 @@ async function createController(req, res) {
       // .then() can be used because promise not destructured
       .then(() => {
         console.log("More success!");
-        connection.release();
       })
       .catch((err) => {
         console.log(err);

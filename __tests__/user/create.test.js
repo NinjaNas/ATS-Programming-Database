@@ -1,11 +1,11 @@
 const { hashSync } = require("bcryptjs");
-const { createController } = require("../server/controllers/create");
-const { hash } = require("../server/utils/bcrypt");
-const pool = require("../server/utils/pool");
+const { createController } = require("../../server/controllers/user/create");
+const { hash } = require("../../server/utils/bcrypt");
+const pool = require("../../server/utils/pool");
 
 // Mocking the modules
-jest.mock("../server/utils/pool");
-jest.mock("../server/utils/bcrypt", () => ({
+jest.mock("../../server/utils/pool");
+jest.mock("../../server/utils/bcrypt", () => ({
   hash: jest.fn(() => "hash_password"),
 }));
 
