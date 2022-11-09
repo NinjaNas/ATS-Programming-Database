@@ -9,7 +9,7 @@ function tasklist(
 	}
 ) {
 	const [tasks, setTasks] = useState([
-		{
+{
 			id: 1,
 			task_name: "Math",
 			due_date: "1/3/2022",
@@ -106,6 +106,16 @@ function tasklist(
 			type: "Boomerang",
 		},
 	]);
+	// const allTasks = () => {
+	// 	Axios.get("http://localhost:3000/api/session/task").then((response) => {
+	// 		setTasks(response.data);
+	// 	});
+	// };
+
+	// useEffect(() => {
+	// 	allTasks();
+	// }, []);
+		
 
 	return (
 		<div className={DashboardStyles.studentDash}>

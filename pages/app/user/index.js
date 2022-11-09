@@ -9,7 +9,7 @@ function current(data) {
 	const [users, setUsers] = useState([]);
 
 	const allStudents = () => {
-		Axios.get("http://localhost:3000/api/users").then((response) => {
+		Axios.get("http://localhost:3000/api/user").then((response) => {
 			setUsers(response.data);
 		});
 	};
@@ -49,7 +49,13 @@ function current(data) {
 										</a>
 									</td>
 									<td className={pageStyles.tdButton}>
-										<button className={pageStyles.button}><a style={{color:"#177457"}} href="/app/user/edit">edit</a></button>
+										<button className={pageStyles.button}>
+											<a
+												style={{ color: "#177457" }}
+												href='/app/user/edit'>
+												edit
+											</a>
+										</button>
 									</td>
 								</tr>
 							</>

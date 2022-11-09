@@ -9,7 +9,7 @@ function currentStudents() {
 	const [students, setStudents] = useState([]);
 	/*Axios call to get student data*/
 	const allStudents = () => {
-		Axios.get("http://localhost:3000/api/users").then((response) => {
+		Axios.get("http://localhost:3000/api/user").then((response) => {
 			setStudents(response.data);
 		});
 	};
