@@ -11,7 +11,7 @@ const { authorize } = require("../../utils/authorize");
  */
 router.post("/", authorize(["admin", "counselor"]), async (req, res) => {
   // Object destructuring
-  const {
+  let {
     first_name,
     last_name,
     email,
