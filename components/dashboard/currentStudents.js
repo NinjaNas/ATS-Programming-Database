@@ -11,6 +11,8 @@ function currentStudents() {
 	const allStudents = () => {
 		Axios.get("http://localhost:3000/api/user").then((response) => {
 			setStudents(response.data);
+		}).then((response) => {
+			console.log("I was called")
 		});
 	};
 	/*UseEffect calls allStudents on page Mount only*/
