@@ -14,21 +14,28 @@ function Navbar() {
 				<Link href='/app/dashboard/admin'>
 					<a
 						className={navbarStyles.menuItem}
-						title='participants'>
+						title='home'>
 						Home
+					</a>
+				</Link>
+				<Link href='/app/dashboard/admin/allstudents'>
+					<a
+						className={navbarStyles.menuItem}
+						title='students'>
+						Students
 					</a>
 				</Link>
 				<Link href='/app/user'>
 					<a
 						className={navbarStyles.menuItem}
-						title='participants'>
-						Students
+						title='users'>
+						Users
 					</a>
 				</Link>
 				<Link href='/app/data'>
 					<a
 						className={navbarStyles.menuItem}
-						title='Data'>
+						title='data'>
 						Data
 					</a>
 				</Link>

@@ -4,27 +4,26 @@ import { useState, useEffect } from "react";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 import ProgressBar from "./progressBar.js";
 
-function currentStudents() {
+function allStudents() {
 	/*Creat state to load student data*/
 	const [students, setStudents] = useState([]);
 	/*Axios call to get student data*/
-	const allStudents = () => {
+	const everyStudent = () => {
 		Axios.get("http://localhost:3000/api/user").then((response) => {
 			setStudents(response.data);
 		});
 	};
 	/*UseEffect calls allStudents on page Mount only*/
 	useEffect(() => {
-		allStudents();
+		everyStudent();
 	}, []);
 
 	return (
 		<div className={DashboardStyles.currentStud}>
-			<h3 className={DashboardStyles.title}>Current Students</h3>
+			<h3 className={DashboardStyles.title}>All Students</h3>
 			<table className={DashboardStyles.subtitle}>
 				<tbody>
 					<tr>
-						<th></th>
 						<th></th>
 						<th></th>
 					</tr>
@@ -45,9 +44,6 @@ function currentStudents() {
 										{student.last_name}
 									</a>
 								</td>
-								<td className={DashboardStyles.tdProgress}>
-									<ProgressBar completed='70'></ProgressBar>
-								</td>
 							</tr>
 						</>
 					))}
@@ -57,4 +53,4 @@ function currentStudents() {
 	);
 }
 
-export default currentStudents;
+export default allStudents;
