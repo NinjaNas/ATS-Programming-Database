@@ -5,7 +5,7 @@ function dateString(date) {
 	position = date.search("T")
 	date = date.slice(0,position)
 	date = date.split("-")
-	return `${date[1]/date[0]/date[2]}`
+	return `${date[1]}/${date[0]}/${date[2]}`
 }
 
 function task({ id, task_name, due_date, task_description, status }) {

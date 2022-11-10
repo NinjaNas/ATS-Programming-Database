@@ -12,7 +12,7 @@ function currentStudents() {
 		Axios.get("http://localhost:3000/api/user").then((response) => {
 			setStudents(response.data);
 		}).then((response) => {
-			console.log("I was called")
+			// console.log("I was called")
 		});
 	};
 	/*UseEffect calls allStudents on page Mount only*/
@@ -35,14 +35,14 @@ function currentStudents() {
 							<tr>
 								<td>
 									<a
-										href='/app/dashboard/student'
+										href={`/app/dashboard/admin/studentprofile/${student.id}`}
 										className={DashboardStyles.subtitle}>
 										{student.first_name}
 									</a>
 								</td>
 								<td className={DashboardStyles.tdNames}>
 									<a
-										href='/app/dashboard/student'
+										href={`/app/dashboard/admin/studentprofile/${student.id}`}
 										className={DashboardStyles.subtitle}>
 										{student.last_name}
 									</a>
