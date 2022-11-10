@@ -28,6 +28,5 @@ it("should send a status of 200 on logout, deleting the session and cookie", () 
 
 it("should send a status of 400 if not logged in", () => {
   logoutController(req_empty, res);
-  // Figure out how to chain functions in order to check if status 200 is called
   expect(res.sendStatus).toHaveBeenCalledWith(400);
 });

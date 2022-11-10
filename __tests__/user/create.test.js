@@ -56,6 +56,7 @@ const res = {
 
 it("should send a status of 400 when email does exist", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
+  // Check if email exists
   await mPool.query.mockResolvedValueOnce([[{ email: "admin" }], []]);
   await createController(req, res);
   expect(res.sendStatus).toHaveBeenCalledWith(400);
@@ -63,7 +64,9 @@ it("should send a status of 400 when email does exist", async () => {
 
 it("should send a status of 201 when email does not exist, password is hashed, and values are inserted into the DB table", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
+  // Check if email exists
   await mPool.query.mockResolvedValueOnce([[], []]);
+  // User inserted into table
   await mPool.execute.mockResolvedValueOnce([
     { fieldCount: 0, affectedRows: 1, insertId: "1" },
     undefined,
@@ -79,12 +82,16 @@ it("should send a status of 201 when email does not exist, password is hashed, a
 
 it("should send a status of 201 when email does exist, is a student, and inserted into the demographics table ", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
+  // Check if email exists
   await mPool.query.mockResolvedValueOnce([[], []]);
+  // User inserted into table
   await mPool.execute.mockResolvedValueOnce([
     { fieldCount: 0, affectedRows: 1, insertId: "1" },
     undefined,
   ]);
+  // Get id of current user
   await mPool.query.mockResolvedValueOnce([[{ id: "1" }], []]);
+  // Demographics inserted
   await mPool.execute.mockResolvedValueOnce([
     { fieldCount: 0, affectedRows: 1, insertId: "1" },
     undefined,
