@@ -7,8 +7,8 @@ const del = require("./delete");
 const day = require("./day");
 const task = require("./task");
 const questionnaire = require("./questionnaire");
-const pool = require("../../utils/pool");
 const { authorize } = require("../../utils/authorize");
+const { indexController } = require("../../controllers/session");
 
 // Routing
 router.use("/create", create);
@@ -25,22 +25,6 @@ router.use("/questionnaire", questionnaire);
  * req - Receives GET request
  * res - Send back HTTPS result
  */
-router.get("/", authorize(["admin", "counselor"]), async (req, res) => {
-  /**
-   * .query(), parameter substitution is handled on the client, including objects
-   * 'SELECT * FROM session' is valid sql to select everything from the table 'session'
-   *  rows is an array containing each row as an object
-   *  fields is an array containing each field as an object
-   */
-  await pool
-    .query("SELECT * FROM session;")
-    .then((table) => {
-      // Send HTTPS, promises return the table access rows at 0 and fields at 1
-      res.send(table[0]);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.get("/", authorize(["admin", "counselor"]), indexController);
 
 module.exports = router;
