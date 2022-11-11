@@ -37,7 +37,9 @@ const authorize = (types) => {
           console.log(err);
         });
       // User is not logged in
-    } else res.sendStatus(401);
+    } else {
+      res.sendStatus(401);
+    }
   });
 };
 
