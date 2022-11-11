@@ -1,6 +1,6 @@
 import React from "react";
 
-function StudentHeader(firstName, lastName) {
+function StudentHeader({key, firstName, lastName}) {
 	return (
 		<div>
 			<h1>
