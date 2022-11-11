@@ -17,7 +17,7 @@ const res = {
 
 it("should send a status of 200 when sending a value", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Select user table
+  // Select session table
   await mPool.query.mockResolvedValueOnce([[{ test: "value" }], []]);
   await indexController(req, res);
   expect(mPool.query).toHaveBeenCalledWith("SELECT * FROM session;");
