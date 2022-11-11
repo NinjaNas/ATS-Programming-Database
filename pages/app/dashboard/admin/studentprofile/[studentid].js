@@ -10,36 +10,35 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 
 function StudentProfile() {
-	const [student, setStudent] = useState([]);
-	const router = useRouter();
-	const { studentid } = router.query;
+  const router = useRouter();
+  // console.log(router.query);
+  const { studentid } = router.query;
+  const [student, setStudent] = useState([]);
 
-	const studentInfo = () => {
-		Axios.get("http://localhost:3000/api/user")
-			.then((response) => {
-				setStudent(response.data);
-				console.log(response);
-			})
-			.then(() => {
-				setStudent(student.filter((s) => s.id == studentid));
-			});
-	};
+  const studentInfo = () => {
+    Axios.get("http://localhost:3000/api/user").then((response) => {
+      // console.log(studentid);
+       setStudent(response.data.filter(s => s.id == studentid));
+      //  setStudent[student.filter(s => student.id == studentid)]
+    });
+  };
 
-	useEffect(() => {
-		studentInfo();
-	}, []);
+// https://github.com/vercel/next.js/discussions/11484
+  useEffect(() => {
+    studentInfo();
+  }, [studentid])
 
-	return (
-		<div className={pageStyles.mainPage}>
-			<Navbar></Navbar>
+  return (
+    <div className={pageStyles.mainPage}>
+      <Navbar></Navbar>
 
-			<p>Post: {studentid}</p>
-			{student.map((s) => (
-				<p>{s.first_name}</p>
-			))}
-			<Footer></Footer>
-		</div>
-	);
+      <p>Post: {studentid}</p>
+      {student.map((s) => (
+        <p key={s.id}>{s.first_name}</p>
+      ))}
+      <Footer></Footer>
+    </div>
+  );
 }
 
 export default StudentProfile;
