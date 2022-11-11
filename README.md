@@ -39,6 +39,8 @@ Server Folders:
 
 - routes - Contains the routing for the api
 
+- controllers - Contains the logic for the api calls
+
 - utils - Contains auth strategies, helper functions, and code that is reused
 
   - `\bcrypt` - Hash library, helper functions
@@ -48,6 +50,10 @@ Server Folders:
   - `\pool` - Create pool connections to the database
 
   - `\authorize` - Middleware to create authorization for certain files or use it as middleware for certain HTTPS requests
+
+Testing:
+
+- tests - Contains the Jest test files (Run using `yarn test`)
 
 Pages:
 
@@ -89,13 +95,12 @@ Testing Auth:
 - Check Arctype to see session removed in `sessions` table
 - The cookie should be removed in the browser
 
-
-
 Redirect Testing:
-  - Start server `yarn run dev`
-  - Go to `/app/login`
-  - Login with email: `student` and `test` (has type student)
-  - This should take you to the student dashboard
-  - Go to `/app/login`
-  - Login with email: `admin` and `test` (has type admin)
-  - This should take you to the admin dashboard
+
+- Start server `yarn run dev`
+- Go to `/app/login`
+- Login with email: `student` and `test` (has type student)
+- This should take you to the student dashboard
+- Go to `/app/login`
+- Login with email: `admin` and `test` (has type admin)
+- This should take you to the admin dashboard
