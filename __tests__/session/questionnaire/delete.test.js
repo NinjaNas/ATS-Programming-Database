@@ -20,8 +20,8 @@ const res = {
   sendStatus: jest.fn((x) => x),
 };
 
-it("should send a status of 400 if there is no session", async () => {
-  // Found no task
+it("should send a status of 400 if there is no questionnaire", async () => {
+  // Found no questionnaire
   await mPool.query.mockResolvedValueOnce([[], []]);
   await deleteController(req, res);
   expect(res.sendStatus).toHaveBeenCalledWith(400);

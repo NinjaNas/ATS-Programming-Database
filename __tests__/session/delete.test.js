@@ -18,7 +18,7 @@ const res = {
 };
 
 it("should send a status of 400 if there is no session", async () => {
-  // Found no user
+  // Found no session
   await mPool.query.mockResolvedValueOnce([[], []]);
   await deleteController(req, res);
   expect(res.sendStatus).toHaveBeenCalledWith(400);
