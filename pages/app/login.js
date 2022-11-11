@@ -38,7 +38,7 @@ function Login() {
     <div className={LoginStyles.login}>
       <div className={LoginStyles.form}>
         <Image src={"/smallLogo.png"} width={50} height={50} />
-        <h2 className={LoginStyles.title}>Welome to Boomerang</h2>
+        <h2 className={LoginStyles.title}>Welcome to Boomerang</h2>
         <div className={LoginStyles.input_container}>
           {/*Email input box*/}
           <label className={LoginStyles.placeholder}>Email:</label>

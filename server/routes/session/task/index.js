@@ -31,6 +31,7 @@ router.get("/", authorize(["admin", "counselor", "student", "parent"]), async (r
     .then((table) => {
       // Send HTTPS, promises return the table access rows at 0 and fields at 1
       res.send(table[0]);
+      console.log(req.session.passport.user)
     })
     .catch((err) => {
       console.log(err);

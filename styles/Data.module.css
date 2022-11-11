@@ -1,0 +1,23 @@
+.mainPage {
+	font-size: 20px;
+	background-color: whitesmoke;
+	height: 100vh;
+	color: black;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0;
+	border: 0;
+}
+
+.dataContainer {
+	background-color: #dbdcda;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: 80%;
+	padding: 20px;
+	width: 48%;
+	margin-top: 1.5%;
+	margin-bottom: 1.5%;
+	margin-left: 20px;
+	overflow-y: scroll;
+}
