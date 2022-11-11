@@ -1,4 +1,3 @@
-const e = require("express");
 const pool = require("../../../utils/pool");
 
 async function createController(req, res) {
