@@ -1,6 +1,5 @@
 // Dependencies
 const express = require("express");
-const router = express.Router();
 const pool = require("../utils/pool");
 
 /**
@@ -11,6 +10,7 @@ const pool = require("../utils/pool");
  * @returns Middleware next() or error status
  */
 const authorize = (types) => {
+  const router = express.Router();
   return router.use(async (req, res, next) => {
     // Print route and user object
     console.log(`${req.method}:${req.baseUrl}`);
