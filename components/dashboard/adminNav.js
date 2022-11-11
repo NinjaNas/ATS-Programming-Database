@@ -2,8 +2,19 @@ import React from "react";
 import navbarStyles from "../../styles/Nav.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import Axios from "axios";
+import { useRouter } from "next/router";
 
 function Navbar() {
+	const router = useRouter();
+
+	function logOut(){
+		Axios.post("http://localhost:3000/api/logout")
+		.then(() => {
+			router.push("/app/login");
+		}
+		)
+	}
 	return (
 		<nav className={navbarStyles.navBar}>
 			<img
@@ -37,6 +48,13 @@ function Navbar() {
 						className={navbarStyles.menuItem}
 						title='data'>
 						Data
+					</a>
+				</Link>
+				<Link href="">
+					<a onClick={logOut}
+						className={navbarStyles.menuItem}
+						title='logout'>
+						Log out
 					</a>
 				</Link>
 				{/*
