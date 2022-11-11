@@ -27,7 +27,7 @@ const res = {
 
 it("should send a status of 400 when session does not exist", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Check if email exists
+  // Check if session exists
   await mPool.query.mockResolvedValueOnce([[], []]);
   await updateController(req, res);
   expect(res.sendStatus).toHaveBeenCalledWith(400);
@@ -35,7 +35,7 @@ it("should send a status of 400 when session does not exist", async () => {
 
 it("should send a status of 201 when session does exist and update values when needed", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Check if email exists and grabs values
+  // Check if session exists and grabs values
   await mPool.query.mockResolvedValueOnce([
     [{ school_admin: "success", pickup: "0" }],
     [],

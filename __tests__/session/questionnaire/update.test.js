@@ -34,7 +34,7 @@ const res = {
 
 it("should send a status of 400 when questionnaire does not exist", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Check if email exists
+  // Check if questionnaire exists
   await mPool.query.mockResolvedValueOnce([[], []]);
   await updateController(req, res);
   expect(res.sendStatus).toHaveBeenCalledWith(400);
@@ -42,7 +42,7 @@ it("should send a status of 400 when questionnaire does not exist", async () => 
 
 it("should send a status of 201 when questionnaire does exist and update values when needed", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Check if email exists and grabs values
+  // Check if questionnaire exists and grabs values
   await mPool.query.mockResolvedValueOnce([
     [{ status: "success", notes: "hello" }],
     [],
