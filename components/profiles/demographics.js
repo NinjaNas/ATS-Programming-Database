@@ -4,8 +4,9 @@ import Axios from "axios";
 function Demographics({id}) {
   const [demographics, setDemographics] = useState([]);
   const demographicsInfo = () => {
-    Axios.get("http://localhost:3000/api/demographics").then((response) => {
-      setDemographics(response.data.filter(s => s.user_id == id));
+    Axios.get("http://localhost:3000/api/demographics/read/", {params: {key:0, tag:id}}).then((response) => {
+      // setDemographics(response.data.filter(s => s.user_id == id));
+      setDemographics(response.data);
     });
   };
 

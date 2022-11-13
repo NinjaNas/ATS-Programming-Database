@@ -17,9 +17,10 @@ function StudentProfile() {
   const [student, setStudent] = useState([]);
 
   const studentInfo = () => {
-    Axios.get("http://localhost:3000/api/user").then((response) => {
+    Axios.get("http://localhost:3000/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
       // console.log(studentid);
-       setStudent(response.data.filter(s => s.id == studentid));
+      //  setStudent(response.data.filter(s => s.id == studentid));
+      setStudent(response.data)
       //  setStudent[student.filter(s => student.id == studentid)]
     });
   };
