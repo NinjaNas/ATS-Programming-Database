@@ -7,7 +7,7 @@ async function updateController(req, res) {
     req.body;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM users WHERE email=?;", [email])
+    .query("SELECT * FROM user WHERE email=?;", [email])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
@@ -45,7 +45,7 @@ async function updateController(req, res) {
      */
     await pool
       .execute(
-        "UPDATE users SET (first_name, last_name, email, status, notes, password_hash, pronouns) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
+        "UPDATE user SET (first_name, last_name, email, status, notes, password_hash, pronouns) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
         [first_name, last_name, email, status, notes, password_hash, pronouns, user_id]
       )
       .then(() => {

@@ -19,7 +19,7 @@ passport.deserializeUser(async (id, done) => {
 
   // Using the id, find the user object in the database
   await pool
-    .query("SELECT * FROM users WHERE id=?;", [id])
+    .query("SELECT * FROM user WHERE id=?;", [id])
     // user contains rows and fields
     .then((user) => {
       if (!user) throw new Error("User not found");
@@ -47,7 +47,7 @@ passport.use(
 
         // Grab user object
         let [rows, fields] = await pool
-          .query("SELECT * FROM users WHERE email=?;", [email])
+          .query("SELECT * FROM user WHERE email=?;", [email])
           .catch((err) => {
             // Do not throw error inside of promise
             console.log(err);
