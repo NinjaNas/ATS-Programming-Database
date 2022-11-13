@@ -4,6 +4,7 @@ const router = express.Router();
 const create = require("./create");
 const update = require("./update");
 const del = require("./delete");
+const read = require("./read");
 const { authorize } = require("../../../utils/authorize");
 const { indexController } = require("../../../controllers/session/day");
 
@@ -11,6 +12,7 @@ const { indexController } = require("../../../controllers/session/day");
 router.use("/create", create);
 router.use("/update", update);
 router.use("/delete", del);
+router.use("/read", read);
 
 /**
  * GET request handler for returning day table
