@@ -2,7 +2,7 @@ import LoginStyles from "../../styles/Login.module.css"
 import { useState
   
  } from "react"
-const InputForm = ({label, ref, passedValue}) => {
+const DateForm = ({label, ref, passedValue}) => {
   const [value, setValue] = useState(passedValue)
 
 
@@ -10,9 +10,9 @@ const InputForm = ({label, ref, passedValue}) => {
   return (
     <div>
       <label>{label}</label>
-      <input ref={ref} className={LoginStyles.input} defaultValue={value}></input>
+      <input type="date" ref={ref} defaultValue={(new Date(value)).toLocaleDateString('en-CA')}></input>
     </div>
   )
 }
 
-export default InputForm
+export default DateForm
