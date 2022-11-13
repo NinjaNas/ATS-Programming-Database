@@ -1,6 +1,6 @@
 //Landing Page for Boomerang Staff
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Axios from "axios";
 import LoginStyles from "../../styles/Login.module.css";
 import Image from "next/image";
