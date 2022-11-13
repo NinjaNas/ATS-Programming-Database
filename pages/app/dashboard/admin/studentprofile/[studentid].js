@@ -9,6 +9,7 @@ import Axios from "axios";
 
 import { useState, useEffect } from "react";
 import Demographics from "../../../../../components/profiles/demographics";
+import Session from "../../../../../components/profiles/session";
 
 function StudentProfile() {
   const router = useRouter();
@@ -39,6 +40,7 @@ function StudentProfile() {
 				<>
 				<StudentHeader key={s.id} firstName={s.first_name} lastName={s.last_name} />
 				<Demographics id={s.id}/>
+        <Session user_id={s.id} />
 				</>
       ))}
       <Footer></Footer>

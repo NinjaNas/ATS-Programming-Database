@@ -6,111 +6,14 @@ import DashboardStyles from "../../styles/Dashboard.module.css";
 
 function tasklist(
 	{
-		/* task */
+		session_id
 	}
 ) {
 	const [tasks, setTasks] = useState([]);
-	// 	[
-	// 	{
-	// 		id: 1,
-	// 		task_name: "Math",
-	// 		due_date: "1/3/2022",
-	// 		task_description: "",
-	// 		status: 2,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		task_name: "Math",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: 1,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		task_name: "Smart Goal",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: -1,
-	// 		type: "Boomerang",
-	// 	},
-	// 	{
-	// 		id: 1,
-	// 		task_name: "Math",
-	// 		due_date: "1/3/2022",
-	// 		task_description: "",
-	// 		status: 2,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		task_name: "Math",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: 1,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		task_name: "Smart Goal",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: -1,
-	// 		type: "Boomerang",
-	// 	},
-	// 	{
-	// 		id: 1,
-	// 		task_name: "Math",
-	// 		due_date: "1/3/2022",
-	// 		task_description: "",
-	// 		status: 2,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		task_name: "Math",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: 1,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		task_name: "Smart Goal",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: -1,
-	// 		type: "Boomerang",
-	// 	},
-	// 	{
-	// 		id: 1,
-	// 		task_name: "Math",
-	// 		due_date: "1/3/2022",
-	// 		task_description: "",
-	// 		status: 2,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 2,
-	// 		task_name: "Math",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: 1,
-	// 		type: "Academic",
-	// 	},
-	// 	{
-	// 		id: 3,
-	// 		task_name: "Smart Goal",
-	// 		due_date: "1/1/2022",
-	// 		task_description: "",
-	// 		status: -1,
-	// 		type: "Boomerang",
-	// 	},
-	// ]);
+
 
 	const allTasks = () => {
-		Axios.get("http://localhost:3000/api/session/task").then((response) => {
+		Axios.get("http://localhost:3000/api/session/task/read", {params: {key:0, tag:session_id}}).then((response) => {
 			setTasks(response.data);
 		});
 	};
@@ -133,7 +36,7 @@ function tasklist(
 							<Task
 								id={task.id}
 								task_name={task.task_name}
-								due_date={task.due_date}
+								due_date={(new Date(task.due_date)).toLocaleDateString()}
 								task_description={task.task_description}
 								status={task.status}
 							/>
@@ -145,7 +48,7 @@ function tasklist(
 							<Task
 								id={task.id}
 								task_name={task.task_name}
-								due_date={task.due_date}
+								due_date={(new Date(task.due_date)).toLocaleDateString()}
 								task_description={task.task_description}
 								status={task.status}
 							/>
