@@ -4,6 +4,7 @@ const router = express.Router();
 const create = require("./create");
 const update = require("./update");
 const del = require("./delete");
+const read = require("./read");
 const { authorize } = require("../../../utils/authorize");
 const {
   indexController,
@@ -13,6 +14,7 @@ const {
 router.use("/create", create);
 router.use("/update", update);
 router.use("/delete", del);
+router.use("/read", read);
 
 /**
  * GET request handler for returning sel_questionnaire table
