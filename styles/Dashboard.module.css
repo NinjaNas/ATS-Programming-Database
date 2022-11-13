@@ -9,6 +9,17 @@
 	border: 0;
 }
 
+.longerPage {
+	font-size: 20px;
+	background-color: whitesmoke;
+	height: 100%;
+	color: black;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0;
+	border: 0;
+}
+
 .currentStud {
 	background-color: #dbdcda;
 	border-radius: 20px;
