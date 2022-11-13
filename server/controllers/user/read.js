@@ -4,13 +4,6 @@ async function readController(req, res) {
   // Get user ID from req body
   const { key, tag } = req.body;
 
-  let [rows, fields] = await pool
-    .query("SELECT type FROM users WHERE id=?;", [user_id])
-    .catch((err) => {
-      // Do not throw error inside of promise
-      console.log(err);
-    });
-
   if (rows.length) {
     //0 key reads UUID, 1 key outputs all, 2 key outputs active
     if (key == 0) {
@@ -54,4 +47,4 @@ async function readController(req, res) {
   res.sendStatus(201);
 }
 
-module.exports = { deleteController };
+module.exports = { readController };
