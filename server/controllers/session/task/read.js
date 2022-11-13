@@ -3,6 +3,7 @@ const pool = require("../../../utils/pool");
 async function readController(req, res) {
   // Get user ID from req body
   const { key, tag } = req.query;
+  // console.log(key, tag)
 
   //0 key reads session_id, 1 key reads all completed but not verified, 2 key reads all 
   if (key == 0) {
