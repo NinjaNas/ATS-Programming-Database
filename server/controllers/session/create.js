@@ -14,7 +14,7 @@ async function createController(req, res) {
   } = req.body;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM users WHERE id=?;", [user_id])
+    .query("SELECT * FROM user WHERE id=?;", [user_id])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);

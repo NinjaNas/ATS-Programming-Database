@@ -8,11 +8,11 @@ Starts a nodemon server and a hot refresh for next.js.
 Endpoints:
 
 Get database records:
-`localhost:3000/api/users`
+`localhost:3000/api/user`
 
 Create Users:
-`localhost:3000/api/users/create`
-Page should redirect back to `/api/users`
+`localhost:3000/api/user/create`
+Page should redirect back to `/api/user`
 
 Authorize user:
 `localhost:3000/api/login`
@@ -67,28 +67,28 @@ Pages:
 
 - `/login`
 
-- `/users/test`
+- `/user/test`
 
 Testing Auth:
 
 - Install dependencies `yarn install`
 - Start server `yarn run dev`
-- Go to `/api/users`, see that you are unauthorized
+- Go to `/api/user`, see that you are unauthorized
 - Use navbar to go to `/sign-up`
 - Create a random account, see that it gives a 401 error
 - Use navbar to go to `/login`
 - Login with no email or no password, see that it does not work
 - Login with invalid email or password, see that it does not work
 - Login with email: `student` and `test` (has type student)
-- Go to `/api/users`, see that you are unauthorized
+- Go to `/api/user`, see that you are unauthorized
 - Check Arctype to see session logged in `sessions` table
 - Check that the cookie in the browser is created
 - Login with email: `counselor` and `test` (has type counselor)
-- Go to `/api/users`, see that you are authorized
+- Go to `/api/user`, see that you are authorized
 - Login with email: `admin` and `test` (has type admin)
-- Go to `/api/users`, see that you are authorized
+- Go to `/api/user`, see that you are authorized
 - Restart the server
-- Go back to `/api/users`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
+- Go back to `/api/user`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
 - Use navbar to go to `/sign-up`
 - Create a random account, see that it gives `Values inserted!` in console
 - Use navbar to go to logout

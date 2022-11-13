@@ -7,7 +7,10 @@ async function createController(req, res) {
     first_name,
     last_name,
     email,
+    pronouns,
+    created_at,
     type,
+    notes,
     date_of_birth,
     gender,
     gender_specify,
@@ -27,7 +30,7 @@ async function createController(req, res) {
    * try/catch also works but let is out of scope
    */
   let [rows, fields] = await pool
-    .query("SELECT * FROM users WHERE email=?;", [email])
+    .query("SELECT * FROM user WHERE email=?;", [email])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
@@ -46,8 +49,8 @@ async function createController(req, res) {
      */
     await pool
       .execute(
-        "INSERT INTO users (first_name, last_name, email, type, password_hash) VALUES (?, ?, ?, ?, ?);",
-        [first_name, last_name, email, type, password_hash]
+        "INSERT INTO user (first_name, last_name, email, pronouns, created_at, type, password_hash, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+        [first_name, last_name, email, pronouns, created_at, type, password_hash, notes]
       )
       .then(() => {
         console.log("Values inserted!");
@@ -63,7 +66,7 @@ async function createController(req, res) {
   if (type == "student") {
     //Pulls ID of current user
     let [user_id, fields] = await pool
-      .query("SELECT id FROM users WHERE email=?;", [email])
+      .query("SELECT id FROM user WHERE email=?;", [email])
       .catch((err) => {
         console.log(err);
       });

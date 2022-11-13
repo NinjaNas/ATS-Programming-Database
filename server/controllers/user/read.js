@@ -6,7 +6,7 @@ async function readController(req, res) {
   
   //0 key reads UUID, 1 key outputs all, 2 key outputs active
   if (key == 0) {
-      await pool.query("SELECT * FROM users WHERE id=?;", [tag])
+      await pool.query("SELECT * FROM user WHERE id=?;", [tag])
       .then((table) => {
           // Send HTTPS, promises return the table access rows at 0 and fields at 1
           res.send(table[0]);
@@ -16,7 +16,7 @@ async function readController(req, res) {
           console.log(err);
       });
   } else if (key == 1) {
-      await pool.query("SELECT * FROM users;")
+      await pool.query("SELECT * FROM user;")
       .then((table) => {
           // Send HTTPS, promises return the table access rows at 0 and fields at 1
           res.send(table[0]);
@@ -26,7 +26,7 @@ async function readController(req, res) {
           console.log(err);
       });
   } else {
-      await pool.query("SELECT * FROM users WHERE status=?;", [1])
+      await pool.query("SELECT * FROM user WHERE status=?;", [1])
       .then((table) => {
         // Send HTTPS, promises return the table access rows at 0 and fields at 1
         res.send(table[0]);

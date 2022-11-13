@@ -5,7 +5,7 @@ async function deleteController(req, res) {
   const { user_id } = req.body;
 
   let [rows, fields] = await pool
-    .query("SELECT type FROM users WHERE id=?;", [user_id])
+    .query("SELECT type FROM user WHERE id=?;", [user_id])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
@@ -61,7 +61,7 @@ async function deleteController(req, res) {
 
     // Delete user entry from table with cooresponding id after all other connected tables are handled.
     await pool
-      .execute("DELETE FROM users WHERE id=?", [user_id])
+      .execute("DELETE FROM user WHERE id=?", [user_id])
       .then(() => {
         console.log(user_id + " deleted from user table.");
       })

@@ -10,6 +10,8 @@ function SignUp() {
 	const [lastName, setLastName] = useState("");
 	//Keeps track of changes to email input box
 	const [email, setEmail] = useState("");
+	const [pronouns, setPronouns] = useState("");
+	const [notes, setNotes] = useState("");
 	//Keeps track of changes to type input box
 	const [type, setType] = useState("");
 	//Keeps track of changes to password input box
@@ -86,7 +88,10 @@ function SignUp() {
 				first_name: firstName,
 				last_name: lastName,
 				email: email,
+				pronouns: pronouns,
+				created_at: new Date().toISOString().split("T")[0],
 				type: type,
+				notes: notes,
 				password: password,
 				intake_date: date,
 				school_admin: schoolAdmin,
@@ -134,6 +139,24 @@ function SignUp() {
 						type='text'
 						onChange={(event) => {
 							setEmail(event.target.value);
+						}}
+					/>
+					<br></br>
+					<label className={signUpStyles.placeholder}>Pronouns:</label>
+					<input
+						className={signUpStyles.input}
+						type='text'
+						onChange={(event) => {
+							setPronouns(event.target.value);
+						}}
+					/>
+					<br></br>
+					<label className={signUpStyles.placeholder}>Notes:</label>
+					<input
+						className={signUpStyles.input}
+						type='text'
+						onChange={(event) => {
+							setNotes(event.target.value);
 						}}
 					/>
 					<br></br>

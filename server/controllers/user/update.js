@@ -3,11 +3,11 @@ const pool = require("../../utils/pool");
 
 async function updateController(req, res) {
   // Object destructuring
-  let { first_name, last_name, email, status, notes, user_id, password } =
+  let { first_name, last_name, email, pronouns, status, notes, user_id, password } =
     req.body;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM users WHERE email=?;", [email])
+    .query("SELECT * FROM user WHERE email=?;", [email])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
@@ -29,6 +29,8 @@ async function updateController(req, res) {
     }
     if (notes == "") {
       notes = rows[0].notes;
+    } if (pronouns == "") {
+      pronouns = rows[0].pronouns;
     }
 
     // Use hash function from utils/bcrypt.js
@@ -43,8 +45,8 @@ async function updateController(req, res) {
      */
     await pool
       .execute(
-        "UPDATE users SET (first_name, last_name, email, status, notes, password_hash) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?, ?);",
-        [first_name, last_name, email, status, notes, password_hash, user_id]
+        "UPDATE user SET (first_name, last_name, email, status, notes, password_hash, pronouns) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
+        [first_name, last_name, email, status, notes, password_hash, pronouns, user_id]
       )
       .then(() => {
         console.log("User values updated for user id " + user_id);
