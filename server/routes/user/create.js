@@ -8,6 +8,6 @@ const { createController } = require("../../controllers/user/create");
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper
  */
-router.post("/", createController);
+router.post("/", authorize(["admin", "counselor"]), createController);
 
 module.exports = router;
