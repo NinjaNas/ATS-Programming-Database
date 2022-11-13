@@ -9,7 +9,7 @@ function current(data) {
   const [users, setUsers] = useState([]);
 
   const allStudents = () => {
-    Axios.get("http://localhost:3000/api/user")
+    Axios.get("http://localhost:3000/api/user/read", {key:5, tag:2})
       .then((response) => {
         setUsers(response.data);
       })
