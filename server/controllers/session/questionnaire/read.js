@@ -1,4 +1,4 @@
-const pool = require("../../utils/pool");
+const pool = require("../../../utils/pool");
 
 async function readController(req, res) {
   // Get user ID from req body

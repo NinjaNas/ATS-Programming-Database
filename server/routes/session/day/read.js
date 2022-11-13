@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const { authorize } = require("../../../utils/authorize");
-const { readController } = require("../../../controllers/day/read");
+const { readController } = require("../../../controllers/session/day/read");
 
 /**
  * async function, using mysql2/promise wrapper
