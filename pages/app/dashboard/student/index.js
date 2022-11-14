@@ -11,7 +11,6 @@ function Student() {
 		<div className={pageStyles.mainPage}>
 			<StudentNav></StudentNav>
 			<TaskList></TaskList>
-	
 			<Footer></Footer>
 		</div>
 	);
