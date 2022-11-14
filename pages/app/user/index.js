@@ -12,7 +12,7 @@ function current(data) {
 
 	const allStudents = () => {
 		Axios.get("http://localhost:3000/api/user/read", {
-			params: { key: 5, tag: 2 },
+			params: { key: -1, tag: 2 },
 		})
 			.then((response) => {
 				setUsers(response.data);

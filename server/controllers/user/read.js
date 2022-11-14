@@ -4,7 +4,7 @@ async function readController(req, res) {
   // Get user ID from req body
   const { key, tag } = req.query;
   
-  //0 key reads UUID, 1 key outputs all, 2 key outputs active
+  //0 key reads UUID, 1 key outputs all, 2 outputs students, -1 key outputs active
   if (key == 0) {
       await pool.query("SELECT * FROM user WHERE id=?;", [tag])
       .then((table) => {
@@ -25,7 +25,17 @@ async function readController(req, res) {
           // Do not throw error inside of promise
           console.log(err);
       });
-  } else {
+  } else if (key == 2) {
+    await pool.query("SELECT * FROM user WHERE type=?;" ["student"])
+    .then((table) => {
+        // Send HTTPS, promises return the table access rows at 0 and fields at 1
+        res.send(table[0]);
+      })
+    .catch((err) => {
+        // Do not throw error inside of promise
+        console.log(err);
+    });
+} else {
       await pool.query("SELECT * FROM user WHERE status=?;", [1])
       .then((table) => {
         // Send HTTPS, promises return the table access rows at 0 and fields at 1
