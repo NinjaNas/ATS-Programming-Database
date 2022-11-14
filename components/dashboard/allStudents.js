@@ -2,17 +2,20 @@ import React from "react";
 import Axios from "axios";
 import { useState, useEffect } from "react";
 import DashboardStyles from "../../styles/Dashboard.module.css";
-import ProgressBar from "./progressBar.js";
+import Search from "../dashboard/searchBar.js";
 
 function allStudents() {
 	/*Creat state to load student data*/
 	const [students, setStudents] = useState([]);
+	const [searchedS, setSearchedS] = useState([])
 	/*Axios call to get student data*/
 	const everyStudent = () => {
 		Axios.get("http://localhost:3000/api/user").then((response) => {
 			setStudents(response.data);
+			setSearchedS(response.data);
 		});
 	};
+	
 	/*UseEffect calls allStudents on page Mount only*/
 	useEffect(() => {
 		everyStudent();
@@ -21,13 +24,16 @@ function allStudents() {
 	return (
 		<div className={DashboardStyles.currentStud}>
 			<h3 className={DashboardStyles.title}>All Students</h3>
+			<Search
+				students={students}
+				setStudents={setSearchedS}></Search>
 			<table className={DashboardStyles.subtitle}>
 				<tbody>
 					<tr>
 						<th></th>
 						<th></th>
 					</tr>
-					{students.map((student) => (
+					{searchedS.map((student) => (
 						<>
 							<tr>
 								<td>
