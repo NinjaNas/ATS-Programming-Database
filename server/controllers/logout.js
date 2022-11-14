@@ -4,15 +4,16 @@ function logoutController(req, res, next) {
       if (err) {
         return next(err);
       }
-    });
-    // Removes current session
-    req.session.destroy((err) => {
-      if (err) {
-        return next(err);
-      }
-      // clearCookie needs something to be sent to work
-      res.clearCookie("connect.sid");
-      res.sendStatus(200);
+      // Removes current session
+      req.session.destroy((err) => {
+        if (err) {
+          return next(err);
+        }
+        // clearCookie needs something to be sent to work
+        res.clearCookie("connect.sid");
+        res.sendStatus(200);
+        console.log(req.user);
+      });
     });
   } else {
     res.sendStatus(400);
