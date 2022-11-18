@@ -8,6 +8,6 @@ const { readController } = require("../../../controllers/session/task/read");
  * async function, using mysql2/promise wrapper
  * https://www.npmjs.com/package/mysql2#using-promise-wrapper
  */
-router.get("/", authorize(["admin", "counselor"]), readController);
+router.get("/", authorize(["admin", "counselor", "student"]), readController);
 
 module.exports = router;
