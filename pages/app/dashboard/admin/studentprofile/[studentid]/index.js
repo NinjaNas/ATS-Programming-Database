@@ -1,27 +1,28 @@
 //Landing Page for Boomerang Staff
 import React from "react";
-import pageStyles from "../../../../../styles/Dashboard.module.css";
-import Navbar from "../../../../../components/dashboard/adminNav.js";
-import StudentHeader from "../../../../../components/studentProfile/StudentHeader";
-import Footer from "../../../../../components/dashboard/footer.js";
+import pageStyles from "../../../../../../styles/Dashboard.module.css";
+import Navbar from "../../../../../../components/dashboard/adminNav";
+
+import StudentHeader from "../../../../../../components/studentProfile/StudentHeader";
+import Footer from "../../../../../../components/dashboard/footer.js";
 import { useRouter } from "next/router";
 import Axios from "axios";
 
 import { useState, useEffect } from "react";
-import Demographics from "../../../../../components/profiles/demographics";
-import Session from "../../../../../components/profiles/session";
+import Demographics from "../../../../../../components/profiles/demographicsEdit";
+import Session from "../../../../../../components/profiles/session";
 
 function StudentProfile() {
   const router = useRouter();
   // console.log(router.query);
   const { studentid } = router.query;
-  const [student, setStudent] = useState([]);
+  const [student, setStudent] = useState();
 
   const studentInfo = () => {
     Axios.get("http://localhost:3000/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
       // console.log(studentid);
       //  setStudent(response.data.filter(s => s.id == studentid));
-      setStudent(response.data)
+      setStudent(response.data[0])
       //  setStudent[student.filter(s => student.id == studentid)]
     });
   };
@@ -35,14 +36,13 @@ function StudentProfile() {
     <div className={pageStyles.mainPage}>
       <Navbar></Navbar>
 
-      {student.map((s) => (
-        // <h1 key={s.id}>{s.first_name} {s.last_name}</h1>
+      {studentid && student && (
 				<>
-				<StudentHeader key={s.id} firstName={s.first_name} lastName={s.last_name} />
-				<Demographics id={s.id}/>
-        <Session user_id={s.id} />
+          <StudentHeader key={student.id} firstName={student.first_name} lastName={student.last_name} />
+          <Demographics id={student.id}/>
+          <Session user_id={student.id} />
 				</>
-      ))}
+      )}
       <Footer></Footer>
     </div>
   );
