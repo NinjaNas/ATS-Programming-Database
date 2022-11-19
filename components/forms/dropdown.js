@@ -13,7 +13,7 @@ const Dropdown = React.forwardRef(
         {/* <select ref={ref} value ={passedValue} className={LoginStyles.input} components={ */}
         <select ref={ref} defaultValue={value} onChange={onChange}>
           {Object.entries(options).map(([k, v]) => (
-            <option value={k}>{v}</option>
+            <option value={k} key={k}>{v}</option>
           ))}
         </select>
       </div>

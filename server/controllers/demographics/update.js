@@ -91,7 +91,7 @@ async function updateController(req, res) {
           race_other_specify,
           ethnicity,
           free_lunch,
-          rows[0].id
+          rows[0].id // previous use of user_id was incorrect since we're checking for id
         ]
       )
       .then(() => {

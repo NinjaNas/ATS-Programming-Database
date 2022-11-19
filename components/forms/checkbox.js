@@ -13,7 +13,7 @@ const CheckBox = React.forwardRef(
           defaultChecked={passedValue == 1}
           onChange={onChange}
         />
-        <label for={`Checkbox-${label}`}> {label} </label>
+        <label htmlFor={`Checkbox-${label}`}> {label} </label>
       </>
     );
   }

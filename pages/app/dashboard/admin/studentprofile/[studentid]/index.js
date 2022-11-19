@@ -9,8 +9,9 @@ import { useRouter } from "next/router";
 import Axios from "axios";
 
 import { useState, useEffect } from "react";
-import Demographics from "../../../../../../components/profiles/demographicsEdit";
+// import Demographics from "../../../../../../components/profiles/demographicsEdit";
 import Session from "../../../../../../components/profiles/session";
+import DemographicsRead from "../../../../../../components/profiles/demographicsRead";
 
 function StudentProfile() {
   const router = useRouter();
@@ -39,7 +40,8 @@ function StudentProfile() {
       {studentid && student && (
 				<>
           <StudentHeader key={student.id} firstName={student.first_name} lastName={student.last_name} />
-          <Demographics id={student.id}/>
+          {/* <Demographics id={student.id}/> */}
+          <DemographicsRead id={student.id} />
           <Session user_id={student.id} />
 				</>
       )}

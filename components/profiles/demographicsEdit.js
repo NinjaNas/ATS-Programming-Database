@@ -7,7 +7,7 @@ import DateForm from '../forms/date';
 import { useRouter } from 'next/router';
 
 
-function Demographics({id}) {
+function DemographicsEdit({id}) {
   const [demographics, setDemographics] = useState();
   const [genderValue, setGenderValue] = useState();
   const [raceOther, setRaceOther] = useState();
@@ -147,4 +147,4 @@ function Demographics({id}) {
   )
 }
 
-export default Demographics
+export default DemographicsEdit
