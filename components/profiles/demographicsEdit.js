@@ -40,19 +40,6 @@ function DemographicsEdit({id}) {
     Axios.post("/api/demographics/update",body).then(
       router.push(`/app/dashboard/admin/studentprofile/${id}`)
     )
-    // console.log(`dob ${dobRef.current.value}`)
-    // console.log(`gender ${genderRef.current.value}`)
-    // console.log(`race_bl ${raceBLRef.current.checked}`)
-    // console.log(`race_ai ${raceAIRef.current.checked}`)
-    // console.log(`race_as ${raceASRef.current.checked}`)
-    // console.log(`race_nhpi ${raceNHPIRef.current.checked}`)
-    // console.log(`race_wh ${raceWHRef.current.checked}`)
-    // console.log(`race_other ${raceOTHERRef.current.checked}`)
-
-    // console.log(`gender_other ${genderOtherRef.current.value}`)
-    // console.log(`race_other_specify ${raceOtherSpecifyRef.current.value}`)
-    // console.log(`ethnicity ${ethnicityRef.current.value}`)
-    // console.log(`free_lunch ${freeLunchRef.current.value}`)
   }
 
   const dobRef = useRef()

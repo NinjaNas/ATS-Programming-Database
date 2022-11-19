@@ -6,11 +6,10 @@ const Dropdown = React.forwardRef(
     const [options, setOptions] = useState(passedOptions);
     const [value, setValue] = useState(passedValue);
 
-    console.log(passedOptions);
+    // console.log(passedOptions);
     return (
       <div>
         <label>{label}</label>
-        {/* <select ref={ref} value ={passedValue} className={LoginStyles.input} components={ */}
         <select ref={ref} defaultValue={value} onChange={onChange}>
           {Object.entries(options).map(([k, v]) => (
             <option value={k} key={k}>{v}</option>

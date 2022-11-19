@@ -9,6 +9,7 @@ const session = require("./session");
 const demographics = require("./demographics");
 const sessionData = require("./sessionData");
 const userData = require("./userData");
+const contact = require("./contact")
 
 // Routing
 router.use("/user", user);
@@ -19,5 +20,6 @@ router.use("/session", session);
 router.use("/demographics", demographics);
 router.use("/sessionData", sessionData);
 router.use("/userData", userData);
+router.use("/contact", contact)
 
 module.exports = router;
