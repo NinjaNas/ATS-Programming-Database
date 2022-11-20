@@ -9,6 +9,7 @@ function allStudents() {
 	const [students, setStudents] = useState([]);
 	const [searchedS, setSearchedS] = useState([])
 	/*Axios call to get student data*/
+	
 	const everyStudent = () => {
 		Axios.get("http://localhost:3000/api/user").then((response) => {
 			setStudents(response.data);
