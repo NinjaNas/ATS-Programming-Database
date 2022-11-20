@@ -17,7 +17,21 @@ const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 // Setup session stores incase server crashes, the current logins will be saved (default is 1 day)
-const sessionStore = new MySQLStore({}, pool);
+const sessionStore = new MySQLStore(
+  {
+    // expiration is 30 mins
+    expiration: 1800000,
+    schema: {
+      tableName: "loginCookie",
+      columnNames: {
+        session_id: "session_id",
+        expires: "expires",
+        data: "data",
+      },
+    },
+  },
+  pool
+);
 
 app
   // Prepare to go into next.js
