@@ -3,11 +3,8 @@ import navbarStyles from "../../styles/Nav.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import Axios from "axios";
-import { useRouter } from "next/router";
 
 function Navbar() {
-  const router = useRouter();
-
   function logOut() {
     Axios.post("http://localhost:3000/api/logout")
       .then(() => {
