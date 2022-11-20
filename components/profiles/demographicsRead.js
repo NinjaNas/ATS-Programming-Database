@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Axios from "axios";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-
+import CardStyles from "../../styles/Cards.module.css"
 
 function DemographicsRead({id}) {
   const [demographics, setDemographics] = useState();
@@ -64,7 +64,8 @@ function DemographicsRead({id}) {
     
     <div>
       {demographics && (
-          <>
+          <div className={CardStyles.card}>
+            <h2>Demographics</h2>
             <p>Date of Birth: {(new Date(demographics.date_of_birth)).toLocaleDateString()}</p> 
             <p>Gender: {genderString}</p>
             {demographics.gender == 99 && <p>Other Gender: {demographics.gender_other}</p>}
@@ -75,7 +76,7 @@ function DemographicsRead({id}) {
             <p>Free Lunch: {demographics.free_lunch == 1 ? "Yes" : "No"}</p>
             
             <Link href={`/app/dashboard/admin/studentprofile/${id}/demographics`}><a>Edit Profile</a></Link>
-          </>
+          </div>
           )
         
       }

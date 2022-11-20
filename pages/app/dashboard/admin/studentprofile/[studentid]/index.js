@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import Axios from "axios";
 
 import { useState, useEffect } from "react";
-import Session from "../../../../../../components/profiles/session";
+import SessionRead from "../../../../../../components/profiles/sessionRead";
 import DemographicsRead from "../../../../../../components/profiles/demographicsRead";
 import ContactRead from "../../../../../../components/profiles/ContactRead";
 
@@ -48,7 +48,7 @@ function StudentProfile() {
           />
           <ContactRead user_id={student.id} />
           <DemographicsRead id={student.id} />
-          <Session user_id={student.id} />
+          <SessionRead user_id={student.id} />
         </>
       )}
       <Footer></Footer>
