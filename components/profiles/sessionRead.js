@@ -53,7 +53,7 @@ const SessionRead = ({ user_id }) => {
             </tbody>
           </table>
           <p>Pickup: {pickups[s.student_pickup]}</p>
-          <TaskList session_id={s.id} type={"admin"} />
+          <TaskList session_id={s.id} type="admin" />
           <Attendance session_id={s.id} />
         </div>
       ))}
