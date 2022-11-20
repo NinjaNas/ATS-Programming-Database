@@ -24,7 +24,7 @@ const Session = ({ user_id }) => {
       {session.map((s) => (
         <>
           <p>{s.intake_date}</p>
-          <TaskList session_id={s.id} />
+          <TaskList session_id={s.id} type={"admin"} />
           <Attendance session_id={s.id} />
         </>
       ))}

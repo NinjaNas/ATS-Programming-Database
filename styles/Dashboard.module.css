@@ -1,160 +1,174 @@
 .mainPage {
-	font-size: 20px;
-	background-color: whitesmoke;
-	height: 100vh;
-	color: black;
-	margin-top: 0px;
-	margin-left: 0px;
-	padding: 0;
-	border: 0;
+  font-size: 20px;
+  background-color: whitesmoke;
+  height: 100vh;
+  color: black;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding: 0;
+  border: 0;
 }
 
 .longerPage {
-	font-size: 20px;
-	background-color: whitesmoke;
-	height: 100%;
-	color: black;
-	margin-top: 0px;
-	margin-left: 0px;
-	padding: 0;
-	border: 0;
+  font-size: 20px;
+  background-color: whitesmoke;
+  height: 100%;
+  color: black;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding: 0;
+  border: 0;
 }
 
 .currentStud {
-	background-color: #dbdcda;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	width: 97%;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 20px;
-	overflow-y: scroll;
+  background-color: #dbdcda;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  width: 97%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 20px;
+  overflow-y: scroll;
 }
 
 .studentDash {
-	background-color: #dbdcda;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	width: 100wh;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 10px;
-	margin-right: 10px;
+  background-color: #dbdcda;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  width: 100wh;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .tasklist {
-	background-color: #a3ddcb;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 85%;
-	padding: 20px;
-	width: 35%;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 0px;
-	margin-right: 20px;
-	overflow-y: scroll;
+  background-color: #a3ddcb;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 85%;
+  padding: 20px;
+  width: 35%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 0px;
+  margin-right: 20px;
+  overflow-y: scroll;
+}
+
+.tasklistAdmin {
+  background-color: #a3ddcb;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 85%;
+  padding: 20px;
+  width: 100%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 0px;
+  margin-right: 20px;
+  overflow-y: scroll;
 }
 
 .taskpage {
-	background-color: #a3ddcb;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 110%;
-	padding: 20px;
-	width: 50vh;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 0px;
-	margin-right: 20px;
-	overflow-y: scroll;
+  background-color: #a3ddcb;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 110%;
+  padding: 20px;
+  width: 50vh;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 0px;
+  margin-right: 20px;
+  overflow-y: scroll;
 }
 
 .title {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 30px;
-	font-weight: 600;
-	margin-top: 1.5%;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 1.5%;
 }
 
 .subtitle {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 24px;
-	font-weight: 600;
-	margin-top: 10px;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 10px;
 }
 
 .text {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 16px;
-	font-weight: 600;
-	margin-top: 10px;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
 }
 
 .taskName {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 18px;
-	font-weight: 600;
-	margin-top: 2px;
-	display: inline-flex;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 2px;
+  display: inline-flex;
 }
 
 .taskRest {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 18px;
-	font-weight: 600;
-	margin-top: 2px;
-	text-align: left;
-	margin-left: 25%;
-	display: inline-flex;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 2px;
+  text-align: left;
+  margin-left: 25%;
+  display: inline-flex;
 }
 
 .tdNames {
-	text-align: left;
-	padding: 3%;
-	width: 50%;
+  text-align: left;
+  padding: 3%;
+  width: 50%;
 }
 .tdProgress {
-	text-align: left;
-	padding: 3%;
-	width: 60%;
+  text-align: left;
+  padding: 3%;
+  width: 60%;
 }
 
 .tdButton {
-	text-align: left;
-	padding: 3%;
-	width: px;
+  text-align: left;
+  padding: 3%;
+  width: px;
 }
 
 .button {
-	background-color: #a3ddcb;
-	border-radius: 50px;
-	box-shadow: #c6ffed;
-	color: #177457;
-	cursor: pointer;
-	display: inline-block;
-	font-family: sans-serif;
-	padding: 7px 20px;
-	text-align: center;
-	text-decoration: none;
-	transition: all 250ms;
-	border: 0;
-	font-size: 10px;
-	user-select: none;
-	-webkit-user-select: none;
-	touch-action: manipulation;
+  background-color: #a3ddcb;
+  border-radius: 50px;
+  box-shadow: #c6ffed;
+  color: #177457;
+  cursor: pointer;
+  display: inline-block;
+  font-family: sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .button:hover {
-	box-shadow: #a3ddcb;
-	transform: scale(1.05) rotate(-1deg);
+  box-shadow: #a3ddcb;
+  transform: scale(1.05) rotate(-1deg);
 }

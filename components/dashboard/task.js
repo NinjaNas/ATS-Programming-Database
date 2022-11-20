@@ -11,11 +11,12 @@ function task({ id, task_name, due_date, task_description, status }) {
   const [toggleStudent, setToggleStudent] = useState(
     trackedStatus != 1 && trackedStatus != 2
   );
-  const [checkedAdmin, setCheckedAdmin] = useState(
-    trackedStatus != 1 && trackedStatus != 2
-  );
-  const [toggleAdmin, setToggleAdmin] = useState(
+  const [toggleAdminIncomplete, setToggleAdminIncomplete] = useState(
     trackedStatus != 2 && trackedStatus != 3
+  );
+
+  const [toggleAdminVerify, setToggleAdminVerify] = useState(
+    trackedStatus != 2
   );
   /*UseEffect calls allStudents on page Mount only*/
   useEffect(() => {
@@ -83,12 +84,11 @@ function task({ id, task_name, due_date, task_description, status }) {
     }
   };
 
-  const adminButtonClick = () => {
+  const adminVerifyButtonClick = () => {
     switch (trackedStatus) {
       case 1:
         // Do nothing
-        setToggleAdmin(true);
-        setCheckedAdmin(false);
+        setToggleAdminVerify(true);
         break;
       case 2:
         Axios.post("http://localhost:3000/api/session/task/update", {
@@ -97,8 +97,37 @@ function task({ id, task_name, due_date, task_description, status }) {
           task_id: id,
         })
           .then(() => {
-            setCheckedAdmin(true);
+            setToggleAdminVerify(true);
             setStatus(3);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
+      case 3:
+        setToggleAdminVerify(true);
+        break;
+      default:
+        setToggleAdminVerify(false);
+    }
+  };
+
+  const adminIncompleteButtonClick = () => {
+    switch (trackedStatus) {
+      case 1:
+        // Do nothing
+        setToggleAdminIncomplete(true);
+        break;
+      case 2:
+        Axios.post("http://localhost:3000/api/session/task/update", {
+          column: "status",
+          new_value: 1,
+          task_id: id,
+        })
+          .then(() => {
+            setToggleAdminIncomplete(true);
+            setToggleAdminVerify(true);
+            setStatus(1);
           })
           .catch((err) => {
             console.log(err);
@@ -107,20 +136,20 @@ function task({ id, task_name, due_date, task_description, status }) {
       case 3:
         Axios.post("http://localhost:3000/api/session/task/update", {
           column: "status",
-          new_value: 2,
+          new_value: 1,
           task_id: id,
         })
           .then(() => {
-            setCheckedAdmin(false);
-            setStatus(2);
+            setToggleAdminIncomplete(true);
+            setToggleAdminVerify(true);
+            setStatus(1);
           })
           .catch((err) => {
             console.log(err);
           });
-
         break;
       default:
-        setCheckedAdmin(false);
+        setToggleAdminIncomplete(false);
     }
   };
 
@@ -154,10 +183,17 @@ function task({ id, task_name, due_date, task_description, status }) {
           Due: {new Date(due_date).toLocaleDateString("en-US")}
           <input
             className={DashboardStyles.taskRest}
-            type="checkbox"
-            checked={checkedAdmin}
-            onChange={adminButtonClick}
-            disabled={toggleAdmin}
+            type="button"
+            value="Incomplete"
+            onClick={adminIncompleteButtonClick}
+            disabled={toggleAdminIncomplete}
+          ></input>
+          <input
+            className={DashboardStyles.taskRest}
+            type="button"
+            value="Verified"
+            onClick={adminVerifyButtonClick}
+            disabled={toggleAdminVerify}
           ></input>
           <p>Status: {statusDict[trackedStatus - 1]}</p>
         </h5>

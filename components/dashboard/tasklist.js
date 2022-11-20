@@ -4,7 +4,7 @@ import Axios from "axios";
 import Task from "./task.js";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
-function tasklist({ session_id }) {
+function tasklist({ session_id, type }) {
   const [tasks, setTasks] = useState([]);
 
   const allTasks = () => {
@@ -38,7 +38,13 @@ function tasklist({ session_id }) {
       <h2 style={{ marginLeft: 9 }} className={DashboardStyles.title}>
         My Tasks
       </h2>
-      <div className={DashboardStyles.tasklist}>
+      <div
+        className={
+          type == "admin"
+            ? DashboardStyles.tasklistAdmin
+            : DashboardStyles.tasklist
+        }
+      >
         <div>
           <h3 className={DashboardStyles.subtitle}>Academic</h3>
           {tasks.map((task) =>
