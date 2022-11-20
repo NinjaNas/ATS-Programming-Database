@@ -14,8 +14,8 @@ passport.serializeUser((user, done) => {
 
 // Uses the id from passport.serializeUser() to deserialize
 passport.deserializeUser(async (id, done) => {
-  console.log("Deserializing User...");
-  console.log(id);
+  // console.log("Deserializing User...");
+  // console.log(id);
 
   // Using the id, find the user object in the database
   await pool
