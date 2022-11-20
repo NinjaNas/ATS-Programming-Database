@@ -8,11 +8,11 @@ import Race from "../../../components/data/demographics/race";
 
 function demographics() {
 	return (
-		<div className={pageStyles.longerPage}>
+		<div className={pageStyles.mainPage}>
 			<Navbar></Navbar>
 			<div
 				style={{ display: "inline-block" }}
-				className={pageStyles.dataContainer}>
+				className={pageStyles.dataContainer}> 
 				<Districts></Districts>
 			</div>
 			<div

@@ -4,7 +4,7 @@ import Axios from "axios";
 import BarChart from "./barChart";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
-function status() {
+function status({ name, xLabel }) {
 	const [sessions, setSessions] = useState([]);
 	const allSessions = () => {
 		Axios.get("http://localhost:3000/api/session").then((response) => {
@@ -12,9 +12,9 @@ function status() {
 		});
 	};
 
-	let unsuccesful = 10;
-	let satisfactory = 5;
-	let succesful = 3;
+	let unsuccesful = 0;
+	let satisfactory = 0;
+	let succesful = 0;
 	{
 		sessions.map((session) =>
 			session.status == 1
@@ -28,31 +28,21 @@ function status() {
 	}
 
 	let statusData = [
-		{ status: "unsuccesful", uv: unsuccesful },
-		{ status: "satisfactory", uv: satisfactory },
-		{ status: "succesful", uv: succesful },
+		{ datapoint: "unsuccesful", Status: unsuccesful },
+		{ datapoint: "satisfactory", Status: satisfactory },
+		{ datapoint: "succesful", Status: succesful },
 	];
 
 	useEffect(() => {
 		allSessions();
 	}, []);
 
-	return  <BarChart data={statusData}></BarChart>;
-		/* <table>
-				<tbody>
-					<tr>
-						<th>Unsuccesful</th>
-						<th>Satisfactory</th>
-						<th>Succesful</th>
-					</tr>
-					<tr>
-						<td>{unsuccesful}</td>
-						<td>{satisfactory}</td>
-						<td>{succesful}</td>
-					</tr>
-				</tbody>
-			</table> */
-	
+	return (
+		<BarChart
+			data={statusData}
+			dataKey={"datapoint"}
+			barKey={"Status"}></BarChart>
+	);
 }
 
 export default status;

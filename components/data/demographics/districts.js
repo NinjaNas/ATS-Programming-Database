@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import BarChart from "../barChart";
 
 function districts() {
 	const [sessions, setSessions] = useState([]);
@@ -23,25 +24,19 @@ function districts() {
 		);
 	}
 
+	let districtsData = [
+		{ datapoint: "Chapel Hill- Carrboro", School_District: chapCarr },
+		{ datapoint: "Orange", School_District: orange }
+	];
+
 	useEffect(() => {
 		allSessions();
 	}, []);
 
+	
+
 	return (
-		<>
-			<table>
-				<tbody>
-					<tr>
-						<th>Chapel Hill-Carrboro</th>
-						<th>Orange County</th>
-					</tr>
-					<tr>
-						<td>{chapCarr}</td>
-						<td>{orange}</td>
-					</tr>
-				</tbody>
-			</table>
-		</>
+		<BarChart data={districtsData} dataKey={'datapoint'} barKey={'School_District'} ></BarChart>
 	);
 }
 

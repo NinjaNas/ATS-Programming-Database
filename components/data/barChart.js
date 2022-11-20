@@ -1,7 +1,6 @@
 import {
 	BarChart,
 	Bar,
-	Cell,
 	XAxis,
 	YAxis,
 	CartesianGrid,
@@ -10,9 +9,8 @@ import {
 	ResponsiveContainer,
 } from "recharts";
 import React from "react";
-import status from "./status";
 
-function barChart({ data }) {
+function barChart({ data, barKey, dataKey }) {
 	return (
 		<ResponsiveContainer
 			width='100%'
@@ -28,12 +26,12 @@ function barChart({ data }) {
 					bottom: 5,
 				}}>
 				<CartesianGrid strokeDasharray='3 3' />
-				<XAxis dataKey='status' />
+				<XAxis dataKey={dataKey} />
 				<YAxis />
 				<Tooltip />
 				<Legend />
 				<Bar
-					dataKey='uv'
+					dataKey={barKey}
 					fill='#82ca9d'
 				/>
 			</BarChart>

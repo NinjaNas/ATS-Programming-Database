@@ -6,7 +6,6 @@ import Session from "../../../components/data/status";
 import BarChart from "../../../components/data/barChart";
 
 function summary() {
-
 	return (
 		<div className={pageStyles.mainPage}>
 			<Navbar></Navbar>
@@ -14,7 +13,6 @@ function summary() {
 				style={{ display: "inline-block" }}
 				className={pageStyles.dataContainer}>
 				<Session></Session>
-				
 			</div>
 			<Footer></Footer>
 		</div>
