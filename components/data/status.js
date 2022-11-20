@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import BarChart from "./barChart";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
 function status() {
@@ -11,9 +12,9 @@ function status() {
 		});
 	};
 
-	let unsuccesful = 0;
-	let satisfactory = 0;
-	let succesful = 0;
+	let unsuccesful = 10;
+	let satisfactory = 5;
+	let succesful = 3;
 	{
 		sessions.map((session) =>
 			session.status == 1
@@ -26,14 +27,18 @@ function status() {
 		);
 	}
 
+	let statusData = [
+		{ status: "unsuccesful", uv: unsuccesful },
+		{ status: "satisfactory", uv: satisfactory },
+		{ status: "succesful", uv: succesful },
+	];
+
 	useEffect(() => {
 		allSessions();
 	}, []);
 
-	return (
-		<>
-		
-			<table>
+	return  <BarChart data={statusData}></BarChart>;
+		/* <table>
 				<tbody>
 					<tr>
 						<th>Unsuccesful</th>
@@ -46,10 +51,8 @@ function status() {
 						<td>{succesful}</td>
 					</tr>
 				</tbody>
-			</table>
-		
-		</>
-	);
+			</table> */
+	
 }
 
 export default status;

@@ -3,6 +3,7 @@ import pageStyles from "../../../styles/Data.module.css";
 import Navbar from "../../../components/dashboard/adminNav.js";
 import Footer from "../../../components/dashboard/footer.js";
 import Session from "../../../components/data/status";
+import BarChart from "../../../components/data/barChart";
 
 function summary() {
 
@@ -13,6 +14,7 @@ function summary() {
 				style={{ display: "inline-block" }}
 				className={pageStyles.dataContainer}>
 				<Session></Session>
+				
 			</div>
 			<Footer></Footer>
 		</div>
