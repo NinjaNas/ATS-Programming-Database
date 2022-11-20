@@ -1,4 +1,4 @@
-grades = {
+const grades = {
   6: "6th",
   7: "7th",
   8: "8th",
