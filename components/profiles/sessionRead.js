@@ -25,14 +25,19 @@ const SessionRead = ({ user_id }) => {
     sessionInfo();
   }, []);
 
-
-
   return (
     <div className={CardStyles.card}>
       {session.map((s) => (
         <div className={CardStyles.card}>
-          <Link href=""><a>Intake Date: {(new Date(s.intake_date)).toLocaleDateString()} {sessionStatus[s.status]}</a></Link>
-          <p>{s.grade}th grade, {schools[s.school]}</p>
+          <Link href="">
+            <a>
+              Intake Date: {new Date(s.intake_date).toLocaleDateString()}{" "}
+              {sessionStatus[s.status]}
+            </a>
+          </Link>
+          <p>
+            {s.grade}th grade, {schools[s.school]}
+          </p>
           <table>
             <thead>
               <th className={TableStyles.column}>School Administrator</th>
@@ -41,14 +46,14 @@ const SessionRead = ({ user_id }) => {
             </thead>
             <tbody>
               <tr>
-              <td className={TableStyles.column}>{s.school_administrator}</td>
-              <td className={TableStyles.column}>{s.social_worker}</td>
-              <td className={TableStyles.column}>{s.school_counselor}</td>
+                <td className={TableStyles.column}>{s.school_administrator}</td>
+                <td className={TableStyles.column}>{s.social_worker}</td>
+                <td className={TableStyles.column}>{s.school_counselor}</td>
               </tr>
             </tbody>
           </table>
           <p>Pickup: {pickups[s.student_pickup]}</p>
-          <TaskList session_id={s.id} />
+          <TaskList session_id={s.id} type={"admin"} />
           <Attendance session_id={s.id} />
         </div>
       ))}
