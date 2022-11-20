@@ -1,6 +1,7 @@
 import Axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import addressStatus from "../../constants/addressStatus";
 import CardStyles from "../../styles/Cards.module.css"
 
 const ContactRead = ({ user_id }) => {
@@ -14,11 +15,6 @@ const ContactRead = ({ user_id }) => {
     );
   };
 
-  const addressStatus = {
-    1: "Primary",
-    2: "Secondary",
-    9: "Old",
-  };
 
   useEffect(() => {
     contactInfo();

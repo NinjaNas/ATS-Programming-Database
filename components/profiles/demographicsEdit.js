@@ -5,6 +5,9 @@ import Dropdown from '../forms/dropdown';
 import CheckBox from '../forms/checkbox';
 import DateForm from '../forms/date';
 import { useRouter } from 'next/router';
+import ethnicity from '../../constants/ethnicity';
+import gender from '../../constants/gender';
+import yesno from '../../constants/yesno';
 
 
 function DemographicsEdit({id}) {
@@ -56,26 +59,7 @@ function DemographicsEdit({id}) {
   const ethnicityRef = useRef()
   const freeLunchRef = useRef()
 
-  const ethnicity = {
-    1: "Hispanic",
-    0: "Non-Hispanic"
-  }
-
-  const gender = {
-    1: "Female", 
-    2: "Male", 
-    3: "Non Binary", 
-    99: "Self-Describe"}
   
-  const race = {
-    race_bl: "Black, African-American",
-    race_ai: "American Indian",
-    race_as: "Asian",
-    race_nhpi: "Native Hawaiian, Pacific Islander",
-    race_wh: "White",
-    race_other: "Other"
-  }
-
   useEffect(() => {
     console.log(id)
     demographicsInfo();
@@ -123,7 +107,7 @@ function DemographicsEdit({id}) {
             
             {/* <InputForm label="Specify Other Race" ref={raceOtherSpecifyRef} passedValue = {demographics.race_other_specify} />             */}
             <Dropdown label="Ethnicity" ref={ethnicityRef} passedValue={demographics.ethnicity} passedOptions={ethnicity} />
-            <Dropdown label="Free Lunch" ref={freeLunchRef} passedValue={demographics.free_lunch} passedOptions={{1: "Yes", 0: "No"}} />
+            <Dropdown label="Free Lunch" ref={freeLunchRef} passedValue={demographics.free_lunch} passedOptions={yesno} />
             <input type="submit" value="Save" onClick={onSave}/>
           </>
           )

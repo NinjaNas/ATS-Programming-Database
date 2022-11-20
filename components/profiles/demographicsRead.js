@@ -3,6 +3,9 @@ import Axios from "axios";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import CardStyles from "../../styles/Cards.module.css"
+import race from '../../constants/race';
+import gender from '../../constants/gender';
+import ethnicity from '../../constants/ethnicity';
 
 function DemographicsRead({id}) {
   const [demographics, setDemographics] = useState();
@@ -18,25 +21,7 @@ function DemographicsRead({id}) {
     });
   };
 
-  const ethnicity = {
-    1: "Hispanic",
-    0: "Non-Hispanic"
-  }
 
-  const gender = {
-    1: "Female", 
-    2: "Male", 
-    3: "Non Binary", 
-    99: "Self-Describe"}
-  
-  const race = {
-    race_bl: "Black, African-American",
-    race_ai: "American Indian",
-    race_as: "Asian",
-    race_nhpi: "Native Hawaiian, Pacific Islander",
-    race_wh: "White",
-    race_other: "Other"
-  }
 
 
   useEffect(() => {    
