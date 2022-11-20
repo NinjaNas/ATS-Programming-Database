@@ -20,7 +20,7 @@ const Attendance = ({session_id}) => {
     <div>
       {days.map(d => 
       (
-        <Day date={d.attendance_day} status={d.status} type={d.type} reason_missed={d.reason_missed}/>
+        <Day key={d.id} id={d.id} date={d.attendance_day} status={d.status} type={d.type} reason_missed={d.reason_missed}/>
       ))}
     </div>
   )

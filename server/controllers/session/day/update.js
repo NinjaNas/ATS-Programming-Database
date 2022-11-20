@@ -13,18 +13,18 @@ async function updateController(req, res) {
 
   if (rows.length) {
     //Overrides arguments with what's currently in the database if empty
-    if (attendance_day == "") {
-      attendance_day = rows[0].attendance_day;
-    }
-    if (type == "") {
-      type = rows[0].type;
-    }
-    if (reason_missed == "") {
-      reason_missed = rows[0].reason_missed;
-    }
-    if (status == "") {
-      status = rows[0].status;
-    }
+    // if (attendance_day == "") {
+    //   attendance_day = rows[0].attendance_day;
+    // }
+    // if (type == "") {
+    //   type = rows[0].type;
+    // }
+    // if (reason_missed == "") {
+    //   reason_missed = rows[0].reason_missed;
+    // }
+    // if (status == "") {
+    //   status = rows[0].status;
+    // }
 
     /**
      * Checks for a task_id and updates all items.
@@ -33,7 +33,8 @@ async function updateController(req, res) {
      */
     await pool
       .execute(
-        "UPDATE task SET (type, attendance_day, status, reason_missed) WHERE id=(id) VALUES (?, ?, ?, ?, ?);",
+        // "UPDATE task SET (type, attendance_day, status, reason_missed) WHERE id=(id) VALUES (?, ?, ?, ?, ?);",
+        "UPDATE day SET type=?, attendance_day=?, status=?, reason_missed=? WHERE id=(?); ",
         [type, attendance_day, status, reason_missed, id]
       )
       .then(() => {
