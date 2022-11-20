@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
-function task({ id, task_name, due_date, task_description }) {
+function task({ id, task_name, due_date, task_description, stat }) {
   const statusDict = ["Started", "Completed", "Verified", "On Hold"];
   const [type, setType] = useState([]);
+  const [status, setStatus] = useState(stat);
   const [checked, setChecked] = useState(false);
-  const [status, setStatus] = useState(0);
   /*UseEffect calls allStudents on page Mount only*/
   useEffect(() => {
     allTasks();

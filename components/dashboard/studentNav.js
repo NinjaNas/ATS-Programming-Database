@@ -37,6 +37,11 @@ function studentNav() {
             My Calendar
           </a>
         </Link>
+        <Link href="/app/dashboard/student/questionnaire">
+          <a className={navbarStyles.menuItem} title="participants">
+            My Questionnare
+          </a>
+        </Link>
         <Link href="/app/login">
           <a onClick={logOut} className={navbarStyles.menuItem} title="logout">
             Log out

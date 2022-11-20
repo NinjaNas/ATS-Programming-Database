@@ -13,30 +13,7 @@ function addTask() {
   const router = useRouter();
 
   const postTask = () => {
-    let type = null;
-
-    switch (typeRef.current.value) {
-      case "Boomerang":
-        type = 1;
-        break;
-      case "Academic":
-        type = 2;
-        break;
-      case "SMART Goal":
-        type = 3;
-        break;
-      case "Schoolwork Plan":
-        type = 4;
-        break;
-      case "Ecomap":
-        type = 5;
-        break;
-      case "Tree Plan":
-        type = 6;
-        break;
-      default:
-        type = 1;
-    }
+    console.log(typeRef.current.value);
     // Grab current session id for user to create tasks
     Axios.get("http://localhost:3000/api/sessionData")
       .then((res) => {
@@ -44,7 +21,7 @@ function addTask() {
         console.log("session_id" + session_id);
         Axios.post("http://localhost:3000/api/session/task/create", {
           session_id: session_id,
-          task_type: type,
+          task_type: typeRef.current.value,
           task_name: nameRef.current.value,
           start_date: new Date().toISOString().split("T")[0],
           due_date: dueDateRef.current.value,
@@ -77,12 +54,12 @@ function addTask() {
       </label>
 
       <select name="type" id="type" ref={typeRef}>
-        <option value="Boomerang">Boomerang</option>
-        <option value="Academic">Academic</option>
-        <option value="SMART Goal">SMART Goal</option>
-        <option value="Schoolwork Plan">Schoolwork Plan</option>
-        <option value="Ecomap">Ecomap</option>
-        <option value="Tree Plan">Tree Plan</option>
+        <option value="1">Boomerang</option>
+        <option value="2">Academic</option>
+        <option value="3">SMART Goal</option>
+        <option value="4">Schoolwork Plan</option>
+        <option value="5">Ecomap</option>
+        <option value="6">Tree Plan</option>
       </select>
 
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
