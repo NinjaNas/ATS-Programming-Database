@@ -29,10 +29,10 @@ function allUsers() {
 		<div className={pageStyles.mainPage}>
 			<div className={pageStyles.currentStud}>
 				<Search
-					students={users}
-					setStudents={setSearchedU}></Search>
+					users={users}
+					setUsers={setSearchedU}></Search>
 				<table className={pageStyles.subtitle}>
-					{searchedU.map((val, key) => {
+					{searchedU.map((user) => {
 						return (
 							<>
 								<tr>
@@ -45,16 +45,16 @@ function allUsers() {
 										<a
 											className={pageStyles.subtitle}
 											style={{ display: "block" }}
-											href='/app/user/profile'>
-											{val.first_name}
+											href={`/app/user/profile/${user.id}`}>
+											{user.first_name}
 										</a>
 									</td>
 									<td className={pageStyles.tdNames}>
 										<a
 											className={pageStyles.subtitle}
 											style={{ display: "block" }}
-											href='/app/user/profile'>
-											{val.last_name}
+											href={`/app/user/profile/${user.id}`}>
+											{user.last_name}
 										</a>
 									</td>
 									<td className={pageStyles.tdButton}>
