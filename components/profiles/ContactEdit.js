@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import addressStatus from "../../constants/addressStatus";
 import Dropdown from "../forms/dropdown";
 import InputForm from "../forms/input";
 
@@ -79,7 +80,7 @@ const ContactEdit = ({ id, user_id }) => {
             ref={statusRef}
             label="Address Type"
             passedValue={contact.status}
-            passedOptions={{ 1: "Primary", 2: "Secondary", 9: "Old" }}
+            passedOptions={addressStatus}
           />
           <input type="submit" value="Save" onClick={onSave} />
         </>
