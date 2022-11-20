@@ -37,6 +37,7 @@ function addTask() {
       default:
         type = 1;
     }
+    // Grab current session id for user to create tasks
     Axios.get("http://localhost:3000/api/sessionData")
       .then((res) => {
         const session_id = res.data.id;
