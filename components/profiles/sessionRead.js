@@ -28,6 +28,7 @@ const SessionRead = ({ user_id }) => {
 
   return (
     <div className={CardStyles.card}>
+      <h2>Sessions</h2>
       {session.map((s) => (
         <div className={CardStyles.card}>
           <Link href={`http://localhost:3000/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/edit`}>
