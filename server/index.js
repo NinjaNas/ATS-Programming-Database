@@ -21,6 +21,7 @@ const sessionStore = new MySQLStore(
   {
     // expiration is 30 mins
     expiration: 1800000,
+    // table loginCookie contains the login tokens
     schema: {
       tableName: "loginCookie",
       columnNames: {
