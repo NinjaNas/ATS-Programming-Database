@@ -7,8 +7,8 @@ function pieChart({ data, dataKey }) {
 			width='100%'
 			height='100%'>
 			<PieChart
-				width={2000}
-				height={2000}>
+				width={400}
+				height={400}>
 				<Pie
 					dataKey={dataKey}
 					isAnimationActive={false}

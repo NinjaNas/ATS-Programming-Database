@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import BarChart from "../barChart";
 
-function smartGoal() {
+function smartGoal({completedSm}) {
 	const [tasks, setTasks] = useState([]);
 	const allTasks = () => {
 		Axios.get("http://localhost:3000/api/session/task/read").then(
@@ -25,13 +25,13 @@ function smartGoal() {
 				: null
 		);
 	}
-	let completePerc = completedSM / totalSM;
+	let completePerc = (completedSM / totalSM)*100;
 	let smData = [
 		{ datapoint: "Completed", SMART_Goals: completedSM },
 		{ datapoint: "Total", SMART_Goals: totalSM },
-		{ datapoint: "Completion Percentage", SMART_Goals: completePerc },
 	];
 
+    completedSm(completePerc);
 	useEffect(() => {
 		allTasks();
 	}, []);
