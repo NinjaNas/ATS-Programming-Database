@@ -1,8 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import BarChart from "./barChart";
-import DashboardStyles from "../../styles/Dashboard.module.css";
+import BarChart from "../barChart";
 
 function status({ name, xLabel }) {
 	const [sessions, setSessions] = useState([]);
@@ -15,6 +14,7 @@ function status({ name, xLabel }) {
 	let unsuccesful = 0;
 	let satisfactory = 0;
 	let succesful = 0;
+
 	{
 		sessions.map((session) =>
 			session.status == 1
@@ -26,11 +26,12 @@ function status({ name, xLabel }) {
 				: null
 		);
 	}
-
+	let all = unsuccesful + satisfactory + succesful;
 	let statusData = [
-		{ datapoint: "unsuccesful", Status: unsuccesful },
-		{ datapoint: "satisfactory", Status: satisfactory },
-		{ datapoint: "succesful", Status: succesful },
+		{ datapoint: "Unsuccesful", Status: unsuccesful },
+		{ datapoint: "Satisfactory", Status: satisfactory },
+		{ datapoint: "Unsuccesful", Status: succesful },
+		{ datapoint: "Total", Status: all },
 	];
 
 	useEffect(() => {
