@@ -1,6 +1,7 @@
 const pool = require("../../utils/pool");
 
 async function updateController(req, res) {
+  // console.log(req);
   // Object destructuring
   let {
     id,
@@ -10,7 +11,7 @@ async function updateController(req, res) {
     zip,
     status,
   } = req.body;
-
+  console.log(id);
   let [rows, fields] = await pool
     .query("SELECT * FROM contact WHERE id=?;", [id])
     .catch((err) => {
@@ -45,6 +46,7 @@ async function updateController(req, res) {
     // Successful HTTPS
     res.sendStatus(201);
   } else {
+    console.log(rows)
     res.sendStatus(400);
   }
 }

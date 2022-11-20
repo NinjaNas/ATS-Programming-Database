@@ -9,9 +9,9 @@ import { useRouter } from "next/router";
 import Axios from "axios";
 
 import { useState, useEffect } from "react";
-// import Demographics from "../../../../../../components/profiles/demographicsEdit";
 import Session from "../../../../../../components/profiles/session";
 import DemographicsRead from "../../../../../../components/profiles/demographicsRead";
+import ContactRead from "../../../../../../components/profiles/ContactRead";
 
 function StudentProfile() {
   const router = useRouter();
@@ -20,30 +20,36 @@ function StudentProfile() {
   const [student, setStudent] = useState();
 
   const studentInfo = () => {
-    Axios.get("http://localhost:3000/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
+    Axios.get("http://localhost:3000/api/user/read", {
+      params: { key: 0, tag: studentid },
+    }).then((response) => {
       // console.log(studentid);
       //  setStudent(response.data.filter(s => s.id == studentid));
-      setStudent(response.data[0])
+      setStudent(response.data[0]);
       //  setStudent[student.filter(s => student.id == studentid)]
     });
   };
 
-// https://github.com/vercel/next.js/discussions/11484
+  // https://github.com/vercel/next.js/discussions/11484
   useEffect(() => {
     studentInfo();
-  }, [studentid])
+  }, [studentid]);
 
   return (
     <div className={pageStyles.mainPage}>
       <Navbar></Navbar>
 
       {studentid && student && (
-				<>
-          <StudentHeader key={student.id} firstName={student.first_name} lastName={student.last_name} />
-          {/* <Demographics id={student.id}/> */}
+        <>
+          <StudentHeader
+            key={student.id}
+            firstName={student.first_name}
+            lastName={student.last_name}
+          />
+          <ContactRead user_id={student.id} />
           <DemographicsRead id={student.id} />
           <Session user_id={student.id} />
-				</>
+        </>
       )}
       <Footer></Footer>
     </div>

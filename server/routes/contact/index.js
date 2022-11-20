@@ -2,11 +2,13 @@
 const express = require("express");
 const router = express.Router();
 const update = require("./update");
+const create = require("./create");
 const read = require("./read");
 const { authorize } = require("../../utils/authorize");
 const { indexController } = require("../../controllers/contact");
 
 // Routing
+router.use("/create", create);
 router.use("/update", update);
 router.use("/read", read);
 
