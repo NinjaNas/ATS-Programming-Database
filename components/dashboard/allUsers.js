@@ -1,7 +1,8 @@
 import React from "react";
 import Axios from "axios";
 import pageStyles from "../../styles/Dashboard.module.css";
-import Search from "../dashboard/searchBar.js"
+import Search from "../dashboard/searchBar.js";
+import DashboardStyles from "../../styles/Dashboard.module.css";
 import { useState, useEffect } from "react";
 
 function allUsers() {
@@ -28,6 +29,7 @@ function allUsers() {
 	return (
 		<div className={pageStyles.mainPage}>
 			<div className={pageStyles.currentStud}>
+				<h3 className={DashboardStyles.title}>All Users</h3>
 				<Search
 					users={users}
 					setUsers={setSearchedU}></Search>
@@ -56,15 +58,6 @@ function allUsers() {
 											href={`/app/user/profile/${user.id}`}>
 											{user.last_name}
 										</a>
-									</td>
-									<td className={pageStyles.tdButton}>
-										<button className={pageStyles.button}>
-											<a
-												style={{ color: "#177457" }}
-												href='/app/user/edit'>
-												edit
-											</a>
-										</button>
 									</td>
 								</tr>
 							</>
