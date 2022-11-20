@@ -8,6 +8,7 @@ import Link from "next/link";
 import schools from "../../constants/schools";
 import sessionStatus from "../../constants/sessionStatus";
 import pickups from "../../constants/pickups";
+import AddTask from "../../components/dashboard/addTask.js";
 
 const SessionRead = ({ user_id }) => {
   const [session, setSession] = useState([]);
@@ -54,6 +55,7 @@ const SessionRead = ({ user_id }) => {
           </table>
           <p>Pickup: {pickups[s.student_pickup]}</p>
           <TaskList session_id={s.id} type="admin" />
+          <AddTask session_id={s.id}></AddTask>
           <Attendance session_id={s.id} />
         </div>
       ))}
