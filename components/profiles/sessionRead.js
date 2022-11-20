@@ -30,7 +30,7 @@ const SessionRead = ({ user_id }) => {
     <div className={CardStyles.card}>
       {session.map((s) => (
         <div className={CardStyles.card}>
-          <Link href="">
+          <Link href={`http://localhost:3000/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/edit`}>
             <a>
               Intake Date: {new Date(s.intake_date).toLocaleDateString()}{" "}
               {sessionStatus[s.status]}
@@ -59,6 +59,7 @@ const SessionRead = ({ user_id }) => {
           <Attendance session_id={s.id} />
         </div>
       ))}
+      <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}><a>Add Session</a></Link>
     </div>
   );
 };
