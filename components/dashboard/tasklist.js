@@ -20,7 +20,6 @@ function tasklist({ session_id }) {
         })
           .then((response) => {
             setTasks(response.data);
-            console.log(response.data);
           })
           .catch((err) => {
             console.log(err);
