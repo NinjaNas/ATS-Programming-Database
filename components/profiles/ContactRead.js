@@ -1,6 +1,8 @@
 import Axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import addressStatus from "../../constants/addressStatus";
+import CardStyles from "../../styles/Cards.module.css"
 
 const ContactRead = ({ user_id }) => {
   const [contact, setContact] = useState([]);
@@ -13,20 +15,16 @@ const ContactRead = ({ user_id }) => {
     );
   };
 
-  const addressStatus = {
-    1: "Primary",
-    2: "Secondary",
-    9: "Old",
-  };
 
   useEffect(() => {
     contactInfo();
   }, []);
 
   return (
-    <div>
+    <div className={CardStyles.card}>
+      <h2>Contact Information</h2>
       {contact.map(({ id, phone, address, city, zip, status }) => (
-        <>
+        <div className={CardStyles.card}>
           <Link
             href={`/app/dashboard/admin/studentprofile/${user_id}/contactInfo/${id}/edit`}
           >
@@ -40,7 +38,7 @@ const ContactRead = ({ user_id }) => {
           <p>
             {address}, {city}, {zip}
           </p>
-        </>
+        </div>
       ))}
       <Link href={`/app/dashboard/admin/studentprofile/${user_id}/contactInfo/add`}><a>Add</a></Link>
     </div>
