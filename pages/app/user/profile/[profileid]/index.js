@@ -11,7 +11,7 @@ function UserProfile() {
     const router = useRouter();
     const { userid } = router.query;
     const [user, setUser] = useState();
-    console.log(userid)
+    console.log(userid);
 
     const userInfo = () => {
         Axios.get("http://localhost:3000/api/user/read", {

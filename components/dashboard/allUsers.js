@@ -9,7 +9,7 @@ function allUsers() {
 	const [users, setUsers] = useState([]);
 	const [searchedU, setSearchedU] = useState([]);
 
-	const allStudents = () => {
+	const allUsers = () => {
 		Axios.get("http://localhost:3000/api/user/read", {
 			params: { key: -1, tag: 2 },
 		})
@@ -23,7 +23,7 @@ function allUsers() {
 	};
 
 	useEffect(() => {
-		allStudents();
+		allUsers();
 	}, []);
 
 	return (
