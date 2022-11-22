@@ -11,7 +11,10 @@ function allStudents() {
 	/*Axios call to get student data*/
 	
 	const everyStudent = () => {
-		Axios.get("http://localhost:3000/api/user").then((response) => {
+		Axios.get("http://localhost:3000/api/user", {
+			params: { key: 2, tag: 0 }
+		  }).then((response) => {
+			console.log(response.data)
 			setStudents(response.data);
 			setSearchedS(response.data);
 		});

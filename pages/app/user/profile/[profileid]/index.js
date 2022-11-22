@@ -11,12 +11,12 @@ function UserProfile() {
     const router = useRouter();
     const { userid } = router.query;
     const [user, setUser] = useState();
-    console.log(userid);
 
     const userInfo = () => {
         Axios.get("http://localhost:3000/api/user/read", {
           params: { key: 0, tag: userid },
         }).then((response) => {
+          console.log(response.data[0])
           setUser(response.data[0]);
         });
       };
@@ -30,11 +30,11 @@ function UserProfile() {
 			<Navbar></Navbar>
             {userid && user && (
                 <>
-                    <StudentHeader
+                  <StudentHeader
                     key={user.id}
                     firstName={user.first_name}
                     lastName={user.last_name}
-                    />
+                  />
                 </>
             )}
 			<Footer></Footer>
