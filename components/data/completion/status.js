@@ -30,7 +30,7 @@ function status({ name, xLabel }) {
 	let statusData = [
 		{ datapoint: "Unsuccesful", Status: unsuccesful },
 		{ datapoint: "Satisfactory", Status: satisfactory },
-		{ datapoint: "Unsuccesful", Status: succesful },
+		{ datapoint: "Succesful", Status: succesful },
 		{ datapoint: "Total", Status: all },
 	];
 

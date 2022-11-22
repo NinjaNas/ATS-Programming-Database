@@ -8,9 +8,8 @@
 .menu {
 	position: relative;
 	object-fit: contain;
-	float:right;
+	float: right;
 	top: 25%;
-
 }
 
 .menuItem {
@@ -25,12 +24,34 @@
 	color: #a3ddcb;
 }
 
-
-
 .boomerangImg {
 	margin-top: 0px;
 	object-fit: contain;
-	height:100%;
-	float:left;
-	
+	height: 100%;
+	float: left;
+}
+
+.subNavText {
+	color: #eee;
+	font-size: 18px;
+}
+
+.subNavText:hover {
+	color: #595959;
+}
+
+.subnavContent {
+	text-align: center;
+	border-radius: 8px;
+	color: #eee;
+	display: none;
+	position: absolute;
+	left: 30px;
+	background-color: #a3ddcb;
+	width: 70%;
+	z-index: 1;
+}
+
+.menuItem:hover .subnavContent {
+	display: block;
 }
