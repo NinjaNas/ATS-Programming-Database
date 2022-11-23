@@ -26,7 +26,7 @@ async function readController(req, res) {
           console.log(err);
       });
   } else if (key == 2) {
-    await pool.query("SELECT * FROM user WHERE type=?;" ["student"])
+    await pool.query("SELECT * FROM user WHERE type='student';")
     .then((table) => {
         // Send HTTPS, promises return the table access rows at 0 and fields at 1
         res.send(table[0]);
