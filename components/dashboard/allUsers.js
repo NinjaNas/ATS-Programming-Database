@@ -39,14 +39,14 @@ function allUsers() {
 							<tr>
 								<td>
 									<a
-										href={`/app/dashboard/admin/studentprofile/${user.id}`}
+										href={`/app/user/profile/${user.id}`}
 										className={DashboardStyles.subtitle}>
 										{user.first_name}
 									</a>
 								</td>
 								<td className={DashboardStyles.tdNames}>
 									<a
-										href={`/app/dashboard/admin/studentprofile/${user.id}`}
+										href={`/app/user/profile/${user.id}`}
 										className={DashboardStyles.subtitle}>
 										{user.last_name}
 									</a>
