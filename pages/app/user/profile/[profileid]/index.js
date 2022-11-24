@@ -1,10 +1,12 @@
 import React from "react";
 import pageStyles from "../../../../../styles/Dashboard.module.css";
-import Navbar from "../../../../../components/dashboard/adminNav.js";
-import Footer from "../../../../../components/dashboard/footer.js";
+import Navbar from "../../../../../components/dashboard/adminNav";
+
 import StudentHeader from "../../../../../components/studentProfile/StudentHeader";
+import Footer from "../../../../../components/dashboard/footer.js";
 import { useRouter } from "next/router";
 import Axios from "axios";
+
 import { useState, useEffect } from "react";
 
 function UserProfile() {
@@ -16,7 +18,6 @@ function UserProfile() {
         Axios.get("http://localhost:3000/api/user/read", {
           params: { key: 0, tag: userid },
         }).then((response) => {
-          console.log(response.data[0])
           setUser(response.data[0]);
         });
       };
@@ -25,10 +26,13 @@ function UserProfile() {
         userInfo();
       }, [userid]);
 
+      console.log(router.query)
+
 	return (
 		<div className={pageStyles.mainPage}>
 			<Navbar></Navbar>
-            {userid && user && (
+      "NOW"
+            {user && (
                 <>
                   <StudentHeader
                     key={user.id}
