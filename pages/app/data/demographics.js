@@ -5,6 +5,7 @@ import Footer from "../../../components/dashboard/footer.js";
 import Districts from "../../../components/data/demographics/districts";
 import Grades from "../../../components/data/demographics/grades";
 import Race from "../../../components/data/demographics/race";
+import Ethnicity from "../../../components/data/demographics/ethnicity";
 
 function demographics() {
 	return (
@@ -23,11 +24,16 @@ function demographics() {
 				<Grades></Grades>
 			</div>
 			<div
-				// style={{ display: "inline-block" }}
-				style={{textAlign:"center"}}
+				style={{ display: "inline-block" }}
 				className={pageStyles.dataContainer}>
 				<h2 className={pageStyles.title}>Race</h2>
 				<Race></Race>
+			</div>
+			<div
+				style={{ display: "inline-block" }}
+				className={pageStyles.dataContainer}>
+				<h2 className={pageStyles.title}>Hispanic vs Non-Hispanicn</h2>
+				<Ethnicity></Ethnicity>
 			</div>
 			<Footer></Footer>
 		</div>
