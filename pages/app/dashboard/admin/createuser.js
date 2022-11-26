@@ -4,46 +4,48 @@ import Axios from "axios";
 import signUpStyles from "../../../../styles/Login.module.css";
 import { useRouter } from "next/router";
 
-function SignUp() {
+function CreateUser() {
   //Keeps track of changes to name input box
-  const [firstName, setFirstName] = useState("");
+  const firstNameRef = useRef();
   //Keeps track of changes to  last name input box
-  const [lastName, setLastName] = useState("");
+  const lastNameRef = useRef();
   //Keeps track of changes to email input box
-  const [email, setEmail] = useState("");
+  const emailRef = useRef();
   const pronounRef = useRef();
-  const [notes, setNotes] = useState("");
+  const notesRef = useRef();
   //Keeps track of changes to type input box
   const typeRef = useRef();
   //Keeps track of changes to password input box
-  const [password, setPassword] = useState("");
+  const passwordRef = useRef();
 
   const router = useRouter();
-
-  //Adds new boxes to screen if type is student
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
 
   /*
     Meant to be the function that sends "credentials" input on the boxes
     to the backend for authenctication. Currently is just making a get request to /insert
     but I envisioned been whatever authentication endpoint we are thinking of
     */
-  const signUp = () => {
+  const createUser = () => {
     Axios.post("/api/user/create", {
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
+      first_name: firstNameRef.current.value,
+      last_name: lastNameRef.current.value,
+      email: emailRef.current.value,
       pronouns: pronounRef.current.value,
       created_at: new Date().toISOString().split("T")[0],
       type: typeRef.current.value,
-      notes: notes,
-      password: password,
+      notes: notesRef.current.value,
+      password: passwordRef.current.value,
     })
-      .then(() => {
+      .then((response) => {
         console.log("success");
-        router.push("/app/dashboard/admin/allstudents");
+        if (typeRef.current.value == "student") {
+          router.push({
+            pathname: "/app/dashboard/admin/createdemographics/[id]",
+            query: { id: response.data.id },
+          });
+        } else {
+          router.push("/app/user");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -59,30 +61,16 @@ function SignUp() {
           <input
             className={signUpStyles.input}
             type="text"
-            onChange={(event) => {
-              setFirstName(event.target.value);
-            }}
+            ref={firstNameRef}
           />
           <br></br>
           {/*Last name input box*/}
           <label className={signUpStyles.placeholder}>Last Name:</label>
-          <input
-            className={signUpStyles.input}
-            type="text"
-            onChange={(event) => {
-              setLastName(event.target.value);
-            }}
-          />
+          <input className={signUpStyles.input} type="text" ref={lastNameRef} />
           <br></br>
           {/*Email input box*/}
           <label className={signUpStyles.placeholder}>Email:</label>
-          <input
-            className={signUpStyles.input}
-            type="text"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
+          <input className={signUpStyles.input} type="text" ref={emailRef} />
           <br></br>
           <label className={signUpStyles.placeholder}>Pronouns:</label>
           <select
@@ -97,13 +85,7 @@ function SignUp() {
           </select>
           <br></br>
           <label className={signUpStyles.placeholder}>Notes:</label>
-          <input
-            className={signUpStyles.input}
-            type="text"
-            onChange={(event) => {
-              setNotes(event.target.value);
-            }}
-          />
+          <input className={signUpStyles.input} type="text" ref={notesRef} />
           <br></br>
           {/*Type input box*/}
           <label className={signUpStyles.placeholder}>Type:</label>
@@ -124,13 +106,11 @@ function SignUp() {
           <input
             className={signUpStyles.input}
             type="password"
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
+            ref={passwordRef}
           />
           <br></br>
           {/*Sign-up button that will fire the call to endpoint in the backend*/}
-          <button className={signUpStyles.submit} onClick={signUp}>
+          <button className={signUpStyles.submit} onClick={createUser}>
             Add User
           </button>
         </div>
@@ -139,4 +119,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default CreateUser;
