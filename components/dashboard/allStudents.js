@@ -3,13 +3,11 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 import Search from "../dashboard/searchBar.js";
-import { useRouter } from "next/router";
 
 function allStudents() {
   /*Create state to load student data*/
   const [students, setStudents] = useState([]);
   const [searchedS, setSearchedS] = useState([]);
-  const router = useRouter();
   /*Axios call to get student data*/
   const everyStudent = () => {
     Axios.get("/api/user/read", { params: { key: 2, tag: 0 } }).then(

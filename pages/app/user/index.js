@@ -6,10 +6,12 @@ import Navbar from "../../../components/dashboard/adminNav.js";
 import Footer from "../../../components/dashboard/footer.js";
 import Search from "../../../components/dashboard/searchBar.js";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 function current(data) {
   const [users, setUsers] = useState([]);
   const [searchedU, setSearchedU] = useState([]);
+  const router = useRouter();
 
   const allStudents = () => {
     Axios.get("/api/user/read", {
