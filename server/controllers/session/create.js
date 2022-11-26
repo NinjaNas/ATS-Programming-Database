@@ -62,7 +62,7 @@ async function createController(req, res) {
         // console.log(response[0].insertId);
         console.log("New session created with associated UUID " + user_id);
         // res.sendStatus(201) //.json({"session_id": response.insertedId});
-        res.json({ session_id: response[0].insertId });
+        res.send({ session_id: response[0].insertId });
       })
       .catch((err) => {
         console.log(err);
