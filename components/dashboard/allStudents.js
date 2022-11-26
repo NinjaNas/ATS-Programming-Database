@@ -12,14 +12,12 @@ function allStudents() {
   const router = useRouter();
   /*Axios call to get student data*/
   const everyStudent = () => {
-    Axios.get("/api/user/read", {params: { key: 2, tag: 0 },}).then((response) => {
-      setStudents(response.data);
-      setSearchedS(response.data);
-    });
-  };
-
-  const createUser = () => {
-    router.push("/app/dashboard/admin/createuser");
+    Axios.get("/api/user/read", { params: { key: 2, tag: 0 } }).then(
+      (response) => {
+        setStudents(response.data);
+        setSearchedS(response.data);
+      }
+    );
   };
 
   /*UseEffect calls allStudents on page Mount only*/
@@ -30,7 +28,6 @@ function allStudents() {
   return (
     <div className={DashboardStyles.currentStud}>
       <h3 className={DashboardStyles.title}>All Students</h3>
-      <input type="button" value="Create user" onClick={createUser}></input>
       <Search students={students} setStudents={setSearchedS}></Search>
 
       <table className={DashboardStyles.subtitle}>
