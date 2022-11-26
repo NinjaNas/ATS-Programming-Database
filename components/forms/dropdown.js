@@ -9,7 +9,7 @@ const Dropdown = React.forwardRef(
     // console.log(passedOptions);
     return (
       <div>
-        <label>{label}</label>
+        <label>{label}{": "}</label>
         <select ref={ref} defaultValue={value} onChange={onChange}>
           {Object.entries(options).map(([k, v]) => (
             <option value={k} key={k}>{v}</option>

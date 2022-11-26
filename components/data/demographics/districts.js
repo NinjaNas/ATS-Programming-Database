@@ -6,7 +6,7 @@ import BarChart from "../barChart";
 function districts() {
 	const [sessions, setSessions] = useState([]);
 	const allSessions = () => {
-		Axios.get("http://localhost:3000/api/session").then((response) => {
+		Axios.get("/api/session").then((response) => {
 			setSessions(response.data);
 		});
 	};

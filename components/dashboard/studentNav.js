@@ -9,7 +9,7 @@ function studentNav() {
   const router = useRouter();
 
   function logOut() {
-    Axios.post("http://localhost:3000/api/logout")
+    Axios.post("/api/logout")
       .then(() => {
         console.log("success");
       })

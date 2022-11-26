@@ -25,7 +25,7 @@ function task({ id, task_name, due_date, task_description, status }) {
 
   const allTasks = () => {
     // Grab current session id for user to render tasks
-    Axios.get("http://localhost:3000/api/userData")
+    Axios.get("/api/userData")
       .then((res) => {
         setType(res.data[0][0].type);
       })
@@ -33,7 +33,7 @@ function task({ id, task_name, due_date, task_description, status }) {
         console.log(err);
       });
 
-    Axios.get("http://localhost:3000/api/session/task/read", {
+    Axios.get("/api/session/task/read", {
       params: { key: 2, tag: id },
     })
       .then((res) => {
@@ -47,7 +47,7 @@ function task({ id, task_name, due_date, task_description, status }) {
   const studentButtonClick = () => {
     switch (trackedStatus) {
       case 1:
-        Axios.post("http://localhost:3000/api/session/task/update", {
+        Axios.post("/api/session/task/update", {
           column: "status",
           new_value: 2,
           task_id: id,
@@ -61,7 +61,7 @@ function task({ id, task_name, due_date, task_description, status }) {
           });
         break;
       case 2:
-        Axios.post("http://localhost:3000/api/session/task/update", {
+        Axios.post("/api/session/task/update", {
           column: "status",
           new_value: 1,
           task_id: id,
@@ -91,7 +91,7 @@ function task({ id, task_name, due_date, task_description, status }) {
         setToggleAdminVerify(true);
         break;
       case 2:
-        Axios.post("http://localhost:3000/api/session/task/update", {
+        Axios.post("/api/session/task/update", {
           column: "status",
           new_value: 3,
           task_id: id,
@@ -119,7 +119,7 @@ function task({ id, task_name, due_date, task_description, status }) {
         setToggleAdminIncomplete(true);
         break;
       case 2:
-        Axios.post("http://localhost:3000/api/session/task/update", {
+        Axios.post("/api/session/task/update", {
           column: "status",
           new_value: 1,
           task_id: id,
@@ -134,7 +134,7 @@ function task({ id, task_name, due_date, task_description, status }) {
           });
         break;
       case 3:
-        Axios.post("http://localhost:3000/api/session/task/update", {
+        Axios.post("/api/session/task/update", {
           column: "status",
           new_value: 1,
           task_id: id,
