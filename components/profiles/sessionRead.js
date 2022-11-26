@@ -31,7 +31,7 @@ const SessionRead = ({ user_id }) => {
       <h2>Sessions</h2>
       {session.map((s) => (
         <div className={CardStyles.card}>
-          <Link href={`http://localhost:3000/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/edit`}>
+          <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/edit`}>
             <a>
               Intake Date: {new Date(s.intake_date).toLocaleDateString()}{" "}
               {sessionStatus[s.status]}

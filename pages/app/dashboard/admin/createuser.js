@@ -31,7 +31,7 @@ function SignUp() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const signUp = () => {
-    Axios.post("http://localhost:3000/api/user/create", {
+    Axios.post("/api/user/create", {
       first_name: firstName,
       last_name: lastName,
       email: email,

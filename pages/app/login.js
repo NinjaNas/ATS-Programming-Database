@@ -19,7 +19,7 @@ function Login() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const login = () => {
-    Axios.post("http://localhost:3000/api/login", {
+    Axios.post("/api/login", {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     })

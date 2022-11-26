@@ -6,7 +6,7 @@ import BarChart from "../barChart";
 function race() {
 	const [demographics, setDemographics] = useState([]);
 	const allDemographics = () => {
-		Axios.get("http://localhost:3000/api/demographics").then((response) => {
+		Axios.get("/api/demographics").then((response) => {
 			setDemographics(response.data);
 		});
 	};

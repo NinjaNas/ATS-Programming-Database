@@ -5,7 +5,7 @@ import BarChart from "../barChart";
 function selHrs() {
 	const [days, setDays] = useState([]);
 	const allDays = () => {
-		Axios.get("http://localhost:3000/api/session/day/read").then((response) => {
+		Axios.get("/api/session/day/read").then((response) => {
 			setDays(response.data);
 		});
 	};

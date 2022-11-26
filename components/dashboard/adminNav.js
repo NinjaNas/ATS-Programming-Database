@@ -6,7 +6,7 @@ import Axios from "axios";
 
 function Navbar() {
 	function logOut() {
-		Axios.post("http://localhost:3000/api/logout")
+		Axios.post("/api/logout")
 			.then(() => {
 				console.log("success");
 			})

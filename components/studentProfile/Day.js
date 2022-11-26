@@ -9,14 +9,14 @@ import CardStyles from "../../styles/Cards.module.css"
 import { useRouter } from "next/router";
 
 
-const Day = ({ id, session_id, date, status, type, reason_missed }) => {
+const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
   const dateRef = useRef();
   const statusRef = useRef();
   const typeRef = useRef();
   const missedRef = useRef();
 
   const router = useRouter();
-
+  
   const submit = () => {
     const body = {
       attendance_day: dateRef.current.value,
@@ -28,7 +28,9 @@ const Day = ({ id, session_id, date, status, type, reason_missed }) => {
       body.id = id;
       Axios.post("/api/session/day/update", body)
         .then((response) => {
-          router.reload()
+          // router.reload()
+          console.log("update")
+          onadd();
         //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
         })
         .catch((err) => {
@@ -39,7 +41,9 @@ const Day = ({ id, session_id, date, status, type, reason_missed }) => {
       Axios.post("/api/session/day/create", body)
         .then((response) => {
         //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
-        router.reload()
+        // router.reload()
+        console.log("create")
+        onadd();
       })
         .catch((err) => {
           console.log(err);
@@ -53,19 +57,19 @@ const Day = ({ id, session_id, date, status, type, reason_missed }) => {
       <Dropdown
         ref={typeRef}
         label="Type"
-        passedValue={type}
+        passedValue={id ? type : ""}
         passedOptions={attendanceType}
       />
       <Dropdown
         ref={statusRef}
         label="Status"
-        passedValue={status}
+        passedValue={id ? status : ""}
         passedOptions={attendanceStatus}
       />
       <InputForm
         ref={missedRef}
         label="Reason Missed"
-        passedValue={reason_missed}
+        passedValue={id ? reason_missed : ""}
       />
       {id && <input type="submit" value={"Save"} onClick={submit} />}
       {session_id && <input type="submit" value={"Add"} onClick={submit} />}

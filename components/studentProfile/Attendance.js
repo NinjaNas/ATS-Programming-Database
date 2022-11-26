@@ -4,25 +4,36 @@ import Day from './Day';
 
 const Attendance = ({session_id}) => {
   const [days, setDays] = useState([]);
+  const [add, setAdd] = useState(true);
+  // const [retrieve, setRetrieve] = useState(false);
 
-
-	const allTasks = () => {
-		Axios.get("http://localhost:3000/api/session/day/read", {params: {key:0, tag:session_id}}).then((response) => {
+	const attendance = () => {
+    console.log("fetching");
+    setAdd(false);
+		Axios.get("/api/session/day/read", {params: {key:0, tag:session_id}}).then((response) => {
 			setDays(response.data);
+      setAdd(true);
 		});
 	};
 	/*UseEffect calls allStudents on page Mount only*/
-	useEffect(() => {
-		allTasks();
+	
+
+  useEffect(() => {
+    console.log("Here")
+    // setAdd(false);
+    // console.log("Now Here")
+		attendance();
+    // setAdd(true);
+    // setAdd(true);
 	}, []);
 
   return (
     <div>
       {days.map(d => 
       (
-        <Day id={d.id} date={d.attendance_day} status={d.status} type={d.type} reason_missed={d.reason_missed}/>
+        <Day key={d.id} id={d.id} date={d.attendance_day} status={d.status} type={d.type} reason_missed={d.reason_missed} onadd={attendance}/>
       ))}
-      <Day session_id={session_id} />
+      {add && <Day session_id={session_id} onadd={attendance}/>}
     </div>
   )
 }

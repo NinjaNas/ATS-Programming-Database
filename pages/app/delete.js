@@ -11,7 +11,7 @@ function Del() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const del = () => {
-    Axios.post("http://localhost:3000/api/user/delete", {
+    Axios.post("/api/user/delete", {
     user_id: user_id
     })
     .then(() => {

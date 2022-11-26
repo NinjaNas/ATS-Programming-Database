@@ -16,7 +16,7 @@ const addSession = () => {
 
 
   const studentInfo = () => {
-    Axios.get("http://localhost:3000/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
+    Axios.get("/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
       // console.log(studentid);
       //  setStudent(response.data.filter(s => s.id == studentid));
       setStudent(response.data[0])
@@ -40,6 +40,7 @@ const addSession = () => {
       {/* {<input type="submit" value="Add" onClick={addDay}/>} */}
       {/* {attendance.map(a => <Day session_id={a}/>)} */}
       {sessionid && <Attendance session_id={sessionid}/>}
+      <input type="submit" value="Finish" />
     </>
     )
 }

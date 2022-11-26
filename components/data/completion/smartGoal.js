@@ -6,7 +6,7 @@ import BarChart from "../barChart";
 function smartGoal({completedSm}) {
 	const [tasks, setTasks] = useState([]);
 	const allTasks = () => {
-		Axios.get("http://localhost:3000/api/session/task/read").then(
+		Axios.get("/api/session/task/read").then(
 			(response) => {
 				setTasks(response.data);
 			}

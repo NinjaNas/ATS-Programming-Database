@@ -11,7 +11,7 @@ function current(data) {
 	const [searchedU, setSearchedU] = useState([]);
 
 	const allStudents = () => {
-		Axios.get("http://localhost:3000/api/user/read", {
+		Axios.get("/api/user/read", {
 			params: { key: -1, tag: 2 },
 		})
 			.then((response) => {

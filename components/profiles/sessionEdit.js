@@ -59,7 +59,7 @@ const SessionEdit = ({ id, user_id }) => {
       body.user_id = user_id;
       Axios.post("/api/session/create", body)
         .then((response) => {
-          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
+          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}/days/add/`);
         })
         .catch((err) => {
           console.log(err);
@@ -103,7 +103,8 @@ const SessionEdit = ({ id, user_id }) => {
           <Dropdown ref={schoolPickupRef} label="Pickup" passedValue={session.pickup} passedOptions={pickups} />
           <Dropdown ref={statusRef} label="Session Status" passedValue={session.status} passedOptions={sessionStatus} />
           <InputForm ref={notesRef} label="Additional Notes" passedValue={session.notes} />
-          <input type="submit" value="Save" onClick={onSave} />
+          {id && <input type="submit" value="Save" onClick={onSave} />}
+          {user_id && <input type="submit" value="Add" onClick={onSave} />}
         </>
       )}
     </div>
