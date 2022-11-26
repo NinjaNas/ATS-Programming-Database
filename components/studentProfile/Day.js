@@ -6,6 +6,7 @@ import DateForm from "../forms/date";
 import Dropdown from "../forms/dropdown";
 import InputForm from "../forms/input";
 import CardStyles from "../../styles/Cards.module.css"
+import TableStyles from "../../styles/Table.module.css"
 import { useRouter } from "next/router";
 
 
@@ -52,28 +53,30 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
   };
 
   return (
-    <div className={session_id ? `${CardStyles.card}` : ""}>
-      <DateForm ref={dateRef} label="Date" passedValue={date} />
-      <Dropdown
+    // <tr className={session_id ? `${CardStyles.card} ` : " " + `${TableStyles.attendance}`}>
+    <tr className={`${TableStyles.attendance}`}>
+      <td><DateForm ref={dateRef} label="Date" passedValue={date} /></td>
+      <td><Dropdown
         ref={typeRef}
         label="Type"
         passedValue={id ? type : ""}
         passedOptions={attendanceType}
-      />
-      <Dropdown
+      /></td>
+      <td><Dropdown
         ref={statusRef}
         label="Status"
         passedValue={id ? status : ""}
         passedOptions={attendanceStatus}
-      />
-      <InputForm
+      /></td>
+      <td><InputForm
         ref={missedRef}
         label="Reason Missed"
         passedValue={id ? reason_missed : ""}
-      />
-      {id && <input type="submit" value={"Save"} onClick={submit} />}
+      /></td>
+      <td>{id && <input type="submit" value={"Save"} onClick={submit} />}
       {session_id && <input type="submit" value={"Add"} onClick={submit} />}
-    </div>
+      </td>
+    </tr>
   );
 };
 

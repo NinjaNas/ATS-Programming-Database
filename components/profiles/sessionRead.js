@@ -42,7 +42,7 @@ const SessionRead = ({ user_id }) => {
               {sessionStatus[s.status]}
             </a>
           </Link>
-          {days && <h3>Session Days: 
+          {days.length > 0 && <h3>Session Days: 
             {" "}{new Date(days[0].attendance_day).toLocaleDateString()}{" "} - 
             {new Date(days[days.length - 1].attendance_day).toLocaleDateString()}{" ("}
             {days.length}{")"} 

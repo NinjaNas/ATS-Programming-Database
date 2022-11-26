@@ -5,7 +5,7 @@ const InputForm = React.forwardRef(({ label, passedValue }, ref) => {
 
   return (
     <div>
-      <label>{label}</label>
+      <label>{label}{": "}</label>
       <input ref={ref} defaultValue={passedValue}></input>
     </div>
   );

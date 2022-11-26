@@ -3,3 +3,8 @@
     width: 300px;
     text-align: center;
 }
+
+.attendance td {
+    padding-left: 20px;
+    padding-right: 20px
+}

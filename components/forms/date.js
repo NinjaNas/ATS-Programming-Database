@@ -7,7 +7,7 @@ const DateForm = React.forwardRef(({label,  passedValue}, ref ) => {
 
   return (
     <div>
-      <label>{label}</label>
+      <label>{label}{": "}</label>
       <input type="date" ref={ref} defaultValue={(new Date(passedValue)).toLocaleDateString('en-CA')}></input>
     </div>
   )
