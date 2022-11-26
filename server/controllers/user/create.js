@@ -42,14 +42,15 @@ async function createController(req, res) {
           notes,
         ]
       )
-      .then(() => {
+      .then((response) => {
         console.log("Values inserted!");
+        res.send({ id: response[0].insertId });
       })
       .catch((err) => {
         console.log(err);
       });
     // Successful HTTPS
-    res.sendStatus(201);
+    res.status(201);
   }
 }
 
