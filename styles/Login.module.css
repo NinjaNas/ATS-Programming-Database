@@ -6,11 +6,23 @@
   height: 100vh;
 }
 
+
 .form {
   background-color: #e6b566;
   border-radius: 20px;
   box-sizing: border-box;
   height: 100%;
+  display: block;
+  overflow: auto;
+  padding: 20px;
+  width: 320px;
+}
+
+.loginForm {
+  background-color: #e6b566;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 60%;
   display: block;
   overflow: auto;
   padding: 20px;
