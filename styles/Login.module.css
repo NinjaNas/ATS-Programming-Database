@@ -17,6 +17,15 @@
   width: 320px;
 }
 
+.loginForm {
+  background-color: #e6b566;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 500px;
+  padding: 20px;
+  width: 320px;
+}
+
 .title {
   color: #eee;
   font-family: sans-serif;

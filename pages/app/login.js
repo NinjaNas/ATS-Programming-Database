@@ -36,7 +36,7 @@ function Login() {
 
   return (
     <div className={LoginStyles.login}>
-      <div className={LoginStyles.form}>
+      <div className={LoginStyles.loginForm}>
         <Image src={"/smallLogo.png"} width={50} height={50} />
         <h2 className={LoginStyles.title}>Welcome to Boomerang</h2>
         <div className={LoginStyles.input_container}>
