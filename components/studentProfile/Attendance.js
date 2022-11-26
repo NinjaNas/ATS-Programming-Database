@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Axios from 'axios';
 import Day from './Day';
 
-const Attendance = ({session_id}) => {
+const Attendance = ({session_id, onfetch}) => {
   const [days, setDays] = useState([]);
   const [add, setAdd] = useState(true);
   // const [retrieve, setRetrieve] = useState(false);
@@ -11,8 +11,11 @@ const Attendance = ({session_id}) => {
     console.log("fetching");
     setAdd(false);
 		Axios.get("/api/session/day/read", {params: {key:0, tag:session_id}}).then((response) => {
-			setDays(response.data);
+      const data = response.data.sort((a, b) => (new Date(a.attendance_day) - new Date(b.attendance_day)))
+			setDays(data);
+      // console.log(days)
       setAdd(true);
+      onfetch(data);
 		});
 	};
 	/*UseEffect calls allStudents on page Mount only*/

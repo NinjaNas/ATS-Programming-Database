@@ -59,7 +59,8 @@ const SessionEdit = ({ id, user_id }) => {
       body.user_id = user_id;
       Axios.post("/api/session/create", body)
         .then((response) => {
-          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}/days/add/`);
+          console.log(response)
+          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}/session/${response.data.session_id}/days/add/`);
         })
         .catch((err) => {
           console.log(err);
