@@ -74,7 +74,9 @@ const SessionEdit = ({ id, user_id }) => {
       Axios.post("/api/session/delete", {
         session_id: id,
       })
-        .then(router.push(`/app/dashboard/admin/studentprofile/${user_id}`))
+        .then(
+          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`)
+        )
         .catch((err) => {
           console.log(err);
         });
