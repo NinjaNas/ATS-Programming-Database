@@ -22,8 +22,7 @@ function UserEdit({ id }) {
   };
 
   const onSave = () => {
-    // Password is not passed if it is not needed to be updated
-    const body = {
+    let body = {
       first_name: fNameRef.current.value,
       last_name: lNameRef.current.value,
       email: emailRef.current.value,
@@ -31,8 +30,10 @@ function UserEdit({ id }) {
       notes: noteRef.current.value,
       pronouns: pronounRef.current.value,
       user_id: info.id,
-      password: passRef.current ? passRef.current.value : delete body.password,
+      password: passRef.current.value != "" ? passRef.current.value : null,
     };
+
+    // Password is not passed if it is not needed to be updated
 
     Axios.post("/api/user/update", body)
       .then(router.push(`/app/user/profile/${id}`))

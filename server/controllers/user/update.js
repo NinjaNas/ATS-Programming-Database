@@ -23,6 +23,11 @@ async function updateController(req, res) {
       keys.password_hash = password_hash;
     }
 
+    // Delete all null values from keys
+    keys = Object.fromEntries(
+      Object.entries(keys).filter(([_, v]) => v != null)
+    );
+
     await pool
       .query("UPDATE user SET ? WHERE id=?;", [keys, id])
       .then(() => {
