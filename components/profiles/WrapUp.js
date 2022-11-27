@@ -15,7 +15,7 @@ import Dropdown from "../forms/dropdown";
 import InputForm from "../forms/input";
 import TimeForm from "../forms/time";
 import Attendance from "../studentProfile/Attendance";
-import Tasklist from "../dashboard/tasklist";
+import TaskList from "../dashboard/tasklist";
 import sessionStatus from "../../constants/sessionStatus";
 
 const WrapUp = ({ session_id }) => {
@@ -243,7 +243,8 @@ const WrapUp = ({ session_id }) => {
             passedValue={meeting.notes}
           />
           <Attendance session_id={session_id} />
-          <Tasklist session_id={session_id} type="admin" />
+          <TaskList session_id={session_id} type="admin" title="Academic" />
+          <TaskList session_id={session_id} type="admin" title="Boomerang" />
           <Dropdown
             ref={statusRef}
             label="Session Status"
