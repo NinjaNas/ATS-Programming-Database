@@ -47,9 +47,7 @@ function StudentProfile() {
             lastName={student.last_name}
           />
           <ContactRead user_id={student.id} />
-          MED
           <MedicalRead id={student.id} />
-          MEDEND
           <DemographicsRead id={student.id} />
           <SessionRead user_id={student.id} />
         </>
