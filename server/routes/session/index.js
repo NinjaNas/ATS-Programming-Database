@@ -8,6 +8,7 @@ const day = require("./day");
 const task = require("./task");
 const read = require("./read");
 const questionnaire = require("./questionnaire");
+const wrapup = require("./wrapup");
 const { authorize } = require("../../utils/authorize");
 const { indexController } = require("../../controllers/session");
 
@@ -19,6 +20,7 @@ router.use("/read", read);
 router.use("/day", day);
 router.use("/task", task);
 router.use("/questionnaire", questionnaire);
+router.use("/wrapup", wrapup);
 
 /**
  * GET request handler for returning session table
