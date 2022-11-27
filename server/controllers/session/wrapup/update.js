@@ -3,9 +3,11 @@ const pool = require("../../../utils/pool");
 async function updateController(req, res) {
   // Format body
   let keys = req.body;
-  let id = req.body.user_id;
-  // Required field "user_id"
-  delete keys.user_id;
+
+  let id = req.body.id;
+  // Required field "task_id"
+  delete keys.id;
+
 
   let [rows, fields] = await pool
     .query("SELECT * FROM user WHERE email=?;", [keys.email])
