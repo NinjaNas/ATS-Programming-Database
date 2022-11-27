@@ -46,7 +46,7 @@ function tasklist({ session_id, type }) {
         }
       >
         <div>
-          <h3 className={DashboardStyles.subtitle}>Academic</h3>
+          <h3 className={DashboardStyles.subtitle}>{`Academic (${tasks.filter(t => t.task_type==2 && t.status==3).length}/${tasks.filter(t => t.task_type==2).length})`}</h3>
           {tasks.map((task) =>
             task.task_type == 2 ? (
               <Task
@@ -58,7 +58,7 @@ function tasklist({ session_id, type }) {
               />
             ) : null
           )}
-          <h3 className={DashboardStyles.subtitle}>Boomerang</h3>
+          <h3 className={DashboardStyles.subtitle}>{`Boomerang (${tasks.filter(t => t.task_type!=2 && t.status==3).length}/${tasks.filter(t => t.task_type!=2).length})`}</h3>
           {tasks.map((task) =>
             task.task_type != 2 ? (
               <Task
