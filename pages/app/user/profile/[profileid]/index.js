@@ -11,25 +11,25 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 
 function UserProfile() {
-    const router = useRouter();
-    const { profileid } = router.query;
-    const [user, setUser] = useState();
+  const router = useRouter();
+  const { profileid } = router.query;
+  const [user, setUser] = useState();
 
-    const userInfo = () => {
-        Axios.get("http://localhost:3000/api/user/read", {
-          params: { key: 0, tag: profileid },
-        }).then((response) => {
-          setUser(response.data[0]);
-        });
-      };
+  const userInfo = () => {
+    Axios.get("/api/user/read", {
+      params: { key: 0, tag: profileid },
+    }).then((response) => {
+      setUser(response.data[0]);
+    });
+  };
 
-      useEffect(() => {
-        userInfo();
-      }, [profileid]);
+  useEffect(() => {
+    userInfo();
+  }, [profileid]);
 
-	return (
-		<div className={pageStyles.mainPage}>
-			<Navbar></Navbar>
+  return (
+    <div className={pageStyles.mainPage}>
+      <Navbar></Navbar>
       {profileid && user && (
         <>
           <StudentHeader
@@ -40,9 +40,9 @@ function UserProfile() {
           <UserEdit id={user.id} />
         </>
       )}
-			<Footer></Footer>
-		</div>
-	);
+      <Footer></Footer>
+    </div>
+  );
 }
 
 export default UserProfile;
