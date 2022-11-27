@@ -14,6 +14,9 @@ async function updateController(req, res) {
     allergies_list,
   } = req.body;
 
+  console.log("--------------------------")
+  console.log(req.body)
+
   let [rows, fields] = await pool
     .query("SELECT * FROM medical WHERE user_id=?;", [user_id])
     .catch((err) => {
