@@ -15,6 +15,7 @@ async function updateController(req, res) {
 
   if (rows.length) {
     //Overrides arguments with what's currently in the database if empty
+    /*
     if (first_name == "") {
       first_name = rows[0].first_name;
     }
@@ -32,20 +33,16 @@ async function updateController(req, res) {
     } if (pronouns == "") {
       pronouns = rows[0].pronouns;
     }
-
+*/
     // Use hash function from utils/bcrypt.js
-    const password_hash = hash(password);
+    let password_hash = hash(password);
     if (password == "") {
       password_hash = rows[0].password_hash;
     }
-    /**
-     * Checks for a user_id and updates all items.
-     * Should write a way to update singles, maybe by pulling those values from the table,
-     * overriding the ones we need to change, and updating the table with those.
-     */
+    
     await pool
       .execute(
-        "UPDATE user SET (first_name, last_name, email, status, notes, password_hash, pronouns) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?);",
+        "UPDATE user SET first_name=?, last_name=?, email=?, status=?, notes=?, password_hash=?, pronouns=? WHERE id=?;",
         [first_name, last_name, email, status, notes, password_hash, pronouns, user_id]
       )
       .then(() => {

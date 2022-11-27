@@ -28,11 +28,11 @@ function UserEdit({id}) {
       first_name: fNameRef.current.value,
       last_name: lNameRef.current.value,
       email: emailRef.current.value,
-      pronouns: pronounRef.current.value,
       status: statusRef.current.value,
-      password: passRef.current.value,
       notes: noteRef.current.value,
-      user_id: info.user_id,
+      pronouns: pronounRef.current.value,
+      user_id: info.id,
+      password: passRef.current ? passRef.current.value : ""
     }
     Axios.post("/api/user/update",body).then(
       router.push(`/app/user/profile/${id}`)
@@ -56,20 +56,8 @@ function UserEdit({id}) {
   }, [])
 
   useEffect(() => {
-    if (info){
-      setGenderValue(info.gender)
-      setRaceOther(info.race_other)
-      // console.log(raceOther)
-    }
   }, [info])
 
-  function changeGender() {
-    setGenderValue(genderRef.current.value);
-  }
-
-  function changeRaceOtherValue() {
-    setRaceOther(raceOTHERRef.current.checked);
-  }
 
 
   return (
