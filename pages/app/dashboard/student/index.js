@@ -1,18 +1,24 @@
-//Landing Page for Boomerang Student
 import React from "react";
 import pageStyles from "../../../../styles/Dashboard.module.css";
 import StudentNav from "../../../../components/dashboard/studentNav.js";
-import TaskList from "../../../../components/dashboard/tasklist.js";
-import Footer from "../../../../components/dashboard/footer.js";
+import Tasks from "../../../../components/dashboard/taskPage.js";
+import AddTask from "../../../../components/dashboard/addTask.js";
+import Footer from "../../../../components/dashboard/footer";
 
-function Student() {
-  return (
-    <div className={pageStyles.mainPage}>
-      <StudentNav></StudentNav>
-      <TaskList></TaskList>
-      <Footer></Footer>
-    </div>
-  );
+function tasklist() {
+	return (
+		<div className={pageStyles.mainPage}>
+			<StudentNav></StudentNav>
+			<div className={pageStyles.studentDash}>
+				<AddTask></AddTask>
+				<Tasks title='Academic'></Tasks>
+				<Tasks title='Boomerang'></Tasks>
+				
+			</div>
+
+			<Footer></Footer>
+		</div>
+	);
 }
 
-export default Student;
+export default tasklist;
