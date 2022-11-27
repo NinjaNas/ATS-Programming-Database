@@ -1,11 +1,11 @@
 // Dependencies
 const express = require("express");
 const router = express.Router();
+const { authorize } = require("../../utils/authorize");
+const { indexController } = require("../../controllers/medical");
 const update = require("./update");
 const read = require("./read");
 const create = require("./create");
-const { authorize } = require("../../utils/authorize");
-const { indexController } = require("../../controllers/medical");
 
 // Routing
 router.use("/update", update);
