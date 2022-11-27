@@ -13,7 +13,7 @@ import InputForm from "../forms/input";
 const SessionEdit = ({ id, user_id }) => {
   const router = useRouter();
   const [session, setSession] = useState();
-  const contactInfo = () => {
+  const sessionInfo = () => {
     if (id) {
       Axios.get("/api/session/read/", { params: { key: 0, tag: id } }).then(
         (response) => {
@@ -26,7 +26,7 @@ const SessionEdit = ({ id, user_id }) => {
   };
 
   useEffect(() => {
-    contactInfo();
+    sessionInfo();
   }, []);
 
   // TODO: Update correct params
