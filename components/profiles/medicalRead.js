@@ -25,19 +25,6 @@ function MedicalRead({id}) {
   }, [])
 
   useEffect(() => {
-    if (medical){
-      setGenderString(gender[medical.gender])
-      setRaceString((()=>{
-        let races = []
-        Object.entries(race).forEach(([k, v]) => {
-          if (medical[k] == 1){
-            races.push(v)
-          }
-        } )
-        console.log(races)
-        return races.join(", ")
-      })())
-    }
   }, [medical])
 
 
