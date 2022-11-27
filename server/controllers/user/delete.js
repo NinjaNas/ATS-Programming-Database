@@ -16,11 +16,10 @@ async function deleteController(req, res) {
           // Do not throw error inside of promise
           console.log(err);
         });
-
       if (session_id[0]) {
         await pool
           .execute(
-            "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire INNER JOIN day WHERE session_id=?",
+            "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire ON task.session_id = sel_questionnaire.session_id INNER JOIN day ON task.session_id = day.session_id WHERE task.session_id=?",
             [session_id[0].id]
           )
           .then(() => {

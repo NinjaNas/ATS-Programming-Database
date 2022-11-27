@@ -50,7 +50,7 @@ function CreateDemographics() {
     })
       .then(() => {
         console.log("success");
-        router.push("/app/user");
+        router.push(`/app/dashboard/admin/studentprofile/${id}`);
       })
       .catch((err) => {
         console.log(err);
@@ -125,11 +125,9 @@ function CreateDemographics() {
             name="type"
             id="type"
             ref={ethnicityRef}
+            required
           >
-            <option disabled selected value>
-              {" "}
-              -- select an option --{" "}
-            </option>
+            <option value=""> -- select an option -- </option>
             <option value="0">Non-Hispanic</option>
             <option value="1">Hispanic</option>
           </select>

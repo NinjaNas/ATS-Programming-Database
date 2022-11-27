@@ -11,11 +11,11 @@ async function deleteController(req, res) {
       console.log(err);
     });
 
-  if (rows.length) {
+  if (rows.length && session_id) {
     // Should handle questionnaire, task, day, and session
     await pool
       .execute(
-        "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire INNER JOIN day WHERE session_id=?",
+        "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire ON task.session_id = sel_questionnaire.session_id INNER JOIN day ON task.session_id = day.session_id WHERE task.session_id=?",
         [session_id]
       )
       .then(() => {

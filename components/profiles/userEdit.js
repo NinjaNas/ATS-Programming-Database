@@ -108,7 +108,11 @@ function UserEdit({ id }) {
           {<InputForm label="Notes" ref={noteRef} passedValue={info.notes} />}
           <input type="submit" value="Save" onClick={onSave} />
           <div>
-            <input type="text" placeholder="Type 'confirm'" ref={deleteRef} />
+            <input
+              type="text"
+              placeholder="Type 'confirm' to delete"
+              ref={deleteRef}
+            />
             <input type="button" value="Delete" onClick={onDelete} />
           </div>
         </>

@@ -40,7 +40,7 @@ const SessionEdit = ({ id, user_id }) => {
       school: schoolRef.current.value,
       school_administrator: schoolAdminRef.current.value,
       social_worker: socialWorkerRef.current.value,
-      school_counselor: schoolCounselorRef.current.value, 
+      school_counselor: schoolCounselorRef.current.value,
       student_pickup: schoolPickupRef.current.value,
       status: statusRef.current.value,
       notes: notesRef.current.value || "",
@@ -59,8 +59,9 @@ const SessionEdit = ({ id, user_id }) => {
       body.user_id = user_id;
       Axios.post("/api/session/create", body)
         .then((response) => {
-          console.log(response)
-          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}/session/${response.data.session_id}/days/add/`);
+          router.push(
+            `/app/dashboard/admin/studentprofile/${session.user_id}/session/${response.data.session_id}/days/add/`
+          );
         })
         .catch((err) => {
           console.log(err);
@@ -68,7 +69,17 @@ const SessionEdit = ({ id, user_id }) => {
     }
   };
 
-
+  const onDelete = () => {
+    if (deleteRef.current.value.toLowerCase().trim() == "confirm") {
+      Axios.post("/api/session/delete", {
+        session_id: id,
+      })
+        .then(router.push(`/app/dashboard/admin/studentprofile/${user_id}`))
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   const intakeDateRef = useRef();
   const consentedRef = useRef();
@@ -80,6 +91,7 @@ const SessionEdit = ({ id, user_id }) => {
   const schoolPickupRef = useRef();
   const statusRef = useRef();
   const notesRef = useRef();
+  const deleteRef = useRef();
 
   return (
     <div>
@@ -96,15 +108,60 @@ const SessionEdit = ({ id, user_id }) => {
             passedValue={session.consented}
             passedOptions={yesno}
           />
-          <Dropdown ref={gradeRef} label="Grade" passedValue={session.grade} passedOptions={grades}/>
-          <Dropdown ref={schoolRef} label="School" passedValue={session.school} passedOptions={schools} />
-          <InputForm ref={schoolAdminRef} label="School Administrator" passedValue={session.school_administrator}/>
-          <InputForm ref={socialWorkerRef} label="Social Worker" passedValue={session.social_worker} />
-          <InputForm ref={schoolCounselorRef} label="School Counselor" passedValue={session.school_counselor} />
-          <Dropdown ref={schoolPickupRef} label="Pickup" passedValue={session.pickup} passedOptions={pickups} />
-          <Dropdown ref={statusRef} label="Session Status" passedValue={session.status} passedOptions={sessionStatus} />
-          <InputForm ref={notesRef} label="Additional Notes" passedValue={session.notes} />
-          {id && <input type="submit" value="Save" onClick={onSave} />}
+          <Dropdown
+            ref={gradeRef}
+            label="Grade"
+            passedValue={session.grade}
+            passedOptions={grades}
+          />
+          <Dropdown
+            ref={schoolRef}
+            label="School"
+            passedValue={session.school}
+            passedOptions={schools}
+          />
+          <InputForm
+            ref={schoolAdminRef}
+            label="School Administrator"
+            passedValue={session.school_administrator}
+          />
+          <InputForm
+            ref={socialWorkerRef}
+            label="Social Worker"
+            passedValue={session.social_worker}
+          />
+          <InputForm
+            ref={schoolCounselorRef}
+            label="School Counselor"
+            passedValue={session.school_counselor}
+          />
+          <Dropdown
+            ref={schoolPickupRef}
+            label="Pickup"
+            passedValue={session.pickup}
+            passedOptions={pickups}
+          />
+          <Dropdown
+            ref={statusRef}
+            label="Session Status"
+            passedValue={session.status}
+            passedOptions={sessionStatus}
+          />
+          <InputForm
+            ref={notesRef}
+            label="Additional Notes"
+            passedValue={session.notes}
+          />
+          {id && <input type="submit" value="Save" onClick={onSave} /> && (
+            <div>
+              <input
+                type="text"
+                placeholder="Type 'confirm' to delete"
+                ref={deleteRef}
+              />
+              <input type="button" value="Delete" onClick={onDelete} />
+            </div>
+          )}
           {user_id && <input type="submit" value="Add" onClick={onSave} />}
         </>
       )}
