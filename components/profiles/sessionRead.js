@@ -35,7 +35,7 @@ const SessionRead = ({ user_id }) => {
     <div className={CardStyles.card}>
       <h2>Sessions</h2>
       {session.map((s) => (
-        <div className={CardStyles.card}>
+        <div className={CardStyles.subSession}>
           <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/edit`}>
             <a>
               Intake Date: {new Date(s.intake_date).toLocaleDateString()}{" "}

@@ -31,7 +31,7 @@ function tasklist({ title, type }) {
   }, []);
   return (
     <div
-      className={DashboardStyles.studentDash}
+      className={DashboardStyles.taskBox}
       style={{ display: "inline-block" }}
     >
       <h2

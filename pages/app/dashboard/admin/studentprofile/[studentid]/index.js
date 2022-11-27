@@ -35,7 +35,7 @@ function StudentProfile() {
   }, [studentid]);
 
   return (
-    <div className={pageStyles.mainPage}>
+    <div className={pageStyles.longerPage}>
       <Navbar></Navbar>
 
       {studentid && student && (
