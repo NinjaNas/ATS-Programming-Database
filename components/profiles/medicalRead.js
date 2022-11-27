@@ -60,7 +60,7 @@ function MedicalRead({id}) {
             <p>Medical Concerns: {medical.medical_concerns}</p>
 
             <p>Allergies: 
-            {medical.allergies ==  && " " + medical.allergies_list }</p>
+            {medical.allergies == medical.allergies_list }</p>
 
             
             <Link href={`/app/dashboard/admin/studentprofile/${id}/medical`}><a>Edit Profile</a></Link>
