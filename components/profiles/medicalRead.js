@@ -5,12 +5,9 @@ import Link from 'next/link';
 import CardStyles from "../../styles/Cards.module.css"
 import race from '../../constants/race';
 import gender from '../../constants/gender';
-import ethnicity from '../../constants/ethnicity';
 
 function MedicalRead({id}) {
   const [medical, setMedical] = useState();
-  const [genderString, setGenderString] = useState();
-  const [raceString, setRaceString] = useState();
 
   const router = useRouter();
 
