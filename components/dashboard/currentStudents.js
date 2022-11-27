@@ -10,7 +10,7 @@ function currentStudents() {
   /*Axios call to get student data*/
   const allStudents = () => {
     Axios.get("/api/user/read", {
-      params: { key: 2, tag: 0 },
+      params: { key: 1, tag: 0 },
     })
       .then((response) => {
         setStudents(response.data);
