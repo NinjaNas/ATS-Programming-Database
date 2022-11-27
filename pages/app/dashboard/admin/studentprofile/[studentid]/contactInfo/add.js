@@ -12,7 +12,7 @@ const addContact = () => {
   const [student, setStudent] = useState();
 
   const studentInfo = () => {
-    Axios.get("http://localhost:3000/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
+    Axios.get("/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
       // console.log(studentid);
       //  setStudent(response.data.filter(s => s.id == studentid));
       setStudent(response.data[0])

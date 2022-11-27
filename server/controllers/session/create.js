@@ -5,12 +5,15 @@ async function createController(req, res) {
   const {
     user_id,
     intake_date,
+    consented,
     grade,
-    school_id,
-    school_admin,
+    school,
+    school_administrator,
     social_worker,
     school_counselor,
-    pickup,
+    student_pickup,
+    status,
+    notes,
   } = req.body;
 
   let [rows, fields] = await pool
@@ -20,6 +23,19 @@ async function createController(req, res) {
       console.log(err);
     });
 
+  console.log(
+    user_id,
+    intake_date,
+    consented,
+    grade,
+    school,
+    school_administrator,
+    social_worker,
+    school_counselor,
+    student_pickup,
+    status,
+    notes
+  );
   if (rows.length) {
     /**
      * .execute(), prepared statement parameters are sent from the client as a serialized string and handled by the server
@@ -27,26 +43,33 @@ async function createController(req, res) {
      */
     await pool
       .execute(
-        "INSERT INTO session (user_id, intake_date, grade, school_id, school_administrator, social_worker, school_counselor, student_pickup) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+        "INSERT INTO session (user_id, intake_date, consented, grade, school, school_administrator, social_worker, school_counselor, student_pickup, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
         [
           user_id,
           intake_date,
+          consented,
           grade,
-          school_id,
-          school_admin,
+          school,
+          school_administrator,
           social_worker,
           school_counselor,
-          pickup,
+          student_pickup,
+          status,
+          notes,
         ]
       )
-      .then(() => {
+      .then((response) => {
+        // console.log(response[0].insertId);
         console.log("New session created with associated UUID " + user_id);
+        // res.sendStatus(201) //.json({"session_id": response.insertedId});
+        res.send({ session_id: response[0].insertId });
       })
       .catch((err) => {
         console.log(err);
+        res.sendStatus(400);
       });
     // Successful HTTPS
-    res.sendStatus(201);
+    res.status(201);
   } else {
     res.sendStatus(400);
   }

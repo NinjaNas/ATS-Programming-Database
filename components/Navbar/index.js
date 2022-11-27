@@ -11,7 +11,7 @@ class Navbar extends Component {
 
   logout = async () => {
     try {
-      await Axios.post("http://localhost:3000/api/logout");
+      await Axios.post("/api/logout");
     } catch (err) {
       console.log(err);
     }

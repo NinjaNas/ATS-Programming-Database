@@ -19,7 +19,7 @@ function Login() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const login = () => {
-    Axios.post("http://localhost:3000/api/login", {
+    Axios.post("/api/login", {
       email: emailRef.current.value,
       password: passwordRef.current.value,
     })
@@ -36,7 +36,7 @@ function Login() {
 
   return (
     <div className={LoginStyles.login}>
-      <div className={LoginStyles.form}>
+      <div className={LoginStyles.loginForm}>
         <Image src={"/smallLogo.png"} width={50} height={50} />
         <h2 className={LoginStyles.title}>Welcome to Boomerang</h2>
         <div className={LoginStyles.input_container}>

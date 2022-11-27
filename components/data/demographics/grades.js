@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import BarChart from "../barChart";
 
 function demographics() {
 	const [sessions, setSessions] = useState([]);
 	const allSessions = () => {
-		Axios.get("http://localhost:3000/api/session").then((response) => {
+		Axios.get("/api/session").then((response) => {
 			setSessions(response.data);
 		});
 	};
@@ -19,26 +20,34 @@ function demographics() {
 		);
 	}
 
+	let gradesData = [
+		{ datapoint: "High_School", "": highschool },
+		{ datapoint: "Middle_School", "": middleshcool },
+	];
 	useEffect(() => {
 		allSessions();
 	}, []);
-    
+
 	return (
-		<>
-			<table>
-				<tbody>
-					<tr>
-						<th>Highschool</th>
-						<th>Middleschool</th>
-					</tr>
-					<tr>
-						<td>{highschool}</td>
-						<td>{middleshcool}</td>
-					</tr>
-				</tbody>
-			</table>
-		</>
+		<BarChart
+			data={gradesData}
+			dataKey={"datapoint"}
+			barKey={''}></BarChart>
+		// <>
+		// 	<table>
+		// 		<tbody>
+		// 			<tr>
+		// 				<th>Highschool</th>
+		// 				<th>Middleschool</th>
+		// 			</tr>
+		// 			<tr>
+		// 				<td>{highschool}</td>
+		// 				<td>{middleshcool}</td>
+		// 			</tr>
+		// 		</tbody>
+		// 	</table>
+		// </>
 	);
 }
 
-export default demographics
+export default demographics;

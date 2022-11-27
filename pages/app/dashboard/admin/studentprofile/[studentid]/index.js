@@ -19,7 +19,7 @@ function StudentProfile() {
   const [student, setStudent] = useState();
 
   const studentInfo = () => {
-    Axios.get("http://localhost:3000/api/user/read", {
+    Axios.get("/api/user/read", {
       params: { key: 0, tag: studentid },
     }).then((response) => {
       //console.log(studentid);

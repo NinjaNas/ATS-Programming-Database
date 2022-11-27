@@ -5,13 +5,13 @@ import Students from "../../../../components/dashboard/allStudents";
 import Footer from "../../../../components/dashboard/footer.js";
 
 function allstudents() {
-	return (
-		<div className={pageStyles.mainPage}>
-			<Navbar></Navbar>
-			<Students />
-			<Footer></Footer>
-		</div>
-	);
+  return (
+    <div className={pageStyles.mainPage}>
+      <Navbar></Navbar>
+      <Students />
+      <Footer></Footer>
+    </div>
+  );
 }
 
 export default allstudents;

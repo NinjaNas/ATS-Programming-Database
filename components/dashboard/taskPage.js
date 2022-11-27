@@ -8,10 +8,10 @@ function tasklist({ title, type }) {
   const [tasks, setTasks] = useState([]);
   const allTasks = () => {
     // Grab current session id for user to render tasks
-    Axios.get("http://localhost:3000/api/sessionData")
+    Axios.get("/api/sessionData")
       .then((res) => {
         const session_id = res.data.id;
-        Axios.get("http://localhost:3000/api/session/task/read", {
+        Axios.get("/api/session/task/read", {
           params: { key: 0, tag: session_id },
         })
           .then((response) => {

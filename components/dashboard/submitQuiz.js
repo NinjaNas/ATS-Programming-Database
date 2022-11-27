@@ -20,11 +20,11 @@ function submitQuiz() {
   const submit = () => {
 
     // Grab current session id for user to create tasks
-    Axios.get("http://localhost:3000/api/sessionData")
+    Axios.get("/api/sessionData")
       .then((res) => {
         const session_id = res.data.id;
         console.log("session_id" + session_id);
-        Axios.post("http://localhost:3000/api/session/questionnaire/create", {
+        Axios.post("/api/session/questionnaire/create", {
           session_id: session_id,
           questionnaire_date: new Date().toISOString().split("T")[0],
           type: typeRef.current.value,

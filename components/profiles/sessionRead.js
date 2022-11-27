@@ -8,9 +8,11 @@ import Link from "next/link";
 import schools from "../../constants/schools";
 import sessionStatus from "../../constants/sessionStatus";
 import pickups from "../../constants/pickups";
+import AddTask from "../../components/dashboard/addTask.js";
 
 const SessionRead = ({ user_id }) => {
   const [session, setSession] = useState([]);
+  const [days, setDays] = useState([])
 
   const sessionInfo = () => {
     Axios.get("/api/session/read/", {
@@ -21,20 +23,30 @@ const SessionRead = ({ user_id }) => {
     });
   };
 
+  const attendance = (data) => {
+    console.log(data)
+    setDays(data);
+  }
   useEffect(() => {
     sessionInfo();
   }, []);
 
   return (
     <div className={CardStyles.card}>
+      <h2>Sessions</h2>
       {session.map((s) => (
         <div className={CardStyles.card}>
-          <Link href="">
+          <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/edit`}>
             <a>
               Intake Date: {new Date(s.intake_date).toLocaleDateString()}{" "}
               {sessionStatus[s.status]}
             </a>
           </Link>
+          {days.length > 0 && <h3>Session Days: 
+            {" "}{new Date(days[0].attendance_day).toLocaleDateString()}{" "} - 
+            {new Date(days[days.length - 1].attendance_day).toLocaleDateString()}{" ("}
+            {days.length}{")"} 
+          </h3>}
           <p>
             {s.grade}th grade, {schools[s.school]}
           </p>
@@ -54,9 +66,11 @@ const SessionRead = ({ user_id }) => {
           </table>
           <p>Pickup: {pickups[s.student_pickup]}</p>
           <TaskList session_id={s.id} type="admin" />
-          <Attendance session_id={s.id} />
+          <AddTask session_id={s.id}></AddTask>
+          <Attendance session_id={s.id} onfetch={attendance}/>
         </div>
       ))}
+      <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}><a>Add Session</a></Link>
     </div>
   );
 };

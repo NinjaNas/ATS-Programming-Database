@@ -4,7 +4,7 @@ import Axios from "axios";
 import { useRef } from "react";
 import { useRouter } from "next/router";
 
-function addTask() {
+function addTask({ session_id }) {
   const nameRef = useRef();
   const typeRef = useRef();
   const dueDateRef = useRef();
@@ -15,11 +15,13 @@ function addTask() {
   const postTask = () => {
     console.log(typeRef.current.value);
     // Grab current session id for user to create tasks
-    Axios.get("http://localhost:3000/api/sessionData")
+    Axios.get("/api/sessionData", {
+      params: { query: session_id },
+    })
       .then((res) => {
         const session_id = res.data.id;
         console.log("session_id" + session_id);
-        Axios.post("http://localhost:3000/api/session/task/create", {
+        Axios.post("/api/session/task/create", {
           session_id: session_id,
           task_type: typeRef.current.value,
           task_name: nameRef.current.value,

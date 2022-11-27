@@ -15,7 +15,6 @@ const SessionEdit = ({ id, user_id }) => {
   const [session, setSession] = useState();
   const contactInfo = () => {
     if (id) {
-      // TODO: update for session info
       Axios.get("/api/session/read/", { params: { key: 0, tag: id } }).then(
         (response) => {
           setSession(response.data[0]);
@@ -34,15 +33,22 @@ const SessionEdit = ({ id, user_id }) => {
   const onSave = () => {
     const body = {
       // id: contact.id,
-      phone: intakeDateRef.current.value,
-      address: consentedRef.current.value,
-      city: gradeRef.current.value,
-      zip: schoolRef.current.value,
-      status: schoolAdminRef.current.value,
+
+      intake_date: intakeDateRef.current.value,
+      consented: consentedRef.current.value,
+      grade: gradeRef.current.value,
+      school: schoolRef.current.value,
+      school_administrator: schoolAdminRef.current.value,
+      social_worker: socialWorkerRef.current.value,
+      school_counselor: schoolCounselorRef.current.value, 
+      student_pickup: schoolPickupRef.current.value,
+      status: statusRef.current.value,
+      notes: notesRef.current.value || "",
     };
+
     if (id) {
       body.id = id;
-      Axios.post("/api/contact/update", body)
+      Axios.post("/api/session/update", body)
         .then((response) => {
           router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
         })
@@ -51,9 +57,10 @@ const SessionEdit = ({ id, user_id }) => {
         });
     } else {
       body.user_id = user_id;
-      Axios.post("/api/contact/create", body)
+      Axios.post("/api/session/create", body)
         .then((response) => {
-          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
+          console.log(response)
+          router.push(`/app/dashboard/admin/studentprofile/${session.user_id}/session/${response.data.session_id}/days/add/`);
         })
         .catch((err) => {
           console.log(err);
@@ -89,15 +96,16 @@ const SessionEdit = ({ id, user_id }) => {
             passedValue={session.consented}
             passedOptions={yesno}
           />
-          <Dropdown ref={gradeRef} label="Grade" passedValue={session.city} passedOptions={grades}/>
+          <Dropdown ref={gradeRef} label="Grade" passedValue={session.grade} passedOptions={grades}/>
           <Dropdown ref={schoolRef} label="School" passedValue={session.school} passedOptions={schools} />
           <InputForm ref={schoolAdminRef} label="School Administrator" passedValue={session.school_administrator}/>
-          <InputForm ref={socialWorkerRef} label="Social Worker" passedValue={session.school_counselor} />
+          <InputForm ref={socialWorkerRef} label="Social Worker" passedValue={session.social_worker} />
           <InputForm ref={schoolCounselorRef} label="School Counselor" passedValue={session.school_counselor} />
           <Dropdown ref={schoolPickupRef} label="Pickup" passedValue={session.pickup} passedOptions={pickups} />
           <Dropdown ref={statusRef} label="Session Status" passedValue={session.status} passedOptions={sessionStatus} />
           <InputForm ref={notesRef} label="Additional Notes" passedValue={session.notes} />
-          <input type="submit" value="Save" onClick={onSave} />
+          {id && <input type="submit" value="Save" onClick={onSave} />}
+          {user_id && <input type="submit" value="Add" onClick={onSave} />}
         </>
       )}
     </div>
