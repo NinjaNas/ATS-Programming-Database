@@ -65,6 +65,12 @@
   color: #eee;
 }
 
+.warning {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .submit {
   background-color: #a3ddcb;
   border-radius: 12px;

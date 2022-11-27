@@ -54,6 +54,7 @@ function CreateDemographics() {
       })
       .catch((err) => {
         console.log(err);
+        document.getElementById("values").removeAttribute("hidden");
       });
   };
 
@@ -62,7 +63,12 @@ function CreateDemographics() {
       <div className={signUpStyles.form}>
         <div className={signUpStyles.input_container}>
           <label className={signUpStyles.placeholder}>Date of Birth:</label>
-          <input className={signUpStyles.input} type="date" ref={dobRef} />
+          <input
+            className={signUpStyles.input}
+            type="date"
+            ref={dobRef}
+            required
+          />
           <br></br>
           <label className={signUpStyles.placeholder}>Gender:</label>
           <select
@@ -70,7 +76,9 @@ function CreateDemographics() {
             name="type"
             id="type"
             ref={genderRef}
+            required
           >
+            <option value=""> -- select an option -- </option>
             <option value="1">Female</option>
             <option value="2">Male</option>
             <option value="3">Non-Binary</option>
@@ -118,6 +126,10 @@ function CreateDemographics() {
             id="type"
             ref={ethnicityRef}
           >
+            <option disabled selected value>
+              {" "}
+              -- select an option --{" "}
+            </option>
             <option value="0">Non-Hispanic</option>
             <option value="1">Hispanic</option>
           </select>
@@ -128,11 +140,16 @@ function CreateDemographics() {
             name="type"
             id="type"
             ref={freeLunchRef}
+            required
           >
+            <option value=""> -- select an option -- </option>
             <option value="0">No</option>
             <option value="1">Yes</option>
           </select>
           <br></br>
+          <label className={signUpStyles.warning} id="values" hidden>
+            Missing values!
+          </label>
           <button className={signUpStyles.submit} onClick={createDemographics}>
             Add Demographics
           </button>

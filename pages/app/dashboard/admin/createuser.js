@@ -17,6 +17,7 @@ function CreateUser() {
   const typeRef = useRef();
   //Keeps track of changes to password input box
   const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
 
   const router = useRouter();
 
@@ -26,6 +27,13 @@ function CreateUser() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const createUser = () => {
+    console.log(passwordRef.current.value);
+    console.log(confirmPasswordRef.current.value);
+    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+      return document.getElementById("password").removeAttribute("hidden");
+    } else {
+      document.getElementById("password").setAttribute("hidden", "");
+    }
     Axios.post("/api/user/create", {
       first_name: firstNameRef.current.value,
       last_name: lastNameRef.current.value,
@@ -49,6 +57,7 @@ function CreateUser() {
       })
       .catch((err) => {
         console.log(err);
+        return document.getElementById("values").removeAttribute("hidden");
       });
   };
 
@@ -62,15 +71,26 @@ function CreateUser() {
             className={signUpStyles.input}
             type="text"
             ref={firstNameRef}
+            required
           />
           <br></br>
           {/*Last name input box*/}
           <label className={signUpStyles.placeholder}>Last Name:</label>
-          <input className={signUpStyles.input} type="text" ref={lastNameRef} />
+          <input
+            className={signUpStyles.input}
+            type="text"
+            ref={lastNameRef}
+            required
+          />
           <br></br>
           {/*Email input box*/}
           <label className={signUpStyles.placeholder}>Email:</label>
-          <input className={signUpStyles.input} type="text" ref={emailRef} />
+          <input
+            className={signUpStyles.input}
+            type="text"
+            ref={emailRef}
+            required
+          />
           <br></br>
           <label className={signUpStyles.placeholder}>Pronouns:</label>
           <select
@@ -78,7 +98,9 @@ function CreateUser() {
             name="type"
             id="type"
             ref={pronounRef}
+            required
           >
+            <option value=""> -- select an option -- </option>
             <option value="1">He/Him</option>
             <option value="2">She/Her</option>
             <option value="3">They/Them</option>
@@ -94,7 +116,9 @@ function CreateUser() {
             name="type"
             id="type"
             ref={typeRef}
+            required
           >
+            <option value=""> -- select an option -- </option>
             <option value="student">Student</option>
             <option value="parent">Parent</option>
             <option value="counselor">Counselor</option>
@@ -107,8 +131,25 @@ function CreateUser() {
             className={signUpStyles.input}
             type="password"
             ref={passwordRef}
+            required
           />
           <br></br>
+          <label className={signUpStyles.placeholder}>Confirm Password:</label>
+          <input
+            className={signUpStyles.input}
+            type="password"
+            ref={confirmPasswordRef}
+            required
+          />
+          <br></br>
+
+          <label className={signUpStyles.warning} id="password" hidden>
+            Mismatching passwords!
+          </label>
+          <label className={signUpStyles.warning} id="values" hidden>
+            Missing values or email exists!
+          </label>
+
           {/*Sign-up button that will fire the call to endpoint in the backend*/}
           <button className={signUpStyles.submit} onClick={createUser}>
             Add User
