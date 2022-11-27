@@ -25,6 +25,8 @@ async function createController(req, res) {
       console.log(err);
     });
 
+    console.log(req.body);
+
   // if 0 then there is no user
   if (!rows.length) {
     // Error out if no user
@@ -35,9 +37,9 @@ async function createController(req, res) {
       //Creates new demographics with ID
       await pool
         .execute(
-          "INSERT INTO demographics (id, contact_name, contact_relationship, contact_phone, physician, hospital, medical_concerns, allergies, allergies_list) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
+          "INSERT INTO medical (user_id, contact_name, contact_relationship, contact_phone, physician, hospital, medical_concerns, allergies, allergies_list) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
           [
-            id,
+          id,
           contact_name,
           contact_relationship,
           contact_phone,
