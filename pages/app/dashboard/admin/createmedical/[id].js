@@ -5,14 +5,14 @@ import signUpStyles from "../../../../../styles/Login.module.css";
 import { useRouter } from "next/router";
 
 function CreateMedical() {
-    const contactNameRef = useRef();
-    const relationRef = useRef();
-    const numberRef = useRef();
-    const physicianRef = useRef();
-    const hospitalRef = useRef();
-    const concernRef = useRef();
-    const allergyListRef = useRef();
-    const allergyFlagRef = useRef();
+  const contactNameRef = useRef();
+  const relationRef = useRef();
+  const numberRef = useRef();
+  const physicianRef = useRef();
+  const hospitalRef = useRef();
+  const concernRef = useRef();
+  const allergyListRef = useRef();
+  const allergyFlagRef = useRef();
 
   const router = useRouter();
   const { id } = router.query;
@@ -24,19 +24,19 @@ function CreateMedical() {
     */
   const createMedical = () => {
     Axios.post("/api/medical/create", {
-        contact_name: contactNameRef.current.value,
-        contact_relationship: relationRef.current.value,
-        contact_phone: numberRef.current.value,
-        physician: physicianRef.current.value,
-        hospital: hospitalRef.current.value,
-        medical_concerns: concernRef.current.value,
-        allergies_list: allergyListRef.current.value,
-        allergies: allergyFlagRef.current.value,
-        id: id,
+      contact_name: contactNameRef.current.value,
+      contact_relationship: relationRef.current.value,
+      contact_phone: numberRef.current.value,
+      physician: physicianRef.current.value,
+      hospital: hospitalRef.current.value,
+      medical_concerns: concernRef.current.value,
+      allergies_list: allergyListRef.current.value,
+      allergies: allergyFlagRef.current.value,
+      id: id,
     })
       .then(() => {
         console.log("success");
-        router.push("/app/user");
+        router.push(`/app/dashboard/admin/studentprofile/${id}`);
       })
       .catch((err) => {
         console.log(err);
@@ -48,8 +48,7 @@ function CreateMedical() {
     <div className={signUpStyles.login}>
       <div className={signUpStyles.form}>
         <div className={signUpStyles.input_container}>
-
-        <label className={signUpStyles.placeholder}>Contact Name:</label>
+          <label className={signUpStyles.placeholder}>Contact Name:</label>
           <input
             className={signUpStyles.input}
             type="text"
@@ -57,7 +56,9 @@ function CreateMedical() {
           />
           <br></br>
 
-          <label className={signUpStyles.placeholder}>Contact Relationship:</label>
+          <label className={signUpStyles.placeholder}>
+            Contact Relationship:
+          </label>
           <select
             className={signUpStyles.input}
             name="type"
@@ -74,11 +75,7 @@ function CreateMedical() {
           <br></br>
 
           <label className={signUpStyles.placeholder}>Contact Number:</label>
-          <input
-            className={signUpStyles.input}
-            type="tel"
-            ref={numberRef}
-          />
+          <input className={signUpStyles.input} type="tel" ref={numberRef} />
           <br></br>
 
           <label className={signUpStyles.placeholder}>Hospital:</label>
@@ -105,13 +102,9 @@ function CreateMedical() {
           <br></br>
 
           <label className={signUpStyles.placeholder}>Medical Concerns</label>
-          <input
-            className={signUpStyles.input}
-            type="text"
-            ref={concernRef}
-          />
+          <input className={signUpStyles.input} type="text" ref={concernRef} />
           <br></br>
-          
+
           <label className={signUpStyles.placeholder}>Allergies:</label>
           <select
             className={signUpStyles.input}
