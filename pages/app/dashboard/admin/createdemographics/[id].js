@@ -48,9 +48,9 @@ function CreateDemographics() {
       ethnicity: ethnicityRef.current.value,
       free_lunch: freeLunchRef.current.value,
     })
-      .then(() => {
+      .then((response) => {
         console.log("success");
-        router.push(`/app/dashboard/admin/studentprofile/${id}`);
+        router.push(`/app/dashboard/admin/createmedical/${id}`);
       })
       .catch((err) => {
         console.log(err);

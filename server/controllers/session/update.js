@@ -71,7 +71,7 @@ async function updateController(req, res) {
         ]
       )
       .then(() => {
-        console.log("Session values updated for session id " + session_id);
+        console.log("Session values updated for session id " + id);
       })
       .catch((err) => {
         console.log(err);
