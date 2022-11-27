@@ -2,51 +2,31 @@ const { hash } = require("../../utils/bcrypt");
 const pool = require("../../utils/pool");
 
 async function updateController(req, res) {
-  // Object destructuring
-  let { first_name, last_name, email, pronouns, status, notes, user_id, password } =
-    req.body;
+  // Format body
+  let keys = req.body;
+  let id = req.body.user_id;
+  // Required field "user_id"
+  delete keys.user_id;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM user WHERE email=?;", [email])
+    .query("SELECT * FROM user WHERE email=?;", [keys.email])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
     });
 
   if (rows.length) {
-    //Overrides arguments with what's currently in the database if empty
-    /*
-    if (first_name == "") {
-      first_name = rows[0].first_name;
-    }
-    if (last_name == "") {
-      last_name = rows[0].last_name;
-    }
-    if (email == "") {
-      email = rows[0].email;
-    }
-    if (status == "") {
-      status = rows[0].status;
-    }
-    if (notes == "") {
-      notes = rows[0].notes;
-    } if (pronouns == "") {
-      pronouns = rows[0].pronouns;
-    }
-*/
     // Use hash function from utils/bcrypt.js
-    let password_hash = hash(password);
-    if (password == "") {
-      password_hash = rows[0].password_hash;
+    if (keys.password) {
+      const password_hash = hash(keys.password);
+      delete keys.password;
+      keys.password_hash = password_hash;
     }
-    
+
     await pool
-      .execute(
-        "UPDATE user SET first_name=?, last_name=?, email=?, status=?, notes=?, password_hash=?, pronouns=? WHERE id=?;",
-        [first_name, last_name, email, status, notes, password_hash, pronouns, user_id]
-      )
+      .query("UPDATE user SET ? WHERE id=?;", [keys, id])
       .then(() => {
-        console.log("User values updated for user id " + user_id);
+        console.log("User values updated for user id " + id);
       })
       .catch((err) => {
         console.log(err);
