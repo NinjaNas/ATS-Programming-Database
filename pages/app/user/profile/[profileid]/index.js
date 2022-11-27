@@ -11,12 +11,12 @@ import { useState, useEffect } from "react";
 
 function UserProfile() {
     const router = useRouter();
-    const { userid } = router.query;
+    const { profileid } = router.query;
     const [user, setUser] = useState();
 
     const userInfo = () => {
         Axios.get("http://localhost:3000/api/user/read", {
-          params: { key: 0, tag: userid },
+          params: { key: 0, tag: profileid },
         }).then((response) => {
           setUser(response.data[0]);
         });
@@ -24,16 +24,15 @@ function UserProfile() {
 
       useEffect(() => {
         userInfo();
-      }, [userid]);
+      }, [profileid]);
 
 	return (
 		<div className={pageStyles.mainPage}>
 			<Navbar></Navbar>
-      "NOW"
-      {userid && user && (
+      {profileid && user && (
         <>
-            <StudentHeader
-              key={user.id}
+          <StudentHeader
+            key={user.id}
             firstName={user.first_name}
             lastName={user.last_name}
           />
