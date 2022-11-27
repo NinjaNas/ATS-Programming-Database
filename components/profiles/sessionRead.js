@@ -13,6 +13,8 @@ import AddTask from "../../components/dashboard/addTask.js";
 const SessionRead = ({ user_id }) => {
   const [session, setSession] = useState([]);
   const [days, setDays] = useState([]);
+  const [display, setDisplay] = useState("none");
+  const [subSes, setSubses] = useState("none");
 
   const sessionInfo = () => {
     Axios.get("/api/session/read/", {
@@ -27,19 +29,28 @@ const SessionRead = ({ user_id }) => {
     console.log(data);
     setDays(data);
   };
+  const expand = () => {
+    display == "none" ? setDisplay("block") : setDisplay("none");
+  };
+
+  const expandSubS = () => {
+    subSes == "none" ? setSubses("block") : setSubses("none");
+  };
   useEffect(() => {
     sessionInfo();
   }, []);
 
   return (
     <div className={CardStyles.card}>
-      <h2>Sessions</h2>
+      <button className={CardStyles.displayLink} onClick={expand}>
+        Sessions
+      </button>
       {session.map((s) => (
-        <div className={CardStyles.subSession}>
+        <div style={{ display: display }} className={CardStyles.subSession}>
           <Link
             href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/edit`}
           >
-            <a>
+            <a className={CardStyles.Link}>
               Intake Date: {new Date(s.intake_date).toLocaleDateString()}{" "}
               {sessionStatus[s.status]}
             </a>
@@ -74,18 +85,14 @@ const SessionRead = ({ user_id }) => {
             </tbody>
           </table>
           <p>Pickup: {pickups[s.student_pickup]}</p>
-          <TaskList session_id={s.id} type="admin" />
+          <TaskList session_id={s.id} type="admin" title="Academic" />
+          <TaskList session_id={s.id} type="admin" title="Boomerang" />
           <AddTask session_id={s.id}></AddTask>
           <Attendance session_id={s.id} onfetch={attendance} />
-          <Link
-            href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/wrapup`}
-          >
-            <a>Wrap Up Meeting</a>
-          </Link>
         </div>
       ))}
       <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}>
-        <a>Add Session</a>
+        <a className={CardStyles.Link}>Add Session</a>
       </Link>
     </div>
   );

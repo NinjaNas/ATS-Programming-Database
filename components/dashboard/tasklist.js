@@ -4,7 +4,7 @@ import Axios from "axios";
 import Task from "./task.js";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
-function tasklist({ session_id, type }) {
+function tasklist({ session_id, type, title }) {
   const [tasks, setTasks] = useState([]);
 
   const allTasks = () => {
@@ -46,7 +46,9 @@ function tasklist({ session_id, type }) {
         }
       >
         <div>
-          <h3 className={DashboardStyles.subtitle}>{`Academic (${tasks.filter(t => t.task_type==2 && t.status==3).length}/${tasks.filter(t => t.task_type==2).length})`}</h3>
+          <h3 className={DashboardStyles.subtitle}>{`Academic (${
+            tasks.filter((t) => t.task_type == 2 && t.status == 3).length
+          }/${tasks.filter((t) => t.task_type == 2).length})`}</h3>
           {tasks.map((task) =>
             task.task_type == 2 ? (
               <Task
@@ -58,7 +60,9 @@ function tasklist({ session_id, type }) {
               />
             ) : null
           )}
-          <h3 className={DashboardStyles.subtitle}>{`Boomerang (${tasks.filter(t => t.task_type!=2 && t.status==3).length}/${tasks.filter(t => t.task_type!=2).length})`}</h3>
+          <h3 className={DashboardStyles.subtitle}>{`Boomerang (${
+            tasks.filter((t) => t.task_type != 2 && t.status == 3).length
+          }/${tasks.filter((t) => t.task_type != 2).length})`}</h3>
           {tasks.map((task) =>
             task.task_type != 2 ? (
               <Task

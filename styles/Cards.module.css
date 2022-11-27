@@ -32,7 +32,26 @@
 	color: #595959;
 	font-family: sans-serif;
 	font-size: 40px;
-    margin-left: 2%;
+	margin-left: 2%;
 	font-weight: 600;
 	margin-top: 1.5%;
+}
+
+.displayLink {
+	background-color: transparent;
+	border-style: none;
+	color: #595959;
+	font-family: sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.Link{
+    color: #595959;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.Link:hover {
+    color: #c39955;
 }
