@@ -2,18 +2,12 @@ const pool = require("../../utils/pool");
 
 async function deleteController(req, res) {
   // Get user ID from req body
-  const { user_id } = req.body;
+  const { user_id, type, email } = req.body;
 
-  let [rows, fields] = await pool
-    .query("SELECT type FROM user WHERE id=?;", [user_id])
-    .catch((err) => {
-      // Do not throw error inside of promise
-      console.log(err);
-    });
-
-  if (rows.length) {
+  // Prevents the deletion of the first admin account
+  if (type && email && !(email == "admin")) {
     // Subfiles entries only exist for student types, so they only need to be deleted if it's a student.
-    if (rows[0].type == "student") {
+    if (type == "student") {
       // Grabs session_id associated with user id to pass to session.
 
       let [session_id, fields] = await pool
@@ -23,30 +17,32 @@ async function deleteController(req, res) {
           console.log(err);
         });
 
-      await pool
-        .execute(
-          "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire INNER JOIN day WHERE session_id=?",
-          [session_id[0].id]
-        )
-        .then(() => {
-          console.log(
-            session_id[0].id +
-              " session id deleted from all task, questionnaire, and day tables"
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (session_id[0]) {
+        await pool
+          .execute(
+            "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire INNER JOIN day WHERE session_id=?",
+            [session_id[0].id]
+          )
+          .then(() => {
+            console.log(
+              session_id[0].id +
+                " session id deleted from all task, questionnaire, and day tables"
+            );
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
-      // Should call ../session/delete which should handle questionnaire, task, day, and session
-      await pool
-        .execute("DELETE FROM session WHERE id=?", [session_id[0].id])
-        .then(() => {
-          console.log(session_id[0].id + " deleted from session table.");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        // Should call ../session/delete which should handle questionnaire, task, day, and session
+        await pool
+          .execute("DELETE FROM session WHERE id=?", [session_id[0].id])
+          .then(() => {
+            console.log(session_id[0].id + " deleted from session table.");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
 
       //Delete associated user_id from demographics
       await pool
@@ -68,11 +64,11 @@ async function deleteController(req, res) {
       .catch((err) => {
         console.log(err);
       });
+    // Successful HTTPS
+    res.sendStatus(201);
   } else {
     res.sendStatus(400);
   }
-  // Successful HTTPS
-  res.sendStatus(201);
 }
 
 module.exports = { deleteController };

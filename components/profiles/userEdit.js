@@ -41,6 +41,20 @@ function UserEdit({ id }) {
       });
   };
 
+  const onDelete = () => {
+    if (deleteRef.current.value.toLowerCase().trim() == "confirm") {
+      Axios.post("/api/user/delete", {
+        user_id: info.id,
+        type: info.type,
+        email: emailRef.current.value,
+      })
+        .then(router.push(`/app/user`))
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   const fNameRef = useRef();
   const lNameRef = useRef();
   const emailRef = useRef();
@@ -48,6 +62,7 @@ function UserEdit({ id }) {
   const pronounRef = useRef();
   const statusRef = useRef();
   const noteRef = useRef();
+  const deleteRef = useRef();
 
   useEffect(() => {
     console.log(id);
@@ -91,6 +106,10 @@ function UserEdit({ id }) {
           />
           {<InputForm label="Notes" ref={noteRef} passedValue={info.notes} />}
           <input type="submit" value="Save" onClick={onSave} />
+          <div>
+            <input type="text" placeholder="Type 'confirm'" ref={deleteRef} />
+            <input type="button" value="Delete" onClick={onDelete} />
+          </div>
         </>
       )}
     </div>
