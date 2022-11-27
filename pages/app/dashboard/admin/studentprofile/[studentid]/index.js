@@ -15,7 +15,6 @@ import ContactRead from "../../../../../../components/profiles/ContactRead";
 
 function StudentProfile() {
   const router = useRouter();
-  //console.log(router.query);
   const { studentid } = router.query;
   const [student, setStudent] = useState();
 

@@ -5,10 +5,10 @@ import DashboardStyles from "../../styles/Dashboard.module.css";
 import Search from "../dashboard/searchBar.js";
 
 function allUsers() {
-	/*Creat state to load student data*/
+	/*Creat state to load user data*/
 	const [users, setUsers] = useState([]);
 	const [searchedU, setSearchedU] = useState([])
-	/*Axios call to get student data*/
+	/*Axios call to get user data*/
 	
 	const everyUser = () => {
 		Axios.get("http://localhost:3000/api/user").then((response) => {
@@ -17,7 +17,7 @@ function allUsers() {
 		});
 	};
 	
-	/*UseEffect calls allStudents on page Mount only*/
+	/*UseEffect calls allUsers on page Mount only*/
 	useEffect(() => {
 		everyUser();
 	}, []);

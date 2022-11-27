@@ -26,21 +26,19 @@ function UserProfile() {
         userInfo();
       }, [userid]);
 
-      console.log(router.query)
-
 	return (
 		<div className={pageStyles.mainPage}>
 			<Navbar></Navbar>
       "NOW"
-            {user && (
-                <>
-                  <StudentHeader
-                    key={user.id}
-                    firstName={user.first_name}
-                    lastName={user.last_name}
-                  />
-                </>
-            )}
+      {userid && user && (
+        <>
+            <StudentHeader
+              key={user.id}
+            firstName={user.first_name}
+            lastName={user.last_name}
+          />
+        </>
+      )}
 			<Footer></Footer>
 		</div>
 	);
