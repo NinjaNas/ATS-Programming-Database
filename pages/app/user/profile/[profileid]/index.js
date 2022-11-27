@@ -3,6 +3,7 @@ import pageStyles from "../../../../../styles/Dashboard.module.css";
 import Navbar from "../../../../../components/dashboard/adminNav";
 
 import StudentHeader from "../../../../../components/studentProfile/StudentHeader";
+import UserEdit from "../../../../../components/profiles/userEdit";
 import Footer from "../../../../../components/dashboard/footer.js";
 import { useRouter } from "next/router";
 import Axios from "axios";
@@ -36,6 +37,7 @@ function UserProfile() {
             firstName={user.first_name}
             lastName={user.last_name}
           />
+          <UserEdit id={user.id} />
         </>
       )}
 			<Footer></Footer>
