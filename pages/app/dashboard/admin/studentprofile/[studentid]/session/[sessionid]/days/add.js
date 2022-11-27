@@ -105,11 +105,8 @@ const addSession = () => {
     <>
       <Navbar />
       {studentid && student && <StudentHeader id={studentid} firstName={student.first_name} lastName={student.last_name}/>}
-      {/* {studentid && <SessionEdit user_id={studentid} />} */}
-      {/* {<input type="submit" value="Add" onClick={addDay}/>} */}
-      {/* {attendance.map(a => <Day session_id={a}/>)} */}
       {sessionid && <Attendance session_id={sessionid} onfetch={attendance}/>}
-      <input type="submit" value="Finish" onClick={finish}/>
+      {days.length > 0 && <input type="submit" value="Finish" onClick={finish}/>}
     </>
     )
 }
