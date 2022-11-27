@@ -1,23 +1,24 @@
 const pool = require("../../../utils/pool");
 
 async function updateController(req, res) {
-  // Object destructuring
-  let { column, new_value, task_id } = req.body;
+  // Format body
+  let keys = req.body;
+  let id = req.body.task_id;
+  // Required field "task_id"
+  delete keys.task_id;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM task WHERE id=?;", [task_id])
+    .query("SELECT * FROM task WHERE id=?;", [id])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
     });
 
   if (rows.length) {
-    obj = {};
-    obj[column] = new_value;
     await pool
-      .query("UPDATE task SET ? WHERE id=?;", [obj, task_id])
+      .query("UPDATE task SET ? WHERE id=?;", [keys, id])
       .then(() => {
-        console.log("task_type updated for task id " + task_id);
+        console.log("task_type updated for task id " + id);
       })
       .catch((err) => {
         console.log(err);

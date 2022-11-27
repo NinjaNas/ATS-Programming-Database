@@ -15,7 +15,6 @@ import ContactRead from "../../../../../../components/profiles/ContactRead";
 
 function StudentProfile() {
   const router = useRouter();
-  // console.log(router.query);
   const { studentid } = router.query;
   const [student, setStudent] = useState();
 
@@ -23,7 +22,7 @@ function StudentProfile() {
     Axios.get("/api/user/read", {
       params: { key: 0, tag: studentid },
     }).then((response) => {
-      // console.log(studentid);
+      //console.log(studentid);
       //  setStudent(response.data.filter(s => s.id == studentid));
       setStudent(response.data[0]);
       //  setStudent[student.filter(s => student.id == studentid)]

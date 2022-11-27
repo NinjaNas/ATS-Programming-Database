@@ -5,18 +5,24 @@ import DashboardStyles from "../../styles/Dashboard.module.css";
 import Search from "../dashboard/searchBar.js";
 
 function allStudents() {
-  /*Create state to load student data*/
+  /*Creat state to load student data*/
   const [students, setStudents] = useState([]);
   const [searchedS, setSearchedS] = useState([]);
   /*Axios call to get student data*/
+
   const everyStudent = () => {
-    Axios.get("/api/user/read", { params: { key: 2, tag: 0 } }).then(
+    Axios.get("/api/user/read", { params: { key: 2, tag: 1 } }).then(
       (response) => {
         setStudents(response.data);
         setSearchedS(response.data);
       }
     );
   };
+
+  /*UseEffect calls allStudents on page Mount only*/
+  useEffect(() => {
+    everyStudent();
+  }, []);
 
   /*UseEffect calls allStudents on page Mount only*/
   useEffect(() => {

@@ -48,8 +48,7 @@ function task({ id, task_name, due_date, task_description, status }) {
     switch (trackedStatus) {
       case 1:
         Axios.post("/api/session/task/update", {
-          column: "status",
-          new_value: 2,
+          status: 2,
           task_id: id,
         })
           .then(() => {
@@ -62,8 +61,7 @@ function task({ id, task_name, due_date, task_description, status }) {
         break;
       case 2:
         Axios.post("/api/session/task/update", {
-          column: "status",
-          new_value: 1,
+          status: 1,
           task_id: id,
         })
           .then(() => {
@@ -92,8 +90,7 @@ function task({ id, task_name, due_date, task_description, status }) {
         break;
       case 2:
         Axios.post("/api/session/task/update", {
-          column: "status",
-          new_value: 3,
+          status: 3,
           task_id: id,
         })
           .then(() => {
@@ -120,8 +117,7 @@ function task({ id, task_name, due_date, task_description, status }) {
         break;
       case 2:
         Axios.post("/api/session/task/update", {
-          column: "status",
-          new_value: 1,
+          status: 1,
           task_id: id,
         })
           .then(() => {
@@ -135,8 +131,7 @@ function task({ id, task_name, due_date, task_description, status }) {
         break;
       case 3:
         Axios.post("/api/session/task/update", {
-          column: "status",
-          new_value: 1,
+          status: 1,
           task_id: id,
         })
           .then(() => {
