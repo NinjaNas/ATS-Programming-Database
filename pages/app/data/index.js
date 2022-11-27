@@ -6,14 +6,14 @@ import Session from "../../../components/data/completion/status";
 import SmartG from "../../../components/data/completion/smartGoal";
 
 function summary() {
-	const [smCompleted, setSmCompleted] = useState([])
+	const [smCompleted, setSmCompleted] = useState([]);
 
 	const smPercent = (data) => {
-		setSmCompleted (data)
-	}
+		setSmCompleted(data);
+	};
 
 	// useEffect(()=> {
-		
+
 	// })
 
 	return (
@@ -29,8 +29,10 @@ function summary() {
 			<div
 				style={{ display: "inline-block" }}
 				className={pageStyles.dataContainer}>
-					<h2 className={pageStyles.title}>SMART Goal Completion ({smCompleted}%)</h2>
-				<SmartG completedSm = {smPercent}></SmartG>
+				<h2 className={pageStyles.title}>
+					SMART Goal Completion ({smCompleted}%)
+				</h2>
+				<SmartG completedSm={smPercent}></SmartG>
 			</div>
 			<Footer></Footer>
 		</div>

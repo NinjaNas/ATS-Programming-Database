@@ -154,14 +154,19 @@ const SessionEdit = ({ id, user_id }) => {
             label="Additional Notes"
             passedValue={session.notes}
           />
-          {id && <input type="submit" value="Save" onClick={onSave} /> && (
+          {id && (
             <div>
-              <input
-                type="text"
-                placeholder="Type 'confirm' to delete"
-                ref={deleteRef}
-              />
-              <input type="button" value="Delete" onClick={onDelete} />
+              <div>
+                <input type="submit" value="Save" onClick={onSave} />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Type 'confirm' to delete"
+                  ref={deleteRef}
+                />
+                <input type="button" value="Delete" onClick={onDelete} />
+              </div>
             </div>
           )}
           {user_id && <input type="submit" value="Add" onClick={onSave} />}

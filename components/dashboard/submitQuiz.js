@@ -24,9 +24,8 @@ function submitQuiz() {
       .then((res) => {
         const session_id = res.data.id;
         console.log("session_id" + session_id);
-        Axios.post("/api/session/questionnaire/create", {
+        Axios.post("/api/session/questionnaire/update", {
           session_id: session_id,
-          questionnaire_date: new Date().toISOString().split("T")[0],
           type: typeRef.current.value,
           question_strengths: strRef.current.value,
           question_help: helpRef.current.value,
@@ -35,7 +34,7 @@ function submitQuiz() {
           question_collaboration: collaborateRef.current.value,
           question_composure: composeRef.current.value,
           question_goals: goalRef.current.value,
-          status: "1",
+          status: 1,
           notes: noteRef.current.value
         })
           .then(() => {

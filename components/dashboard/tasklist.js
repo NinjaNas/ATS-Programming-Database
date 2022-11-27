@@ -4,7 +4,7 @@ import Axios from "axios";
 import Task from "./task.js";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
-function tasklist({ session_id, type }) {
+function tasklist({ session_id, type, title }) {
   const [tasks, setTasks] = useState([]);
 
   const allTasks = () => {
@@ -34,45 +34,84 @@ function tasklist({ session_id, type }) {
     allTasks();
   }, []);
   return (
-    <div className={DashboardStyles.taskBox}>
-      <h2 style={{ marginLeft: 9 }} className={DashboardStyles.title}>
-        My Tasks
+    <div
+      style={{ display: "inline-block" }}
+      className={DashboardStyles.taskBox}
+    >
+      <h2
+        style={{ marginLeft: 9, marginTop: 0 }}
+        className={DashboardStyles.title}
+      >
+        {title}
       </h2>
+
       <div
         className={
           type == "admin"
-            ? DashboardStyles.tasklistAdmin
+            ? DashboardStyles.taskpageAdmin
             : DashboardStyles.tasklist
         }
       >
-        <div>
-          <h3 className={DashboardStyles.subtitle}>{`Academic (${tasks.filter(t => t.task_type==2 && t.status==3).length}/${tasks.filter(t => t.task_type==2).length})`}</h3>
-          {tasks.map((task) =>
-            task.task_type == 2 ? (
-              <Task
-                id={task.id}
-                task_name={task.task_name}
-                due_date={new Date(task.due_date).toLocaleDateString()}
-                task_description={task.task_description}
-                status={task.status}
-              />
-            ) : null
-          )}
-          <h3 className={DashboardStyles.subtitle}>{`Boomerang (${tasks.filter(t => t.task_type!=2 && t.status==3).length}/${tasks.filter(t => t.task_type!=2).length})`}</h3>
-          {tasks.map((task) =>
-            task.task_type != 2 ? (
-              <Task
-                id={task.id}
-                task_name={task.task_name}
-                due_date={new Date(task.due_date).toLocaleDateString()}
-                task_description={task.task_description}
-                status={task.status}
-              />
-            ) : null
-          )}
-        </div>
+        {tasks.map((task) =>
+          title === "Academic" && task.task_type == 2 ? (
+            <Task
+              id={task.id}
+              task_name={task.task_name}
+              due_date={task.due_date}
+              task_description={task.task_description}
+              status={task.status}
+            />
+          ) : title === "Boomerang" && task.task_type != 2 ? (
+            <Task
+              id={task.id}
+              task_name={task.task_name}
+              due_date={task.due_date}
+              task_description={task.task_description}
+              status={task.status}
+            />
+          ) : null
+        )}
       </div>
     </div>
+    // <div className={DashboardStyles.taskBox}>
+    //   <h2 style={{ marginLeft: 9 }} className={DashboardStyles.title}>
+    //     My Tasks
+    //   </h2>
+    //   <div
+    //     className={
+    //       type == "admin"
+    //         ? DashboardStyles.tasklistAdmin
+    //         : DashboardStyles.tasklist
+    //     }
+    //   >
+    //     <div>
+    //       <h3 className={DashboardStyles.subtitle}>Academic</h3>
+    //       {tasks.map((task) =>
+    //         task.task_type == 2 ? (
+    //           <Task
+    //             id={task.id}
+    //             task_name={task.task_name}
+    //             due_date={new Date(task.due_date).toLocaleDateString()}
+    //             task_description={task.task_description}
+    //             status={task.status}
+    //           />
+    //         ) : null
+    //       )}
+    //       <h3 className={DashboardStyles.subtitle}>Boomerang</h3>
+    //       {tasks.map((task) =>
+    //         task.task_type != 2 ? (
+    //           <Task
+    //             id={task.id}
+    //             task_name={task.task_name}
+    //             due_date={new Date(task.due_date).toLocaleDateString()}
+    //             task_description={task.task_description}
+    //             status={task.status}
+    //           />
+    //         ) : null
+    //       )}
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
