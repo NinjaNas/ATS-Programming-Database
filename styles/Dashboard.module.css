@@ -57,6 +57,7 @@
 	margin-right: 10px;
 }
 
+
 .tasklist {
 	background-color: #a3ddcb;
 	border-radius: 20px;
@@ -71,11 +72,13 @@
 	overflow-y: scroll;
 }
 
-.tasklistAdmin {
+
+/* Probably wont need this one*/
+/* .tasklistAdmin {
 	background-color: #a3ddcb;
 	border-radius: 20px;
 	box-sizing: border-box;
-	height: 85%;
+	height: 40%;
 	padding: 20px;
 	width: 100%;
 	margin-top: 1.5%;
@@ -83,13 +86,26 @@
 	margin-left: 0px;
 	margin-right: 20px;
 	overflow-y: scroll;
-}
+} */
 
 .taskpage {
 	background-color: #a3ddcb;
 	border-radius: 20px;
 	box-sizing: border-box;
 	height: 110%;
+	padding: 20px;
+	width: 50vh;
+	margin-top: 1.5%;
+	margin-bottom: 1.5%;
+	margin-left: 0px;
+	margin-right: 20px;
+	overflow-y: scroll;
+}
+.taskpageAdmin {
+	background-color: #a3ddcb;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: 400px;
 	padding: 20px;
 	width: 50vh;
 	margin-top: 1.5%;

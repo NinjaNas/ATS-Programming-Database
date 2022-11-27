@@ -4,7 +4,7 @@ import Axios from "axios";
 import Task from "./task.js";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
-function tasklist({ title, type }) {
+function tasklist({ title}) {
   const [tasks, setTasks] = useState([]);
   const allTasks = () => {
     // Grab current session id for user to render tasks
