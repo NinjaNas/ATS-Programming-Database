@@ -34,7 +34,7 @@ function tasklist({ session_id, type }) {
     allTasks();
   }, []);
   return (
-    <div className={DashboardStyles.studentDash}>
+    <div className={DashboardStyles.taskBox}>
       <h2 style={{ marginLeft: 9 }} className={DashboardStyles.title}>
         My Tasks
       </h2>

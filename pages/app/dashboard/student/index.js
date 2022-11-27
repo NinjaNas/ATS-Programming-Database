@@ -9,11 +9,14 @@ function tasklist() {
 	return (
 		<div className={pageStyles.mainPage}>
 			<StudentNav></StudentNav>
+
 			<div className={pageStyles.studentDash}>
-				<AddTask></AddTask>
+				
 				<Tasks title='Academic'></Tasks>
 				<Tasks title='Boomerang'></Tasks>
-				
+				<span className={pageStyles.addTask}>
+					<AddTask></AddTask>
+				</span>
 			</div>
 
 			<Footer></Footer>
