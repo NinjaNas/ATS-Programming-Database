@@ -3,8 +3,10 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
 import Navbar from "../../../../../../../../components/dashboard/adminNav";
 import StudentHeader from "../../../../../../../../components/studentProfile/StudentHeader";
-import SessionEdit from "../../../../../../../../components/profiles/sessionEdit";
 import WrapUp from "../../../../../../../../components/profiles/WrapUp";
+import Footer from "../../../../../../../../components/dashboard/footer.js";
+
+
 
 const editContact = () => {
   const router = useRouter();
@@ -30,8 +32,9 @@ const editContact = () => {
     <>
       <Navbar />
       {studentid && student && <StudentHeader id={studentid} firstName={student.first_name} lastName={student.last_name}/>}
-      {sessionid && <SessionEdit id={sessionid} />}
+      {/* {sessionid && <SessionEdit id={sessionid} />} */}
       {sessionid && <WrapUp session_id={sessionid} />}
+      <Footer></Footer>
     </>
     )
 }

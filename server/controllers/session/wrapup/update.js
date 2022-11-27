@@ -3,9 +3,9 @@ const pool = require("../../../utils/pool");
 async function updateController(req, res) {
   // Format body
   let keys = req.body;
-  let id = req.body.task_id;
+  let id = req.body.id;
   // Required field "task_id"
-  delete keys.task_id;
+  delete keys.id;
 
   let [rows, fields] = await pool
     .query("SELECT * FROM wrap_up_meeting WHERE id=?;", [id])

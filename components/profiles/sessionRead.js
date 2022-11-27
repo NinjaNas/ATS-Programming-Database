@@ -68,6 +68,7 @@ const SessionRead = ({ user_id }) => {
           <TaskList session_id={s.id} type="admin" />
           <AddTask session_id={s.id}></AddTask>
           <Attendance session_id={s.id} onfetch={attendance}/>
+          <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/wrapup`}><a>Wrap Up Meeting</a></Link>
         </div>
       ))}
       <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}><a>Add Session</a></Link>
