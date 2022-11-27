@@ -42,7 +42,15 @@ function tasklist({ session_id, type, title }) {
         style={{ marginLeft: 9, marginTop: 0 }}
         className={DashboardStyles.title}
       >
-        {title}
+        {`${title} (${tasks.filter(t => 
+          title === "Academic" ? 
+            t.task_type == 2 && t.status == 3 :
+            t.task_type != 2 && t.status == 3 
+          ).length}/${tasks.filter(t => 
+            title === "Academic" ? 
+              t.task_type == 2   :
+              t.task_type != 2  
+            ).length})`}
       </h2>
 
       <div
