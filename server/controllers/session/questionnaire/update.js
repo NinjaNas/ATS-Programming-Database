@@ -4,7 +4,6 @@ async function updateController(req, res) {
   // Object destructuring
   let {
     session_id,
-    questionnaire_date,
     type,
     question_strengths,
     question_help,
