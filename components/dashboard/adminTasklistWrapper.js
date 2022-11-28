@@ -7,7 +7,7 @@ function adminTasklistWrapper({ session_id }) {
   const [tasks, setTasks] = useState([]);
   const [updateToggle, setUpdateToggle] = useState(false);
   const allTasks = () => {
-    // Grab current session id for user to render tasks
+    // // If "session_id" undefined grab current session id for user to create tasks else query
     Axios.get("/api/sessionData", {
       params: { query: session_id },
     })

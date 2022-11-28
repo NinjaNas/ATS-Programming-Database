@@ -2,7 +2,6 @@ import React from "react";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 import Axios from "axios";
 import { useRef } from "react";
-import { useRouter } from "next/router";
 import LoginStyles from "../../styles/Forms.module.css";
 
 function addTask({ session_id, handler }) {
@@ -11,10 +10,8 @@ function addTask({ session_id, handler }) {
   const dueDateRef = useRef();
   const descriptionRef = useRef();
 
-  const router = useRouter();
-
   const postTask = () => {
-    // Grab current session id for user to create tasks
+    // If "session_id" undefined grab current session id for user to create tasks else query
     Axios.get("/api/sessionData", {
       params: { query: session_id },
     })
