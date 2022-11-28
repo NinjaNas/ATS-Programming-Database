@@ -14,7 +14,6 @@ function tasklist({ session_id, type, title }) {
     })
       .then((res) => {
         const session_id = res.data.id;
-        console.log(res.data.id);
         Axios.get("/api/session/task/read", {
           params: { key: 0, tag: session_id },
         })
