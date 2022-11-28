@@ -77,7 +77,7 @@ const SessionRead = ({ user_id }) => {
               <th className={TableStyles.column}>School Counselor</th>
             </thead>
             <tbody>
-              <tr>
+              <tr >
                 <td className={TableStyles.column}>{s.school_administrator}</td>
                 <td className={TableStyles.column}>{s.social_worker}</td>
                 <td className={TableStyles.column}>{s.school_counselor}</td>
