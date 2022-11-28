@@ -3,9 +3,9 @@ import DashboardStyles from "../../styles/Dashboard.module.css";
 import Axios from "axios";
 import { useRef } from "react";
 import { useRouter } from "next/router";
-import LoginStyles from "../../styles/Forms.module.css"
+import LoginStyles from "../../styles/Forms.module.css";
 
-function addTask({ session_id }) {
+function addTask({ session_id, handler }) {
   const nameRef = useRef();
   const typeRef = useRef();
   const dueDateRef = useRef();
@@ -31,7 +31,7 @@ function addTask({ session_id }) {
           end_date: null,
         })
           .then(() => {
-            router.reload();
+            handler();
           })
           .catch((err) => {
             console.log(err);
@@ -48,7 +48,12 @@ function addTask({ session_id }) {
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Task Name
       </label>
-      <input className={LoginStyles.input} type="text" name="task_name" ref={nameRef}></input>
+      <input
+        className={LoginStyles.input}
+        type="text"
+        name="task_name"
+        ref={nameRef}
+      ></input>
 
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Type
@@ -66,12 +71,24 @@ function addTask({ session_id }) {
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Due Date
       </label>
-      <input className={LoginStyles.input} type="date" name="task_name" ref={dueDateRef}></input>
+      <input
+        className={LoginStyles.input}
+        type="date"
+        name="task_name"
+        ref={dueDateRef}
+      ></input>
 
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Description
       </label>
-      <input input className={LoginStyles.input} style={{backgroundColor: "whitesmoke"}}type="text" name="task_name" ref={descriptionRef}></input>
+      <input
+        input
+        className={LoginStyles.input}
+        style={{ backgroundColor: "whitesmoke" }}
+        type="text"
+        name="task_name"
+        ref={descriptionRef}
+      ></input>
 
       <button
         onClick={postTask}
