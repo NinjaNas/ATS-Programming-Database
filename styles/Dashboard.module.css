@@ -162,8 +162,6 @@
 }
 
 .addTask {
-	position: relative;
-	bottom: 36%;
 	margin-left: 10%;
 	display: inline-block;
 }

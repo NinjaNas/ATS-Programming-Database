@@ -42,7 +42,7 @@ function DemographicsRead({ id }) {
 							races.push(v);
 						}
 					});
-					console.log(races);
+					
 					return races.join(", ");
 				})()
 			);

@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import SessionRead from "../../../../../../components/profiles/sessionRead";
 import DemographicsRead from "../../../../../../components/profiles/demographicsRead";
 import ContactRead from "../../../../../../components/profiles/ContactRead";
+import Medical from "../../../../../../components/profiles/medicalRead";
 
 function StudentProfile() {
 	const router = useRouter();
@@ -49,6 +50,7 @@ function StudentProfile() {
 						/>
 						<ContactRead user_id={student.id} />
 						<DemographicsRead id={student.id} />
+						<Medical id={student.id}></Medical>
 						<SessionRead user_id={student.id} />
 					</>
 				)}

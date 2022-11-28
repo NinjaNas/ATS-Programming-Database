@@ -1,8 +1,10 @@
-import React from "react";
+import { useEffect } from "react";
 import ProgBarStyles from "../../styles/ProgressBar.module.css";
 
 const ProgressBar = (props) => {
 	const { completed } = props;
+
+
 
 	const fillerStyles = {
 		height: "100%",
@@ -12,6 +14,7 @@ const ProgressBar = (props) => {
 		textAlign: "right",
 	};
 
+	// useEffect(() => console.log(completed))
 	return (
 		<div className={ProgBarStyles.containerStyles}>
 			<div style={fillerStyles}>
