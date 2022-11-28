@@ -9,7 +9,6 @@ const Attendance = ({ session_id, onfetch }) => {
   // const [retrieve, setRetrieve] = useState(false);
 
   const attendance = () => {
-    console.log("fetching");
     setAdd(false);
     Axios.get("/api/session/day/read", {
       params: { key: 0, tag: session_id },
@@ -18,7 +17,6 @@ const Attendance = ({ session_id, onfetch }) => {
         (a, b) => new Date(a.attendance_day) - new Date(b.attendance_day)
       );
       setDays(data);
-      // console.log(days)
       setAdd(true);
       onfetch && onfetch(data);
     });
@@ -26,12 +24,7 @@ const Attendance = ({ session_id, onfetch }) => {
   /*UseEffect calls allStudents on page Mount only*/
 
   useEffect(() => {
-    console.log("Here");
-    // setAdd(false);
-    // console.log("Now Here")
     attendance();
-    // setAdd(true);
-    // setAdd(true);
   }, []);
 
   return (

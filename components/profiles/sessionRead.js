@@ -9,6 +9,7 @@ import schools from "../../constants/schools";
 import sessionStatus from "../../constants/sessionStatus";
 import pickups from "../../constants/pickups";
 import AddTask from "../../components/dashboard/addTask.js";
+import SelView from "./SelView";
 
 const SessionRead = ({ user_id }) => {
   const [session, setSession] = useState([]);
@@ -26,7 +27,6 @@ const SessionRead = ({ user_id }) => {
   };
 
   const attendance = (data) => {
-    console.log(data);
     setDays(data);
   };
   const expand = () => {
@@ -89,6 +89,7 @@ const SessionRead = ({ user_id }) => {
           <TaskList session_id={s.id} type="admin" title="Boomerang" />
           <AddTask session_id={s.id}></AddTask>
           <Attendance session_id={s.id} onfetch={attendance} />
+          <SelView session_id={s.id} />
           <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/wrapup`}><a>Wrap-up Meeting</a></Link>
         </div>
       ))}
