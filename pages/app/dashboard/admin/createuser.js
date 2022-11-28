@@ -27,8 +27,6 @@ function CreateUser() {
     but I envisioned been whatever authentication endpoint we are thinking of
     */
   const createUser = () => {
-    console.log(passwordRef.current.value);
-    console.log(confirmPasswordRef.current.value);
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       return document.getElementById("password").removeAttribute("hidden");
     } else {

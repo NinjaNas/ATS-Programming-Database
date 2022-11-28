@@ -13,10 +13,7 @@ const addContact = () => {
 
   const studentInfo = () => {
     Axios.get("/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
-      // console.log(studentid);
-      //  setStudent(response.data.filter(s => s.id == studentid));
       setStudent(response.data[0])
-      //  setStudent[student.filter(s => student.id == studentid)]
     });
   };
 

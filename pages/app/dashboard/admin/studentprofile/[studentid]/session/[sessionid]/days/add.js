@@ -19,10 +19,7 @@ const addSession = () => {
 
   const studentInfo = () => {
     Axios.get("/api/user/read", {params: {key:0, tag:studentid}}).then((response) => {
-      // console.log(studentid);
-      //  setStudent(response.data.filter(s => s.id == studentid));
       setStudent(response.data[0])
-      //  setStudent[student.filter(s => student.id == studentid)]
     });
   };
 
@@ -30,7 +27,6 @@ const addSession = () => {
   //   setAttendance([...attendance, sessionid])
   // }
   const attendance = (data) => {
-    console.log(data)
     setDays(data);
   }
 
@@ -47,17 +43,12 @@ const addSession = () => {
         status: 1,
         end_date: null
       }
-      console.log(body)
       Axios.post("/api/session/task/create", body).then(response => {console.log(response)}); 
-      // .then(response => {
-      //   router.push(`/app/dashboard/admin/studentprofile/${studentid}`)
-      // });
     }
     
     const q1 = {
       session_id: sessionid,
       questionnaire_date: new Date(days[0].attendance_day).toLocaleDateString("en-CA"),
-      // questionnaire_date: days[0],
       type: 1,
       question_strengths: 0,
       question_help: 0,
@@ -87,12 +78,9 @@ const addSession = () => {
       notes: null,
     }
 
-    console.log(q1);
-    console.log(q2);
     Axios.post("/api/session/questionnaire/create", q1).then(response => {console.log(response)}); 
 
     Axios.post("/api/session/questionnaire/create", q2).then(response => {
-      console.log(response);
       router.push(`/app/dashboard/admin/studentprofile/${studentid}`)
     });
   }

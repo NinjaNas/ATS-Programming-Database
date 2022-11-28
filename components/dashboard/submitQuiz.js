@@ -23,7 +23,6 @@ function submitQuiz() {
     Axios.get("/api/sessionData")
       .then((res) => {
         const session_id = res.data.id;
-        console.log("session_id" + session_id);
         Axios.post("/api/session/questionnaire/update", {
           session_id: session_id,
           type: typeRef.current.value,

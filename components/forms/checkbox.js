@@ -3,7 +3,6 @@ import React from "react";
 
 const CheckBox = React.forwardRef(
   ({ label, passedValue, onChange}, ref) => {
-    // console.log(passedOptions)
     return (
       <>
         <input 

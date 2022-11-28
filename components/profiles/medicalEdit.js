@@ -16,7 +16,6 @@ function MedicalEdit({ id }) {
     Axios.get("/api/medical/read/", { params: { key: 0, tag: id } }).then(
       (response) => {
         setInfo(response.data[0]);
-        console.log(response.data[0]);
       }
     );
   };
@@ -52,7 +51,6 @@ function MedicalEdit({ id }) {
   const allergyFlagRef = useRef();
 
   useEffect(() => {
-    console.log(id);
     medicalInfo();
   }, []);
 

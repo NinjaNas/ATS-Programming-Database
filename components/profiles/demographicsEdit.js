@@ -70,7 +70,6 @@ function DemographicsEdit({id}) {
     if (demographics){
       setGenderValue(demographics.gender)
       setRaceOther(demographics.race_other)
-      // console.log(raceOther)
     }
   }, [demographics])
 
@@ -79,10 +78,7 @@ function DemographicsEdit({id}) {
   }
 
   function changeRaceOtherValue() {
-    // console.log(raceOTHERRef.current.value)
     setRaceOther(raceOTHERRef.current.checked);
-    // console.log(raceOther)
-    // console.log(raceOTHERRef.current.value)
   }
 
 

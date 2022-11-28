@@ -14,7 +14,6 @@ const ProgressBar = (props) => {
 		textAlign: "right",
 	};
 
-	// useEffect(() => console.log(completed))
 	return (
 		<div className={ProgBarStyles.containerStyles}>
 			<div style={fillerStyles}>
