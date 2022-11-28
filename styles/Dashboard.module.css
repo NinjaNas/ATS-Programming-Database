@@ -43,6 +43,7 @@
 	margin-bottom: 1.5%;
 	margin-left: 10px;
 	margin-right: 10px;
+	overflow-y: scroll;
 }
 
 .taskBox {
@@ -57,7 +58,6 @@
 	margin-right: 10px;
 }
 
-
 .tasklist {
 	background-color: #a3ddcb;
 	border-radius: 20px;
@@ -71,7 +71,6 @@
 	margin-right: 20px;
 	overflow-y: scroll;
 }
-
 
 /* Probably wont need this one*/
 /* .tasklistAdmin {
@@ -158,13 +157,15 @@
 	display: inline-block;
 }
 
-.checkbox{
-  accent-color:  #e6b566;
+.checkbox {
+	accent-color: #e6b566;
 }
 
-.addTask{
-  margin-top: 300px;
+.addTask {
+	margin-left: 10%;
+	display: inline-block;
 }
+
 
 .tdNames {
 	text-align: left;
