@@ -1,6 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import Axios from "axios";
 import Task from "./task.js";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
