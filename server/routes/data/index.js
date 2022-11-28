@@ -1,2 +1,0 @@
-// So I'm eating Jolly Ranchers, right? They gave me no blue raspberries. Not one blue raspberry.
-// No clue what we want to do for data, though, so for now this'll be an empty file until we discuss it.
