@@ -3,6 +3,7 @@ import DashboardStyles from "../../styles/Dashboard.module.css";
 import Axios from "axios";
 import { useRef } from "react";
 import { useRouter } from "next/router";
+import LoginStyles from "../../styles/Forms.module.css"
 
 function addTask({ session_id }) {
   const nameRef = useRef();
@@ -49,13 +50,13 @@ function addTask({ session_id }) {
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Task Name
       </label>
-      <input type="text" name="task_name" ref={nameRef}></input>
+      <input className={LoginStyles.input} type="text" name="task_name" ref={nameRef}></input>
 
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Type
       </label>
 
-      <select name="type" id="type" ref={typeRef}>
+      <select className={LoginStyles.input} name="type" id="type" ref={typeRef}>
         <option value="1">Boomerang</option>
         <option value="2">Academic</option>
         <option value="3">SMART Goal</option>
@@ -67,17 +68,17 @@ function addTask({ session_id }) {
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Due Date
       </label>
-      <input type="date" name="task_name" ref={dueDateRef}></input>
+      <input className={LoginStyles.input} type="date" name="task_name" ref={dueDateRef}></input>
 
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         Description
       </label>
-      <input type="text" name="task_name" ref={descriptionRef}></input>
+      <input input className={LoginStyles.input} style={{backgroundColor: "whitesmoke"}}type="text" name="task_name" ref={descriptionRef}></input>
 
       <button
         onClick={postTask}
         style={{ display: "block" }}
-        className={DashboardStyles.text}
+        className={LoginStyles.submit}
       >
         Add Task
       </button>

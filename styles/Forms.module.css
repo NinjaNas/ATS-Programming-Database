@@ -1,0 +1,28 @@
+.input {
+    background-color: #a3ddcb;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #595959;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 17px ;
+    width: 80%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.submit {
+    background-color: #a3ddcb;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #595959;
+    cursor: pointer;
+    font-size: 18px;
+    height: 100%;
+    margin-top: 38px;
+    outline: 0;
+    text-align: center;
+    width: 60%;
+  }
