@@ -4,7 +4,6 @@ import Axios from "axios";
 import Attendance from "../studentProfile/Attendance";
 import CardStyles from "../../styles/Cards.module.css";
 import TableStyles from "../../styles/Table.module.css";
-import PageStyles from "../../styles/Dashboard.module.css";
 import Link from "next/link";
 import schools from "../../constants/schools";
 import sessionStatus from "../../constants/sessionStatus";
