@@ -16,7 +16,6 @@ function UserEdit({ id }) {
       (response) => {
         // setDemographics(response.data.filter(s => s.user_id == id));
         setInfo(response.data[0]);
-        console.log(response.data[0]);
       }
     );
   };

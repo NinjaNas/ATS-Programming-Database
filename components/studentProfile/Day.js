@@ -30,7 +30,6 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
       Axios.post("/api/session/day/update", body)
         .then((response) => {
           // router.reload()
-          console.log("update")
           onadd();
         //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
         })
@@ -43,7 +42,6 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
         .then((response) => {
         //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
         // router.reload()
-        console.log("create")
         onadd();
       })
         .catch((err) => {

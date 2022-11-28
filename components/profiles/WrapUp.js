@@ -24,11 +24,9 @@ const WrapUp = ({ session_id }) => {
   const [meeting, setMeeting] = useState();
   const [user, setUser] = useState();
   const sessionInfo = () => {
-    // console.log(router.query);
     Axios.get("/api/session/read/", {
       params: { key: 0, tag: session_id },
     }).then((response) => {
-      // console.log(response)
       setSession(response.data[0]);
     });
   };
@@ -73,8 +71,6 @@ const WrapUp = ({ session_id }) => {
 
   const currentUser = () => {
     Axios.get("/api/userData/").then((response) => {
-      console.log(response)
-
       setUser(response.data[0][0]);
     });
   };
@@ -140,7 +136,6 @@ const WrapUp = ({ session_id }) => {
       "en-CA"
     );
 
-    console.log(sessionData);
     Axios.post("/api/session/update", sessionData).then(
       (response) => {
         router.push("/app/dashboard/admin");

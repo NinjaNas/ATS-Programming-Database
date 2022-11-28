@@ -19,7 +19,6 @@ const ContactRead = ({ user_id }) => {
 	const expand = () => {
 		display == "none" ? setDisplay("block") : setDisplay("none");
 
-		console.log(display);
 	};
 
 	useEffect(() => {

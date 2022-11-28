@@ -8,10 +8,8 @@ const SelView = ({session_id}) => {
   const [questionnaire, setQuestionnaire] = useState();
 
   const getQuestionnaire = () =>{
-    console.log(session_id)
     Axios.get("/api/session/questionnaire/read", {params: {key: 0, tag: session_id}})
     .then(response => {
-      console.log(response.data);
       setQuestionnaire(response.data);
     })
   }

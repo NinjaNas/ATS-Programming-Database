@@ -14,14 +14,12 @@ function addTask({ session_id }) {
   const router = useRouter();
 
   const postTask = () => {
-    console.log(typeRef.current.value);
     // Grab current session id for user to create tasks
     Axios.get("/api/sessionData", {
       params: { query: session_id },
     })
       .then((res) => {
         const session_id = res.data.id;
-        console.log("session_id" + session_id);
         Axios.post("/api/session/task/create", {
           session_id: session_id,
           task_type: typeRef.current.value,
