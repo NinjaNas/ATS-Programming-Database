@@ -5,7 +5,7 @@ import attendanceType from "../../constants/attendanceType";
 import DateForm from "../forms/date";
 import Dropdown from "../forms/dropdown";
 import InputForm from "../forms/input";
-import CardStyles from "../../styles/Cards.module.css"
+import FormStyles from "../../styles/Forms.module.css"
 import TableStyles from "../../styles/Table.module.css"
 import { useRouter } from "next/router";
 
@@ -68,11 +68,11 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
       /></td>
       <td><InputForm
         ref={missedRef}
-        label="Reason Missed"
+        label="Excuse"
         passedValue={id ? reason_missed : ""}
       /></td>
-      <td>{id && <input type="submit" value={"Save"} onClick={submit} />}
-      {session_id && <input type="submit" value={"Add"} onClick={submit} />}
+      <td>{id && <input className={FormStyles.submit2}  type="submit" value={"Save"} onClick={submit} />}
+      {session_id && <input className={FormStyles.submit2}  type="submit" value={"Add"} onClick={submit} />}
       </td>
     </tr>
   );

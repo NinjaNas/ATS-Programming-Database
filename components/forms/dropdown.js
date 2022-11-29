@@ -1,4 +1,4 @@
-import LoginStyles from "../../styles/Login.module.css";
+import Input from "../../styles/Forms.module.css";
 import React, { useState } from "react";
 
 const Dropdown = React.forwardRef(
@@ -10,7 +10,7 @@ const Dropdown = React.forwardRef(
     return (
       <div>
         <label>{label}{": "}</label>
-        <select ref={ref} defaultValue={value} onChange={onChange}>
+        <select className={Input.input2}ref={ref} defaultValue={value} onChange={onChange}>
           {Object.entries(options).map(([k, v]) => (
             <option value={k} key={k}>{v}</option>
           ))}

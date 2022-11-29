@@ -1,18 +1,22 @@
-import React from "react"
-import { useState } from "react"
-const TimeForm = React.forwardRef(({label,  passedValue}, ref ) => {
-  // const [value, setValue] = useState(passedValue)
+import React from "react";
+import Input from "../../styles/Forms.module.css";
+import { useState } from "react";
+const TimeForm = React.forwardRef(({ label, passedValue }, ref) => {
+	// const [value, setValue] = useState(passedValue)
 
+	return (
+		<div>
+			<label>
+				{label}
+				{": "}
+			</label>
+			<input
+				type='time'
+				ref={ref}
+				className={Input.input2}
+				defaultValue={passedValue}></input>
+		</div>
+	);
+});
 
-
-  return (
-    <div>
-      <label>{label}{": "}</label>
-      <input type="time" ref={ref}
-      defaultValue={passedValue}
-       ></input>
-    </div>
-  )
-})
-
-export default TimeForm
+export default TimeForm;
