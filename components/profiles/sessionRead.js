@@ -94,9 +94,9 @@ const SessionRead = ({ user_id }) => {
           </Link>
         </div>
       ))}
-      <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}>
+      {session.filter(s => s.status==0).length ===0 && <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}>
         <a className={CardStyles.Link}>Add Session</a>
-      </Link>
+      </Link>}
     </div>
   );
 };

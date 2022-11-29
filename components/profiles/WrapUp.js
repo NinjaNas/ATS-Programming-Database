@@ -1,21 +1,16 @@
 import Axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-// import grades from "../../constants/grades";
 import meetingAttend from "../../constants/meetingAttend";
 import meetingStatus from "../../constants/meetingStatus";
 import wrapupLocations from "../../constants/wrapupLocations";
 import yesno from "../../constants/yesno";
-// import pickups from "../../constants/pickups";
-// import schools from "../../constants/schools";
-// import sessionStatus from "../../constants/sessionStatus";
-// import yesno from "../../constants/yesno";
 import DateForm from "../forms/date";
 import Dropdown from "../forms/dropdown";
 import InputForm from "../forms/input";
 import TimeForm from "../forms/time";
 import Attendance from "../studentProfile/Attendance";
-import TaskList from "../dashboard/tasklist";
+import TaskWrapper from "../dashboard/adminTasklistWrapper";
 import sessionStatus from "../../constants/sessionStatus";
 
 const WrapUp = ({ session_id }) => {
@@ -128,7 +123,9 @@ const WrapUp = ({ session_id }) => {
       performing_admin: user.id,
       notes: meetingNotesRef.current.value,
     };
-    Axios.post("/api/session/wrapup/update", wrapup);
+
+
+    Axios.post("/api/session/wrapup/update", wrapup).then(response => console.log(response)).catch(err => console.log(err));
     // const sessionData = {...session, status: statusRef.current.value}
     const sessionData = { ...session };
     sessionData.status = statusRef.current.value;
@@ -238,8 +235,7 @@ const WrapUp = ({ session_id }) => {
             passedValue={meeting.notes}
           />
           <Attendance session_id={session_id} />
-          <TaskList session_id={session_id} type="admin" title="Academic" />
-          <TaskList session_id={session_id} type="admin" title="Boomerang" />
+          <TaskWrapper session_id={session_id}/>
           <Dropdown
             ref={statusRef}
             label="Session Status"
