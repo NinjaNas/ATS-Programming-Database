@@ -1,37 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import Axios from "axios";
 import Task from "./task.js";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 
-function tasklist({ session_id, type, title }) {
-  const [tasks, setTasks] = useState([]);
-
-  const allTasks = () => {
-    // Grab current session id for user to render tasks
-    Axios.get("/api/sessionData", {
-      params: { query: session_id },
-    })
-      .then((res) => {
-        const session_id = res.data.id;
-        Axios.get("/api/session/task/read", {
-          params: { key: 0, tag: session_id },
-        })
-          .then((response) => {
-            setTasks(response.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  /*UseEffect calls allStudents on page Mount only*/
-  useEffect(() => {
-    allTasks();
-  }, []);
+function tasklist({ tasks, type, title, handler }) {
   return (
     <div
       style={{ display: "inline-block" }}
@@ -41,15 +12,17 @@ function tasklist({ session_id, type, title }) {
         style={{ marginLeft: 9, marginTop: 0 }}
         className={DashboardStyles.title}
       >
-        {`${title} (${tasks.filter(t => 
-          title === "Academic" ? 
-            t.task_type == 2 && t.status == 3 :
-            t.task_type != 2 && t.status == 3 
-          ).length}/${tasks.filter(t => 
-            title === "Academic" ? 
-              t.task_type == 2   :
-              t.task_type != 2  
-            ).length})`}
+        {`${title} (${
+          tasks.filter((t) =>
+            title === "Academic"
+              ? t.task_type == 2 && t.status == 3
+              : t.task_type != 2 && t.status == 3
+          ).length
+        }/${
+          tasks.filter((t) =>
+            title === "Academic" ? t.task_type == 2 : t.task_type != 2
+          ).length
+        })`}
       </h2>
 
       <div
@@ -65,16 +38,18 @@ function tasklist({ session_id, type, title }) {
               id={task.id}
               task_name={task.task_name}
               due_date={task.due_date}
-              task_description={task.task_description}
+              task_type={task.task_type}
               status={task.status}
+              handler={handler}
             />
           ) : title === "Boomerang" && task.task_type != 2 ? (
             <Task
               id={task.id}
               task_name={task.task_name}
               due_date={task.due_date}
-              task_description={task.task_description}
+              task_type={task.task_type}
               status={task.status}
+              handler={handler}
             />
           ) : null
         )}

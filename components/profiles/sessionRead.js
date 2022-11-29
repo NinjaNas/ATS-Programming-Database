@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import TaskList from "../dashboard/tasklist";
 import Axios from "axios";
 import Attendance from "../studentProfile/Attendance";
 import CardStyles from "../../styles/Cards.module.css";
@@ -8,7 +7,7 @@ import Link from "next/link";
 import schools from "../../constants/schools";
 import sessionStatus from "../../constants/sessionStatus";
 import pickups from "../../constants/pickups";
-import AddTask from "../../components/dashboard/addTask.js";
+import TaskWrapper from "../../components/dashboard/adminTasklistWrapper";
 import SelView from "./SelView";
 
 const SessionRead = ({ user_id }) => {
@@ -85,17 +84,19 @@ const SessionRead = ({ user_id }) => {
             </tbody>
           </table>
           <p>Pickup: {pickups[s.student_pickup]}</p>
-          <TaskList session_id={s.id} type="admin" title="Academic" />
-          <TaskList session_id={s.id} type="admin" title="Boomerang" />
-          <AddTask session_id={s.id}></AddTask>
+          <TaskWrapper session_id={s.id}></TaskWrapper>
           <Attendance session_id={s.id} onfetch={attendance} />
           <SelView session_id={s.id} />
-          <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/wrapup`}><a>Wrap-up Meeting</a></Link>
+          <Link
+            href={`/app/dashboard/admin/studentprofile/${user_id}/session/${s.id}/wrapup`}
+          >
+            <a>Wrap-up Meeting</a>
+          </Link>
         </div>
       ))}
-      <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}>
+      {session.filter(s => s.status==0).length ===0 && <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}>
         <a className={CardStyles.Link}>Add Session</a>
-      </Link>
+      </Link>}
     </div>
   );
 };
