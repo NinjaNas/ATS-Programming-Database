@@ -3,18 +3,17 @@ const pool = require("../../../utils/pool");
 async function updateController(req, res) {
   // Format body
   let keys = req.body;
-
   let id = req.body.id;
   // Required field "task_id"
   delete keys.id;
 
-
   let [rows, fields] = await pool
-    .query("SELECT * FROM user WHERE email=?;", [keys.email])
+    .query("SELECT * FROM wrap_up_meeting WHERE id=?;", [id])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
     });
+
 
   if (rows.length) {
 
@@ -24,9 +23,9 @@ async function updateController(req, res) {
     );
 
     await pool
-      .query("UPDATE wrap_up_meeting SET ? WHERE session_id=?;", [keys, id])
+      .query("UPDATE wrap_up_meeting SET ? WHERE id=?;", [keys, id])
       .then(() => {
-        console.log("User values updated for user id " + id);
+        console.log("User values updated for wrap_up_meeting " + id);
       })
       .catch((err) => {
         console.log(err);
