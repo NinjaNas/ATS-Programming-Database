@@ -164,55 +164,35 @@ function task({ id, task_name, due_date, task_type, status, handler }) {
   // Render different for students
   if (type === "student" || type === "parent") {
     // Render delete only for non-Boomerang tasks
-    if (task_type === 2) {
-      return (
-        <div>
-          <h4 className={DashboardStyles.taskName}>{task_name}</h4>
-          <h5 className={DashboardStyles.taskRest}>
-            Due: {new Date(due_date).toLocaleDateString("en-US")}
-            <p>Status: {statusDict[trackedStatus - 1]}</p>
-            <input
-              className={DashboardStyles.checkbox}
-              type="checkbox"
-              checked={checkedStudent}
-              onChange={studentButtonClick}
-              disabled={toggleStudent}
-            ></input>
+    return (
+      <div>
+        <h4 className={DashboardStyles.taskName}>{task_name}</h4>
+        <h5 className={DashboardStyles.taskRest}>
+          Due: {new Date(due_date).toLocaleDateString("en-US")}
+          <p>Status: {statusDict[trackedStatus - 1]}</p>
+          <input
+            className={DashboardStyles.checkbox}
+            type="checkbox"
+            checked={checkedStudent}
+            onChange={studentButtonClick}
+            disabled={toggleStudent}
+          ></input>
+          {/* Students can only delete Academic tasks when they are not verified by the admins */}
+          {task_type == 2 && status != 3 ? (
             <input
               className={DashboardStyles.taskRest}
               type="button"
               value="Delete"
               onClick={onDelete}
             ></input>
-          </h5>
+          ) : null}
+        </h5>
 
-          {/*<h5 className={DashboardStyles.text}>
+        {/*<h5 className={DashboardStyles.text}>
 				{status > 0 ? statusDict[status] : statusDict[0]}
 			</h5>*/}
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <h4 className={DashboardStyles.taskName}>{task_name}</h4>
-          <h5 className={DashboardStyles.taskRest}>
-            Due: {new Date(due_date).toLocaleDateString("en-US")}
-            <p>Status: {statusDict[trackedStatus - 1]}</p>
-            <input
-              className={DashboardStyles.checkbox}
-              type="checkbox"
-              checked={checkedStudent}
-              onChange={studentButtonClick}
-              disabled={toggleStudent}
-            ></input>
-          </h5>
-
-          {/*<h5 className={DashboardStyles.text}>
-				{status > 0 ? statusDict[status] : statusDict[0]}
-			</h5>*/}
-        </div>
-      );
-    }
+      </div>
+    );
   } else if (type === "admin" || type === "counselor") {
     return (
       <div>
