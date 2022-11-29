@@ -1,5 +1,6 @@
 import React from "react"
 import { useState } from "react"
+import Input from "../../styles/Forms.module.css";
 const DateForm = React.forwardRef(({label,  passedValue}, ref ) => {
   // const [value, setValue] = useState(passedValue)
 
@@ -8,7 +9,7 @@ const DateForm = React.forwardRef(({label,  passedValue}, ref ) => {
   return (
     <div>
       <label>{label}{": "}</label>
-      <input type="date" ref={ref} defaultValue={(new Date(passedValue)).toLocaleDateString('en-CA')}></input>
+      <input  className={Input.input2} type="date" ref={ref} defaultValue={(new Date(passedValue)).toLocaleDateString('en-CA')}></input>
     </div>
   )
 })

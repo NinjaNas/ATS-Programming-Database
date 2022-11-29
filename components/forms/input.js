@@ -1,4 +1,4 @@
-import LoginStyles from "../../styles/Login.module.css";
+import Input from "../../styles/Forms.module.css";
 import React, { useState } from "react";
 
 const InputForm = React.forwardRef(({ label, passedValue }, ref) => {
@@ -6,7 +6,7 @@ const InputForm = React.forwardRef(({ label, passedValue }, ref) => {
   return (
     <div>
       <label>{label}{": "}</label>
-      <input ref={ref} defaultValue={passedValue}></input>
+      <input className={Input.input2}ref={ref} defaultValue={passedValue}></input>
     </div>
   );
 });

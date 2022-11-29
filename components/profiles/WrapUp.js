@@ -12,6 +12,8 @@ import TimeForm from "../forms/time";
 import Attendance from "../studentProfile/Attendance";
 import TaskWrapper from "../dashboard/adminTasklistWrapper";
 import sessionStatus from "../../constants/sessionStatus";
+import Styles from "../../styles/Cards.module.css";
+import FormStyles from "../../styles/Forms.module.css";
 
 const WrapUp = ({ session_id }) => {
   const router = useRouter();
@@ -40,28 +42,27 @@ const WrapUp = ({ session_id }) => {
   };
 
   const createMeeting = () => {
-      const wrapup = {
-        session_id: session.id,
-        meeting_date: new Date().toLocaleDateString("en-CA"),
-        meeting_time: new Date().toLocaleTimeString("it-IT"),
-        location: 1,
-        family_rep: "",
-        family_rep_attend: 0,
-        school_rep: "",
-        school_rep_attend: 0,
-        other_rep: "",
-        other_rep_attend: 0,
-        parent_translator: 0,
-        school_translator: 0,
-        outside_translator: 0,
-        court_involved: 0,
-        court_counselor: "",
-        meeting_status: 0,
-        performing_admin: user.id,
-        notes: "",
-      };
-      Axios.post("/api/session/wrapup/create/", wrapup);
-    
+    const wrapup = {
+      session_id: session.id,
+      meeting_date: new Date().toLocaleDateString("en-CA"),
+      meeting_time: new Date().toLocaleTimeString("it-IT"),
+      location: 1,
+      family_rep: "",
+      family_rep_attend: 0,
+      school_rep: "",
+      school_rep_attend: 0,
+      other_rep: "",
+      other_rep_attend: 0,
+      parent_translator: 0,
+      school_translator: 0,
+      outside_translator: 0,
+      court_involved: 0,
+      court_counselor: "",
+      meeting_status: 0,
+      performing_admin: user.id,
+      notes: "",
+    };
+    Axios.post("/api/session/wrapup/create/", wrapup);
   };
 
   const currentUser = () => {
@@ -124,8 +125,9 @@ const WrapUp = ({ session_id }) => {
       notes: meetingNotesRef.current.value,
     };
 
-
-    Axios.post("/api/session/wrapup/update", wrapup).then(response => console.log(response)).catch(err => console.log(err));
+    Axios.post("/api/session/wrapup/update", wrapup)
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
     // const sessionData = {...session, status: statusRef.current.value}
     const sessionData = { ...session };
     sessionData.status = statusRef.current.value;
@@ -145,104 +147,154 @@ const WrapUp = ({ session_id }) => {
     <div>
       {meeting && session && (
         <>
-          <DateForm
-            ref={meetingDateRef}
-            label="Meeting Date"
-            passedValue={meeting.meeting_date}
-          />
-          <TimeForm
-            ref={meetingTimeRef}
-            label="Meeting Time"
-            passedValue={meeting.meeting_time}
-          />
-          <Dropdown
-            ref={meetingLocationRef}
-            label="Location"
-            passedValue={meeting.location}
-            passedOptions={wrapupLocations}
-          />
-          <InputForm
-            ref={familyRepRef}
-            label="Family Rep(s)"
-            passedValue={meeting.family_rep}
-          />
-          <Dropdown
-            ref={familyRepAttendRef}
-            label="Family Rep Attendance?"
-            passedValue={meeting.family_rep_attend}
-            passedOptions={meetingAttend}
-          />
-          <InputForm
-            ref={schoolRepRef}
-            label="School Rep(s)"
-            passedValue={meeting.school_rep}
-          />
-          <Dropdown
-            ref={schoolRepAttendRef}
-            label="School Rep Attendance?"
-            passedValue={meeting.school_rep_attend}
-            passedOptions={meetingAttend}
-          />
-          <InputForm
-            ref={otherRepRef}
-            label="Other"
-            passedValue={meeting.other_rep}
-          />
-          <Dropdown
-            ref={otherRepAttend}
-            label="Other Rep Attendance?"
-            passedValue={meeting.other_rep_attend}
-            passedOptions={meetingAttend}
-          />
-          <Dropdown
-            ref={parentTranslatorRef}
-            label="Parent Translator Required"
-            passedValue={meeting.parent_translator}
-            passedOptions={yesno}
-          />
-          <Dropdown
-            ref={schoolTranslatorRef}
-            label="Interpreter requested via school for wrap up"
-            passedValue={meeting.school_translator}
-            passedOptions={yesno}
-          />
-          <Dropdown
-            ref={outsideTranslatorRef}
-            label="Family to provide own translator"
-            passedValue={meeting.outside_translator}
-            passedOptions={yesno}
-          />
-          <Dropdown
-            ref={courtInvolvedRef}
-            label="Court Involved?"
-            passedValue={meeting.court_involved}
-            passedOptions={yesno}
-          />
-          <InputForm
-            ref={courtCounselorRef}
-            label="Other"
-            passedValue={meeting.court_counselor}
-          />
-          <Dropdown
-            ref={meetingStatusRef}
-            label="Meeting Status"
-            passedValue={meeting.meeting_status}
-            passedOptions={meetingStatus}
-          />
-          <InputForm
-            ref={meetingNotesRef}
-            label="Notes"
-            passedValue={meeting.notes}
-          />
-          <Attendance session_id={session_id} />
-          <TaskWrapper session_id={session_id}/>
-          <Dropdown
-            ref={statusRef}
-            label="Session Status"
-            passedValue={session.status}
-            passedOptions={sessionStatus}
-          />
-          <input type="Submit" onClick={submit} />
+          <div className={Styles.subSession}>
+            <div style={{ width: "20%" }}>
+              <DateForm
+                ref={meetingDateRef}
+                label="Meeting Date"
+                passedValue={meeting.meeting_date}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <TimeForm
+                ref={meetingTimeRef}
+                label="Meeting Time"
+                passedValue={meeting.meeting_time}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={meetingLocationRef}
+                label="Location"
+                passedValue={meeting.location}
+                passedOptions={wrapupLocations}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <InputForm
+                ref={familyRepRef}
+                label="Family Rep(s)"
+                passedValue={meeting.family_rep}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={familyRepAttendRef}
+                label="Family Rep Attendance?"
+                passedValue={meeting.family_rep_attend}
+                passedOptions={meetingAttend}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <InputForm
+                ref={schoolRepRef}
+                label="School Rep(s)"
+                passedValue={meeting.school_rep}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={schoolRepAttendRef}
+                label="School Rep Attendance?"
+                passedValue={meeting.school_rep_attend}
+                passedOptions={meetingAttend}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <InputForm
+                ref={otherRepRef}
+                label="Other"
+                passedValue={meeting.other_rep}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={otherRepAttend}
+                label="Other Rep Attendance?"
+                passedValue={meeting.other_rep_attend}
+                passedOptions={meetingAttend}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={parentTranslatorRef}
+                label="Parent Translator Required"
+                passedValue={meeting.parent_translator}
+                passedOptions={yesno}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={schoolTranslatorRef}
+                label="Interpreter requested via school for wrap up"
+                passedValue={meeting.school_translator}
+                passedOptions={yesno}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={outsideTranslatorRef}
+                label="Family to provide own translator"
+                passedValue={meeting.outside_translator}
+                passedOptions={yesno}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={courtInvolvedRef}
+                label="Court Involved?"
+                passedValue={meeting.court_involved}
+                passedOptions={yesno}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <InputForm
+                ref={courtCounselorRef}
+                label="Other"
+                passedValue={meeting.court_counselor}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <Dropdown
+                ref={meetingStatusRef}
+                label="Meeting Status"
+                passedValue={meeting.meeting_status}
+                passedOptions={meetingStatus}
+              />
+            </div>
+            <div style={{ width: "20%" }}>
+              <InputForm
+                ref={meetingNotesRef}
+                label="Notes"
+                passedValue={meeting.notes}
+              />
+            </div>
+          </div>
+          <div className={Styles.subSession}>
+            <Attendance session_id={session_id} />
+            <TaskWrapper session_id={session_id} />
+          </div>
+          <div
+            style={{
+              width: "20%",
+              color: "#595959",
+              fontFamily: "sans-serifs",
+            }}
+          >
+            <Dropdown
+              ref={statusRef}
+              label="Session Status"
+              passedValue={session.status}
+              passedOptions={sessionStatus}
+            />
+          </div>
+          <div style={{ width: "7%" }}>
+            <input
+              className={FormStyles.submit2}
+              type="Submit"
+              onClick={submit}
+            />
+          </div>
         </>
       )}
     </div>
