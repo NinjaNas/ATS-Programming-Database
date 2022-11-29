@@ -9,7 +9,7 @@ async function updateController(req, res) {
   delete keys.user_id;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM user WHERE email=?;", [keys.email])
+    .query("SELECT * FROM user WHERE id=?;", [id])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);

@@ -21,13 +21,14 @@ function UserEdit({ id }) {
   };
 
   const onSave = () => {
-    let body = {
-      first_name: fNameRef.current.value,
-      last_name: lNameRef.current.value,
-      email: emailRef.current.value,
-      status: statusRef.current.value,
-      notes: noteRef.current.value,
-      pronouns: pronounRef.current.value,
+    const body = {
+      first_name: fNameRef.current.value != "" ? fNameRef.current.value : null,
+      last_name: lNameRef.current.value != "" ? lNameRef.current.value : null,
+      email: emailRef.current.value != "" ? emailRef.current.value : null,
+      status: statusRef.current.value != "" ? statusRef.current.value : null,
+      notes: noteRef.current.value != "" ? noteRef.current.value : null,
+      pronouns:
+        pronounRef.current.value != "" ? pronounRef.current.value : null,
       user_id: info.id,
       password: passRef.current.value != "" ? passRef.current.value : null,
     };
