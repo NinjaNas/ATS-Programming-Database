@@ -83,3 +83,14 @@
 .submit2:hover {
 	background-color: #c39955;
 }
+
+.editForm {
+    background-color: #e6b566;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 500px;
+    padding: 20px;
+    width: 320px;
+    color: #595959;
+    font-family: sans-serif;
+  }

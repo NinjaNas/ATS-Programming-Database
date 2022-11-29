@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import relationships from "../../constants/relationships";
 import hosptial from "../../constants/hosptial";
 import yesno from "../../constants/yesno";
+import FormStyles from "../../styles/Forms.module.css";
 
 function MedicalEdit({ id }) {
   const [info, setInfo] = useState();
@@ -57,7 +58,7 @@ function MedicalEdit({ id }) {
   useEffect(() => {}, [info]);
 
   return (
-    <div>
+    <div className={FormStyles.editForm} style={{height: "120%", width: "40%"}}>
       {info && (
         <>
           <h3>Type: {info.type}</h3>

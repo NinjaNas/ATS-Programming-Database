@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import ethnicity from '../../constants/ethnicity';
 import gender from '../../constants/gender';
 import yesno from '../../constants/yesno';
-
+import FormStyles from "../../styles/Forms.module.css";
 
 function DemographicsEdit({id}) {
   const [demographics, setDemographics] = useState();
@@ -84,7 +84,7 @@ function DemographicsEdit({id}) {
 
   return (
     
-    <div>
+    <div className={FormStyles.editForm}>
       {demographics && (
           <>
             <DateForm label="Date of Birth" ref={dobRef} passedValue={demographics.date_of_birth} />
@@ -99,7 +99,7 @@ function DemographicsEdit({id}) {
             <CheckBox ref={raceNHPIRef} label={"Native Hawaiian, Pacific Islander"} passedValue={demographics.race_nhpi} />
             <CheckBox ref={raceWHRef} label={"White"} passedValue={demographics.race_wh} />
             <CheckBox ref={raceOTHERRef} label={"Other"} passedValue={demographics.race_other} onChange={changeRaceOtherValue}/>
-            {raceOther ? <InputForm ref={raceOtherSpecifyRef} label="Scpecify Other Race" passedValue={demographics.race_other_specify}/>: <></>}
+            {raceOther ? <InputForm ref={raceOtherSpecifyRef} label="Specify Other Race" passedValue={demographics.race_other_specify}/>: <></>}
             
             {/* <InputForm label="Specify Other Race" ref={raceOtherSpecifyRef} passedValue = {demographics.race_other_specify} />             */}
             <Dropdown label="Ethnicity" ref={ethnicityRef} passedValue={demographics.ethnicity} passedOptions={ethnicity} />
