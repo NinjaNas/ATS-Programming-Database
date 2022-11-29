@@ -9,6 +9,7 @@ import yesno from "../../constants/yesno";
 import DateForm from "../forms/date";
 import Dropdown from "../forms/dropdown";
 import InputForm from "../forms/input";
+import FormStyles from "../../styles/Forms.module.css";
 
 const SessionEdit = ({ id, user_id }) => {
   const router = useRouter();
@@ -96,7 +97,7 @@ const SessionEdit = ({ id, user_id }) => {
   const deleteRef = useRef();
 
   return (
-    <div>
+    <div className={FormStyles.editForm} style= {{width: "40%", height: "120%"}}>
       {session && (
         <>
           <DateForm
