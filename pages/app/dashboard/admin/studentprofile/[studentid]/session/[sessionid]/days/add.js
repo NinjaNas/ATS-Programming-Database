@@ -3,8 +3,6 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
 import Navbar from "../../../../../../../../../components/dashboard/adminNav";
 import StudentHeader from "../../../../../../../../../components/studentProfile/StudentHeader";
-import Day from "../../../../../../../../../components/studentProfile/Day";
-import { session } from "passport";
 import Attendance from "../../../../../../../../../components/studentProfile/Attendance";
 import taskType from "../../../../../../../../../constants/taskType";
 

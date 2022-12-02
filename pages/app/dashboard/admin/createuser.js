@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import Axios from "axios";
 import signUpStyles from "../../../../styles/Login.module.css";
 import { useRouter } from "next/router";

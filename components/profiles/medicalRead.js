@@ -3,13 +3,10 @@ import Axios from "axios";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import CardStyles from "../../styles/Cards.module.css";
-import race from "../../constants/race";
-import gender from "../../constants/gender";
 
 function MedicalRead({ id }) {
 	const [medical, setMedical] = useState();
 	const [display, setDisplay] = useState("none");
-	const router = useRouter();
 
 	const medicalInfo = () => {
 		Axios.get("/api/medical/read/", { params: { key: 0, tag: id } }).then(

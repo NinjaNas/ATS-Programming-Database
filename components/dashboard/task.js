@@ -177,15 +177,15 @@ function task({ id, task_name, due_date, task_type, status, handler }) {
             onChange={studentButtonClick}
             disabled={toggleStudent}
           ></input>
-          {/* Students can only delete Academic tasks when they are not verified by the admins */}
-          {task_type == 2 && status != 3 ? (
+          {/* Students should not be able to delete tasks per Boomerang request */}
+          {/* {task_type == 2 && status != 3 ? (
             <input
               className={DashboardStyles.taskRest}
               type="button"
               value="Delete"
               onClick={onDelete}
             ></input>
-          ) : null}
+          ) : null} */}
         </h5>
 
         {/*<h5 className={DashboardStyles.text}>

@@ -3,7 +3,6 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
 import Navbar from "../../../../../../../components/dashboard/adminNav";
 import StudentHeader from "../../../../../../../components/studentProfile/StudentHeader";
-import ContactEdit from "../../../../../../../components/profiles/ContactEdit";
 import SessionEdit from "../../../../../../../components/profiles/sessionEdit";
 
 
