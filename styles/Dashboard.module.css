@@ -33,6 +33,18 @@
 	overflow-y: scroll;
 }
 
+.transparentDash {
+	background-color: whitesmoke;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: 77%;
+	padding: 20px;
+	margin-top: 1.0%;
+	margin-bottom: 1.5%;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 .studentDash {
 	background-color: #dbdcda;
 	border-radius: 20px;
