@@ -76,12 +76,32 @@
     
 }
 
+.submit3 {
+	background-color: whitesmoke;
+	border-radius: 12px;
+	border: 0;
+	box-sizing: border-box;
+	color: #595959;
+	cursor: pointer;
+	font-size: 14px;
+	height: 4%;
+	text-align: center;
+	width: 20%;
+    outline: 0;
+    margin-top: 5%;
+	margin-bottom: 5%;
+    
+}
+
 .submit:hover {
 	background-color: #c39955;
 }
 
 .submit2:hover {
 	background-color: #c39955;
+}
+.submit3:hover {
+    background-color: #dbdcda;
 }
 
 .editForm {
