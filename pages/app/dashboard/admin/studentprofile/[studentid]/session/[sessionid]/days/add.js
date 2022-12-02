@@ -36,7 +36,7 @@ const addSession = () => {
       let body = {         
         session_id: sessionid,
         task_type: i,
-        task_name: `Need ${taskType[i]}`,
+        task_name: `${taskType[i]}`,
         start_date: null,
         due_date: new Date(days[days.length - 1].attendance_day).toLocaleDateString("en-CA"),
         task_description: null,
