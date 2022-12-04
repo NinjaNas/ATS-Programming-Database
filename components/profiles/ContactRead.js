@@ -10,7 +10,6 @@ const ContactRead = ({ user_id }) => {
 	const contactInfo = () => {
 		Axios.get("/api/contact/read/", { params: { key: 0, tag: user_id } }).then(
 			(response) => {
-				// setDemographics(response.data.filter(s => s.user_id == id));
 				setContact(response.data);
 			}
 		);

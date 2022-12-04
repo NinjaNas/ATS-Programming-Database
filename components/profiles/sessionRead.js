@@ -21,7 +21,14 @@ const SessionRead = ({ user_id }) => {
       params: { key: 1, tag: user_id },
     }).then((response) => {
       // setDemographics(response.data.filter(s => s.user_id == id));
-      setSession(response.data);
+      setSession(response.data.sort((a, b) => {
+        return a.status == 0 && b.status != 0 ?
+        -1 :
+        a.status != 0 && b.status == 0 ? 
+        1 :
+        new Date(a.intake_date) - new Date(b.intake_date)
+      }
+      ));
     });
   };
 

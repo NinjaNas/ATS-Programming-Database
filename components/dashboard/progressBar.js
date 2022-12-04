@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import ProgBarStyles from "../../styles/ProgressBar.module.css";
 
 const ProgressBar = (props) => {

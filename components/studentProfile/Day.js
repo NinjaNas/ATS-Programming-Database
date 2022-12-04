@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import Axios from "axios";
 import attendanceStatus from "../../constants/attendanceStatus";
 import attendanceType from "../../constants/attendanceType";
@@ -15,8 +15,6 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
   const statusRef = useRef();
   const typeRef = useRef();
   const missedRef = useRef();
-
-  const router = useRouter();
   
   const submit = () => {
     const body = {

@@ -33,20 +33,6 @@ function demographics() {
 			data={gradesData}
 			dataKey={"datapoint"}
 			barKey={''}></BarChart>
-		// <>
-		// 	<table>
-		// 		<tbody>
-		// 			<tr>
-		// 				<th>Highschool</th>
-		// 				<th>Middleschool</th>
-		// 			</tr>
-		// 			<tr>
-		// 				<td>{highschool}</td>
-		// 				<td>{middleshcool}</td>
-		// 			</tr>
-		// 		</tbody>
-		// 	</table>
-		// </>
 	);
 }
 

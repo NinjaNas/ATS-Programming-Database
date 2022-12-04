@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Day from "./Day";
 import CardStyles from "../../styles/Cards.module.css";
