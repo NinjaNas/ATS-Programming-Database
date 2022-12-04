@@ -1,11 +1,11 @@
 import React from "react";
-import pageStyles from "../../../styles/Data.module.css";
-import Navbar from "../../../components/dashboard/adminNav.js";
-import Footer from "../../../components/dashboard/footer.js";
-import Districts from "../../../components/data/demographics/districts";
-import Grades from "../../../components/data/demographics/grades";
-import Race from "../../../components/data/demographics/race";
-import Ethnicity from "../../../components/data/demographics/ethnicity";
+import pageStyles from "../../../../../styles/Data.module.css";
+import Navbar from "../../../../../components/dashboard/adminNav.js";
+import Footer from "../../../../../components/dashboard/footer.js";
+import Districts from "../../../../../components/data/demographics/districts";
+import Grades from "../../../../../components/data/demographics/grades";
+import Race from "../../../../../components/data/demographics/race";
+import Ethnicity from "../../../../../components/data/demographics/ethnicity";
 
 function demographics() {
   return (
