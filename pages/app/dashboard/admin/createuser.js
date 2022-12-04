@@ -50,7 +50,7 @@ function CreateUser() {
             query: { id: response.data.id },
           });
         } else {
-          router.push("/app/user");
+          router.push("/app/dashboard/admin/user");
         }
       })
       .catch((err) => {

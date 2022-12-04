@@ -5,7 +5,7 @@ import DashboardStyles from "../../styles/Dashboard.module.css";
 import SearchStyles from "../../styles/Search.module.css";
 import Search from "../dashboard/searchBar.js";
 import { useRouter } from "next/router";
-import ButtonStyle from "../../styles/Forms.module.css"
+import ButtonStyle from "../../styles/Forms.module.css";
 
 function allUsers() {
   /*Creat state to load user data*/
@@ -39,7 +39,12 @@ function allUsers() {
           <Search students={users} setStudents={setSearchedU}></Search>{" "}
         </div>
         <div className={SearchStyles.child}>
-          <input className={ButtonStyle.submit2} type="button" value="Create user" onClick={createUser}></input>{" "}
+          <input
+            className={ButtonStyle.submit2}
+            type="button"
+            value="Create user"
+            onClick={createUser}
+          ></input>{" "}
         </div>
       </div>
       <table className={DashboardStyles.subtitle}>
@@ -53,7 +58,7 @@ function allUsers() {
               <tr>
                 <td>
                   <a
-                    href={`/app/user/profile/${user.id}`}
+                    href={`/app/dashboard/admin/user/profile/${user.id}`}
                     className={DashboardStyles.subtitle}
                   >
                     {user.first_name}
@@ -61,7 +66,7 @@ function allUsers() {
                 </td>
                 <td className={DashboardStyles.tdNames}>
                   <a
-                    href={`/app/user/profile/${user.id}`}
+                    href={`/app/dashboard/admin/user/profile/${user.id}`}
                     className={DashboardStyles.subtitle}
                   >
                     {user.last_name}
