@@ -23,7 +23,7 @@ async function sessionController(req, res) {
         // Do not throw error inside of promise
         console.log(err);
       });
-    query = rows[0].id;
+    query = rows.filter(r => r.status===0)[0].id;
   } else {
     res.sendStatus(401);
   }
