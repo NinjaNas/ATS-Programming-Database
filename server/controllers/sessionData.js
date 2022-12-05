@@ -23,7 +23,10 @@ async function sessionController(req, res) {
         // Do not throw error inside of promise
         console.log(err);
       });
-    query = rows.filter(r => r.status===0)[0].id;
+    // Get the sessions with status as Incomplete
+    const activeRecords = rows.filter(r => r.status===0)
+    // if no incomplete session, then use an invalid query
+    query = activeRecords.length > 0 ? activeRecords[0].id : "N/A";
   } else {
     res.sendStatus(401);
   }
@@ -34,6 +37,7 @@ async function sessionController(req, res) {
       // Do not throw error inside of promise
       console.log(err);
     });
+  console.log(rows);
   if (rows.length) {
     console.log(rows[0]);
     res.send(rows[0]);
