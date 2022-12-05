@@ -16,11 +16,16 @@ const SessionEdit = ({ id, user_id }) => {
   const [session, setSession] = useState();
   const sessionInfo = () => {
     if (id) {
-      Axios.get("/api/session/read/", { params: { key: 0, tag: id } }).then(
-        (response) => {
+      Axios.get("/api/session/read/", { params: { key: 0, tag: id } })
+        .then((response) => {
           setSession(response.data[0]);
-        }
-      );
+        })
+        .catch((err) => {
+          console.log(err);
+          if (err.response.status === 401) {
+            router.push("/app/login");
+          }
+        });
     } else {
       setSession({ user_id: user_id });
     }
@@ -97,7 +102,10 @@ const SessionEdit = ({ id, user_id }) => {
   const deleteRef = useRef();
 
   return (
-    <div className={FormStyles.editForm} style= {{width: "40%", height: "120%"}}>
+    <div
+      className={FormStyles.editForm}
+      style={{ width: "40%", height: "120%" }}
+    >
       {session && (
         <>
           <DateForm

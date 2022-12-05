@@ -54,7 +54,7 @@ async function updateController(req, res) {
         ]
       )
       .then(() => {
-        const beginend = "beginning";
+        let beginend = "beginning";
         if (type == 2) {
           beginend = "end";
         }

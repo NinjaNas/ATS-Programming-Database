@@ -16,9 +16,16 @@ function UserProfile() {
   const userInfo = () => {
     Axios.get("/api/user/read", {
       params: { key: 0, tag: profileid },
-    }).then((response) => {
-      setUser(response.data[0]);
-    });
+    })
+      .then((response) => {
+        setUser(response.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   useEffect(() => {

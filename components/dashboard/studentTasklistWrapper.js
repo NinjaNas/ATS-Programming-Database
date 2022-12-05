@@ -4,14 +4,17 @@ import AddTask from "../../components/dashboard/addTask.js";
 import pageStyles from "../../styles/Dashboard.module.css";
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import { useRouter } from "next/router.js";
 
 function studentTasklistWrapper() {
   const [tasks, setTasks] = useState([]);
   const [updateToggle, setUpdateToggle] = useState(false);
+  const router = useRouter();
   const allTasks = () => {
     // Grab current session id for user to render tasks
     Axios.get("/api/sessionData")
       .then((res) => {
+        console.log(res);
         const session_id = res.data.id;
         Axios.get("/api/session/task/read", {
           params: { key: 0, tag: session_id },
@@ -25,6 +28,9 @@ function studentTasklistWrapper() {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.status === 401 || err.response.status === 400) {
+          router.push("/app/login");
+        }
       });
   };
   const handleTask = () => {
