@@ -55,45 +55,7 @@ function tasklist({ tasks, type, title, handler }) {
         )}
       </div>
     </div>
-    // <div className={DashboardStyles.taskBox}>
-    //   <h2 style={{ marginLeft: 9 }} className={DashboardStyles.title}>
-    //     My Tasks
-    //   </h2>
-    //   <div
-    //     className={
-    //       type == "admin"
-    //         ? DashboardStyles.tasklistAdmin
-    //         : DashboardStyles.tasklist
-    //     }
-    //   >
-    //     <div>
-    //       <h3 className={DashboardStyles.subtitle}>Academic</h3>
-    //       {tasks.map((task) =>
-    //         task.task_type == 2 ? (
-    //           <Task
-    //             id={task.id}
-    //             task_name={task.task_name}
-    //             due_date={new Date(task.due_date).toLocaleDateString()}
-    //             task_description={task.task_description}
-    //             status={task.status}
-    //           />
-    //         ) : null
-    //       )}
-    //       <h3 className={DashboardStyles.subtitle}>Boomerang</h3>
-    //       {tasks.map((task) =>
-    //         task.task_type != 2 ? (
-    //           <Task
-    //             id={task.id}
-    //             task_name={task.task_name}
-    //             due_date={new Date(task.due_date).toLocaleDateString()}
-    //             task_description={task.task_description}
-    //             status={task.status}
-    //           />
-    //         ) : null
-    //       )}
-    //     </div>
-    //   </div>
-    // </div>
+   
   );
 }
 

@@ -16,7 +16,7 @@ async function sessionController(req, res) {
     } else {
       res.sendStatus(401);
     }
-  } else {
+  } else if (req.user){
     let [rows, fields] = await pool
       .query("SELECT * FROM session WHERE user_id=?;", [req.user[0][0].id])
       .catch((err) => {
@@ -24,6 +24,8 @@ async function sessionController(req, res) {
         console.log(err);
       });
     query = rows[0].id;
+  } else {
+    res.sendStatus(401);
   }
 
   let [rows, fields] = await pool

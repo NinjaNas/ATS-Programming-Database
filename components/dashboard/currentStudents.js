@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 import ProgressBar from "./progressBar.js";
+import { useRouter } from "next/router";
 
 function currentStudents() {
   /*Creat state to load student data*/
@@ -10,6 +11,9 @@ function currentStudents() {
   const [sessions, setSessions] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [days, setDays] = useState([]);
+
+  /*Router call in case of redirect*/
+  const router = useRouter();
   /*Axios call to get student data*/
   const allStudents = () => {
     Axios.get("/api/user/read", {
@@ -20,6 +24,9 @@ function currentStudents() {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.status === 401){
+          router.push("/app/login")
+        }
       });
   };
 

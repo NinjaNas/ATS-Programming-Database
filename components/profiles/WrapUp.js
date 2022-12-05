@@ -23,9 +23,16 @@ const WrapUp = ({ session_id }) => {
   const sessionInfo = () => {
     Axios.get("/api/session/read/", {
       params: { key: 0, tag: session_id },
-    }).then((response) => {
-      setSession(response.data[0]);
-    });
+    })
+      .then((response) => {
+        setSession(response.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   const wrapUpInfo = () => {
@@ -68,6 +75,8 @@ const WrapUp = ({ session_id }) => {
   const currentUser = () => {
     Axios.get("/api/userData/").then((response) => {
       setUser(response.data[0][0]);
+    }).catch(err => {
+      console.log(err);
     });
   };
 

@@ -2,12 +2,19 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import BarChart from "../barChart";
+import { useRouter } from "next/router";
 
 function ethnicity() {
   const [demographics, setDemographics] = useState([]);
+  const router = useRouter();
   const allDemographics = () => {
     Axios.get("/api/demographics").then((response) => {
       setDemographics(response.data);
+    }).catch((err) => {
+      console.log(err);
+      if (err.response.status === 401) {
+        router.push("/app/login");
+      }
     });
   };
 

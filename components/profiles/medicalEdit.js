@@ -14,11 +14,16 @@ function MedicalEdit({ id }) {
   const router = useRouter();
 
   const medicalInfo = () => {
-    Axios.get("/api/medical/read/", { params: { key: 0, tag: id } }).then(
-      (response) => {
+    Axios.get("/api/medical/read/", { params: { key: 0, tag: id } })
+      .then((response) => {
         setInfo(response.data[0]);
-      }
-    );
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   const onSave = () => {
@@ -58,7 +63,10 @@ function MedicalEdit({ id }) {
   useEffect(() => {}, [info]);
 
   return (
-    <div className={FormStyles.editForm} style={{height: "120%", width: "40%"}}>
+    <div
+      className={FormStyles.editForm}
+      style={{ height: "120%", width: "40%" }}
+    >
       {info && (
         <>
           <h3>Type: {info.type}</h3>
