@@ -70,7 +70,7 @@ const addSession = () => {
       questionnaire_date: new Date(
         days[days.length - 1].attendance_day
       ).toLocaleDateString("en-CA"),
-      type: 1,
+      type: 2,
       question_strengths: 0,
       question_help: 0,
       question_pride: 0,
