@@ -5,23 +5,24 @@ import attendanceType from "../../constants/attendanceType";
 import DateForm from "../forms/date";
 import Dropdown from "../forms/dropdown";
 import InputForm from "../forms/input";
-import FormStyles from "../../styles/Forms.module.css"
-import TableStyles from "../../styles/Table.module.css"
+import FormStyles from "../../styles/Forms.module.css";
+import TableStyles from "../../styles/Table.module.css";
 import { useRouter } from "next/router";
-
 
 const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
   const dateRef = useRef();
   const statusRef = useRef();
   const typeRef = useRef();
   const missedRef = useRef();
-  
+
   const submit = () => {
     const body = {
-      attendance_day: dateRef.current.value,
-      type: typeRef.current.value,
-      status: statusRef.current.value,
-      reason_missed: missedRef.current.value,
+      attendance_day:
+        dateRef.current.value != "" ? dateRef.current.value : null,
+      type: typeRef.current.value != "" ? typeRef.current.value : null,
+      status: statusRef.current.value != "" ? statusRef.current.value : null,
+      reason_missed:
+        missedRef.current.value != "" ? missedRef.current.value : null,
     };
     if (id) {
       body.id = id;
@@ -29,7 +30,7 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
         .then((response) => {
           // router.reload()
           onadd();
-        //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
+          //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
         })
         .catch((err) => {
           console.log(err);
@@ -38,10 +39,10 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
       body.session_id = session_id;
       Axios.post("/api/session/day/create", body)
         .then((response) => {
-        //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
-        // router.reload()
-        onadd();
-      })
+          //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
+          // router.reload()
+          onadd();
+        })
         .catch((err) => {
           console.log(err);
         });
@@ -51,26 +52,49 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
   return (
     // <tr className={session_id ? `${CardStyles.card} ` : " " + `${TableStyles.attendance}`}>
     <tr className={`${TableStyles.attendance}`}>
-      <td><DateForm ref={dateRef} label="Date" passedValue={date} /></td>
-      <td><Dropdown
-        ref={typeRef}
-        label="Type"
-        passedValue={id ? type : ""}
-        passedOptions={attendanceType}
-      /></td>
-      <td><Dropdown
-        ref={statusRef}
-        label="Status"
-        passedValue={id ? status : ""}
-        passedOptions={attendanceStatus}
-      /></td>
-      <td><InputForm
-        ref={missedRef}
-        label="Excuse"
-        passedValue={id ? reason_missed : ""}
-      /></td>
-      <td>{id && <input className={FormStyles.submit2}  type="submit" value={"Save"} onClick={submit} />}
-      {session_id && <input className={FormStyles.submit2}  type="submit" value={"Add"} onClick={submit} />}
+      <td>
+        <DateForm ref={dateRef} label="Date" passedValue={date} />
+      </td>
+      <td>
+        <Dropdown
+          ref={typeRef}
+          label="Type"
+          passedValue={id ? type : ""}
+          passedOptions={attendanceType}
+        />
+      </td>
+      <td>
+        <Dropdown
+          ref={statusRef}
+          label="Status"
+          passedValue={id ? status : ""}
+          passedOptions={attendanceStatus}
+        />
+      </td>
+      <td>
+        <InputForm
+          ref={missedRef}
+          label="Excuse"
+          passedValue={id ? reason_missed : ""}
+        />
+      </td>
+      <td>
+        {id && (
+          <input
+            className={FormStyles.submit2}
+            type="submit"
+            value={"Save"}
+            onClick={submit}
+          />
+        )}
+        {session_id && (
+          <input
+            className={FormStyles.submit2}
+            type="submit"
+            value={"Add"}
+            onClick={submit}
+          />
+        )}
       </td>
     </tr>
   );

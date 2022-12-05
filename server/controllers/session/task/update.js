@@ -15,6 +15,11 @@ async function updateController(req, res) {
     });
 
   if (rows.length) {
+    // Delete all null values from keys
+    keys = Object.fromEntries(
+      Object.entries(keys).filter(([_, v]) => v != null)
+    );
+
     await pool
       .query("UPDATE task SET ? WHERE id=?;", [keys, id])
       .then(() => {

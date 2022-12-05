@@ -7,6 +7,11 @@ jest.mock("../../server/utils/pool");
 // Mocking pool connection
 const mPool = jest.mocked(pool);
 
+// Stubbing for req and res
+const req_empty = {
+  body: {},
+};
+
 const req = {
   body: {
     first_name: "admin",
@@ -15,6 +20,17 @@ const req = {
     type: "admin",
     password: "test",
     user_id: "1",
+  },
+};
+
+const req_not_student = {
+  body: {
+    first_name: "student",
+    last_name: "student",
+    email: "student",
+    type: "parent",
+    password: "test",
+    user_id: "2",
   },
 };
 
@@ -33,63 +49,67 @@ const res = {
   sendStatus: jest.fn((x) => x),
 };
 
-it("should send a status of 201 on delete of admin user", async () => {
-  // Found user with type admin
-  await mPool.query.mockResolvedValueOnce([[{ type: "admin" }], []]);
-  // Executed delete
+it("should send a status of 201 on delete of user", async () => {
+  // Delete user
   await mPool.execute.mockResolvedValueOnce([[], []]);
-  await deleteController(req, res);
-  expect(mPool.execute).toHaveBeenCalledWith("DELETE FROM users WHERE id=?", [
-    "1",
+  // Call controller for a non student user
+  await deleteController(req_not_student, res);
+  expect(mPool.execute).toHaveBeenCalledWith("DELETE FROM user WHERE id=?", [
+    "2",
   ]);
   expect(res.sendStatus).toHaveBeenCalledWith(201);
 });
 
-it("should send a status of 400 if there is no user", async () => {
-  // Found no user
-  await mPool.query.mockResolvedValueOnce([[], []]);
+it("should send a status of 400 on delete of main admin user", async () => {
+  // Call controller
   await deleteController(req, res);
+  // Actual send and status return
+  expect(res.sendStatus).toHaveBeenCalledWith(400);
+});
+
+it("should send a status of 400 if there is no user", async () => {
+  // Call controller for no user
+  await deleteController(req_empty, res);
+  // Actual send and status return
   expect(res.sendStatus).toHaveBeenCalledWith(400);
 });
 
 it("should send a status of 201 on delete of student user", async () => {
-  // Found student user
-  await mPool.query.mockResolvedValueOnce([[{ type: "student" }], []]);
-  // Find user in session
-  await mPool.query.mockResolvedValueOnce([[{ id: "2" }], []]);
+  // Found session id attached to user
+  await mPool.query.mockResolvedValueOnce([[{ id: "student" }], []]);
   // Delete task, sel, day
   await mPool.execute.mockResolvedValueOnce([[], []]);
-  // Delete Session
+  // Delete session
   await mPool.execute.mockResolvedValueOnce([[], []]);
-  // Delete Demographics
+  // Delete demographics
   await mPool.execute.mockResolvedValueOnce([[], []]);
-  // Delete Student
+  // Delete user
   await mPool.execute.mockResolvedValueOnce([[], []]);
-
+  // Call controller for a student user
   await deleteController(req_student, res);
-
-  expect(mPool.query).toHaveBeenCalledWith(
-    "SELECT type FROM users WHERE id=?;",
-    ["2"]
-  );
-
+  // Call to get session id
   expect(mPool.query).toHaveBeenCalledWith(
     "SELECT id FROM session WHERE user_id=?;",
     ["2"]
   );
+  // Call to delete task, sel, day
   expect(mPool.execute).toHaveBeenCalledWith(
-    "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire INNER JOIN day WHERE session_id=?",
-    ["2"]
+    "DELETE task, sel_questionnaire, day FROM task INNER JOIN sel_questionnaire ON task.session_id = sel_questionnaire.session_id INNER JOIN day ON task.session_id = day.session_id WHERE task.session_id=?",
+    ["student"]
   );
+  // Call to delete session
   expect(mPool.execute).toHaveBeenCalledWith("DELETE FROM session WHERE id=?", [
-    "2",
+    "student",
   ]);
+  // Call to delete demographics
   expect(mPool.execute).toHaveBeenCalledWith(
     "DELETE FROM demographics WHERE user_id=?",
     ["2"]
   );
-  expect(mPool.execute).toHaveBeenCalledWith("DELETE FROM users WHERE id=?", [
+  // Call to delete user
+  expect(mPool.execute).toHaveBeenCalledWith("DELETE FROM user WHERE id=?", [
     "2",
   ]);
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(201);
 });

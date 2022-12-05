@@ -1,66 +1,47 @@
 const pool = require("../../../utils/pool");
 
 async function updateController(req, res) {
-  // Object destructuring
-  let {
-    session_id,
-    type,
-    question_strengths,
-    question_help,
-    question_pride,
-    question_relationships,
-    question_collaboration,
-    question_composure,
-    question_goals,
-    status,
-    notes,
-  } = req.body;
+  // Format body
+  let keys = req.body;
+  let id = req.body.session_id;
+  // Required field "id"
+  delete keys.session_id;
 
-  //console.log(req.body);
-
+  console.log(keys);
+  console.log(id);
   let [rows, fields] = await pool
     .query("SELECT * FROM sel_questionnaire WHERE session_id=? AND type=?;", [
-      session_id,
-      type
+      id,
+      keys.type,
     ])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
     });
 
-    //console.log(rows[0].id)
+  console.log(rows);
 
   if (rows.length) {
+    // Delete all null values from keys
+    keys = Object.fromEntries(
+      Object.entries(keys).filter(([_, v]) => v != null)
+    );
 
-    /**
-     * Checks for a session_id and updates all items.
-     * Should write a way to update singles, maybe by pulling those values from the table,
-     * overriding the ones we need to change, and updating the table with those.
-     */
     await pool
-      .execute(
-        "UPDATE sel_questionnaire SET question_strengths=?, question_help=?, question_pride=?, question_relationships=?, question_collaboration=?, question_composure=?, question_goals=?, status=?, notes=? WHERE id=?;",
-        [
-          question_strengths,
-          question_help,
-          question_pride,
-          question_relationships,
-          question_collaboration,
-          question_composure,
-          question_goals,
-          status,
-          notes,
-          rows[0].id
-        ]
-      )
+      .query("UPDATE sel_questionnaire SET ? WHERE session_id=? AND type=?;", [
+        keys,
+        id,
+        keys.type,
+      ])
       .then(() => {
         let beginend = "beginning";
-        if (type == 2) {
+
+        if (keys.type == 2) {
           beginend = "end";
         }
         console.log(
           "Questionnaire values updated for session id " +
-            session_id +
+            id +
             " at the " +
             beginend
         );

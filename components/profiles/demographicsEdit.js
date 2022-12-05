@@ -32,21 +32,28 @@ function DemographicsEdit({ id }) {
   };
 
   const onSave = () => {
+    console.log(genderRef.current.value);
     const body = {
-      date_of_birth: dobRef.current.value,
-      gender: genderRef.current.value,
-      gender_other: genderOtherRef.current ? genderOtherRef.current.value : "",
+      date_of_birth: dobRef.current.value != "" ? dobRef.current.value : null,
+      gender: genderRef.current.value != "" ? genderRef.current.value : null,
+      // genderOtherRef.current is undefined if input is not created with ref
+      gender_other: genderOtherRef.current
+        ? genderOtherRef.current.value
+        : null,
       race_bl: raceBLRef.current.checked ? 1 : 0,
       race_ai: raceAIRef.current.checked ? 1 : 0,
       race_as: raceASRef.current.checked ? 1 : 0,
       race_nhpi: raceNHPIRef.current.checked ? 1 : 0,
       race_wh: raceWHRef.current.checked ? 1 : 0,
       race_other: raceOTHERRef.current.checked ? 1 : 0,
+      // raceOtherSpecifyRef.current is undefined if input is not created with ref
       race_other_specify: raceOtherSpecifyRef.current
         ? raceOtherSpecifyRef.current.value
-        : "",
-      ethnicity: ethnicityRef.current.value,
-      free_lunch: freeLunchRef.current.value,
+        : null,
+      ethnicity:
+        ethnicityRef.current.value != "" ? ethnicityRef.current.value : null,
+      free_lunch:
+        freeLunchRef.current.value != "" ? freeLunchRef.current.value : null,
       user_id: demographics.user_id,
     };
     Axios.post("/api/demographics/update", body).then(
@@ -59,7 +66,6 @@ function DemographicsEdit({ id }) {
   const genderOtherRef = useRef();
   const raceBLRef = useRef();
   const raceAIRef = useRef();
-
   const raceASRef = useRef();
   const raceNHPIRef = useRef();
   const raceWHRef = useRef();
@@ -154,6 +160,7 @@ function DemographicsEdit({ id }) {
           ) : (
             <></>
           )}
+
 
           {/* <InputForm label="Specify Other Race" ref={raceOtherSpecifyRef} passedValue = {demographics.race_other_specify} />             */}
           <Dropdown

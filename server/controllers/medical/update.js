@@ -1,53 +1,29 @@
 const pool = require("../../utils/pool");
 
 async function updateController(req, res) {
-  // Object destructuring
-  let {
-    user_id,
-    contact_name,
-    contact_relationship,
-    contact_phone,
-    physician,
-    hospital,
-    medical_concerns,
-    allergies,
-    allergies_list,
-  } = req.body;
-
-  console.log("--------------------------")
-  console.log(req.body)
+  // Format body
+  let keys = req.body;
+  let id = req.body.user_id;
+  // Required field "user_id"
+  delete keys.user_id;
 
   let [rows, fields] = await pool
-    .query("SELECT * FROM medical WHERE user_id=?;", [user_id])
+    .query("SELECT * FROM medical WHERE user_id=?;", [id])
     .catch((err) => {
       // Do not throw error inside of promise
       console.log(err);
     });
 
   if (rows.length) {
-    /**
-     * Checks for a user_id and updates all items.
-     * Should write a way to update singles, maybe by pulling those values from the table,
-     * overriding the ones we need to change, and updating the table with those.
-     */
-    await pool
-      .execute(
-        "UPDATE medical SET contact_name=?, contact_relationship=?, contact_phone=?, physician=?, hospital=?, medical_concerns=?, allergies=?, allergies_list=? WHERE id=?;",
+    // Delete all null values from keys
+    keys = Object.fromEntries(
+      Object.entries(keys).filter(([_, v]) => v != null)
+    );
 
-        [
-          contact_name,
-          contact_relationship,
-          contact_phone,
-          physician,
-          hospital,
-          medical_concerns,
-          allergies,
-          allergies_list,
-          rows[0].id // previous use of user_id was incorrect since we're checking for id
-        ]
-      )
+    await pool
+      .query("UPDATE medical SET ? WHERE user_id=?;", [keys, id])
       .then(() => {
-        console.log("Medical values updated for user id " + user_id);
+        console.log("Medical values updated for user id " + id);
       })
       .catch((err) => {
         console.log(err);

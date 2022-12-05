@@ -38,18 +38,30 @@ const SessionEdit = ({ id, user_id }) => {
   // TODO: Update correct params
   const onSave = () => {
     const body = {
-      // id: contact.id,
-
-      intake_date: intakeDateRef.current.value,
-      consented: consentedRef.current.value,
-      grade: gradeRef.current.value,
-      school: schoolRef.current.value,
-      school_administrator: schoolAdminRef.current.value,
-      social_worker: socialWorkerRef.current.value,
-      school_counselor: schoolCounselorRef.current.value,
-      student_pickup: schoolPickupRef.current.value,
-      status: statusRef.current.value,
-      notes: notesRef.current.value || "",
+      intake_date:
+        intakeDateRef.current.value != "" ? intakeDateRef.current.value : null,
+      consented:
+        consentedRef.current.value != "" ? consentedRef.current.value : null,
+      grade: gradeRef.current.value != "" ? gradeRef.current.value : null,
+      school: schoolRef.current.value != "" ? schoolRef.current.value : null,
+      school_administrator:
+        schoolAdminRef.current.value != ""
+          ? schoolAdminRef.current.value
+          : null,
+      social_worker:
+        socialWorkerRef.current.value != ""
+          ? socialWorkerRef.current.value
+          : null,
+      school_counselor:
+        schoolCounselorRef.current.value != ""
+          ? schoolCounselorRef.current.value
+          : null,
+      student_pickup:
+        schoolPickupRef.current.value != ""
+          ? schoolPickupRef.current.value
+          : null,
+      status: statusRef.current.value != "" ? statusRef.current.value : null,
+      notes: notesRef.current.value != "" ? notesRef.current.value : null,
     };
 
     if (id) {

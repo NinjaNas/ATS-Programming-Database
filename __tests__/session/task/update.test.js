@@ -16,8 +16,21 @@ const req = {
     task_name: "work",
     start_date: "11/10/22",
     due_date: "11/10/22",
-    task_description: "",
-    status: "",
+    task_description: null,
+    status: null,
+    end_date: "11/10/22",
+    task_id: "1",
+  },
+};
+
+const req2 = {
+  body: {
+    task_type: "work",
+    task_name: "work",
+    start_date: "11/10/22",
+    due_date: "11/10/22",
+    task_description: null,
+    status: null,
     end_date: "11/10/22",
     task_id: "1",
   },
@@ -31,32 +44,35 @@ it("should send a status of 400 when task does not exist", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
   // Check if task exists
   await mPool.query.mockResolvedValueOnce([[], []]);
+  // Call controller
   await updateController(req, res);
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(400);
 });
 
 it("should send a status of 201 when task does exist and update values when needed", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Check if task exists and grabs values
-  await mPool.query.mockResolvedValueOnce([
-    [{ status: "success", task_description: "working on it" }],
-    [],
-  ]);
+  // Check if task exists
+  await mPool.query.mockResolvedValueOnce([[{ id: 1 }], []]);
   // Update values
-  await mPool.execute.mockResolvedValueOnce([[], []]);
-  await updateController(req, res);
-  expect(mPool.execute).toHaveBeenCalledWith(
-    "UPDATE task SET (task_type, task_name, start_date, due_date, task_description, status, end_date) WHERE id=(task_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
-    [
-      "work",
-      "work",
-      "11/10/22",
-      "11/10/22",
-      "working on it",
-      "success",
-      "11/10/22",
-      "1",
-    ]
-  );
+  await mPool.query.mockResolvedValueOnce([[], []]);
+  // Call controller
+  await updateController(req2, res);
+  // Call get task
+  expect(mPool.query).toHaveBeenCalledWith("SELECT * FROM task WHERE id=?;", [
+    "1",
+  ]);
+  // Call update task
+  expect(mPool.query).toHaveBeenCalledWith("UPDATE task SET ? WHERE id=?;", [
+    {
+      due_date: "11/10/22",
+      end_date: "11/10/22",
+      start_date: "11/10/22",
+      task_name: "work",
+      task_type: "work",
+    },
+    "1",
+  ]);
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(201);
 });

@@ -1,8 +1,11 @@
 const pool = require("../../../utils/pool");
 
 async function updateController(req, res) {
-  // Object destructuring
-  let { type, attendance_day, status, reason_missed, id } = req.body;
+  // Format body
+  let keys = req.body;
+  let id = req.body.id;
+  // Required field "id"
+  delete keys.id;
 
   let [rows, fields] = await pool
     .query("SELECT * FROM day WHERE id=?;", [id])
@@ -12,31 +15,13 @@ async function updateController(req, res) {
     });
 
   if (rows.length) {
-    //Overrides arguments with what's currently in the database if empty
-    // if (attendance_day == "") {
-    //   attendance_day = rows[0].attendance_day;
-    // }
-    // if (type == "") {
-    //   type = rows[0].type;
-    // }
-    // if (reason_missed == "") {
-    //   reason_missed = rows[0].reason_missed;
-    // }
-    // if (status == "") {
-    //   status = rows[0].status;
-    // }
+    // Delete all null values from keys
+    keys = Object.fromEntries(
+      Object.entries(keys).filter(([_, v]) => v != null)
+    );
 
-    /**
-     * Checks for a task_id and updates all items.
-     * Should write a way to update singles, maybe by pulling those values from the table,
-     * overriding the ones we need to change, and updating the table with those.
-     */
     await pool
-      .execute(
-        // "UPDATE task SET (type, attendance_day, status, reason_missed) WHERE id=(id) VALUES (?, ?, ?, ?, ?);",
-        "UPDATE day SET type=?, attendance_day=?, status=?, reason_missed=? WHERE id=(?); ",
-        [type, attendance_day, status, reason_missed, id]
-      )
+      .query("UPDATE day SET ? WHERE id=?;", [keys, id])
       .then(() => {
         console.log("Values updated for day id " + id);
       })

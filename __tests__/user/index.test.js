@@ -17,10 +17,14 @@ const res = {
 
 it("should send a status of 200 when sending a value", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Select user table
+  // Expected query to select user table
   await mPool.query.mockResolvedValueOnce([[{ test: "value" }], []]);
+  // Call controller
   await indexController(req, res);
-  expect(mPool.query).toHaveBeenCalledWith("SELECT * FROM users;");
+  // Call for selecting user table
+  expect(mPool.query).toHaveBeenCalledWith("SELECT * FROM user;");
+  // Actual send return (returns entire user table)
   expect(res.send).toHaveBeenCalledWith([{ test: "value" }]);
+  // Status call
   expect(res.status).toHaveBeenCalledWith(200);
 });
