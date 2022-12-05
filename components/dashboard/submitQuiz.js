@@ -18,7 +18,6 @@ function submitQuiz() {
   const router = useRouter();
 
   const submit = () => {
-
     // Grab current session id for user to create tasks
     Axios.get("/api/sessionData")
       .then((res) => {
@@ -34,7 +33,7 @@ function submitQuiz() {
           question_composure: composeRef.current.value,
           question_goals: goalRef.current.value,
           status: 1,
-          notes: noteRef.current.value
+          notes: noteRef.current.value,
         })
           .then(() => {
             router.reload();
@@ -60,7 +59,6 @@ function submitQuiz() {
         <option value="2">Last Day</option>
       </select>
 
-      
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         I am aware of my own strengths
       </label>
@@ -97,7 +95,11 @@ function submitQuiz() {
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         I know how to have close and safe relationships
       </label>
-      <select name="question_relationships" id="question_relationships" ref={relationRef}>
+      <select
+        name="question_relationships"
+        id="question_relationships"
+        ref={relationRef}
+      >
         <option value="1">No</option>
         <option value="2">A little</option>
         <option value="3">Somewhat</option>
@@ -108,7 +110,11 @@ function submitQuiz() {
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         I know how to work with others to solve problems
       </label>
-      <select name="question_collaboration" id="question_collaboration" ref={collaborateRef}>
+      <select
+        name="question_collaboration"
+        id="question_collaboration"
+        ref={collaborateRef}
+      >
         <option value="1">No</option>
         <option value="2">A little</option>
         <option value="3">Somewhat</option>
@@ -119,7 +125,11 @@ function submitQuiz() {
       <label style={{ display: "block" }} className={DashboardStyles.subtitle}>
         I know how to stay calm in difficult situations
       </label>
-      <select name="question_composure" id="question_composure" ref={composeRef}>
+      <select
+        name="question_composure"
+        id="question_composure"
+        ref={composeRef}
+      >
         <option value="1">No</option>
         <option value="2">A little</option>
         <option value="3">Somewhat</option>

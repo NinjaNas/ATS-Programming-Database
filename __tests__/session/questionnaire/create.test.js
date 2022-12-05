@@ -10,6 +10,7 @@ jest.mock("../../../server/utils/pool");
 // Mocking pool connection
 const mPool = jest.mocked(pool);
 
+// Stubbing req and res
 const req = {
   body: {
     session_id: "1",
@@ -32,16 +33,22 @@ const res = {
 };
 
 it("should send a status of 400 if no session", async () => {
+  // Found no session
   await mPool.query.mockResolvedValueOnce([[], []]);
+  // Call controller
   await createController(req, res);
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(400);
 });
 
 it("should send a status of 201 if created questionnaire", async () => {
+  // Found session
   await mPool.query.mockResolvedValueOnce([[{ session_id: "1" }], []]);
   // Create questionnaire
   await mPool.execute.mockResolvedValueOnce([[], []]);
+  // Call controller
   await createController(req, res);
+  // Call to create questionnaire
   expect(mPool.execute).toHaveBeenCalledWith(
     "INSERT INTO sel_questionnaire (session_id, questionnaire_date, type, question_strengths, question_help, question_pride, question_relationships, question_collaboration, question_composure, question_goals, status, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
     [
@@ -59,5 +66,6 @@ it("should send a status of 201 if created questionnaire", async () => {
       "N/A",
     ]
   );
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(201);
 });

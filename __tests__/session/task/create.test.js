@@ -10,6 +10,7 @@ jest.mock("../../../server/utils/pool");
 // Mocking pool connection
 const mPool = jest.mocked(pool);
 
+// Stubbing for req and res
 const req = {
   body: {
     session_id: "1",
@@ -28,16 +29,22 @@ const res = {
 };
 
 it("should send a status of 400 if no session", async () => {
+  // Found no session
   await mPool.query.mockResolvedValueOnce([[], []]);
+  // Call controller
   await createController(req, res);
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(400);
 });
 
 it("should send a status of 201 if created task", async () => {
+  // Found session
   await mPool.query.mockResolvedValueOnce([[{ session_id: "1" }], []]);
   // Create task
   await mPool.execute.mockResolvedValueOnce([[], []]);
+  // Call controller
   await createController(req, res);
+  // Call create task
   expect(mPool.execute).toHaveBeenCalledWith(
     "INSERT INTO task (session_id, task_type, task_name, start_date, due_date, task_description, status, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
     [
@@ -51,5 +58,6 @@ it("should send a status of 201 if created task", async () => {
       "11/10/22",
     ]
   );
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(201);
 });

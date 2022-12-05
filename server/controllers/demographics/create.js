@@ -57,15 +57,17 @@ async function createController(req, res) {
           ]
         )
         // .then() can be used because promise not destructured
-        .then(() => {
+        .then((request) => {
           console.log("More success!");
+          res.send({ demographics_id: request[0].insertId });
         })
         .catch((err) => {
           console.log(err);
         });
       // Successful HTTPS
-      res.sendStatus(201);
+      res.status(201);
     }
+    res.status(400);
   }
 }
 

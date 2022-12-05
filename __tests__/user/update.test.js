@@ -16,10 +16,27 @@ const req = {
   body: {
     first_name: "admin",
     last_name: "admin",
-    email: "admin",
-    type: "admin",
-    status: "",
-    notes: "",
+    email: null,
+    pronoun: "admin",
+    status: null,
+    type: null,
+    status: null,
+    notes: null,
+    user_id: "1",
+    password: "test",
+  },
+};
+
+const req2 = {
+  body: {
+    first_name: "admin",
+    last_name: "admin",
+    email: null,
+    pronoun: "admin",
+    status: null,
+    type: null,
+    status: null,
+    notes: null,
     user_id: "1",
     password: "test",
   },
@@ -29,28 +46,40 @@ const res = {
   sendStatus: jest.fn((x) => x),
 };
 
-it("should send a status of 400 when email does not exist", async () => {
+it("should send a status of 400 when there is no user", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Check if email exists
+  // Check if user exists
   await mPool.query.mockResolvedValueOnce([[], []]);
+  // Call controller
   await updateController(req, res);
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(400);
 });
 
-it("should send a status of 201 when email does exist and update values when needed", async () => {
+it("should send a status of 201 when user does exist and update values when needed", async () => {
   // Using a mocked query to return a promise [[rows],[fields]]
-  // Check if email exists and grabs values
-  await mPool.query.mockResolvedValueOnce([
-    [{ status: "success", notes: "from_db" }],
-    [],
-  ]);
+  // Check if user is valid
+  await mPool.query.mockResolvedValueOnce([[{ id: 1 }], []]);
   // Update values
-  await mPool.execute.mockResolvedValueOnce([[], []]);
-  await updateController(req, res);
+  await mPool.query.mockResolvedValueOnce([[], []]);
+  // Call controller
+  await updateController(req2, res);
+  // Call hash function
   expect(hash).toHaveBeenCalledWith("test");
-  expect(mPool.execute).toHaveBeenCalledWith(
-    "UPDATE users SET (first_name, last_name, email, status, notes, password_hash) WHERE id=(user_id) VALUES(?, ?, ?, ?, ?, ?, ?);",
-    ["admin", "admin", "admin", "success", "from_db", "hash_password", "1"]
-  );
+  // Call to find user
+  expect(mPool.query).toHaveBeenCalledWith("SELECT * FROM user WHERE id=?;", [
+    "1",
+  ]);
+  // Call to update user
+  expect(mPool.query).toHaveBeenCalledWith("UPDATE user SET ? WHERE id=?;", [
+    {
+      first_name: "admin",
+      last_name: "admin",
+      password_hash: "hash_password",
+      pronoun: "admin",
+    },
+    "1",
+  ]);
+  // SendStatus call
   expect(res.sendStatus).toHaveBeenCalledWith(201);
 });
