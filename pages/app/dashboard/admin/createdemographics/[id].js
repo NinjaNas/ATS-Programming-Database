@@ -54,6 +54,9 @@ function CreateDemographics() {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
         document.getElementById("values").removeAttribute("hidden");
       });
   };

@@ -8,18 +8,26 @@ import { useRouter } from "next/router";
 import ButtonStyle from "../../styles/Forms.module.css";
 
 function allUsers() {
-  /*Creat state to load user data*/
+  /*Create state to load user data*/
   const [users, setUsers] = useState([]);
   const [searchedU, setSearchedU] = useState([]);
-
+  
+  /*Router call in case of redirect*/
   const router = useRouter();
   /*Axios call to get user data*/
 
   const everyUser = () => {
-    Axios.get("/api/user").then((response) => {
-      setUsers(response.data);
-      setSearchedU(response.data);
-    });
+    Axios.get("/api/user")
+      .then((response) => {
+        setUsers(response.data);
+        setSearchedU(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   /*UseEffect calls allUsers on page Mount only*/

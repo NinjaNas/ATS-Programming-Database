@@ -2,24 +2,32 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Day from "./Day";
 import CardStyles from "../../styles/Cards.module.css";
+import { useRouter } from "next/router";
 
 const Attendance = ({ session_id, onfetch }) => {
   const [days, setDays] = useState([]);
   const [add, setAdd] = useState(true);
   // const [retrieve, setRetrieve] = useState(false);
-
+  const router = useRouter();
   const attendance = () => {
     setAdd(false);
     Axios.get("/api/session/day/read", {
       params: { key: 0, tag: session_id },
-    }).then((response) => {
-      const data = response.data.sort(
-        (a, b) => new Date(a.attendance_day) - new Date(b.attendance_day)
-      );
-      setDays(data);
-      setAdd(true);
-      onfetch && onfetch(data);
-    });
+    })
+      .then((response) => {
+        const data = response.data.sort(
+          (a, b) => new Date(a.attendance_day) - new Date(b.attendance_day)
+        );
+        setDays(data);
+        setAdd(true);
+        onfetch && onfetch(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
   /*UseEffect calls allStudents on page Mount only*/
 

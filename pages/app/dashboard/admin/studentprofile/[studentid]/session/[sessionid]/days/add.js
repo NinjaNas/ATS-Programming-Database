@@ -14,11 +14,16 @@ const addSession = () => {
   // const [attendance, setAttendance] = useState([])
 
   const studentInfo = () => {
-    Axios.get("/api/user/read", { params: { key: 0, tag: studentid } }).then(
-      (response) => {
+    Axios.get("/api/user/read", { params: { key: 0, tag: studentid } })
+      .then((response) => {
         setStudent(response.data[0]);
-      }
-    );
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   // const addDay = () => {

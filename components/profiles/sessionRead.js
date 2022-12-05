@@ -19,17 +19,25 @@ const SessionRead = ({ user_id }) => {
   const sessionInfo = () => {
     Axios.get("/api/session/read/", {
       params: { key: 1, tag: user_id },
-    }).then((response) => {
-      // setDemographics(response.data.filter(s => s.user_id == id));
-      setSession(response.data.sort((a, b) => {
-        return a.status == 0 && b.status != 0 ?
-        -1 :
-        a.status != 0 && b.status == 0 ? 
-        1 :
-        new Date(a.intake_date) - new Date(b.intake_date)
-      }
-      ));
-    });
+    })
+      .then((response) => {
+        // setDemographics(response.data.filter(s => s.user_id == id));
+        setSession(
+          response.data.sort((a, b) => {
+            return a.status == 0 && b.status != 0
+              ? -1
+              : a.status != 0 && b.status == 0
+              ? 1
+              : new Date(a.intake_date) - new Date(b.intake_date);
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   const attendance = (data) => {
@@ -101,9 +109,13 @@ const SessionRead = ({ user_id }) => {
           </Link>
         </div>
       ))}
-      {session.filter(s => s.status==0).length ===0 && <Link href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}>
-        <a className={CardStyles.Link}>Add Session</a>
-      </Link>}
+      {session.filter((s) => s.status == 0).length === 0 && (
+        <Link
+          href={`/app/dashboard/admin/studentprofile/${user_id}/session/add`}
+        >
+          <a className={CardStyles.Link}>Add Session</a>
+        </Link>
+      )}
     </div>
   );
 };

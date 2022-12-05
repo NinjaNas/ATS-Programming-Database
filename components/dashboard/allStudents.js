@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useState, useEffect } from "react";
 import DashboardStyles from "../../styles/Dashboard.module.css";
 import Search from "../dashboard/searchBar.js";
+import { useRouter } from "next/router";
 
 function allStudents() {
   /*Creat state to load student data*/
@@ -10,13 +11,21 @@ function allStudents() {
   const [searchedS, setSearchedS] = useState([]);
   /*Axios call to get student data*/
 
+  const router = useRouter();
+  /*Axios call to get user data*/
+
   const everyStudent = () => {
-    Axios.get("/api/user/read", { params: { key: 2, tag: 1 } }).then(
-      (response) => {
+    Axios.get("/api/user/read", { params: { key: 2, tag: 1 } })
+      .then((response) => {
         setStudents(response.data);
         setSearchedS(response.data);
-      }
-    );
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   /*UseEffect calls allStudents on page Mount only*/

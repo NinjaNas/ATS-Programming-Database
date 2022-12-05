@@ -35,6 +35,7 @@ async function updateController(req, res) {
       ])
       .then(() => {
         let beginend = "beginning";
+
         if (keys.type == 2) {
           beginend = "end";
         }

@@ -18,12 +18,17 @@ function DemographicsEdit({ id }) {
   const router = useRouter();
 
   const demographicsInfo = () => {
-    Axios.get("/api/demographics/read/", { params: { key: 0, tag: id } }).then(
-      (response) => {
+    Axios.get("/api/demographics/read/", { params: { key: 0, tag: id } })
+      .then((response) => {
         // setDemographics(response.data.filter(s => s.user_id == id));
         setDemographics(response.data[0]);
-      }
-    );
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
+      });
   };
 
   const onSave = () => {
@@ -155,6 +160,7 @@ function DemographicsEdit({ id }) {
           ) : (
             <></>
           )}
+
 
           {/* <InputForm label="Specify Other Race" ref={raceOtherSpecifyRef} passedValue = {demographics.race_other_specify} />             */}
           <Dropdown

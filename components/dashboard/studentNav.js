@@ -38,6 +38,13 @@ function studentNav() {
 						My Questionnare
 					</a>
 				</Link>
+				<Link href='/app/dashboard/student/help'>
+					<a
+						className={navbarStyles.menuItem}
+						title='participants'>
+						Help
+					</a>
+				</Link>
 				<Link href='/app/login'>
 					<a
 						onClick={logOut}

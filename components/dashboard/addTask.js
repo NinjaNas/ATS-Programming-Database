@@ -32,10 +32,16 @@ function addTask({ session_id, handler }) {
           })
           .catch((err) => {
             console.log(err);
+            if (err.response.status === 401) {
+              router.push("/app/login");
+            }
           });
       })
       .catch((err) => {
         console.log(err);
+        if (err.response.status === 401) {
+          router.push("/app/login");
+        }
       });
   };
 
