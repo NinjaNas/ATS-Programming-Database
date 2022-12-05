@@ -1,15 +1,12 @@
 const pool = require("../../utils/pool");
 
 async function updateController(req, res) {
-  console.log("HUUHHH");
   // Format body
   let keys = req.body;
   let id = req.body.id;
   // Required field "id"
   delete keys.id;
 
-  console.log(keys);
-  console.log(id);
   let [rows, fields] = await pool
     .query("SELECT * FROM session WHERE id=?;", [id])
     .catch((err) => {

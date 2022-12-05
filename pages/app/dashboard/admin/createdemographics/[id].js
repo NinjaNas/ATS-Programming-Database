@@ -79,8 +79,8 @@ function CreateDemographics() {
             required
           >
             <option value=""> -- select an option -- </option>
-            <option value="1">Female</option>
-            <option value="2">Male</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
             <option value="3">Non-Binary</option>
             <option value="99">Self-Describe</option>
           </select>

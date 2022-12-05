@@ -24,16 +24,25 @@ function submitQuiz() {
         const session_id = res.data.id;
         Axios.post("/api/session/questionnaire/update", {
           session_id: session_id,
-          type: typeRef.current.value,
-          question_strengths: strRef.current.value,
-          question_help: helpRef.current.value,
-          question_pride: prideRef.current.value,
-          question_relationships: relationRef.current.value,
-          question_collaboration: collaborateRef.current.value,
-          question_composure: composeRef.current.value,
-          question_goals: goalRef.current.value,
+          type: typeRef.current.value != "" ? typeRef.current.value : null,
+          question_strengths:
+            strRef.current.value != "" ? strRef.current.value : null,
+          question_help:
+            helpRef.current.value != "" ? helpRef.current.value : null,
+          question_pride:
+            prideRef.current.value != "" ? prideRef.current.value : null,
+          question_relationships:
+            relationRef.current.value != "" ? relationRef.current.value : null,
+          question_collaboration:
+            collaborateRef.current.value != ""
+              ? collaborateRef.current.value
+              : null,
+          question_composure:
+            composeRef.current.value != "" ? composeRef.current.value : null,
+          question_goals:
+            goalRef.current.value != "" ? goalRef.current.value : null,
           status: 1,
-          notes: noteRef.current.value,
+          notes: noteRef.current.value != "" ? noteRef.current.value : null,
         })
           .then(() => {
             router.reload();
