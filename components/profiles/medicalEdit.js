@@ -29,14 +29,28 @@ function MedicalEdit({ id }) {
   const onSave = () => {
     // Password is not passed if it is not needed to be updated
     const body = {
-      contact_name: contactNameRef.current.value,
-      contact_relationship: relationRef.current.value,
-      contact_phone: numberRef.current.value,
-      physician: physicianRef.current.value,
-      hospital: hospitalRef.current.value,
-      medical_concerns: concernRef.current.value,
-      allergies_list: allergyListRef.current.value,
-      allergies: allergyFlagRef.current.value,
+      contact_name:
+        contactNameRef.current.value != ""
+          ? contactNameRef.current.value
+          : null,
+      contact_relationship:
+        relationRef.current.value != "" ? relationRef.current.value : null,
+      contact_phone:
+        numberRef.current.value != "" ? numberRef.current.value : null,
+      physician:
+        physicianRef.current.value != "" ? physicianRef.current.value : null,
+      hospital:
+        hospitalRef.current.value != "" ? hospitalRef.current.value : null,
+      medical_concerns:
+        concernRef.current.value != "" ? concernRef.current.value : null,
+      allergies_list:
+        allergyListRef.current.value != ""
+          ? allergyListRef.current.value
+          : null,
+      allergies:
+        allergyFlagRef.current.value != ""
+          ? allergyFlagRef.current.value
+          : null,
       user_id: id,
     };
 

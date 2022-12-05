@@ -33,11 +33,11 @@ const ContactEdit = ({ id, user_id }) => {
   const onSave = () => {
     const body = {
       // id: contact.id,
-      phone: phoneRef.current.value,
-      address: addressRef.current.value,
-      city: cityRef.current.value,
-      zip: zipRef.current.value,
-      status: statusRef.current.value,
+      phone: phoneRef.current.value != "" ? phoneRef.current.value : null,
+      address: addressRef.current.value != "" ? addressRef.current.value : null,
+      city: cityRef.current.value != "" ? cityRef.current.value : null,
+      zip: zipRef.current.value != "" ? zipRef.current.value : null,
+      status: statusRef.current.value != "" ? statusRef.current.value : null,
     };
     if (id) {
       body.id = id;

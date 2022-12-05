@@ -1,17 +1,12 @@
 const pool = require("../../utils/pool");
 
 async function updateController(req, res) {
-  // console.log(req);
-  // Object destructuring
-  let {
-    id,
-    phone,
-    address,
-    city,
-    zip,
-    status,
-  } = req.body;
-  console.log(id);
+  // Format body
+  let keys = req.body;
+  let id = req.body.id;
+  // Required field "id"
+  delete keys.id;
+
   let [rows, fields] = await pool
     .query("SELECT * FROM contact WHERE id=?;", [id])
     .catch((err) => {
@@ -20,25 +15,15 @@ async function updateController(req, res) {
     });
 
   if (rows.length) {
-    //Overrides arguments with what's currently in the database if empty (Perfect code, no ways to improve it)
-    // EO ---- This logic seems to stop values from updating to a 0
+    // Delete all null values from keys
+    keys = Object.fromEntries(
+      Object.entries(keys).filter(([_, v]) => v != null)
+    );
 
- 
     await pool
-      .execute(
-        "UPDATE contact SET phone=?, address=?, city=?, zip=?, status=? WHERE id=?;",
-
-        [
-          phone,
-          address,
-          city,
-          zip,
-          status,
-          rows[0].id 
-        ]
-      )
+      .query("UPDATE contact SET ? WHERE id=?;", [keys, id])
       .then(() => {
-        console.log("Demographics values updated for user id " + user_id);
+        console.log("Contact values updated for contact id " + id);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +31,6 @@ async function updateController(req, res) {
     // Successful HTTPS
     res.sendStatus(201);
   } else {
-    console.log(rows)
     res.sendStatus(400);
   }
 }

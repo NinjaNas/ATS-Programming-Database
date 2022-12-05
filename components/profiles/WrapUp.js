@@ -73,11 +73,13 @@ const WrapUp = ({ session_id }) => {
   };
 
   const currentUser = () => {
-    Axios.get("/api/userData/").then((response) => {
-      setUser(response.data[0][0]);
-    }).catch(err => {
-      console.log(err);
-    });
+    Axios.get("/api/userData/")
+      .then((response) => {
+        setUser(response.data[0][0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -115,23 +117,65 @@ const WrapUp = ({ session_id }) => {
   const submit = () => {
     const wrapup = {
       id: meeting.id,
-      meeting_date: meetingDateRef.current.value,
-      meeting_time: meetingTimeRef.current.value,
-      location: meetingLocationRef.current.value,
-      family_rep: familyRepRef.current.value,
-      family_rep_attend: familyRepAttendRef.current.value,
-      school_rep: schoolRepRef.current.value,
-      school_rep_attend: schoolRepAttendRef.current.value,
-      other_rep: otherRepRef.current.value,
-      other_rep_attend: otherRepAttend.current.value,
-      parent_translator: parentTranslatorRef.current.value,
-      school_translator: schoolTranslatorRef.current.value,
-      outside_translator: outsideTranslatorRef.current.value,
-      court_involved: courtInvolvedRef.current.value,
-      court_counselor: courtCounselorRef.current.value,
-      meeting_status: meetingStatusRef.current.value,
+      meeting_date:
+        meetingDateRef.current.value != ""
+          ? meetingDateRef.current.value
+          : null,
+      meeting_time:
+        meetingTimeRef.current.value != ""
+          ? meetingTimeRef.current.value
+          : null,
+      location:
+        meetingLocationRef.current.value != ""
+          ? meetingLocationRef.current.value
+          : null,
+      family_rep:
+        familyRepRef.current.value != "" ? familyRepRef.current.value : null,
+      family_rep_attend:
+        familyRepAttendRef.current.value != ""
+          ? familyRepAttendRef.current.value
+          : null,
+      school_rep:
+        schoolRepRef.current.value != "" ? schoolRepRef.current.value : null,
+      school_rep_attend:
+        schoolRepAttendRef.current.value != ""
+          ? schoolRepAttendRef.current.value
+          : null,
+      other_rep:
+        otherRepRef.current.value != "" ? otherRepRef.current.value : null,
+      other_rep_attend:
+        otherRepAttend.current.value != ""
+          ? otherRepAttend.current.value
+          : null,
+      parent_translator:
+        parentTranslatorRef.current.value != ""
+          ? parentTranslatorRef.current.value
+          : null,
+      school_translator:
+        schoolTranslatorRef.current.value != ""
+          ? schoolTranslatorRef.current.value
+          : null,
+      outside_translator:
+        outsideTranslatorRef.current.value != ""
+          ? outsideTranslatorRef.current.value
+          : null,
+      court_involved:
+        courtInvolvedRef.current.value != ""
+          ? courtInvolvedRef.current.value
+          : null,
+      court_counselor:
+        courtCounselorRef.current.value != ""
+          ? courtCounselorRef.current.value
+          : null,
+      meeting_status:
+        meetingStatusRef.current.value != ""
+          ? meetingStatusRef.current.value
+          : null,
       performing_admin: user.id,
-      notes: meetingNotesRef.current.value,
+      notes:
+        meetingNotesRef.current.value != ""
+          ? meetingNotesRef.current.value
+          : null,
     };
 
     Axios.post("/api/session/wrapup/update", wrapup)
