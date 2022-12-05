@@ -28,7 +28,11 @@ async function updateController(req, res) {
     );
 
     await pool
-      .query("UPDATE sel_questionnaire SET ? WHERE session_id=?;", [keys, id])
+      .query("UPDATE sel_questionnaire SET ? WHERE session_id=? AND type=?;", [
+        keys,
+        id,
+        keys.type,
+      ])
       .then(() => {
         let beginend = "beginning";
         if (keys.type == 2) {

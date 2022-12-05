@@ -74,7 +74,7 @@ it("should send a status of 201 when questionnaire does exist and update values 
   );
   // Call to update sel_questionnaire
   expect(mPool.query).toHaveBeenCalledWith(
-    "UPDATE sel_questionnaire SET ? WHERE session_id=?;",
+    "UPDATE sel_questionnaire SET ? WHERE session_id=? AND type=?;",
     [
       {
         question_collaboration: "N/A",
@@ -88,6 +88,7 @@ it("should send a status of 201 when questionnaire does exist and update values 
         type: "sel",
       },
       "1",
+      "sel",
     ]
   );
   // SendStatus call
