@@ -27,7 +27,7 @@ Here is a snapshot of what the student will see when they log in. The page is fu
 - HTML / CSS / Javascript
 - Express.js
 - Passport.js
-- -Bcrypt.js
+- Bcrypt.js
 - MySQL
 - PlanetScale
 - Jest
