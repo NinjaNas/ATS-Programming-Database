@@ -1,3 +1,5 @@
+const pool = require("../utils/pool");
+
 /**
  * If query is requested then respond with user data given the user id
  * Else return the user data of the current logged in user
@@ -17,16 +19,18 @@ async function userController(req, res) {
         .catch((err) => {
           // Do not throw error inside of promise
           console.log(err);
-          res.sendStatus(400);
         });
     } else {
-      res.sendStatus(401);
+      return res.sendStatus(401);
     }
   } else {
-    res.send(req.user);
+    if (req.user) {
+      res.send(req.user);
+    } else {
+      return res.sendStatus(401);
+    }
   }
 
-  console.log("Sent user");
   res.status(200);
 }
 

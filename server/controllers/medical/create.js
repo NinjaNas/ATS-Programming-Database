@@ -25,8 +25,6 @@ async function createController(req, res) {
       console.log(err);
     });
 
-    console.log(req.body);
-
   // if 0 then there is no user
   if (!rows.length) {
     // Error out if no user
@@ -39,21 +37,19 @@ async function createController(req, res) {
         .execute(
           "INSERT INTO medical (user_id, contact_name, contact_relationship, contact_phone, physician, hospital, medical_concerns, allergies, allergies_list) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);",
           [
-          id,
-          contact_name,
-          contact_relationship,
-          contact_phone,
-          physician,
-          hospital,
-          medical_concerns,
-          allergies,
-          allergies_list,
+            id,
+            contact_name,
+            contact_relationship,
+            contact_phone,
+            physician,
+            hospital,
+            medical_concerns,
+            allergies,
+            allergies_list,
           ]
         )
         // .then() can be used because promise not destructured
-        .then(() => {
-          console.log("Molto bene");
-        })
+        .then(() => {})
         .catch((err) => {
           console.log(err);
         });
