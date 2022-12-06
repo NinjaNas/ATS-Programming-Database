@@ -1,106 +1,53 @@
 # ATS-Programming-Database
 
-Run using `yarn run dev`
-Starts a nodemon server and a hot refresh for next.js.
+### Introduction
+Boomerang Youth Inc is a non-profit organization that promotes positive growth and bounce back opportunities to middle and high school students across the Chapel Hill-Carrboro City Schools district as well as the greater Orange County District. Their biggest program, Alternative to Suspension (ATS), served around 112 students from 15 schools within the two districts during the ’21-’22 academic year. This program offers students facing suspension an opportunity to re-engage and build on their strengths by connecting and growing alongside each other.
 
-**The .env file should be in the root.**
+As the program grows, Boomerang Youth Inc is finding it harder to keep up with student documentation and student-staff communication. While they currently employ several methods to store data on students, it is becoming more and more complex to access information stored across multiple domains. Therefore, Boomerang Youth Inc is looking for a software solution that would address this issue.
 
-Endpoints:
+With this project, we aim to help the organization streamline their administrative overhead by developing new software solutions that integrate into their workflow along with providing new capabilities.
 
-Get database records:
-`localhost:3000/api/user`
+This project was developed using the Agile/XP method by Elad Ohana, Gabriel Mercado, Zackary Barbari, and Khang Tran for the COMP 523 Software Engineering Lab.
 
-Create Users:
-`localhost:3000/api/user/create`
-Page should redirect back to `/api/user`
+## Technologies Used
+- Next.js / React.js
+- HTML / CSS / Javascript
+- Express.js
+- Passport.js
+- MySQL
+- PlanetScale
+- Jest
 
-Authorize user:
-`localhost:3000/api/login`
-Send json with email: and password: for verification to this endpoint
+## Features
+### Administrators
+- Modify and create 
+  - Users (Admin and Students) through the user dashboard or through the list of all users
+  - Student Sessions 
+  - Student Tasks (Verifying or incompleting)
+  - Student attendence to the program 
+  - Forms for the students to fill out (Questionnaire and Wrapup)
+  - Student info (contact information, medical information, and demographics)
+- Automatically aggerate and view data from the database
+### Students
+- Modify and create 
+  - Tasks (completing)
+- Fill out questionnaire
+- Access the help page
+### Technical
+- Authorization system using passport-local strategy
+- Session stores on server and database
+- Queries to a MySQL database
+- Unit testing on api calls using Jest
 
-Logout user and remove session:
-`localhost:3000/api/logout`
+## Admin Demo
+https://www.youtube.com/watch?v=T_4iN3jzSXU
+[![Admin Guide](https://user-images.githubusercontent.com/54213302/206003459-084128d3-41b4-48d6-b6ab-157a4126a31b.png)](https://www.youtube.com/watch?v=T_4iN3jzSXU)
 
-Client Folders:
+## Student Dashboard View
+![Student View](https://user-images.githubusercontent.com/54213302/206004650-8e9de2e3-9c90-400d-bea2-bbcc6d1b9ad7.png)
 
-- components - Contains React components
+## Team Website
+https://tarheels.live/comp523f22project/
+[![Team Website](https://user-images.githubusercontent.com/54213302/206006404-36d718c1-3fea-4b49-af08-fb19eb52615d.png)](https://tarheels.live/comp523f22project/)
 
-- pages - Contains the client pages, does the routing on its own
-
-  - \_app.js - Renders all the pages, uses globals.css
-
-  - \_document.js - Allows injection of scripts into the head
-
-- server - Express backend
-
-- styles - CSS stylesheets (Only one global.css, use {name}.module.css for certain modules)
-
-Server Folders:
-
-- routes - Contains the routing for the api
-
-- controllers - Contains the logic for the api calls
-
-- utils - Contains auth strategies, helper functions, and code that is reused
-
-  - `\bcrypt` - Hash library, helper functions
-
-  - `\local` - passport-local auth strategy
-
-  - `\pool` - Create pool connections to the database
-
-  - `\authorize` - Middleware to create authorization for certain files or use it as middleware for certain HTTPS requests
-
-Testing:
-
-- tests - Contains the Jest test files (Run using `yarn test`)
-
-Pages:
-
-- `/`
-
-- `/admin`
-
-- `/student`
-
-- `/sign-in`
-
-- `/login`
-
-- `/user/test`
-
-Testing Auth:
-
-- Install dependencies `yarn install`
-- Start server `yarn run dev`
-- Go to `/api/user`, see that you are unauthorized
-- Use navbar to go to `/sign-up`
-- Create a random account, see that it gives a 401 error
-- Use navbar to go to `/login`
-- Login with no email or no password, see that it does not work
-- Login with invalid email or password, see that it does not work
-- Login with email: `student` and `test` (has type student)
-- Go to `/api/user`, see that you are unauthorized
-- Check Arctype to see session logged in `sessions` table
-- Check that the cookie in the browser is created
-- Login with email: `counselor` and `test` (has type counselor)
-- Go to `/api/user`, see that you are authorized
-- Login with email: `admin` and `test` (has type admin)
-- Go to `/api/user`, see that you are authorized
-- Restart the server
-- Go back to `/api/user`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
-- Use navbar to go to `/sign-up`
-- Create a random account, see that it gives `Values inserted!` in console
-- Use navbar to go to logout
-- Check Arctype to see session removed in `sessions` table
-- The cookie should be removed in the browser
-
-Redirect Testing:
-
-- Start server `yarn run dev`
-- Go to `/app/login`
-- Login with email: `student` and `test` (has type student)
-- This should take you to the student dashboard
-- Go to `/app/login`
-- Login with email: `admin` and `test` (has type admin)
-- This should take you to the admin dashboard
+## Documentation
