@@ -23,14 +23,17 @@ Here is a snapshot of what the student will see when they log in. The page is fu
 ![Student View](https://user-images.githubusercontent.com/54213302/206004650-8e9de2e3-9c90-400d-bea2-bbcc6d1b9ad7.png)
 
 ## Technologies Used
-- Next.js / React.js
-- HTML / CSS / Javascript
-- Express.js
-- Passport.js
-- Bcrypt.js
-- MySQL
-- PlanetScale
-- Jest
+- Frontend
+  - Next.js / React.js
+  - HTML / CSS / Javascript
+- Backend
+  - Express.js
+  - Passport.js
+  - Bcrypt.js
+  - Jest.js
+- Database
+  - MySQL
+  - PlanetScale
 
 ## Features
 ### Administrators
@@ -60,8 +63,8 @@ This is the team website where we have documented our team, progress, assignment
 [![Team Website](https://user-images.githubusercontent.com/54213302/206006404-36d718c1-3fea-4b49-af08-fb19eb52615d.png)](https://tarheels.live/comp523f22project/)
 
 ## Documentation
-### User Manual
-The user manual contains all of the necessary information to install/setup the codebase and the database for it. 
+### User Manual and Developer Manual
+The user manual contains all of the necessary information to install/setup the codebase and the database for it. It also contains the developer manual for the succending team to read, explaining the structure of the codebase, and where they should be head towards next.
 - https://tarheels.live/comp523f22project/documentation-plan/
 ### Requirements and User Stories
 The requirements that we found necessary, probable, and improbable are listed here. The user stories that guided us are also listed.
