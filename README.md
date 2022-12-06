@@ -64,7 +64,7 @@ This is the team website where we have documented our team, progress, assignment
 
 ## Documentation
 ### User Manual and Developer Manual
-The user manual contains all of the necessary information to install/setup the codebase and the database for it. It also contains the developer manual for the succending team to read, explaining the structure of the codebase, and where they should be head towards next.
+The user manual contains all of the necessary information to **install/setup the codebase and the database for it**. It also contains the **developer manual for the succending team to read**, explaining the structure of the codebase, and where they should be head towards next.
 - https://tarheels.live/comp523f22project/documentation-plan/
 ### Requirements and User Stories
 The requirements that we found necessary, probable, and improbable are listed here. The user stories that guided us are also listed.
