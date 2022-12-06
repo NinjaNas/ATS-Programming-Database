@@ -21,16 +21,16 @@ This project was developed using the Agile/XP method by Elad Ohana, Gabriel Merc
 ## Features
 ### Administrators
 - Modify and create 
-  - Users (Admin and Students) through the user dashboard or through the list of all users
+  - Admin and students users through the user dashboard or through the list of all users
   - Student Sessions 
-  - Student Tasks (Verifying or incompleting)
+  - Verifying or incompleting student tasks
   - Student attendence to the program 
-  - Forms for the students to fill out (Questionnaire and Wrapup)
-  - Student info (contact information, medical information, and demographics)
+  - Questionnaire and wrapup forms for the students to fill out
+  - Contact information, medical information, and demographics
 - Automatically aggerate and view data from the database
 ### Students
 - Modify and create 
-  - Tasks (completing)
+  - Completing tasks
 - Fill out questionnaire
 - Access the help page
 ### Technical
