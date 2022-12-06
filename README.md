@@ -50,7 +50,7 @@ Here is a snapshot of what the student will see when they log in. The page is fu
   - Completing tasks
 - Fill out questionnaire
 - Access the help page
-### Technical
+### Technical Features
 - Authorization system using passport-local strategy
 - Session stores on server and database
 - Queries to a MySQL database
