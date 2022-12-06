@@ -63,14 +63,14 @@ This is the team website where we have documented our team, progress, assignment
 [![Team Website](https://user-images.githubusercontent.com/54213302/206006404-36d718c1-3fea-4b49-af08-fb19eb52615d.png)](https://tarheels.live/comp523f22project/)
 
 ## Documentation
-### User Manual and Developer Manual
-The user manual contains all of the necessary information to **install/setup the codebase and the database for it**. It also contains the **developer manual for the succending team to read**, explaining the structure of the codebase, and where they should be head towards next.
+### User Manual and Developer Guide
+The user manual contains all of the necessary information to **install/setup the codebase and the database for it**. It also contains the **developer guide for the succending team to read**, explaining the structure of the codebase, and where they should be head towards next.
 - https://tarheels.live/comp523f22project/documentation-plan/
 ### Requirements and User Stories
 The requirements that we found necessary, probable, and improbable are listed here. The user stories that guided us are also listed.
 - https://tarheels.live/comp523f22project/deliverables/d1-specifications/
 ### Design Document and Data Dictionary
-Here is our Architecture diagram, data dictionary, and design rationale.
+Here is our architecture diagram, data dictionary, and design rationale.
 - https://tarheels.live/comp523f22project/d2-design-document/
 ### Testing Plan
 This shows our ideal test plan and our current test plan.
