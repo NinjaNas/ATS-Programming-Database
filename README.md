@@ -54,7 +54,7 @@ Here is a snapshot of what the student will see when they log in. The page is fu
 - Authorization system using passport-local strategy
 - Session stores on server and database
 - Queries to a MySQL database
-- Unit testing on api calls using Jest
+- Unit testing on api calls using Jest.js
 
 ## Team Website
 This is the team website where we have documented our team, progress, assignments, and the project.
