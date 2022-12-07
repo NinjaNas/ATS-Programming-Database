@@ -1,106 +1,96 @@
 # ATS-Programming-Database
 
-Run using `yarn run dev`
-Starts a nodemon server and a hot refresh for next.js.
+### Introduction
+Boomerang Youth Inc is a non-profit organization that promotes positive growth and bounce back opportunities to middle and high school students across the Chapel Hill-Carrboro City Schools district as well as the greater Orange County District. Their biggest program, Alternative to Suspension (ATS), served around 112 students from 15 schools within the two districts during the ’21-’22 academic year. This program offers students facing suspension an opportunity to re-engage and build on their strengths by connecting and growing alongside each other.
 
-**The .env file should be in the root.**
+As the program grows, Boomerang Youth Inc is finding it harder to keep up with student documentation and student-staff communication. While they currently employ several methods to store data on students, it is becoming more and more complex to access information stored across multiple domains. Therefore, Boomerang Youth Inc is looking for a software solution that would address this issue.
 
-Endpoints:
+With this project, we aim to help the organization streamline their administrative overhead by developing new software solutions that integrate into their workflow along with providing new capabilities.
 
-Get database records:
-`localhost:3000/api/user`
+*This project was developed using the Agile/XP method by Elad Ohana, Gabriel Mercado, Zackary Barbari, and Khang Tran for the Fall 2022 COMP 523 Software Engineering Lab at The University of North Carolina at Chapel Hill*.
 
-Create Users:
-`localhost:3000/api/user/create`
-Page should redirect back to `/api/user`
+Link to Boomerang Youth's Website: https://boomerangyouth.org/
 
-Authorize user:
-`localhost:3000/api/login`
-Send json with email: and password: for verification to this endpoint
+## Admin Demo
+This is the demo of the admin side of the project: 
+- https://www.youtube.com/watch?v=T_4iN3jzSXU
 
-Logout user and remove session:
-`localhost:3000/api/logout`
+[![Admin Guide](https://user-images.githubusercontent.com/54213302/206003459-084128d3-41b4-48d6-b6ab-157a4126a31b.png)](https://www.youtube.com/watch?v=T_4iN3jzSXU)
 
-Client Folders:
+## Student Dashboard View
+Here is a snapshot of what the student will see when they log in. The page is fully functional. Students are able to create and complete tasks and fill out the questionnaire.
 
-- components - Contains React components
+![Student View](https://user-images.githubusercontent.com/54213302/206004650-8e9de2e3-9c90-400d-bea2-bbcc6d1b9ad7.png)
 
-- pages - Contains the client pages, does the routing on its own
+## Technologies Used
+- Frontend
+  - Next.js / React.js
+  - HTML / CSS / Javascript
+- Backend
+  - Express.js
+  - Passport.js
+  - Bcrypt.js
+  - Jest.js
+- Database
+  - MySQL
+  - PlanetScale
 
-  - \_app.js - Renders all the pages, uses globals.css
+## Features
+### Administrators
+- Modify and create 
+  - Admin and students users through the user dashboard or through the list of all users
+  - Student Sessions 
+  - Verifying or incompleting student tasks
+  - Student attendence to the program 
+  - Questionnaire and wrapup forms for the students to fill out
+  - Contact information, medical information, and demographics
+- Automatically aggerate and view data from the database
+### Students
+- Modify and create 
+  - Completing tasks
+- Fill out questionnaire
+- Access the help page
+### Technical Features
+- Authorization system using passport-local strategy
+- Session stores on server and database
+- Queries to a MySQL database
+- Unit testing on api calls using Jest.js
 
-  - \_document.js - Allows injection of scripts into the head
+## Team Website
+This is the team website where we have documented our team, progress, assignments, and the project.
+- https://tarheels.live/comp523f22project/
 
-- server - Express backend
+[![Team Website](https://user-images.githubusercontent.com/54213302/206006404-36d718c1-3fea-4b49-af08-fb19eb52615d.png)](https://tarheels.live/comp523f22project/)
 
-- styles - CSS stylesheets (Only one global.css, use {name}.module.css for certain modules)
+## Documentation
+### User Manual and Developer Guide
+The user manual contains all of the necessary information to **install/setup the codebase and the database for it**. It also contains the **developer guide for the succeeding team to read**, explaining the structure of the codebase, and where they should be head towards next.
+- https://tarheels.live/comp523f22project/d4-user-manual/
+### Requirements and User Stories
+The requirements that we found necessary, probable, and improbable are listed here. The user stories that guided us are also listed.
+- https://tarheels.live/comp523f22project/deliverables/d1-specifications/
+### Design Document and Data Dictionary
+Here is our architecture diagram, data dictionary, and design rationale.
+- https://tarheels.live/comp523f22project/d2-design-document/
+### Testing Plan
+This shows our ideal test plan and our current test plan.
+- https://tarheels.live/comp523f22project/d3-testing-plan/
+### Progress
+Here we documented our progress with the project, class assignments, when we met together, and when we met with the client.
+- https://tarheels.live/comp523f22project/progress/
+## Other Resources from COMP 523
+### Next.js Tech Talk
+One of the assignments for COMP 523 was a tech talk. We decided to talk about create a Next.js project and some of the important features such as special files and folders, routing, api calls, SEO, and different rendering methods (CSR, SSR, SSG, and ISR).
+- https://tarheels.live/comp523f22project/tech-talk/
+- https://github.com/eladohana/comp523-teamM-techtalk
 
-Server Folders:
+## Contact Team
+Team Email: comp523team-M@unc.edu
 
-- routes - Contains the routing for the api
+Elad Ohana (Design Coordinator): elad_ohana@med.unc.edu
 
-- controllers - Contains the logic for the api calls
+Gabriel Mercado (Team Coordinator): gabomm99@email.unc.edu
 
-- utils - Contains auth strategies, helper functions, and code that is reused
+Zackary Barbari (Communication Lead): zackb@unc.edu
 
-  - `\bcrypt` - Hash library, helper functions
-
-  - `\local` - passport-local auth strategy
-
-  - `\pool` - Create pool connections to the database
-
-  - `\authorize` - Middleware to create authorization for certain files or use it as middleware for certain HTTPS requests
-
-Testing:
-
-- tests - Contains the Jest test files (Run using `yarn test`)
-
-Pages:
-
-- `/`
-
-- `/admin`
-
-- `/student`
-
-- `/sign-in`
-
-- `/login`
-
-- `/user/test`
-
-Testing Auth:
-
-- Install dependencies `yarn install`
-- Start server `yarn run dev`
-- Go to `/api/user`, see that you are unauthorized
-- Use navbar to go to `/sign-up`
-- Create a random account, see that it gives a 401 error
-- Use navbar to go to `/login`
-- Login with no email or no password, see that it does not work
-- Login with invalid email or password, see that it does not work
-- Login with email: `student` and `test` (has type student)
-- Go to `/api/user`, see that you are unauthorized
-- Check Arctype to see session logged in `sessions` table
-- Check that the cookie in the browser is created
-- Login with email: `counselor` and `test` (has type counselor)
-- Go to `/api/user`, see that you are authorized
-- Login with email: `admin` and `test` (has type admin)
-- Go to `/api/user`, see that you are authorized
-- Restart the server
-- Go back to `/api/user`, see that you are still authorized, even if the server closes down (cookie with expiration in database managed by session stores)
-- Use navbar to go to `/sign-up`
-- Create a random account, see that it gives `Values inserted!` in console
-- Use navbar to go to logout
-- Check Arctype to see session removed in `sessions` table
-- The cookie should be removed in the browser
-
-Redirect Testing:
-
-- Start server `yarn run dev`
-- Go to `/app/login`
-- Login with email: `student` and `test` (has type student)
-- This should take you to the student dashboard
-- Go to `/app/login`
-- Login with email: `admin` and `test` (has type admin)
-- This should take you to the admin dashboard
+Khang Tran (Technical Lead): ktra@email.unc.edu
