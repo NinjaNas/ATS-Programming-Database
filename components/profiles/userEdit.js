@@ -15,12 +15,12 @@ function UserEdit({ id }) {
   const userInfo = () => {
     Axios.get("/api/user/read/", { params: { key: 0, tag: id } })
       .then((response) => {
-        // setDemographics(response.data.filter(s => s.user_id == id));
         setInfo(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
-        if (err.response.status === 401) {
+          // If unauthorized, redirect back to login page
+          if (err.response.status === 401) {
           router.push("/app/login");
         }
       });

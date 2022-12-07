@@ -1,6 +1,7 @@
 
 import React from "react";
 
+// React.forwardRef allows this component to provide the reference info to the parent calling it 
 const CheckBox = React.forwardRef(
   ({ label, passedValue, onChange}, ref) => {
     return (

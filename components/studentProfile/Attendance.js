@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 const Attendance = ({ session_id, onfetch }) => {
   const [days, setDays] = useState([]);
   const [add, setAdd] = useState(true);
-  // const [retrieve, setRetrieve] = useState(false);
   const router = useRouter();
+
   const attendance = () => {
     setAdd(false);
     Axios.get("/api/session/day/read", {
@@ -24,7 +24,8 @@ const Attendance = ({ session_id, onfetch }) => {
       })
       .catch((err) => {
         console.log(err);
-        if (err.response.status === 401) {
+          // If unauthorized, redirect back to login page
+          if (err.response.status === 401) {
           router.push("/app/login");
         }
       });

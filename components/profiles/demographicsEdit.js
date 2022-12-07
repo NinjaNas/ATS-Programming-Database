@@ -18,13 +18,15 @@ function DemographicsEdit({ id }) {
   const router = useRouter();
 
   const demographicsInfo = () => {
-    Axios.get("/api/demographics/read/", { params: { key: 0, tag: id } })
+    Axios.get("/api/demographics/read/", 
+      { params: { key: 0, tag: id } } // key=0 matches demographics.user_id to tag
+    )
       .then((response) => {
-        // setDemographics(response.data.filter(s => s.user_id == id));
         setDemographics(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
+        // If unauthorized, redirect back to login page
         if (err.response.status === 401) {
           router.push("/app/login");
         }
@@ -74,11 +76,13 @@ function DemographicsEdit({ id }) {
   const ethnicityRef = useRef();
   const freeLunchRef = useRef();
 
+  /* useEffect calls demographicsInfo on mount only*/
   useEffect(() => {
     console.log(id);
     demographicsInfo();
   }, []);
 
+  /* Update state information to allow hiding/showing conditional fields when appropriate */
   useEffect(() => {
     if (demographics) {
       setGenderValue(demographics.gender);
@@ -110,7 +114,7 @@ function DemographicsEdit({ id }) {
             passedOptions={gender}
             onChange={changeGender}
           />
-
+          {/* Conditional field */}
           {genderValue == 99 && (
             <InputForm
               label="Specify Other Gender"
@@ -151,6 +155,7 @@ function DemographicsEdit({ id }) {
             passedValue={demographics.race_other}
             onChange={changeRaceOtherValue}
           />
+          {/* Conditional field */}
           {raceOther ? (
             <InputForm
               ref={raceOtherSpecifyRef}
@@ -160,9 +165,6 @@ function DemographicsEdit({ id }) {
           ) : (
             <></>
           )}
-
-
-          {/* <InputForm label="Specify Other Race" ref={raceOtherSpecifyRef} passedValue = {demographics.race_other_specify} />             */}
           <Dropdown
             label="Ethnicity"
             ref={ethnicityRef}

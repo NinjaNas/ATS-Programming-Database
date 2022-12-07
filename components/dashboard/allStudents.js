@@ -33,10 +33,6 @@ function allStudents() {
     everyStudent();
   }, []);
 
-  /*UseEffect calls allStudents on page Mount only*/
-  useEffect(() => {
-    everyStudent();
-  }, []);
 
   return (
     <div className={DashboardStyles.currentStud}>

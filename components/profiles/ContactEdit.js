@@ -11,7 +11,11 @@ const ContactEdit = ({ id, user_id }) => {
   const [contact, setContact] = useState();
   const contactInfo = () => {
     if (id) {
-      Axios.get("/api/contact/read/", { params: { key: 1, tag: id } })
+      // Grab the contact information for the specified user
+      Axios.get(
+        "/api/contact/read/",
+        { params: { key: 1, tag: id } } // key=1 checks that the contact.id matches the tag
+      )
         .then((response) => {
           setContact(response.data[0]);
         })
@@ -22,17 +26,19 @@ const ContactEdit = ({ id, user_id }) => {
           }
         });
     } else {
+      // if no id is provided, then create a new contact object with a matching user_id
       setContact({ user_id: user_id });
     }
   };
 
+  /* useEffect on mount calls contactInfo */
   useEffect(() => {
     contactInfo();
   }, []);
 
   const onSave = () => {
+    // Create a body object to send to the server
     const body = {
-      // id: contact.id,
       phone: phoneRef.current.value != "" ? phoneRef.current.value : null,
       address: addressRef.current.value != "" ? addressRef.current.value : null,
       city: cityRef.current.value != "" ? cityRef.current.value : null,
@@ -40,6 +46,7 @@ const ContactEdit = ({ id, user_id }) => {
       status: statusRef.current.value != "" ? statusRef.current.value : null,
     };
     if (id) {
+      // if an id was given, then update the contact
       body.id = id;
       Axios.post("/api/contact/update", body)
         .then((response) => {
@@ -49,6 +56,7 @@ const ContactEdit = ({ id, user_id }) => {
           console.log(err);
         });
     } else {
+      // if a user_id was given, then creat a new contact for that user
       body.user_id = user_id;
       Axios.post("/api/contact/create", body)
         .then((response) => {

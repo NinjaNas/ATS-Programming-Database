@@ -39,6 +39,7 @@ function adminTasklistWrapper({ session_id }) {
     allTasks();
   }, []);
 
+  /*UseEffect calls allStudents again whenever the tasks are updated to refresh on page*/
   useEffect(() => {
     allTasks();
   }, [updateToggle]);
