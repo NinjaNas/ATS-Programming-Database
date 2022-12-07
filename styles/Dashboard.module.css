@@ -1,3 +1,4 @@
+/* Basic main page styling for most pages around website */
 .mainPage {
 	font-size: 20px;
 	background-color: whitesmoke;
@@ -8,7 +9,7 @@
 	padding: 0;
 	border: 0;
 }
-
+/* Meant to be used when page content goes over 100vh */
 .longerPage {
 	font-size: 20px;
 	background-color: whitesmoke;
@@ -19,7 +20,7 @@
 	padding: 0;
 	border: 0;
 }
-
+/* Scrollable grey box used around the website when content is of undefined size */
 .currentStud {
 	background-color: #dbdcda;
 	border-radius: 20px;
@@ -57,7 +58,7 @@
 	margin-right: 10px;
 	overflow-y: scroll;
 }
-
+/* Style of box where tasklist is */
 .taskBox {
 	background-color: transparent;
 	border-radius: 20px;
@@ -69,7 +70,7 @@
 	margin-left: 10px;
 	margin-right: 10px;
 }
-
+/* Style of subbox where tasklist is */
 .tasklist {
 	background-color: #a3ddcb;
 	border-radius: 20px;
@@ -98,7 +99,7 @@
 	margin-right: 20px;
 	overflow-y: scroll;
 } */
-
+/* More styling for the task component */
 .taskpage {
 	background-color: #a3ddcb;
 	border-radius: 20px;
@@ -125,7 +126,7 @@
 	margin-right: 20px;
 	overflow-y: scroll;
 }
-
+/* Generic styling for titles around website */
 .title {
 	color: #595959;
 	font-family: sans-serif;
@@ -133,7 +134,7 @@
 	font-weight: 600;
 	margin-top: 1.5%;
 }
-
+/* Generic styling for subtitles around website */
 .subtitle {
 	color: #595959;
 	font-family: sans-serif;
@@ -141,7 +142,7 @@
 	font-weight: 600;
 	margin-top: 10px;
 }
-
+/* Generic styling for text around website */
 .text {
 	color: #595959;
 	font-family: sans-serif;
@@ -149,7 +150,7 @@
 	font-weight: 600;
 	margin-top: 10px;
 }
-
+/* Styling used for names of tasks under tasklist */
 .taskName {
 	color: #595959;
 	font-family: sans-serif;
@@ -157,7 +158,7 @@
 	font-weight: 600;
 	margin-top: 2px;
 }
-
+/* Styling used for rest of text under tasklist */
 .taskRest {
 	color: #595959;
 	font-family: sans-serif;
@@ -168,7 +169,7 @@
 	margin-left: 0%;
 	display: inline-block;
 }
-
+/* Styling used for checkbox under tasklist */
 .checkbox {
 	accent-color: #e6b566;
 }

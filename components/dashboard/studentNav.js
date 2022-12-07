@@ -4,6 +4,7 @@ import Link from "next/link";
 import Axios from "axios";
 import { useRouter } from "next/router";
 
+//This Component is a Navbar for Student dashboard with 4 tabs//
 function studentNav() {
 	const router = useRouter();
 

@@ -5,6 +5,7 @@ async function readController(req, res) {
   const { key, tag } = req.query;
 
   //0 key reads UUID, 1 key reads UID, 2 key reads all
+
   if (key == 0) {
     await pool
       .query("SELECT * FROM contact WHERE user_id=?;", [tag])
@@ -16,7 +17,9 @@ async function readController(req, res) {
         // Do not throw error inside of promise
         console.log(err);
       });
+      
   } else if (key == 1) { 
+
     await pool
       .query("SELECT * FROM contact WHERE id=?;", [tag])
       .then((table) => {

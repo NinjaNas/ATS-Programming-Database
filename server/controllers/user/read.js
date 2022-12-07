@@ -18,7 +18,7 @@ async function readController(req, res) {
       });
   } else if (key == 1) {
     await pool
-      .query("SELECT * FROM user WHERE status=? AND type=?;", [1, 'student'])
+      .query("SELECT * FROM user WHERE status=? AND type=?;", [1, "student"])
       .then((table) => {
         // Send HTTPS, promises return the table access rows at 0 and fields at 1
         res.send(table[0]);
@@ -49,9 +49,9 @@ async function readController(req, res) {
         // Do not throw error inside of promise
         console.log(err);
       });
-    // Successful HTTPS
-    res.status(201);
   }
+  // Successful HTTPS
+  res.status(201);
 }
 
 module.exports = { readController };

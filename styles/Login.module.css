@@ -1,3 +1,4 @@
+/* Styling of overall login page background and size */
 .login {
   align-items: center;
   background-color: whitesmoke;
@@ -5,7 +6,7 @@
   justify-content: center;
   height: 100vh;
 }
-
+/* Styling of box where actual input fields are in login page */
 .form {
   background-color: #e6b566;
   border-radius: 20px;
@@ -25,7 +26,7 @@
   padding: 20px;
   width: 320px;
 }
-
+/* Styling for title in login website */
 .title {
   color: #eee;
   font-family: sans-serif;
@@ -33,7 +34,7 @@
   font-weight: 600;
   margin-top: 30px;
 }
-
+/* Styling for subtitle in login website */
 .subtitle {
   color: #eee;
   font-family: sans-serif;
@@ -41,13 +42,13 @@
   font-weight: 600;
   margin-top: 10px;
 }
-
+/* Styling for input "outer" container in login website */
 .input_container {
   height: 50px;
   position: relative;
   width: 100%;
 }
-
+/* Styling for input in login website */
 .input {
   background-color: #e8e9a1;
   border-radius: 12px;
@@ -70,7 +71,7 @@
   font-weight: bold;
   font-size: 20px;
 }
-
+/* Styling for button in login website */
 .submit {
   background-color: #a3ddcb;
   border-radius: 12px;

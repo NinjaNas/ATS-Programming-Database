@@ -9,7 +9,7 @@ import {
 	ResponsiveContainer,
 } from "recharts";
 import React from "react";
-
+//Barchart from rechart dependencie. Check rechart website for more guidence//
 function barChart({ data, barKey, dataKey }) {
 	return (
 		<ResponsiveContainer
