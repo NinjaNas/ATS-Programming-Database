@@ -73,7 +73,7 @@ This is the team website where we have documented our team, progress, assignment
 
 - https://tarheels.live/comp523f22project/
 
-[![Team Website](https://user-images.githubusercontent.com/54213302/206006404-36d718c1-3fea-4b49-af08-fb19eb52615d.png)](https://tarheels.live/comp523f22project/)
+[![Team Website](https://user-images.githubusercontent.com/54213302/206104452-0b1f41f2-da13-403f-a064-6c41c9bf5c24.png)](https://tarheels.live/comp523f22project/)
 
 ## Documentation
 
