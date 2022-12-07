@@ -5,9 +5,6 @@ const pool = require("../../server/utils/pool");
 
 // Mocking the modules
 jest.mock("../../server/utils/pool");
-jest.mock("../../server/utils/bcrypt", () => ({
-  hash: jest.fn(() => "hash_password"),
-}));
 
 // Mocking pool connection
 const mPool = jest.mocked(pool);
