@@ -55,7 +55,6 @@ function tasklist({ tasks, type, title, handler }) {
         )}
       </div>
     </div>
-   
   );
 }
 

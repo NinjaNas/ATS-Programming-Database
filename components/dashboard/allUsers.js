@@ -11,7 +11,7 @@ function allUsers() {
   /*Create state to load user data*/
   const [users, setUsers] = useState([]);
   const [searchedU, setSearchedU] = useState([]);
-  
+
   /*Router call in case of redirect*/
   const router = useRouter();
   /*Axios call to get user data*/

@@ -52,7 +52,8 @@ async function checkForAdmin() {
         // Otherwise, no action necessary
         console.log("Admins present, use existing accounts to login.");
       }
-    }).catch(err => {
+    })
+    .catch((err) => {
       // Failed query
       console.log(err);
     });

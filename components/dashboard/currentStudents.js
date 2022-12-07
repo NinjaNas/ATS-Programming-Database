@@ -73,8 +73,8 @@ function currentStudents() {
     activeSessions();
   }, []);
 
-  /* Get the percentage of 
-   * verified Boomerange tasks + days attended compared to the total 
+  /* Get the percentage of
+   * verified Boomerange tasks + days attended compared to the total
    * for a single session*/
   const getPercentage = (session_id) => {
     // get all non-academic tasks matching the session
@@ -87,7 +87,7 @@ function currentStudents() {
     let attended = session_days.filter((day) => day.status == 1);
     // get the number of verified tasks
     let completed = session_tasks.filter((task) => task.status == 3);
-    
+
     let result = Math.round(
       ((attended.length + completed.length) /
         (session_tasks.length + session_days.length)) *

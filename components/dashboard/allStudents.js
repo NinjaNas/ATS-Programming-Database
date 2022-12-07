@@ -33,7 +33,6 @@ function allStudents() {
     everyStudent();
   }, []);
 
-
   return (
     <div className={DashboardStyles.currentStud}>
       <h3 className={DashboardStyles.title}>All Students</h3>

@@ -11,7 +11,8 @@ const ContactRead = ({ user_id }) => {
   const router = useRouter();
   /* Get all the contacts for the specified user*/
   const contactInfo = () => {
-    Axios.get("/api/contact/read/", 
+    Axios.get(
+      "/api/contact/read/",
       { params: { key: 0, tag: user_id } } // key=0 matches contact.user_id to tag
     )
       .then((response) => {

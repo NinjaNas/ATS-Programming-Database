@@ -24,8 +24,8 @@ const Attendance = ({ session_id, onfetch }) => {
       })
       .catch((err) => {
         console.log(err);
-          // If unauthorized, redirect back to login page
-          if (err.response.status === 401) {
+        // If unauthorized, redirect back to login page
+        if (err.response.status === 401) {
           router.push("/app/login");
         }
       });

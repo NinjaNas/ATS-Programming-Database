@@ -6,6 +6,6 @@ const selQuestions = {
   question_collaboration: "I know how to work with others to solve problems",
   question_composure: "I know how to stay calm in difficult situations",
   question_goals: "I have goals and I have plans to reach them",
-}
+};
 
-export default selQuestions
+export default selQuestions;

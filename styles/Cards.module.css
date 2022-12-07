@@ -1,72 +1,72 @@
 /* Scrollable block used in some of the information displayed under each student in Admin dashboard */
 .currentStud {
-	background-color: whitesmoke;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	width: 97%;
-	margin-top: 0%;
-	margin-bottom: 2.5%;
-	margin-left: 5px;
-	overflow-y: scroll;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  width: 97%;
+  margin-top: 0%;
+  margin-bottom: 2.5%;
+  margin-left: 5px;
+  overflow-y: scroll;
 }
 
 .card {
-	background-color: #dbdcda;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	width: 100%;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 20px;
-	color: #595959;
-	font-family: sans-serif;
-    overflow-y: scroll;
+  background-color: #dbdcda;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  width: 100%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 20px;
+  color: #595959;
+  font-family: sans-serif;
+  overflow-y: scroll;
 }
 
 .subSession {
-	border-color: #e6b566;
-	border-width: 10px;
-	border-style: solid;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	width: 97%;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 20px;
-	color: #595959;
-	font-family: sans-serif;
+  border-color: #e6b566;
+  border-width: 10px;
+  border-style: solid;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  width: 97%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 20px;
+  color: #595959;
+  font-family: sans-serif;
 }
 /* Styles student header on information page for specific student on admin side */
 .studentHeader {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 40px;
-	margin-left: 2%;
-	font-weight: 600;
-	margin-top: 1.5%;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 40px;
+  margin-left: 2%;
+  font-weight: 600;
+  margin-top: 1.5%;
 }
 
 .displayLink {
-	background-color: transparent;
-	border-style: none;
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 28px;
-	font-weight: bold;
+  background-color: transparent;
+  border-style: none;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: bold;
 }
 /* Styles some clickable links at the bottom of each info section under each students name */
-.Link{
-    color: #595959;
-    font-family: sans-serif;
-    font-weight: bold;
+.Link {
+  color: #595959;
+  font-family: sans-serif;
+  font-weight: bold;
 }
 
 .Link:hover {
-    color: #c39955;
+  color: #c39955;
 }

@@ -45,7 +45,7 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
     }
   };
 
-  // This component is currently assumed to be in a table.  
+  // This component is currently assumed to be in a table.
   // This could probably use some refactoring and re-styling
   return (
     <tr className={`${TableStyles.attendance}`}>

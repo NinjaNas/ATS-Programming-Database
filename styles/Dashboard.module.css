@@ -1,88 +1,88 @@
 /* Basic main page styling for most pages around website */
 .mainPage {
-	font-size: 20px;
-	background-color: whitesmoke;
-	height: 100vh;
-	color: black;
-	margin-top: 0px;
-	margin-left: 0px;
-	padding: 0;
-	border: 0;
+  font-size: 20px;
+  background-color: whitesmoke;
+  height: 100vh;
+  color: black;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding: 0;
+  border: 0;
 }
 /* Meant to be used when page content goes over 100vh */
 .longerPage {
-	font-size: 20px;
-	background-color: whitesmoke;
-	height: 100%;
-	color: black;
-	margin-top: 0px;
-	margin-left: 0px;
-	padding: 0;
-	border: 0;
+  font-size: 20px;
+  background-color: whitesmoke;
+  height: 100%;
+  color: black;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding: 0;
+  border: 0;
 }
 /* Scrollable grey box used around the website when content is of undefined size */
 .currentStud {
-	background-color: #dbdcda;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	width: 97%;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 20px;
-	overflow-y: scroll;
+  background-color: #dbdcda;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  width: 97%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 20px;
+  overflow-y: scroll;
 }
 
 .transparentDash {
-	background-color: whitesmoke;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 77%;
-	padding: 20px;
-	margin-top: 1.0%;
-	margin-bottom: 1.5%;
-	margin-left: 10px;
-	margin-right: 10px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 77%;
+  padding: 20px;
+  margin-top: 1%;
+  margin-bottom: 1.5%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .studentDash {
-	background-color: #dbdcda;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 10px;
-	margin-right: 10px;
-	overflow-y: scroll;
+  background-color: #dbdcda;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow-y: scroll;
 }
 /* Style of box where tasklist is */
 .taskBox {
-	background-color: transparent;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 80%;
-	padding: 20px;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 10px;
-	margin-right: 10px;
+  background-color: transparent;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 80%;
+  padding: 20px;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 /* Style of subbox where tasklist is */
 .tasklist {
-	background-color: #a3ddcb;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 85%;
-	padding: 20px;
-	width: 35%;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 0px;
-	margin-right: 20px;
-	overflow-y: scroll;
+  background-color: #a3ddcb;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 85%;
+  padding: 20px;
+  width: 35%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 0px;
+  margin-right: 20px;
+  overflow-y: scroll;
 }
 
 /* Probably wont need this one*/
@@ -101,121 +101,120 @@
 } */
 /* More styling for the task component */
 .taskpage {
-	background-color: #a3ddcb;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 110%;
-	padding: 20px;
-	width: 50vh;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 0px;
-	margin-right: 20px;
-	overflow-y: scroll;
+  background-color: #a3ddcb;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 110%;
+  padding: 20px;
+  width: 50vh;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 0px;
+  margin-right: 20px;
+  overflow-y: scroll;
 }
 .taskpageAdmin {
-	background-color: #a3ddcb;
-	border-radius: 20px;
-	box-sizing: border-box;
-	height: 400px;
-	padding: 20px;
-	width: 50vh;
-	margin-top: 1.5%;
-	margin-bottom: 1.5%;
-	margin-left: 0px;
-	margin-right: 20px;
-	overflow-y: scroll;
+  background-color: #a3ddcb;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 400px;
+  padding: 20px;
+  width: 50vh;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  margin-left: 0px;
+  margin-right: 20px;
+  overflow-y: scroll;
 }
 /* Generic styling for titles around website */
 .title {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 30px;
-	font-weight: 600;
-	margin-top: 1.5%;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 1.5%;
 }
 /* Generic styling for subtitles around website */
 .subtitle {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 24px;
-	font-weight: 600;
-	margin-top: 10px;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 10px;
 }
 /* Generic styling for text around website */
 .text {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 16px;
-	font-weight: 600;
-	margin-top: 10px;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
 }
 /* Styling used for names of tasks under tasklist */
 .taskName {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 22px;
-	font-weight: 600;
-	margin-top: 2px;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 2px;
 }
 /* Styling used for rest of text under tasklist */
 .taskRest {
-	color: #595959;
-	font-family: sans-serif;
-	font-size: 18px;
-	font-weight: 520;
-	margin-top: 2px;
-	text-align: left;
-	margin-left: 0%;
-	display: inline-block;
+  color: #595959;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 520;
+  margin-top: 2px;
+  text-align: left;
+  margin-left: 0%;
+  display: inline-block;
 }
 /* Styling used for checkbox under tasklist */
 .checkbox {
-	accent-color: #e6b566;
+  accent-color: #e6b566;
 }
 
 .addTask {
-	margin-left: 10%;
-	display: inline-block;
+  margin-left: 10%;
+  display: inline-block;
 }
-
 
 .tdNames {
-	text-align: left;
-	padding: 3%;
-	width: 50%;
+  text-align: left;
+  padding: 3%;
+  width: 50%;
 }
 .tdProgress {
-	text-align: left;
-	padding: 3%;
-	width: 60%;
+  text-align: left;
+  padding: 3%;
+  width: 60%;
 }
 
 .tdButton {
-	text-align: left;
-	padding: 3%;
+  text-align: left;
+  padding: 3%;
 }
 
 .button {
-	background-color: #a3ddcb;
-	border-radius: 50px;
-	box-shadow: #c6ffed;
-	color: #177457;
-	cursor: pointer;
-	display: inline-block;
-	font-family: sans-serif;
-	padding: 7px 20px;
-	text-align: center;
-	text-decoration: none;
-	transition: all 250ms;
-	border: 0;
-	font-size: 10px;
-	user-select: none;
-	-webkit-user-select: none;
-	touch-action: manipulation;
+  background-color: #a3ddcb;
+  border-radius: 50px;
+  box-shadow: #c6ffed;
+  color: #177457;
+  cursor: pointer;
+  display: inline-block;
+  font-family: sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .button:hover {
-	box-shadow: #a3ddcb;
-	transform: scale(1.05) rotate(-1deg);
+  box-shadow: #a3ddcb;
+  transform: scale(1.05) rotate(-1deg);
 }

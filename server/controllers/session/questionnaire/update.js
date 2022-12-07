@@ -19,8 +19,6 @@ async function updateController(req, res) {
       console.log(err);
     });
 
-  console.log(rows);
-
   if (rows.length) {
     // Delete all null values from keys
     keys = Object.fromEntries(

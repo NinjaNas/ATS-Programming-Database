@@ -16,7 +16,8 @@ const SessionEdit = ({ id, user_id }) => {
   const [session, setSession] = useState();
   const sessionInfo = () => {
     if (id) {
-      Axios.get("/api/session/read/", 
+      Axios.get(
+        "/api/session/read/",
         { params: { key: 0, tag: id } } // key=0 matches session.id to tag
       )
         .then((response) => {
@@ -69,7 +70,8 @@ const SessionEdit = ({ id, user_id }) => {
       notes: notesRef.current.value != "" ? notesRef.current.value : null,
     };
 
-    if (id) { // if id is present, then update the matching session
+    if (id) {
+      // if id is present, then update the matching session
       body.id = id;
       Axios.post("/api/session/update", body)
         .then((response) => {
