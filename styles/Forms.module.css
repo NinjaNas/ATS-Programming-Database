@@ -1,116 +1,114 @@
 /* Input Styling for Add Task Input Boxes */
 .input {
-	background-color: whitesmoke;
-	border-radius: 12px;
-	border: 0;
-	box-sizing: border-box;
-	color: #595959;
-	font-size: 18px;
-	height: 100%;
-	outline: 0;
-	padding: 4px 17px;
-	width: 80%;
-	margin-top: 5%;
-	margin-bottom: 5%;
+  background-color: whitesmoke;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #595959;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 17px;
+  width: 80%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 /* Standard Input Box Styling for Input Component */
 .input2 {
-	background-color: whitesmoke;
-	border-radius: 12px;
-	border: 0;
-	box-sizing: border-box;
-	color: #595959;
-	font-size: 14px;
-	height: 100%;
-	outline: 0;
-	padding: 4px 17px;
-	width: 60%;
-	margin-top: 5%;
-	margin-bottom: 5%;
+  background-color: whitesmoke;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #595959;
+  font-size: 14px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 17px;
+  width: 60%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .input3 {
-	background-color: whitesmoke;
-	border-radius: 12px;
-	border: 0;
-	box-sizing: border-box;
-	color: #595959;
-	font-size: 18px;
-	height: 10%;
-	outline: 0;
-	padding: 4px 2px;
-	width: 10%;
-	margin-top: 5%;
-	margin-bottom: 5%;
+  background-color: whitesmoke;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #595959;
+  font-size: 18px;
+  height: 10%;
+  outline: 0;
+  padding: 4px 2px;
+  width: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 /* Add Button Styling on the Add Task Component */
 .submit {
-	background-color: #e6b566;
-	border-radius: 12px;
-	border: 0;
-	box-sizing: border-box;
-	color: #595959;
-	cursor: pointer;
-	font-size: 18px;
-	height: 100%;
-	margin-top: 38px;
-	outline: 0;
-	text-align: center;
-	width: 60%;
+  background-color: #e6b566;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #595959;
+  cursor: pointer;
+  font-size: 18px;
+  height: 100%;
+  margin-top: 38px;
+  outline: 0;
+  text-align: center;
+  width: 60%;
 }
 /* Styling for Attendence Buttons under Day Component */
 .submit2 {
-	background-color: #e6b566;
-	border-radius: 12px;
-	border: 0;
-	box-sizing: border-box;
-	color: #595959;
-	cursor: pointer;
-	font-size: 17px;
-	height: 100%;
-	text-align: center;
-	width: 120%;
-    outline: 0;
-    margin-top: 5%;
-	margin-bottom: 5%;
-    
+  background-color: #e6b566;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #595959;
+  cursor: pointer;
+  font-size: 17px;
+  height: 100%;
+  text-align: center;
+  width: 120%;
+  outline: 0;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .submit3 {
-	background-color: whitesmoke;
-	border-radius: 12px;
-	border: 0;
-	box-sizing: border-box;
-	color: #595959;
-	cursor: pointer;
-	font-size: 14px;
-	height: 4%;
-	text-align: center;
-	width: 20%;
-    outline: 0;
-    margin-top: 5%;
-	margin-bottom: 5%;
-    
+  background-color: whitesmoke;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #595959;
+  cursor: pointer;
+  font-size: 14px;
+  height: 4%;
+  text-align: center;
+  width: 20%;
+  outline: 0;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .submit:hover {
-	background-color: #c39955;
+  background-color: #c39955;
 }
 
 .submit2:hover {
-	background-color: #c39955;
+  background-color: #c39955;
 }
 .submit3:hover {
-    background-color: #dbdcda;
+  background-color: #dbdcda;
 }
 /* Styling for editing user information page */
 .editForm {
-    background-color: #e6b566;
-    border-radius: 20px;
-    box-sizing: border-box;
-    height: 500px;
-    padding: 20px;
-    width: 320px;
-    color: #595959;
-    font-family: sans-serif;
-  }
+  background-color: #e6b566;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 500px;
+  padding: 20px;
+  width: 320px;
+  color: #595959;
+  font-family: sans-serif;
+}

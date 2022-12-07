@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function tasklist() {
-  return (
-    <div>tasklist</div>
-  )
+  return <div>tasklist</div>;
 }
 
-export default tasklist
+export default tasklist;

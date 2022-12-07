@@ -15,8 +15,9 @@ function DemographicsRead({ id }) {
   const router = useRouter();
 
   const demographicsInfo = () => {
-    Axios.get("/api/demographics/read/", 
-    { params: { key: 0, tag: id } } // key=0 matches demographics.user_id to tag
+    Axios.get(
+      "/api/demographics/read/",
+      { params: { key: 0, tag: id } } // key=0 matches demographics.user_id to tag
     )
       .then((response) => {
         setDemographics(response.data[0]);

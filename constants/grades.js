@@ -6,7 +6,6 @@ const grades = {
   10: "10th",
   11: "11th",
   12: "12th",
-}
+};
 
-
-export default grades
+export default grades;

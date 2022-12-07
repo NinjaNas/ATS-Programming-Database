@@ -19,10 +19,6 @@ router.use("/read", read);
  * req - Receives GET request
  * res - Send back HTTPS result
  */
-router.get(
-  "/",
-  authorize(["admin", "counselor"]),
-  indexController
-);
+router.get("/", authorize(["admin", "counselor"]), indexController);
 
 module.exports = router;

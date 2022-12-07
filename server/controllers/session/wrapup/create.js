@@ -20,7 +20,7 @@ async function createController(req, res) {
     court_counselor,
     meeting_status,
     performing_admin,
-    notes
+    notes,
   } = req.body;
 
   let [rows, fields] = await pool
@@ -39,24 +39,24 @@ async function createController(req, res) {
       .execute(
         "INSERT INTO wrap_up_meeting (session_id, meeting_date, meeting_time, location, family_rep, family_rep_attend, school_rep, school_rep_attend, other_rep, other_rep_attend, parent_translator, school_translator, outside_translator, court_involved, court_counselor, meeting_status, performing_admin, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
         [
-            session_id,
-            meeting_date,
-            meeting_time,
-            location,
-            family_rep,
-            family_rep_attend,
-            school_rep,
-            school_rep_attend,
-            other_rep,
-            other_rep_attend,
-            parent_translator,
-            school_translator,
-            outside_translator,
-            court_involved,
-            court_counselor,
-            meeting_status,
-            performing_admin,
-            notes
+          session_id,
+          meeting_date,
+          meeting_time,
+          location,
+          family_rep,
+          family_rep_attend,
+          school_rep,
+          school_rep_attend,
+          other_rep,
+          other_rep_attend,
+          parent_translator,
+          school_translator,
+          outside_translator,
+          court_involved,
+          court_counselor,
+          meeting_status,
+          performing_admin,
+          notes,
         ]
       )
       .then(() => {

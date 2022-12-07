@@ -17,9 +17,7 @@ async function readController(req, res) {
         // Do not throw error inside of promise
         console.log(err);
       });
-      
-  } else if (key == 1) { 
-
+  } else if (key == 1) {
     await pool
       .query("SELECT * FROM contact WHERE id=?;", [tag])
       .then((table) => {

@@ -45,9 +45,7 @@ function Login() {
           <input className={LoginStyles.input} type="email" ref={emailRef} />
           <br></br>
           {/*Type input box*/}
-          <label className={LoginStyles.placeholder}>
-            Password:
-          </label>
+          <label className={LoginStyles.placeholder}>Password:</label>
           <input
             className={LoginStyles.input}
             type="password"

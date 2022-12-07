@@ -2,13 +2,7 @@ const pool = require("../../utils/pool");
 
 async function createController(req, res) {
   // Object destructuring
-  const {
-    user_id,
-    phone,
-    address,
-    city,
-    zip,
-    status  } = req.body;
+  const { user_id, phone, address, city, zip, status } = req.body;
 
   let [rows, fields] = await pool
     .query("SELECT * FROM user WHERE id=?;", [user_id])
@@ -25,14 +19,7 @@ async function createController(req, res) {
     await pool
       .execute(
         "INSERT INTO contact (user_id, phone, address, city, zip, status) VALUES (?, ?, ?, ?, ?, ?);",
-        [
-          user_id,
-          phone,
-          address,
-          city,
-          zip,
-          status
-        ]
+        [user_id, phone, address, city, zip, status]
       )
       .then(() => {
         console.log("New contact created with associated UUID " + user_id);

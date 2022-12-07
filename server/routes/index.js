@@ -10,18 +10,18 @@ const medical = require("./medical");
 const demographics = require("./demographics");
 const sessionData = require("./sessionData");
 const userData = require("./userData");
-const contact = require("./contact")
+const contact = require("./contact");
 
 // Routing
 router.use("/user", user);
 router.use("/login", login);
 router.use("/logout", logout);
 router.use("/session", session);
-router.use("/medical", medical)
+router.use("/medical", medical);
 //router.use("/data", data);
 router.use("/demographics", demographics);
 router.use("/sessionData", sessionData);
 router.use("/userData", userData);
-router.use("/contact", contact)
+router.use("/contact", contact);
 
 module.exports = router;
