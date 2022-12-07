@@ -8,7 +8,7 @@
 	padding: 0;
 	border: 0;
 }
-
+/* Grey box where data graphs are */
 .dataContainer {
 	background-color: #dbdcda;
 	border-radius: 20px;
@@ -21,7 +21,7 @@
 	margin-left: 20px;
 	overflow-y: scroll;
 }
-
+/* Styling for title of graphs */
 .title {
 	color: #595959;
 	font-family: sans-serif;

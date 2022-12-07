@@ -3,6 +3,7 @@ import navbarStyles from "../../styles/Nav.module.css";
 import Link from "next/link";
 import Axios from "axios";
 
+// This Component creates a Navbar by using Next.js Link tag//
 function Navbar() {
   function logOut() {
     Axios.post("/api/logout")

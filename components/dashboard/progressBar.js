@@ -1,10 +1,11 @@
 import ProgBarStyles from "../../styles/ProgressBar.module.css";
 
+//Progressbar used in the current Student pahe (Home) on Admin dashboard//
 const ProgressBar = (props) => {
 	const { completed } = props;
 
 
-
+//Styles given to the porgress bar rendered using props to adjust width//
 	const fillerStyles = {
 		height: "100%",
 		width: `${completed}%`,

@@ -1,3 +1,4 @@
+/* Scrollable block used in some of the information displayed under each student in Admin dashboard */
 .currentStud {
 	background-color: whitesmoke;
 	border-radius: 20px;
@@ -41,7 +42,7 @@
 	color: #595959;
 	font-family: sans-serif;
 }
-
+/* Styles student header on information page for specific student on admin side */
 .studentHeader {
 	color: #595959;
 	font-family: sans-serif;
@@ -59,7 +60,7 @@
 	font-size: 28px;
 	font-weight: bold;
 }
-
+/* Styles some clickable links at the bottom of each info section under each students name */
 .Link{
     color: #595959;
     font-family: sans-serif;
