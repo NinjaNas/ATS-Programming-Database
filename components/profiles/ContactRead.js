@@ -8,14 +8,18 @@ import CardStyles from "../../styles/Cards.module.css";
 const ContactRead = ({ user_id }) => {
   const [contact, setContact] = useState([]);
   const [display, setDisplay] = useState("none");
-	const router = useRouter();
+  const router = useRouter();
+  /* Get all the contacts for the specified user*/
   const contactInfo = () => {
-    Axios.get("/api/contact/read/", { params: { key: 0, tag: user_id } })
+    Axios.get("/api/contact/read/", 
+      { params: { key: 0, tag: user_id } } // key=0 matches contact.user_id to tag
+    )
       .then((response) => {
         setContact(response.data);
       })
       .catch((err) => {
         console.log(err);
+        // If unauthorized, redirect back to login page
         if (err.response.status === 401) {
           router.push("/app/login");
         }
@@ -26,6 +30,7 @@ const ContactRead = ({ user_id }) => {
     display == "none" ? setDisplay("block") : setDisplay("none");
   };
 
+  /* useEffect calls contactInfo on mount only*/
   useEffect(() => {
     contactInfo();
   }, []);
@@ -36,6 +41,7 @@ const ContactRead = ({ user_id }) => {
         Contact Information
       </button>
       <div style={{ display: display }}>
+        {/* Display all contacts */}
         {contact.map(({ id, phone, address, city, zip, status }) => (
           <div>
             <Link
@@ -53,6 +59,7 @@ const ContactRead = ({ user_id }) => {
             </p>
           </div>
         ))}
+        {/* Button to add new contact */}
         <Link
           href={`/app/dashboard/admin/studentprofile/${user_id}/contactInfo/add`}
         >

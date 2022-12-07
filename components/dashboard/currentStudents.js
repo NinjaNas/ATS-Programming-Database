@@ -17,13 +17,14 @@ function currentStudents() {
   /*Axios call to get student data*/
   const allStudents = () => {
     Axios.get("/api/user/read", {
-      params: { key: 1, tag: 0 },
+      params: { key: 1, tag: 0 }, // key=1 indicates active users, tag=0 is just a placeholder
     })
       .then((response) => {
         setStudents(response.data);
       })
       .catch((err) => {
         console.log(err);
+        // If unauthorized, redirect back to login page
         if (err.response.status === 401) {
           router.push("/app/login");
         }
@@ -32,10 +33,11 @@ function currentStudents() {
 
   const activeSessions = () => {
     Axios.get("/api/session/read", {
-      params: { key: 2 },
+      params: { key: 2 }, // key=2 indicates that session is active/incomplete
     })
       .then((response) => {
         setSessions(response.data);
+        // if successful, get tasks and attendance
         allTasks();
         attendance();
       })
@@ -45,16 +47,17 @@ function currentStudents() {
   };
 
   const attendance = () => {
+    // Grab all attendance days
     Axios.get("/api/session/day/read").then((response) => {
       const data = response.data.sort(
-        (a, b) => new Date(a.attendance_day) - new Date(b.attendance_day)
+        (a, b) => new Date(a.attendance_day) - new Date(b.attendance_day) // sort in chronological order
       );
       setDays(data);
     });
   };
 
   const allTasks = () => {
-    // Grab current session id for user to render tasks
+    // Grab all the tasks
     Axios.get("/api/session/task/read")
       .then((response) => {
         setTasks(response.data);
@@ -64,19 +67,27 @@ function currentStudents() {
       });
   };
 
-  /*UseEffect calls allStudents on page Mount only*/
+  /*UseEffect calls allStudents and activeSessions on page Mount only*/
   useEffect(() => {
     allStudents();
     activeSessions();
   }, []);
 
+  /* Get the percentage of 
+   * verified Boomerange tasks + days attended compared to the total 
+   * for a single session*/
   const getPercentage = (session_id) => {
+    // get all non-academic tasks matching the session
     let session_tasks = tasks.filter(
       (task) => task.session_id == session_id && task.task_type != 2
     );
+    // get all days that match the session
     let session_days = days.filter((day) => day.session_id == session_id);
+    // get the number of attended days
     let attended = session_days.filter((day) => day.status == 1);
+    // get the number of verified tasks
     let completed = session_tasks.filter((task) => task.status == 3);
+    
     let result = Math.round(
       ((attended.length + completed.length) /
         (session_tasks.length + session_days.length)) *

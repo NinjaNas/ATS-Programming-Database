@@ -15,13 +15,15 @@ function DemographicsRead({ id }) {
   const router = useRouter();
 
   const demographicsInfo = () => {
-    Axios.get("/api/demographics/read/", { params: { key: 0, tag: id } })
+    Axios.get("/api/demographics/read/", 
+    { params: { key: 0, tag: id } } // key=0 matches demographics.user_id to tag
+    )
       .then((response) => {
-        // setDemographics(response.data.filter(s => s.user_id == id));
         setDemographics(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
+        // If unauthorized, redirect back to login page
         if (err.response.status === 401) {
           router.push("/app/login");
         }
@@ -32,10 +34,12 @@ function DemographicsRead({ id }) {
     display == "none" ? setDisplay("block") : setDisplay("none");
   };
 
+  /* useEffect calls demographicsInfo on mount only*/
   useEffect(() => {
     demographicsInfo();
   }, []);
 
+  /* Display gender and race using labels from data dictionary */
   useEffect(() => {
     if (demographics) {
       setGenderString(gender[demographics.gender]);

@@ -17,7 +17,7 @@ function studentTasklistWrapper() {
         console.log(res);
         const session_id = res.data.id;
         Axios.get("/api/session/task/read", {
-          params: { key: 0, tag: session_id },
+          params: { key: 0, tag: session_id }, // key=0 fetches tasks with session_id matching tag
         })
           .then((response) => {
             setTasks(response.data);
@@ -37,14 +37,16 @@ function studentTasklistWrapper() {
     setUpdateToggle(!updateToggle);
   };
 
-  /*UseEffect calls allStudents on page Mount only*/
+  /*UseEffect calls allTasks on page Mount only*/
   useEffect(() => {
     allTasks();
   }, []);
 
+  /*UseEffect calls allTasks on task update*/
   useEffect(() => {
     allTasks();
   }, [updateToggle]);
+
   return (
     <div className={pageStyles.studentDash}>
       <Tasks tasks={tasks} title="Academic" handler={handleTask}></Tasks>

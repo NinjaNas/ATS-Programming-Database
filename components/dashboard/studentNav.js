@@ -54,11 +54,7 @@ function studentNav() {
 						Log out
 					</a>
 				</Link>
-				{/*
-                <Link href='/app/dashboard/student/questionnare'>
-                    <a title='Referral'>Questionnare</a>
-                </Link>
-                */}
+
 			</span>
 		</nav>
 	);

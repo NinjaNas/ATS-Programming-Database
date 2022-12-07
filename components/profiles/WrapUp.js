@@ -22,26 +22,30 @@ const WrapUp = ({ session_id }) => {
   const [user, setUser] = useState();
   const sessionInfo = () => {
     Axios.get("/api/session/read/", {
-      params: { key: 0, tag: session_id },
+      params: { key: 0, tag: session_id }, // key=0 matches session.id to tag
     })
       .then((response) => {
         setSession(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
-        if (err.response.status === 401) {
+          // If unauthorized, redirect back to login page
+          if (err.response.status === 401) {
           router.push("/app/login");
         }
       });
   };
 
   const wrapUpInfo = () => {
+    // Grab the session wrap-up meeting from the database
     Axios.get("/api/session/wrapup/read/", {
-      params: { key: 0, tag: session_id },
+      params: { key: 0, tag: session_id }, // key=0 matches wrap_up_meeting.session_id to tag
     }).then((response) => {
       if (response.data.length > 0) {
         setMeeting(response.data[0]);
       } else {
+        // if no wrap up meeting is found, create the meeting and re-run function to retrieve from db
+        // to ensure it was properly created
         createMeeting();
         wrapUpInfo();
       }

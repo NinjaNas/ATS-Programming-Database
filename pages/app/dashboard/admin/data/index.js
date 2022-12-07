@@ -12,10 +12,6 @@ function summary() {
     setSmCompleted(data);
   };
 
-  // useEffect(()=> {
-
-  // })
-
   return (
     <div className={pageStyles.mainPage}>
       <Navbar></Navbar>

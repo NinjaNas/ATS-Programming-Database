@@ -16,26 +16,31 @@ const SessionEdit = ({ id, user_id }) => {
   const [session, setSession] = useState();
   const sessionInfo = () => {
     if (id) {
-      Axios.get("/api/session/read/", { params: { key: 0, tag: id } })
+      Axios.get("/api/session/read/", 
+        { params: { key: 0, tag: id } } // key=0 matches session.id to tag
+      )
         .then((response) => {
           setSession(response.data[0]);
         })
         .catch((err) => {
           console.log(err);
+          // If unauthorized, redirect back to login page
           if (err.response.status === 401) {
             router.push("/app/login");
           }
         });
     } else {
+      // if no id is passed, then we want to create a new session
+      // use new object with matching user_id field
       setSession({ user_id: user_id });
     }
   };
 
+  /* useEffect calls sessionInfo on mount only */
   useEffect(() => {
     sessionInfo();
   }, []);
 
-  // TODO: Update correct params
   const onSave = () => {
     const body = {
       intake_date:
@@ -64,7 +69,7 @@ const SessionEdit = ({ id, user_id }) => {
       notes: notesRef.current.value != "" ? notesRef.current.value : null,
     };
 
-    if (id) {
+    if (id) { // if id is present, then update the matching session
       body.id = id;
       Axios.post("/api/session/update", body)
         .then((response) => {
@@ -74,6 +79,7 @@ const SessionEdit = ({ id, user_id }) => {
           console.log(err);
         });
     } else {
+      // otherwise, create a new session with the matching user_id
       body.user_id = user_id;
       Axios.post("/api/session/create", body)
         .then((response) => {
@@ -88,6 +94,7 @@ const SessionEdit = ({ id, user_id }) => {
   };
 
   const onDelete = () => {
+    // extra step for user before they delete
     if (deleteRef.current.value.toLowerCase().trim() == "confirm") {
       Axios.post("/api/session/delete", {
         session_id: id,
@@ -175,6 +182,7 @@ const SessionEdit = ({ id, user_id }) => {
             label="Additional Notes"
             passedValue={session.notes}
           />
+          {/* For existing session */}
           {id && (
             <div>
               <div>
@@ -190,6 +198,7 @@ const SessionEdit = ({ id, user_id }) => {
               </div>
             </div>
           )}
+          {/* For new session */}
           {user_id && <input type="submit" value="Add" onClick={onSave} />}
         </>
       )}

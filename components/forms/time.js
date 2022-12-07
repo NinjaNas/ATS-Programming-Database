@@ -1,8 +1,8 @@
 import React from "react";
 import Input from "../../styles/Forms.module.css";
 
+// React.forwardRef allows this component to provide the reference info to the parent calling it
 const TimeForm = React.forwardRef(({ label, passedValue }, ref) => {
-	// const [value, setValue] = useState(passedValue)
 
 	return (
 		<div>

@@ -28,10 +28,11 @@ function addTask({ session_id, handler }) {
           end_date: null,
         })
           .then(() => {
-            handler();
+            handler(); // passed through props
           })
           .catch((err) => {
             console.log(err);
+            // If unauthorized, redirect back to login page
             if (err.response.status === 401) {
               router.push("/app/login");
             }
@@ -39,6 +40,7 @@ function addTask({ session_id, handler }) {
       })
       .catch((err) => {
         console.log(err);
+        // If unauthorized, redirect back to login page
         if (err.response.status === 401) {
           router.push("/app/login");
         }

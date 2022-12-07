@@ -28,9 +28,7 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
       body.id = id;
       Axios.post("/api/session/day/update", body)
         .then((response) => {
-          // router.reload()
           onadd();
-          //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
         })
         .catch((err) => {
           console.log(err);
@@ -39,8 +37,6 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
       body.session_id = session_id;
       Axios.post("/api/session/day/create", body)
         .then((response) => {
-          //   router.push(`/app/dashboard/admin/studentprofile/${session.user_id}`);
-          // router.reload()
           onadd();
         })
         .catch((err) => {
@@ -49,8 +45,9 @@ const Day = ({ id, session_id, date, status, type, reason_missed, onadd }) => {
     }
   };
 
+  // This component is currently assumed to be in a table.  
+  // This could probably use some refactoring and re-styling
   return (
-    // <tr className={session_id ? `${CardStyles.card} ` : " " + `${TableStyles.attendance}`}>
     <tr className={`${TableStyles.attendance}`}>
       <td>
         <DateForm ref={dateRef} label="Date" passedValue={date} />

@@ -66,6 +66,7 @@ function Navbar() {
             Log out
           </a>
         </Link>
+        {/* The referral page is not implemented at this time */}
         {/*
 				<Link href='/app/referral'>
 					<a title='Referral'>Referral</a>
