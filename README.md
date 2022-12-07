@@ -7,7 +7,7 @@ As the program grows, Boomerang Youth Inc is finding it harder to keep up with s
 
 With this project, we aim to help the organization streamline their administrative overhead by developing new software solutions that integrate into their workflow along with providing new capabilities.
 
-This project was developed using the Agile/XP method by Elad Ohana, Gabriel Mercado, Zackary Barbari, and Khang Tran for the Fall 2022 COMP 523 Software Engineering Lab.
+**This project was developed using the Agile/XP method by Elad Ohana, Gabriel Mercado, Zackary Barbari, and Khang Tran for the Fall 2022 COMP 523 Software Engineering Lab**.
 
 Link to Boomerang Youth's Website: https://boomerangyouth.org/
 
